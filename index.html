@@ -422,7 +422,7 @@
 
     <header>
         <a href="#" class="brand">
-            <img id="storeLogo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzEwYjk4MSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmYiPk08L3RleHQ+PC9zdmc+" alt="Logo" class="store-logo" referrerpolicy="no-referrer">
+            <img id="storeLogo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzEwYjk4MSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmYiPk08L3RleHQ+PC9zdmc+" alt="Logo" class="store-logo">
             <span id="storeName" class="logo-text">MAGGIE STORE</span>
         </a>
         <div class="header-right">
@@ -457,7 +457,7 @@
     <div id="appModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <img id="modalIcon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWMyMzMwIi8+PHRleHQgeD0iNTAlIiB5PSI1NSUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjOWE0YjhiIj5BUFA8L3RleHQ+PC9zdmc+" alt="Icon" class="modal-icon" referrerpolicy="no-referrer">
+            <img id="modalIcon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWMyMzMwIi8+PHRleHQgeD0iNTAlIiB5PSI1NSUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjOWE0YjhiIj5BUFA8L3RleHQ+PC9zdmc+" alt="Icon" class="modal-icon">
             <div id="modalCat" class="cat-badge" style="margin-bottom:6px;">General</div>
             <h2 id="modalTitle" style="font-family:'Fraunces',serif;">App Name</h2>
             <p id="modalDesc" class="modal-desc"></p>
@@ -519,6 +519,7 @@
 
         let allApps = [];
         let activeCategory = 'All';
+        const ibbCache = new Map();
 
         function cleanUrl(raw) {
             const val = (raw || '').trim();
@@ -529,25 +530,51 @@
             return val;
         }
 
-        function setImageDirect(imgEl, rawUrl, fallbackUrl) {
+        async function extractDirectFromIbbPage(pageUrl) {
+            if (ibbCache.has(pageUrl)) return ibbCache.get(pageUrl);
+            try {
+                const res = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(pageUrl)}`);
+                if (res.ok) {
+                    const html = await res.text();
+                    const match = html.match(/https?:\/\/i\.ibb\.co\/[a-zA-Z0-9_-]+\/[^"'\s<>\\]+/i);
+                    if (match && match[0]) {
+                        ibbCache.set(pageUrl, match[0]);
+                        return match[0];
+                    }
+                }
+            } catch (_) {}
+            ibbCache.set(pageUrl, '');
+            return '';
+        }
+
+        async function setSmartLogo(imgEl, rawUrl, fallbackUrl) {
             if (!imgEl) return;
             const url = cleanUrl(rawUrl);
             if (!url) {
                 imgEl.src = fallbackUrl;
                 return;
             }
+
+            const isIbbViewerPage = /^https?:\/\/(?:www\.)?ibb\.co\/[a-zA-Z0-9_-]+\/?$/i.test(url);
+            let finalUrl = url;
+
+            if (isIbbViewerPage) {
+                const extracted = await extractDirectFromIbbPage(url);
+                if (extracted) finalUrl = extracted;
+            }
+
             imgEl.onerror = () => {
                 imgEl.onerror = null;
                 imgEl.src = fallbackUrl;
             };
-            imgEl.src = url;
+            imgEl.src = finalUrl;
         }
 
         onSnapshot(doc(db, "settings", "general"), (docSnap) => {
             if (docSnap.exists()) {
                 const settings = docSnap.data();
                 if (settings.logoUrl) {
-                    setImageDirect(document.getElementById('storeLogo'), settings.logoUrl, FALLBACK_STORE);
+                    setSmartLogo(document.getElementById('storeLogo'), settings.logoUrl, FALLBACK_STORE);
                 }
                 if (settings.storeName) {
                     document.getElementById('storeName').innerText = settings.storeName;
@@ -651,7 +678,7 @@
                         </a>
                     </div>
                 `;
-                setImageDirect(card.querySelector('.app-icon'), appItem.logoUrl, FALLBACK_APP);
+                setSmartLogo(card.querySelector('.app-icon'), appItem.logoUrl, FALLBACK_APP);
                 card.onclick = () => openModal(appItem);
                 appGrid.appendChild(card);
             });
@@ -660,7 +687,7 @@
         searchInput.addEventListener('input', filterAndRender);
 
         window.openModal = (appItem) => {
-            setImageDirect(document.getElementById('modalIcon'), appItem.logoUrl, FALLBACK_APP);
+            setSmartLogo(document.getElementById('modalIcon'), appItem.logoUrl, FALLBACK_APP);
             document.getElementById('modalCat').innerText = appItem.category || 'General';
             document.getElementById('modalTitle').innerText = appItem.name || 'App';
             document.getElementById('modalDesc').innerText = appItem.description || 'No description provided for this app.';
