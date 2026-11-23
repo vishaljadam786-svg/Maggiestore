@@ -352,7 +352,7 @@
 
     <header>
         <a href="#" class="logo-container">
-            <img id="storeLogo" src="https://via.placeholder.com/44/00e676/000000?text=M" alt="MAGGIE Logo" class="store-logo" onerror="this.src='https://via.placeholder.com/44/00e676/000000?text=M'">
+            <img id="storeLogo" src="https://via.placeholder.com/44/00e676/000000?text=M" alt="MAGGIE Logo" class="store-logo" referrerpolicy="no-referrer" onerror="this.src='https://via.placeholder.com/44/00e676/000000?text=M'">
             <div id="storeName" class="logo">MAGGIE STORE</div>
         </a>
         <input type="text" id="searchInput" class="search-box" placeholder="Search apps...">
@@ -379,7 +379,7 @@
     <div id="appModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <img id="modalIcon" src="" alt="App Icon" class="modal-icon" onerror="this.src='https://via.placeholder.com/90?text=App'">
+            <img id="modalIcon" src="" alt="App Icon" class="modal-icon" referrerpolicy="no-referrer" onerror="this.src='https://via.placeholder.com/90?text=App'">
             <div id="modalCat" class="cat-badge" style="display:inline-block; margin-bottom:8px;">General</div>
             <h2 id="modalTitle">App Name</h2>
             <p id="modalDesc" class="modal-desc"></p>
@@ -413,6 +413,15 @@
         let allApps = [];
         let activeCategory = 'All';
 
+        function cleanUrl(raw) {
+            const val = (raw || '').trim();
+            if (!val) return '';
+            if (!val.startsWith('http://') && !val.startsWith('https://') && !val.startsWith('data:image/')) {
+                return 'https://' + val;
+            }
+            return val;
+        }
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
@@ -428,7 +437,7 @@
             if (docSnap.exists()) {
                 const settings = docSnap.data();
                 if (settings.logoUrl) {
-                    document.getElementById('storeLogo').src = settings.logoUrl;
+                    document.getElementById('storeLogo').src = cleanUrl(settings.logoUrl);
                 }
                 if (settings.storeName) {
                     document.getElementById('storeName').innerText = settings.storeName;
@@ -458,7 +467,7 @@
                 const data = docSnap.data();
                 const iconClass = getPlatformIcon(data.platform);
                 const html = `
-                    <a href="${data.url}" target="_blank" class="social-pill">
+                    <a href="${cleanUrl(data.url)}" target="_blank" class="social-pill">
                         <i class="${iconClass}"></i> ${data.platform}
                     </a>
                 `;
@@ -522,12 +531,12 @@
                 const card = document.createElement('div');
                 card.className = 'app-card reveal';
                 card.innerHTML = `
-                    <img src="${appItem.logoUrl || ''}" alt="${appItem.name || 'App'}" class="app-icon" onerror="this.src='https://via.placeholder.com/70?text=App'">
+                    <img src="${cleanUrl(appItem.logoUrl)}" alt="${appItem.name || 'App'}" class="app-icon" referrerpolicy="no-referrer" onerror="this.src='https://via.placeholder.com/70?text=App'">
                     <div class="app-info">
                         <span class="cat-badge">${appItem.category || 'General'}</span>
                         <div class="app-title">${appItem.name || 'Unnamed App'}</div>
                         <div class="app-desc-short">${appItem.description || 'Tap to view details'}</div>
-                        <a href="${appItem.downloadUrl || '#'}" target="_blank" class="install-btn" onclick="event.stopPropagation()">Install</a>
+                        <a href="${cleanUrl(appItem.downloadUrl) || '#'}" target="_blank" class="install-btn" onclick="event.stopPropagation()">Install</a>
                     </div>
                 `;
                 card.onclick = () => openModal(appItem);
@@ -543,11 +552,11 @@
         searchInput.addEventListener('input', filterAndRender);
 
         window.openModal = (appItem) => {
-            document.getElementById('modalIcon').src = appItem.logoUrl || '';
+            document.getElementById('modalIcon').src = cleanUrl(appItem.logoUrl);
             document.getElementById('modalCat').innerText = appItem.category || 'General';
             document.getElementById('modalTitle').innerText = appItem.name || 'App';
             document.getElementById('modalDesc').innerText = appItem.description || 'No description provided for this app.';
-            document.getElementById('modalDownload').href = appItem.downloadUrl || '#';
+            document.getElementById('modalDownload').href = cleanUrl(appItem.downloadUrl) || '#';
             document.getElementById('appModal').style.display = 'flex';
         };
 
