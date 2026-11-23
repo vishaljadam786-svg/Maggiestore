@@ -421,7 +421,7 @@
 
     <header>
         <a href="#" class="brand">
-            <img id="storeLogo" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88'%3E%3Crect width='100%25' height='100%25' rx='22' fill='%2310b981'/%3E%3Ctext x='50%25' y='58%25' dominant-baseline='middle' text-anchor='middle' font-size='40' font-family='Arial,sans-serif' font-weight='bold' fill='%23ffffff'%3EM%3C/text%3E%3C/svg%3E" alt="Logo" class="store-logo" decoding="async" fetchpriority="high">
+            <img id="storeLogo" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88'%3E%3Crect width='100%25' height='100%25' rx='22' fill='%2310b981'/%3E%3Ctext x='50%25' y='58%25' dominant-baseline='middle' text-anchor='middle' font-size='40' font-family='Arial,sans-serif' font-weight='bold' fill='%23ffffff'%3EM%3C/text%3E%3C/svg%3E" alt="Logo" class="store-logo" referrerpolicy="no-referrer" decoding="async">
             <span id="storeName" class="logo-text">MAGGIE STORE</span>
         </a>
         <div class="header-right">
@@ -456,7 +456,7 @@
     <div id="appModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <img id="modalIcon" src="" alt="Icon" class="modal-icon" decoding="async">
+            <img id="modalIcon" src="" alt="Icon" class="modal-icon" referrerpolicy="no-referrer" decoding="async">
             <div id="modalCat" class="cat-badge" style="margin-bottom:6px;">General</div>
             <h2 id="modalTitle" style="font-family:'Fraunces',serif;">App Name</h2>
             <p id="modalDesc" class="modal-desc"></p>
@@ -518,7 +518,8 @@
 
         let allApps = [];
         let activeCategory = 'All';
-        const CACHE_KEY = 'maggie_resolved_img_v1';
+        localStorage.removeItem('maggie_resolved_img_v1');
+        const CACHE_KEY = 'maggie_resolved_img_v2';
         const resolvedCache = new Map(Object.entries(JSON.parse(localStorage.getItem(CACHE_KEY) || '{}')));
 
         function saveResolvedCache(raw, direct) {
@@ -537,43 +538,34 @@
             return val;
         }
 
-        function isDirectImageUrl(url) {
-            return (
-                url.startsWith('data:image/') ||
-                /^https?:\/\/i\.ibb\.co\//i.test(url) ||
-                /\.(png|jpe?g|webp|gif|svg|avif|ico)(\?.*)?$/i.test(url)
-            );
-        }
-
-        async function resolveImageFast(rawUrl) {
+        async function resolveImageUrl(rawUrl) {
             const url = cleanUrl(rawUrl);
             if (!url) return '';
             if (resolvedCache.has(url)) return resolvedCache.get(url);
 
-            if (isDirectImageUrl(url)) {
-                saveResolvedCache(url, url);
-                return url;
-            }
-
             const ibbMatch = url.match(/^https?:\/\/(?:www\.)?ibb\.co\/([a-zA-Z0-9_-]+)\/?$/i);
             if (ibbMatch) {
-                const controller = new AbortController();
-                const timer = setTimeout(() => controller.abort(), 2200);
-                try {
-                    const res = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`, {
-                        signal: controller.signal
-                    });
-                    clearTimeout(timer);
-                    if (res.ok) {
+                const proxies = [
+                    `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+                    `https://corsproxy.io/?${encodeURIComponent(url)}`,
+                    `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`
+                ];
+                for (const proxyUrl of proxies) {
+                    const controller = new AbortController();
+                    const timer = setTimeout(() => controller.abort(), 3000);
+                    try {
+                        const res = await fetch(proxyUrl, { signal: controller.signal });
+                        clearTimeout(timer);
+                        if (!res.ok) continue;
                         const html = await res.text();
                         const match = html.match(/https?:\/\/i\.ibb\.co\/[a-zA-Z0-9_-]+\/[^"'\s<>\\]+/i);
                         if (match && match[0]) {
                             saveResolvedCache(url, match[0]);
                             return match[0];
                         }
+                    } catch (_) {
+                        clearTimeout(timer);
                     }
-                } catch (_) {
-                    clearTimeout(timer);
                 }
             }
 
@@ -581,37 +573,40 @@
             return url;
         }
 
-        async function bindFastImage(imgEl, rawUrl, fallbackUrl) {
+        async function loadReliableImage(imgEl, rawUrl, fallbackUrl) {
             if (!imgEl) return;
-            imgEl.onerror = () => {
-                imgEl.onerror = null;
-                imgEl.src = fallbackUrl;
-            };
-
+            imgEl.referrerPolicy = 'no-referrer';
             const cleaned = cleanUrl(rawUrl);
             if (!cleaned) {
                 imgEl.src = fallbackUrl;
                 return;
             }
 
-            // Direct URL ho toh turant set karein (no delay)
-            if (isDirectImageUrl(cleaned) || resolvedCache.has(cleaned)) {
-                imgEl.src = resolvedCache.get(cleaned) || cleaned;
-                return;
-            }
+            const targetUrl = await resolveImageUrl(cleaned);
 
-            imgEl.src = fallbackUrl;
-            const resolved = await resolveImageFast(cleaned);
-            if (resolved) {
-                imgEl.src = resolved;
-            }
+            imgEl.onerror = async () => {
+                imgEl.onerror = null;
+                try {
+                    const res = await fetch(targetUrl);
+                    if (res.ok) {
+                        const blob = await res.blob();
+                        if (blob.type.startsWith('image/')) {
+                            imgEl.src = URL.createObjectURL(blob);
+                            return;
+                        }
+                    }
+                } catch (_) {}
+                imgEl.src = fallbackUrl;
+            };
+
+            imgEl.src = targetUrl;
         }
 
         onSnapshot(doc(db, "settings", "general"), (docSnap) => {
             if (docSnap.exists()) {
                 const settings = docSnap.data();
                 if (settings.logoUrl) {
-                    bindFastImage(document.getElementById('storeLogo'), settings.logoUrl, FALLBACK_STORE);
+                    loadReliableImage(document.getElementById('storeLogo'), settings.logoUrl, FALLBACK_STORE);
                 }
                 if (settings.storeName) {
                     document.getElementById('storeName').innerText = settings.storeName;
@@ -705,7 +700,7 @@
                 const card = document.createElement('div');
                 card.className = 'app-card';
                 card.innerHTML = `
-                    <img src="${FALLBACK_APP}" alt="Icon" class="app-icon" decoding="async" loading="eager">
+                    <img src="${FALLBACK_APP}" alt="Icon" class="app-icon" decoding="async">
                     <div class="app-info">
                         <span class="cat-badge">${appItem.category || 'General'}</span>
                         <div class="app-title">${appItem.name || 'Unnamed App'}</div>
@@ -715,7 +710,7 @@
                         </a>
                     </div>
                 `;
-                bindFastImage(card.querySelector('.app-icon'), appItem.logoUrl, FALLBACK_APP);
+                loadReliableImage(card.querySelector('.app-icon'), appItem.logoUrl, FALLBACK_APP);
                 card.onclick = () => openModal(appItem);
                 appGrid.appendChild(card);
             });
@@ -724,7 +719,7 @@
         searchInput.addEventListener('input', filterAndRender);
 
         window.openModal = (appItem) => {
-            bindFastImage(document.getElementById('modalIcon'), appItem.logoUrl, FALLBACK_APP);
+            loadReliableImage(document.getElementById('modalIcon'), appItem.logoUrl, FALLBACK_APP);
             document.getElementById('modalCat').innerText = appItem.category || 'General';
             document.getElementById('modalTitle').innerText = appItem.name || 'App';
             document.getElementById('modalDesc').innerText = appItem.description || 'No description provided for this app.';
