@@ -352,7 +352,7 @@
 
     <header>
         <a href="#" class="logo-container">
-            <img id="storeLogo" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='88' height='88'><rect width='100%' height='100%' fill='%2300e676'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-size='42' font-family='Arial,sans-serif' font-weight='bold' fill='%23000'>M</text></svg>" alt="MAGGIE Logo" class="store-logo" referrerpolicy="no-referrer">
+            <img id="storeLogo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzAwZTY3NiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMwMDAiPk08L3RleHQ+PC9zdmc+" alt="Logo" class="store-logo" referrerpolicy="no-referrer">
             <div id="storeName" class="logo">MAGGIE STORE</div>
         </a>
         <input type="text" id="searchInput" class="search-box" placeholder="Search apps...">
@@ -379,7 +379,7 @@
     <div id="appModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <img id="modalIcon" src="" alt="App Icon" class="modal-icon" referrerpolicy="no-referrer">
+            <img id="modalIcon" src="" alt="Icon" class="modal-icon" referrerpolicy="no-referrer">
             <div id="modalCat" class="cat-badge" style="display:inline-block; margin-bottom:8px;">General</div>
             <h2 id="modalTitle">App Name</h2>
             <p id="modalDesc" class="modal-desc"></p>
@@ -410,8 +410,8 @@
         const socialBar = document.getElementById('socialBar');
         const footerSocials = document.getElementById('footerSocials');
 
-        const FALLBACK_STORE = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='88' height='88'><rect width='100%' height='100%' fill='%2300e676'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-size='42' font-family='Arial,sans-serif' font-weight='bold' fill='%23000'>M</text></svg>";
-        const FALLBACK_APP = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><rect width='100%' height='100%' fill='%2327354f'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-size='28' font-family='Arial,sans-serif' fill='%2394a3b8'>APP</text></svg>";
+        const FALLBACK_STORE = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzAwZTY3NiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMwMDAiPk08L3RleHQ+PC9zdmc+";
+        const FALLBACK_APP = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMjczNTRmIi8+PHRleHQgeD0iNTAlIiB5PSI1NSUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjOTRhM2I4Ij5BUFA8L3RleHQ+PC9zdmc+";
 
         let allApps = [];
         let activeCategory = 'All';
@@ -431,7 +431,6 @@
             if (!url) return '';
             if (resolvedUrlCache.has(url)) return resolvedUrlCache.get(url);
 
-            // Agar ibb.co/<id> webpage link hai toh page HTML se i.ibb.co direct link nikaalne ki koshish
             const ibbPageMatch = url.match(/^https?:\/\/(?:www\.)?ibb\.co\/([a-zA-Z0-9_-]+)\/?$/i);
             if (ibbPageMatch) {
                 const proxies = [
@@ -457,27 +456,27 @@
         }
 
         async function setSmartImage(imgEl, rawUrl, fallbackUrl) {
+            imgEl.src = fallbackUrl;
             const resolved = await extractDirectImageUrl(rawUrl);
-            if (!resolved) {
-                imgEl.src = fallbackUrl;
-                return;
-            }
+            if (!resolved) return;
 
-            imgEl.onerror = async () => {
+            const testImg = new Image();
+            testImg.referrerPolicy = 'no-referrer';
+            testImg.onload = () => {
+                imgEl.src = resolved;
+            };
+            testImg.onerror = async () => {
                 try {
                     const res = await fetch(resolved);
-                    if (!res.ok) throw new Error('bad status');
+                    if (!res.ok) return;
                     const blob = await res.blob();
-                    if (!blob.type.startsWith('image/')) throw new Error('not image');
-                    const objUrl = URL.createObjectURL(blob);
-                    imgEl.onerror = () => { imgEl.src = fallbackUrl; };
-                    imgEl.src = objUrl;
+                    if (!blob.type.startsWith('image/')) return;
+                    imgEl.src = URL.createObjectURL(blob);
                 } catch (_) {
                     imgEl.src = fallbackUrl;
                 }
             };
-
-            imgEl.src = resolved;
+            testImg.src = resolved;
         }
 
         const observer = new IntersectionObserver((entries) => {
@@ -589,7 +588,7 @@
                 const card = document.createElement('div');
                 card.className = 'app-card reveal';
                 card.innerHTML = `
-                    <img alt="${appItem.name || 'App'}" class="app-icon" referrerpolicy="no-referrer">
+                    <img src="${FALLBACK_APP}" alt="Icon" class="app-icon" referrerpolicy="no-referrer">
                     <div class="app-info">
                         <span class="cat-badge">${appItem.category || 'General'}</span>
                         <div class="app-title">${appItem.name || 'Unnamed App'}</div>
