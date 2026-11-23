@@ -256,6 +256,14 @@
             text-overflow: ellipsis;
         }
 
+        .url-debug {
+            font-size: 0.65rem;
+            color: #f59e0b;
+            margin-bottom: 6px;
+            word-break: break-all;
+            display: none;
+        }
+
         .install-btn {
             background: var(--primary);
             color: #000;
@@ -352,7 +360,7 @@
 
     <header>
         <a href="#" class="logo-container">
-            <img id="storeLogo" src="https://via.placeholder.com/44/00e676/000000?text=M" alt="MAGGIE Logo" class="store-logo" referrerpolicy="no-referrer" onerror="this.src='https://via.placeholder.com/44/00e676/000000?text=M'">
+            <img id="storeLogo" src="https://via.placeholder.com/44/00e676/000000?text=M" alt="MAGGIE Logo" class="store-logo" referrerpolicy="no-referrer">
             <div id="storeName" class="logo">MAGGIE STORE</div>
         </a>
         <input type="text" id="searchInput" class="search-box" placeholder="Search apps...">
@@ -379,7 +387,7 @@
     <div id="appModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <img id="modalIcon" src="" alt="App Icon" class="modal-icon" referrerpolicy="no-referrer" onerror="this.src='https://via.placeholder.com/90?text=App'">
+            <img id="modalIcon" src="" alt="App Icon" class="modal-icon" referrerpolicy="no-referrer">
             <div id="modalCat" class="cat-badge" style="display:inline-block; margin-bottom:8px;">General</div>
             <h2 id="modalTitle">App Name</h2>
             <p id="modalDesc" class="modal-desc"></p>
@@ -422,6 +430,40 @@
             return val;
         }
 
+        async function smartLoadImage(imgEl, rawUrl, fallbackUrl, debugEl = null) {
+            const url = cleanUrl(rawUrl);
+            if (!url) {
+                imgEl.src = fallbackUrl;
+                return;
+            }
+
+            imgEl.onerror = async () => {
+                try {
+                    const res = await fetch(url, { mode: 'cors' });
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    const blob = await res.blob();
+                    if (!blob.type.startsWith('image/')) throw new Error('Not an image');
+                    const objectUrl = URL.createObjectURL(blob);
+                    imgEl.onerror = () => {
+                        imgEl.src = fallbackUrl;
+                        if (debugEl) {
+                            debugEl.style.display = 'block';
+                            debugEl.innerText = 'Link: ' + url;
+                        }
+                    };
+                    imgEl.src = objectUrl;
+                } catch (_) {
+                    imgEl.src = fallbackUrl;
+                    if (debugEl) {
+                        debugEl.style.display = 'block';
+                        debugEl.innerText = 'Link: ' + url;
+                    }
+                }
+            };
+
+            imgEl.src = url;
+        }
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
@@ -437,7 +479,11 @@
             if (docSnap.exists()) {
                 const settings = docSnap.data();
                 if (settings.logoUrl) {
-                    document.getElementById('storeLogo').src = cleanUrl(settings.logoUrl);
+                    smartLoadImage(
+                        document.getElementById('storeLogo'),
+                        settings.logoUrl,
+                        'https://via.placeholder.com/44/00e676/000000?text=M'
+                    );
                 }
                 if (settings.storeName) {
                     document.getElementById('storeName').innerText = settings.storeName;
@@ -531,14 +577,19 @@
                 const card = document.createElement('div');
                 card.className = 'app-card reveal';
                 card.innerHTML = `
-                    <img src="${cleanUrl(appItem.logoUrl)}" alt="${appItem.name || 'App'}" class="app-icon" referrerpolicy="no-referrer" onerror="this.src='https://via.placeholder.com/70?text=App'">
+                    <img alt="${appItem.name || 'App'}" class="app-icon" referrerpolicy="no-referrer">
                     <div class="app-info">
                         <span class="cat-badge">${appItem.category || 'General'}</span>
                         <div class="app-title">${appItem.name || 'Unnamed App'}</div>
                         <div class="app-desc-short">${appItem.description || 'Tap to view details'}</div>
+                        <div class="url-debug"></div>
                         <a href="${cleanUrl(appItem.downloadUrl) || '#'}" target="_blank" class="install-btn" onclick="event.stopPropagation()">Install</a>
                     </div>
                 `;
+                const imgEl = card.querySelector('.app-icon');
+                const debugEl = card.querySelector('.url-debug');
+                smartLoadImage(imgEl, appItem.logoUrl, 'https://via.placeholder.com/70?text=App', debugEl);
+
                 card.onclick = () => openModal(appItem);
                 appGrid.appendChild(card);
                 observer.observe(card);
@@ -552,7 +603,11 @@
         searchInput.addEventListener('input', filterAndRender);
 
         window.openModal = (appItem) => {
-            document.getElementById('modalIcon').src = cleanUrl(appItem.logoUrl);
+            smartLoadImage(
+                document.getElementById('modalIcon'),
+                appItem.logoUrl,
+                'https://via.placeholder.com/90?text=App'
+            );
             document.getElementById('modalCat').innerText = appItem.category || 'General';
             document.getElementById('modalTitle').innerText = appItem.name || 'App';
             document.getElementById('modalDesc').innerText = appItem.description || 'No description provided for this app.';
