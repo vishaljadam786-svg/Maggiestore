@@ -256,14 +256,6 @@
             text-overflow: ellipsis;
         }
 
-        .url-debug {
-            font-size: 0.65rem;
-            color: #f59e0b;
-            margin-bottom: 6px;
-            word-break: break-all;
-            display: none;
-        }
-
         .install-btn {
             background: var(--primary);
             color: #000;
@@ -360,7 +352,7 @@
 
     <header>
         <a href="#" class="logo-container">
-            <img id="storeLogo" src="https://via.placeholder.com/44/00e676/000000?text=M" alt="MAGGIE Logo" class="store-logo" referrerpolicy="no-referrer">
+            <img id="storeLogo" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='88' height='88'><rect width='100%' height='100%' fill='%2300e676'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-size='42' font-family='Arial,sans-serif' font-weight='bold' fill='%23000'>M</text></svg>" alt="MAGGIE Logo" class="store-logo" referrerpolicy="no-referrer">
             <div id="storeName" class="logo">MAGGIE STORE</div>
         </a>
         <input type="text" id="searchInput" class="search-box" placeholder="Search apps...">
@@ -418,8 +410,12 @@
         const socialBar = document.getElementById('socialBar');
         const footerSocials = document.getElementById('footerSocials');
 
+        const FALLBACK_STORE = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='88' height='88'><rect width='100%' height='100%' fill='%2300e676'/><text x='50%' y='58%' dominant-baseline='middle' text-anchor='middle' font-size='42' font-family='Arial,sans-serif' font-weight='bold' fill='%23000'>M</text></svg>";
+        const FALLBACK_APP = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><rect width='100%' height='100%' fill='%2327354f'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' font-size='28' font-family='Arial,sans-serif' fill='%2394a3b8'>APP</text></svg>";
+
         let allApps = [];
         let activeCategory = 'All';
+        const resolvedUrlCache = new Map();
 
         function cleanUrl(raw) {
             const val = (raw || '').trim();
@@ -430,38 +426,58 @@
             return val;
         }
 
-        async function smartLoadImage(imgEl, rawUrl, fallbackUrl, debugEl = null) {
+        async function extractDirectImageUrl(rawUrl) {
             const url = cleanUrl(rawUrl);
-            if (!url) {
+            if (!url) return '';
+            if (resolvedUrlCache.has(url)) return resolvedUrlCache.get(url);
+
+            // Agar ibb.co/<id> webpage link hai toh page HTML se i.ibb.co direct link nikaalne ki koshish
+            const ibbPageMatch = url.match(/^https?:\/\/(?:www\.)?ibb\.co\/([a-zA-Z0-9_-]+)\/?$/i);
+            if (ibbPageMatch) {
+                const proxies = [
+                    `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+                    `https://corsproxy.io/?${encodeURIComponent(url)}`
+                ];
+                for (const proxyUrl of proxies) {
+                    try {
+                        const res = await fetch(proxyUrl);
+                        if (!res.ok) continue;
+                        const html = await res.text();
+                        const match = html.match(/https?:\/\/i\.ibb\.co\/[a-zA-Z0-9_-]+\/[^"'\s<>\\]+/i);
+                        if (match && match[0]) {
+                            resolvedUrlCache.set(url, match[0]);
+                            return match[0];
+                        }
+                    } catch (_) {}
+                }
+            }
+
+            resolvedUrlCache.set(url, url);
+            return url;
+        }
+
+        async function setSmartImage(imgEl, rawUrl, fallbackUrl) {
+            const resolved = await extractDirectImageUrl(rawUrl);
+            if (!resolved) {
                 imgEl.src = fallbackUrl;
                 return;
             }
 
             imgEl.onerror = async () => {
                 try {
-                    const res = await fetch(url, { mode: 'cors' });
-                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    const res = await fetch(resolved);
+                    if (!res.ok) throw new Error('bad status');
                     const blob = await res.blob();
-                    if (!blob.type.startsWith('image/')) throw new Error('Not an image');
-                    const objectUrl = URL.createObjectURL(blob);
-                    imgEl.onerror = () => {
-                        imgEl.src = fallbackUrl;
-                        if (debugEl) {
-                            debugEl.style.display = 'block';
-                            debugEl.innerText = 'Link: ' + url;
-                        }
-                    };
-                    imgEl.src = objectUrl;
+                    if (!blob.type.startsWith('image/')) throw new Error('not image');
+                    const objUrl = URL.createObjectURL(blob);
+                    imgEl.onerror = () => { imgEl.src = fallbackUrl; };
+                    imgEl.src = objUrl;
                 } catch (_) {
                     imgEl.src = fallbackUrl;
-                    if (debugEl) {
-                        debugEl.style.display = 'block';
-                        debugEl.innerText = 'Link: ' + url;
-                    }
                 }
             };
 
-            imgEl.src = url;
+            imgEl.src = resolved;
         }
 
         const observer = new IntersectionObserver((entries) => {
@@ -479,11 +495,7 @@
             if (docSnap.exists()) {
                 const settings = docSnap.data();
                 if (settings.logoUrl) {
-                    smartLoadImage(
-                        document.getElementById('storeLogo'),
-                        settings.logoUrl,
-                        'https://via.placeholder.com/44/00e676/000000?text=M'
-                    );
+                    setSmartImage(document.getElementById('storeLogo'), settings.logoUrl, FALLBACK_STORE);
                 }
                 if (settings.storeName) {
                     document.getElementById('storeName').innerText = settings.storeName;
@@ -582,13 +594,11 @@
                         <span class="cat-badge">${appItem.category || 'General'}</span>
                         <div class="app-title">${appItem.name || 'Unnamed App'}</div>
                         <div class="app-desc-short">${appItem.description || 'Tap to view details'}</div>
-                        <div class="url-debug"></div>
                         <a href="${cleanUrl(appItem.downloadUrl) || '#'}" target="_blank" class="install-btn" onclick="event.stopPropagation()">Install</a>
                     </div>
                 `;
                 const imgEl = card.querySelector('.app-icon');
-                const debugEl = card.querySelector('.url-debug');
-                smartLoadImage(imgEl, appItem.logoUrl, 'https://via.placeholder.com/70?text=App', debugEl);
+                setSmartImage(imgEl, appItem.logoUrl, FALLBACK_APP);
 
                 card.onclick = () => openModal(appItem);
                 appGrid.appendChild(card);
@@ -603,11 +613,7 @@
         searchInput.addEventListener('input', filterAndRender);
 
         window.openModal = (appItem) => {
-            smartLoadImage(
-                document.getElementById('modalIcon'),
-                appItem.logoUrl,
-                'https://via.placeholder.com/90?text=App'
-            );
+            setSmartImage(document.getElementById('modalIcon'), appItem.logoUrl, FALLBACK_APP);
             document.getElementById('modalCat').innerText = appItem.category || 'General';
             document.getElementById('modalTitle').innerText = appItem.name || 'App';
             document.getElementById('modalDesc').innerText = appItem.description || 'No description provided for this app.';
