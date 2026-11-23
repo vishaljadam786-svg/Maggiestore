@@ -382,6 +382,7 @@
             margin-bottom: 10px;
             object-fit: cover;
             border: 1px solid var(--border);
+            background: var(--surface-2);
         }
 
         .modal-desc {
@@ -421,7 +422,7 @@
 
     <header>
         <a href="#" class="brand">
-            <img id="storeLogo" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88'%3E%3Crect width='100%25' height='100%25' rx='22' fill='%2310b981'/%3E%3Ctext x='50%25' y='58%25' dominant-baseline='middle' text-anchor='middle' font-size='40' font-family='Arial,sans-serif' font-weight='bold' fill='%23ffffff'%3EM%3C/text%3E%3C/svg%3E" alt="Logo" class="store-logo" referrerpolicy="no-referrer" decoding="async">
+            <img id="storeLogo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzEwYjk4MSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmYiPk08L3RleHQ+PC9zdmc+" alt="" class="store-logo" referrerpolicy="no-referrer" decoding="async">
             <span id="storeName" class="logo-text">MAGGIE STORE</span>
         </a>
         <div class="header-right">
@@ -456,7 +457,7 @@
     <div id="appModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <img id="modalIcon" src="" alt="Icon" class="modal-icon" referrerpolicy="no-referrer" decoding="async">
+            <img id="modalIcon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWMyMzMwIi8+PHRleHQgeD0iNTAlIiB5PSI1NSUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjOWE0YjhiIj5BUFA8L3RleHQ+PC9zdmc+" alt="" class="modal-icon" referrerpolicy="no-referrer" decoding="async">
             <div id="modalCat" class="cat-badge" style="margin-bottom:6px;">General</div>
             <h2 id="modalTitle" style="font-family:'Fraunces',serif;">App Name</h2>
             <p id="modalDesc" class="modal-desc"></p>
@@ -513,13 +514,12 @@
         const socialBar = document.getElementById('socialBar');
         const footerSocials = document.getElementById('footerSocials');
 
-        const FALLBACK_STORE = "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='88'%3E%3Crect width='100%25' height='100%25' rx='22' fill='%2310b981'/%3E%3Ctext x='50%25' y='58%25' dominant-baseline='middle' text-anchor='middle' font-size='40' font-family='Arial,sans-serif' font-weight='bold' fill='%23ffffff'%3EM%3C/text%3E%3C/svg%3E";
-        const FALLBACK_APP = "data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect width='100%25' height='100%25' rx='24' fill='%231c2330'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-size='24' font-family='Arial,sans-serif' fill='%239aa4b8'%3EAPP%3C/text%3E%3C/svg%3E";
+        const FALLBACK_STORE = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzEwYjk4MSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmYiPk08L3RleHQ+PC9zdmc+";
+        const FALLBACK_APP = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWMyMzMwIi8+PHRleHQgeD0iNTAlIiB5PSI1NSUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjOWE0YjhiIj5BUFA8L3RleHQ+PC9zdmc+";
 
         let allApps = [];
         let activeCategory = 'All';
-        localStorage.removeItem('maggie_resolved_img_v1');
-        const CACHE_KEY = 'maggie_resolved_img_v2';
+        const CACHE_KEY = 'maggie_resolved_img_v3';
         const resolvedCache = new Map(Object.entries(JSON.parse(localStorage.getItem(CACHE_KEY) || '{}')));
 
         function saveResolvedCache(raw, direct) {
@@ -545,27 +545,23 @@
 
             const ibbMatch = url.match(/^https?:\/\/(?:www\.)?ibb\.co\/([a-zA-Z0-9_-]+)\/?$/i);
             if (ibbMatch) {
-                const proxies = [
-                    `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
-                    `https://corsproxy.io/?${encodeURIComponent(url)}`,
-                    `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`
-                ];
-                for (const proxyUrl of proxies) {
-                    const controller = new AbortController();
-                    const timer = setTimeout(() => controller.abort(), 3000);
-                    try {
-                        const res = await fetch(proxyUrl, { signal: controller.signal });
-                        clearTimeout(timer);
-                        if (!res.ok) continue;
+                const controller = new AbortController();
+                const timer = setTimeout(() => controller.abort(), 1500);
+                try {
+                    const res = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`, {
+                        signal: controller.signal
+                    });
+                    clearTimeout(timer);
+                    if (res.ok) {
                         const html = await res.text();
                         const match = html.match(/https?:\/\/i\.ibb\.co\/[a-zA-Z0-9_-]+\/[^"'\s<>\\]+/i);
                         if (match && match[0]) {
                             saveResolvedCache(url, match[0]);
                             return match[0];
                         }
-                    } catch (_) {
-                        clearTimeout(timer);
                     }
+                } catch (_) {
+                    clearTimeout(timer);
                 }
             }
 
@@ -575,7 +571,11 @@
 
         async function loadReliableImage(imgEl, rawUrl, fallbackUrl) {
             if (!imgEl) return;
-            imgEl.referrerPolicy = 'no-referrer';
+            imgEl.onerror = () => {
+                imgEl.onerror = null;
+                imgEl.src = fallbackUrl;
+            };
+
             const cleaned = cleanUrl(rawUrl);
             if (!cleaned) {
                 imgEl.src = fallbackUrl;
@@ -583,23 +583,7 @@
             }
 
             const targetUrl = await resolveImageUrl(cleaned);
-
-            imgEl.onerror = async () => {
-                imgEl.onerror = null;
-                try {
-                    const res = await fetch(targetUrl);
-                    if (res.ok) {
-                        const blob = await res.blob();
-                        if (blob.type.startsWith('image/')) {
-                            imgEl.src = URL.createObjectURL(blob);
-                            return;
-                        }
-                    }
-                } catch (_) {}
-                imgEl.src = fallbackUrl;
-            };
-
-            imgEl.src = targetUrl;
+            imgEl.src = targetUrl || fallbackUrl;
         }
 
         onSnapshot(doc(db, "settings", "general"), (docSnap) => {
@@ -700,7 +684,7 @@
                 const card = document.createElement('div');
                 card.className = 'app-card';
                 card.innerHTML = `
-                    <img src="${FALLBACK_APP}" alt="Icon" class="app-icon" decoding="async">
+                    <img src="${FALLBACK_APP}" alt="" class="app-icon" decoding="async">
                     <div class="app-info">
                         <span class="cat-badge">${appItem.category || 'General'}</span>
                         <div class="app-title">${appItem.name || 'Unnamed App'}</div>
@@ -719,7 +703,9 @@
         searchInput.addEventListener('input', filterAndRender);
 
         window.openModal = (appItem) => {
-            loadReliableImage(document.getElementById('modalIcon'), appItem.logoUrl, FALLBACK_APP);
+            const modalImg = document.getElementById('modalIcon');
+            modalImg.src = FALLBACK_APP;
+            loadReliableImage(modalImg, appItem.logoUrl, FALLBACK_APP);
             document.getElementById('modalCat').innerText = appItem.category || 'General';
             document.getElementById('modalTitle').innerText = appItem.name || 'App';
             document.getElementById('modalDesc').innerText = appItem.description || 'No description provided for this app.';
