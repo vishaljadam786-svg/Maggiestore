@@ -1,297 +1,314 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="pageTitle">MAGGIE STORE - App Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root {
-            --primary: #00e676;
-            --primary-glow: rgba(0, 230, 118, 0.28);
-            --accent: #00b0ff;
-            --bg: #070c17;
-            --bg-elevated: #0e1627;
-            --card-bg: rgba(18, 28, 48, 0.78);
-            --border: rgba(255, 255, 255, 0.08);
-            --text: #f8fafc;
-            --text-muted: #94a3b8;
+        :root, [data-theme="dark"] {
+            --bg: #0c0f14;
+            --surface: #141922;
+            --surface-2: #1c2330;
+            --ink: #f4f6fb;
+            --muted: #9aa4b8;
+            --accent: #10b981;
+            --accent-ink: #04130d;
+            --warm: #f59e0b;
+            --border: rgba(255, 255, 255, 0.09);
+            --shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+        }
+
+        [data-theme="light"] {
+            --bg: #f6f4ef;
+            --surface: #ffffff;
+            --surface-2: #ece8df;
+            --ink: #141820;
+            --muted: #5b6475;
+            --accent: #059669;
+            --accent-ink: #ffffff;
+            --warm: #d97706;
+            --border: rgba(20, 24, 32, 0.11);
+            --shadow: 0 12px 28px rgba(20, 24, 32, 0.08);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             scroll-behavior: smooth;
         }
 
         body {
             background-color: var(--bg);
-            background-image:
-                radial-gradient(circle at 15% 10%, rgba(0, 230, 118, 0.12), transparent 35%),
-                radial-gradient(circle at 85% 15%, rgba(0, 176, 255, 0.12), transparent 35%);
-            color: var(--text);
-            overflow-x: hidden;
+            color: var(--ink);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            transition: background-color 0.25s ease, color 0.25s ease;
         }
 
         header {
-            background: rgba(10, 17, 32, 0.82);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            padding: 13px 5%;
             position: sticky;
             top: 0;
             z-index: 100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
+            background: color-mix(in srgb, var(--bg) 82%, transparent);
+            backdrop-filter: blur(14px);
             border-bottom: 1px solid var(--border);
+            padding: 12px 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
         }
 
-        .logo-container {
+        .brand {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 11px;
             text-decoration: none;
         }
 
         .store-logo {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
             object-fit: cover;
-            border: 2px solid var(--primary);
-            box-shadow: 0 0 16px var(--primary-glow);
-            transition: transform 0.35s ease;
-            background: #162032;
+            border: 1.5px solid var(--accent);
+            background: var(--surface-2);
         }
 
-        .logo-container:hover .store-logo {
-            transform: rotate(12deg) scale(1.06);
+        .logo-text {
+            font-family: 'Fraunces', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--ink);
+            letter-spacing: -0.02em;
         }
 
-        .logo {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.45rem;
-            font-weight: 800;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 0.6px;
-        }
-
-        .search-wrap {
-            position: relative;
+        .header-right {
             display: flex;
             align-items: center;
-        }
-
-        .search-wrap i {
-            position: absolute;
-            left: 15px;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            pointer-events: none;
+            gap: 10px;
         }
 
         .search-box {
-            background: var(--bg-elevated);
+            background: var(--surface);
             border: 1px solid var(--border);
-            padding: 9px 16px 9px 38px;
-            border-radius: 999px;
-            color: white;
-            width: 230px;
-            font-size: 0.86rem;
-            transition: all 0.3s ease;
+            color: var(--ink);
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            width: 195px;
             outline: none;
+            transition: border-color 0.2s, width 0.25s;
         }
 
         .search-box:focus {
-            width: 280px;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0, 230, 118, 0.14);
+            border-color: var(--accent);
+            width: 235px;
         }
 
-        .hero {
-            text-align: center;
-            padding: 46px 20px 22px;
-            max-width: 780px;
-            margin: 0 auto;
-        }
-
-        .hero-badge {
+        .theme-toggle {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--ink);
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 7px;
-            background: rgba(0, 230, 118, 0.1);
-            border: 1px solid rgba(0, 230, 118, 0.25);
-            color: var(--primary);
-            padding: 5px 14px;
-            border-radius: 999px;
-            font-size: 0.76rem;
-            font-weight: 600;
-            margin-bottom: 14px;
+            justify-content: center;
+            font-size: 0.95rem;
+            transition: transform 0.2s, border-color 0.2s;
+            flex-shrink: 0;
         }
 
-        .hero h1 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 800;
-            line-height: 1.18;
+        .theme-toggle:hover {
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .hero-wrap {
+            max-width: 1140px;
+            width: 100%;
+            margin: 24px auto 8px;
+            padding: 0 20px;
+        }
+
+        .hero-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 32px 24px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            background: radial-gradient(circle, color-mix(in srgb, var(--warm) 22%, transparent), transparent 70%);
+            pointer-events: none;
+        }
+
+        .kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.74rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--warm);
             margin-bottom: 10px;
         }
 
-        .hero p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
+        .hero-card h1 {
+            font-family: 'Fraunces', serif;
+            font-size: 2.2rem;
+            line-height: 1.15;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .hero-card p {
+            color: var(--muted);
+            font-size: 0.93rem;
+            max-width: 560px;
         }
 
         .social-bar {
             display: flex;
-            justify-content: center;
             flex-wrap: wrap;
-            gap: 10px;
-            margin: 22px auto 8px;
-            padding: 0 16px;
+            gap: 9px;
+            margin-top: 18px;
         }
 
         .social-pill {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: var(--card-bg);
+            gap: 7px;
+            background: var(--surface-2);
             border: 1px solid var(--border);
-            color: var(--text);
+            color: var(--ink);
             text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 999px;
-            font-size: 0.83rem;
-            font-weight: 500;
-            transition: all 0.25s ease;
+            padding: 7px 14px;
+            border-radius: 11px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
         }
 
         .social-pill:hover {
-            background: var(--primary);
-            color: #041008;
-            border-color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px var(--primary-glow);
+            background: var(--accent);
+            color: var(--accent-ink);
+            border-color: var(--accent);
         }
 
         .category-bar {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding: 14px 5%;
-            max-width: 1200px;
+            max-width: 1140px;
             width: 100%;
-            margin: 0 auto;
+            margin: 14px auto 4px;
+            padding: 0 20px;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
             scrollbar-width: none;
         }
         .category-bar::-webkit-scrollbar { display: none; }
 
         .cat-btn {
-            background: var(--card-bg);
-            color: var(--text-muted);
+            background: var(--surface);
+            color: var(--muted);
             border: 1px solid var(--border);
-            padding: 8px 18px;
-            border-radius: 999px;
+            padding: 8px 16px;
+            border-radius: 12px;
             cursor: pointer;
-            font-size: 0.83rem;
-            font-weight: 500;
+            font-size: 0.82rem;
+            font-weight: 600;
             white-space: nowrap;
-            transition: all 0.25s ease;
+            transition: all 0.2s ease;
         }
 
         .cat-btn.active, .cat-btn:hover {
-            background: linear-gradient(135deg, var(--primary), #00c853);
-            color: #041008;
-            font-weight: 600;
-            border-color: transparent;
-            box-shadow: 0 6px 16px var(--primary-glow);
+            background: var(--accent);
+            color: var(--accent-ink);
+            border-color: var(--accent);
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1140px;
             width: 100%;
             margin: 0 auto;
-            padding: 18px 20px 28px;
+            padding: 16px 20px 36px;
             flex: 1;
         }
 
         .app-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
-            gap: 20px;
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.45s ease, transform 0.45s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 18px;
         }
 
         .app-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border-radius: 22px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
             padding: 18px;
             display: flex;
             align-items: center;
             gap: 15px;
-            border: 1px solid var(--border);
             cursor: pointer;
-            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
         .app-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.45);
-            border-color: rgba(0, 230, 118, 0.45);
+            transform: translateY(-3px);
+            border-color: var(--accent);
         }
 
         .app-icon {
-            width: 68px;
-            height: 68px;
-            border-radius: 18px;
+            width: 66px;
+            height: 66px;
+            border-radius: 16px;
             object-fit: cover;
-            background: #1e293b;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
             flex-shrink: 0;
-            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .app-info {
             flex: 1;
-            overflow: hidden;
+            min-width: 0;
         }
 
         .cat-badge {
             display: inline-block;
             font-size: 0.68rem;
-            background: rgba(0, 176, 255, 0.14);
-            color: #38bdf8;
-            padding: 2px 9px;
-            border-radius: 999px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+            background: color-mix(in srgb, var(--accent) 13%, transparent);
+            padding: 2px 8px;
+            border-radius: 6px;
             margin-bottom: 4px;
-            font-weight: 600;
         }
 
         .app-title {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.08rem;
             font-weight: 700;
+            font-size: 1.02rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -299,40 +316,37 @@
 
         .app-desc-short {
             font-size: 0.78rem;
-            color: var(--text-muted);
-            margin: 3px 0 11px;
+            color: var(--muted);
+            margin: 3px 0 10px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
         .install-btn {
-            background: linear-gradient(135deg, var(--primary), #00c853);
-            color: #041008;
+            background: var(--accent);
+            color: var(--accent-ink);
             font-weight: 700;
             border: none;
-            padding: 6px 18px;
-            border-radius: 999px;
-            font-size: 0.8rem;
+            padding: 6px 15px;
+            border-radius: 10px;
+            font-size: 0.78rem;
             cursor: pointer;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            transition: opacity 0.2s;
         }
 
-        .install-btn:hover {
-            transform: scale(1.04);
-            box-shadow: 0 6px 16px var(--primary-glow);
-        }
+        .install-btn:hover { opacity: 0.9; }
 
         .modal {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(2, 6, 15, 0.82);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.68);
+            backdrop-filter: blur(6px);
             justify-content: center;
             align-items: center;
             z-index: 200;
@@ -340,103 +354,102 @@
         }
 
         .modal-content {
-            background: #101a2f;
-            padding: 30px 24px;
-            border-radius: 26px;
-            max-width: 430px;
+            background: var(--surface);
+            color: var(--ink);
+            padding: 28px 22px;
+            border-radius: 22px;
+            max-width: 420px;
             width: 100%;
             text-align: center;
             position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65);
-            animation: modalPop 0.25s ease;
-        }
-
-        @keyframes modalPop {
-            from { transform: scale(0.9); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
         }
 
         .close-btn {
             position: absolute;
-            top: 14px;
-            right: 18px;
+            top: 12px;
+            right: 16px;
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--text-muted);
-            line-height: 1;
+            color: var(--muted);
         }
 
-        .close-btn:hover { color: var(--text); }
-
         .modal-icon {
-            width: 88px;
-            height: 88px;
-            border-radius: 22px;
-            margin-bottom: 12px;
+            width: 84px;
+            height: 84px;
+            border-radius: 20px;
+            margin-bottom: 10px;
             object-fit: cover;
-            border: 2px solid rgba(0, 230, 118, 0.35);
+            border: 1px solid var(--border);
         }
 
         .modal-desc {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin: 14px 0 24px;
-            line-height: 1.65;
-            max-height: 160px;
+            color: var(--muted);
+            font-size: 0.88rem;
+            margin: 12px 0 22px;
+            line-height: 1.6;
+            max-height: 150px;
             overflow-y: auto;
         }
 
         footer {
-            text-align: center;
-            padding: 24px 16px;
             border-top: 1px solid var(--border);
-            background: rgba(9, 15, 28, 0.7);
-            color: var(--text-muted);
-            font-size: 0.84rem;
+            background: var(--surface);
+            padding: 22px 20px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.82rem;
             margin-top: auto;
         }
 
+        footer .social-bar {
+            justify-content: center;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
         @media (max-width: 600px) {
-            .search-box { width: 136px; font-size: 0.8rem; }
-            .search-box:focus { width: 162px; }
-            .hero h1 { font-size: 1.85rem; }
-            .logo { font-size: 1.15rem; }
-            .store-logo { width: 36px; height: 36px; }
+            .search-box { width: 120px; font-size: 0.78rem; }
+            .search-box:focus { width: 145px; }
+            .hero-card h1 { font-size: 1.7rem; }
+            .logo-text { font-size: 1.12rem; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#" class="logo-container">
-            <img id="storeLogo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzAwZTY3NiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMwMDAiPk08L3RleHQ+PC9zdmc+" alt="Logo" class="store-logo" referrerpolicy="no-referrer">
-            <div id="storeName" class="logo">MAGGIE STORE</div>
+        <a href="#" class="brand">
+            <img id="storeLogo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzEwYjk4MSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmYiPk08L3RleHQ+PC9zdmc+" alt="Logo" class="store-logo" referrerpolicy="no-referrer">
+            <span id="storeName" class="logo-text">MAGGIE STORE</span>
         </a>
-        <div class="search-wrap">
-            <i class="fa-solid fa-magnifying-glass"></i>
+        <div class="header-right">
             <input type="text" id="searchInput" class="search-box" placeholder="Search apps...">
+            <button type="button" id="themeBtn" class="theme-toggle" title="Toggle Dark/Light Theme" onclick="toggleTheme()">
+                <i class="fa-solid fa-sun"></i>
+            </button>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-badge"><i class="fa-solid fa-bolt"></i> Verified App Hub</div>
-        <h1 id="heroTitle">Discover & Download Apps</h1>
-        <p id="heroSubtitle">Fast, verified, and direct downloads powered by MAGGIE STORE</p>
-        <div id="socialBar" class="social-bar"></div>
-    </section>
+    <div class="hero-wrap">
+        <section class="hero-card">
+            <div class="kicker"><i class="fa-solid fa-sparkles"></i> Curated & Direct</div>
+            <h1 id="heroTitle">Discover & Download Apps</h1>
+            <p id="heroSubtitle">Fast, verified, and direct downloads powered by MAGGIE STORE</p>
+            <div id="socialBar" class="social-bar"></div>
+        </section>
+    </div>
 
     <div id="categoryBar" class="category-bar"></div>
 
     <div class="container">
-        <div id="loader" style="text-align:center; padding:44px; color:var(--primary); font-weight:500;">
-            <i class="fa-solid fa-circle-notch fa-spin" style="margin-right:8px;"></i> Loading MAGGIE STORE...
-        </div>
+        <div id="loader" style="text-align:center; padding:36px; color:var(--accent); font-weight:600;">Loading MAGGIE STORE...</div>
         <div id="appGrid" class="app-grid"></div>
     </div>
 
     <footer>
-        <div id="footerSocials" class="social-bar" style="margin-bottom: 12px;"></div>
+        <div id="footerSocials" class="social-bar"></div>
         <p>&copy; 2026 <span class="store-footer-text">MAGGIE STORE</span>. All rights reserved.</p>
     </footer>
 
@@ -444,14 +457,38 @@
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
             <img id="modalIcon" src="" alt="Icon" class="modal-icon" referrerpolicy="no-referrer">
-            <div id="modalCat" class="cat-badge" style="margin-bottom:8px;">General</div>
-            <h2 id="modalTitle" style="font-family:'Outfit',sans-serif;">App Name</h2>
+            <div id="modalCat" class="cat-badge" style="margin-bottom:6px;">General</div>
+            <h2 id="modalTitle" style="font-family:'Fraunces',serif;">App Name</h2>
             <p id="modalDesc" class="modal-desc"></p>
-            <a id="modalDownload" href="#" target="_blank" class="install-btn" style="padding: 12px 34px; font-size: 0.96rem;">
+            <a id="modalDownload" href="#" target="_blank" class="install-btn" style="padding: 11px 28px; font-size: 0.9rem;">
                 <i class="fa-solid fa-download"></i> Download Now
             </a>
         </div>
     </div>
+
+    <script>
+        (function initSavedTheme() {
+            const saved = localStorage.getItem("maggie_theme") || "dark";
+            document.documentElement.setAttribute("data-theme", saved);
+            updateThemeIcon(saved);
+        })();
+
+        function updateThemeIcon(theme) {
+            const btn = document.getElementById("themeBtn");
+            if (!btn) return;
+            btn.innerHTML = theme === "dark"
+                ? '<i class="fa-solid fa-sun"></i>'
+                : '<i class="fa-solid fa-moon"></i>';
+        }
+
+        window.toggleTheme = function () {
+            const current = document.documentElement.getAttribute("data-theme") || "dark";
+            const next = current === "dark" ? "light" : "dark";
+            document.documentElement.setAttribute("data-theme", next);
+            localStorage.setItem("maggie_theme", next);
+            updateThemeIcon(next);
+        };
+    </script>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -476,8 +513,8 @@
         const socialBar = document.getElementById('socialBar');
         const footerSocials = document.getElementById('footerSocials');
 
-        const FALLBACK_STORE = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzAwZTY3NiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiMwMDAiPk08L3RleHQ+PC9zdmc+";
-        const FALLBACK_APP = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMjczNTRmIi8+PHRleHQgeD0iNTAlIiB5PSI1NSUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjOTRhM2I4Ij5BUFA8L3RleHQ+PC9zdmc+";
+        const FALLBACK_STORE = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzEwYjk4MSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmYiPk08L3RleHQ+PC9zdmc+";
+        const FALLBACK_APP = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWMyMzMwIi8+PHRleHQgeD0iNTAlIiB5PSI1NSUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjOWE0YjhiIj5BUFA8L3RleHQ+PC9zdmc+";
 
         let allApps = [];
         let activeCategory = 'All';
@@ -528,9 +565,7 @@
 
             const testImg = new Image();
             testImg.referrerPolicy = 'no-referrer';
-            testImg.onload = () => {
-                imgEl.src = resolved;
-            };
+            testImg.onload = () => { imgEl.src = resolved; };
             testImg.onerror = async () => {
                 try {
                     const res = await fetch(resolved);
@@ -544,17 +579,6 @@
             };
             testImg.src = resolved;
         }
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('visible');
-                    }, index * 45);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.05 });
 
         onSnapshot(doc(db, "settings", "general"), (docSnap) => {
             if (docSnap.exists()) {
@@ -613,7 +637,7 @@
             renderCategories(Array.from(categories));
             filterAndRender();
         }, (err) => {
-            document.getElementById('loader').innerHTML = `<span style="color:#ff5252;">Error: ${err.message}</span>`;
+            document.getElementById('loader').innerHTML = `<span style="color:#ef4444;">Error: ${err.message}</span>`;
         });
 
         function renderCategories(cats) {
@@ -646,13 +670,13 @@
         function renderApps(apps) {
             appGrid.innerHTML = '';
             if (apps.length === 0) {
-                appGrid.innerHTML = '<p style="color:#94a3b8; grid-column: 1/-1; text-align:center;">No apps found in this category.</p>';
+                appGrid.innerHTML = '<p style="color:var(--muted); grid-column: 1/-1; text-align:center; padding:20px;">No apps found in this category.</p>';
                 return;
             }
 
-            apps.forEach((appItem, idx) => {
+            apps.forEach((appItem) => {
                 const card = document.createElement('div');
-                card.className = 'app-card reveal';
+                card.className = 'app-card';
                 card.innerHTML = `
                     <img src="${FALLBACK_APP}" alt="Icon" class="app-icon" referrerpolicy="no-referrer">
                     <div class="app-info">
@@ -669,11 +693,6 @@
 
                 card.onclick = () => openModal(appItem);
                 appGrid.appendChild(card);
-                observer.observe(card);
-
-                if (idx < 8) {
-                    setTimeout(() => card.classList.add('visible'), idx * 55);
-                }
             });
         }
 
