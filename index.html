@@ -455,28 +455,34 @@
             margin-bottom: 20px;
         }
 
+        /* NO-CROP FULL RATIO PREVIEW (1:1, 9:16, 16:9, ANY RATIO) */
         .main-shot-box {
             background: var(--surface-2);
             border: 1px solid var(--border);
             border-radius: 18px;
             padding: 10px;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .main-shot-img {
             width: 100%;
-            max-height: 500px;
+            height: auto;
+            max-height: 75vh;
             object-fit: contain;
             border-radius: 14px;
             background: #090c11;
             cursor: zoom-in;
+            display: block;
         }
 
         .all-shots-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 14px;
             margin-top: 16px;
+            align-items: start;
         }
 
         .shot-tile {
@@ -499,8 +505,9 @@
 
         .shot-tile img {
             width: 100%;
-            height: 150px;
-            object-fit: cover;
+            height: auto;
+            max-height: 360px;
+            object-fit: contain;
             display: block;
             background: #090c11;
         }
@@ -606,21 +613,24 @@
             overflow-y: auto;
         }
 
-        /* LIGHTBOX */
+        /* FULLSCREEN PHOTO LIGHTBOX */
         .lightbox {
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.92);
             z-index: 300;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 16px;
         }
 
         .lightbox img {
-            max-width: 95%;
-            max-height: 88vh;
+            max-width: 96vw;
+            max-height: 92vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
             border-radius: 14px;
         }
 
@@ -655,6 +665,7 @@
             .hero-card h1, .showcase-heading { font-size: 1.65rem; }
             .logo-text { font-size: 1.12rem; }
             .showcase-price-box { width: 100%; text-align: left; }
+            .all-shots-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
         }
     </style>
 </head>
