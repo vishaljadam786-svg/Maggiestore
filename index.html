@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="previewPageTitle">XML & Template Preview - MAGGIE STORE</title>
+    <title id="pageTitle">MAGGIE STORE - App Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root, [data-theme="dark"] {
-            --bg: #0b0e14;
-            --surface: #131822;
-            --surface-2: #1b2230;
-            --ink: #f5f7fc;
-            --muted: #9ba5b9;
+            --bg: #0c0f14;
+            --surface: #141922;
+            --surface-2: #1c2330;
+            --ink: #f4f6fb;
+            --muted: #9aa4b8;
             --accent: #10b981;
             --accent-ink: #04130d;
             --warm: #f59e0b;
             --border: rgba(255, 255, 255, 0.09);
-            --shadow: 0 18px 40px rgba(0, 0, 0, 0.42);
+            --shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
         }
 
         [data-theme="light"] {
@@ -30,7 +30,7 @@
             --accent-ink: #ffffff;
             --warm: #d97706;
             --border: rgba(20, 24, 32, 0.11);
-            --shadow: 0 14px 30px rgba(20, 24, 32, 0.08);
+            --shadow: 0 12px 28px rgba(20, 24, 32, 0.08);
         }
 
         * {
@@ -38,21 +38,23 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            background: var(--bg);
+            background-color: var(--bg);
             color: var(--ink);
             min-height: 100vh;
-            padding-bottom: 104px;
-            transition: background 0.25s ease, color 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.25s ease, color 0.25s ease;
         }
 
         header {
             position: sticky;
             top: 0;
-            z-index: 90;
-            background: color-mix(in srgb, var(--bg) 85%, transparent);
+            z-index: 100;
+            background: color-mix(in srgb, var(--bg) 82%, transparent);
             backdrop-filter: blur(14px);
             border-bottom: 1px solid var(--border);
             padding: 12px 5%;
@@ -62,44 +64,55 @@
             gap: 12px;
         }
 
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: var(--ink);
-            background: var(--surface);
-            border: 1px solid var(--border);
-            padding: 8px 14px;
-            border-radius: 12px;
-            font-size: 0.84rem;
-            font-weight: 700;
-            transition: border-color 0.2s, transform 0.2s;
-        }
-
-        .back-link:hover {
-            border-color: var(--accent);
-            transform: translateX(-2px);
-        }
-
-        .brand-mini {
+        .brand {
             display: flex;
             align-items: center;
-            gap: 9px;
-            font-family: 'Fraunces', serif;
-            font-weight: 700;
-            font-size: 1.15rem;
+            gap: 11px;
+            text-decoration: none;
+            cursor: pointer;
         }
 
-        .brand-mini img {
-            width: 34px;
-            height: 34px;
-            border-radius: 10px;
+        .store-logo {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
             object-fit: cover;
-            border: 1px solid var(--accent);
+            border: 1.5px solid var(--accent);
+            background: var(--surface-2);
         }
 
-        .theme-btn {
+        .logo-text {
+            font-family: 'Fraunces', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--ink);
+            letter-spacing: -0.02em;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--ink);
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            width: 195px;
+            outline: none;
+            transition: border-color 0.2s, width 0.25s;
+        }
+
+        .search-box:focus {
+            border-color: var(--accent);
+            width: 235px;
+        }
+
+        .theme-toggle {
             background: var(--surface);
             border: 1px solid var(--border);
             color: var(--ink);
@@ -110,15 +123,293 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            font-size: 0.95rem;
+            transition: transform 0.2s, border-color 0.2s;
+            flex-shrink: 0;
         }
 
-        .page-wrap {
-            max-width: 1080px;
-            margin: 24px auto;
+        .theme-toggle:hover {
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .hero-wrap {
+            max-width: 1140px;
+            width: 100%;
+            margin: 24px auto 8px;
             padding: 0 20px;
         }
 
-        .hero-banner {
+        .hero-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 32px 24px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            background: radial-gradient(circle, color-mix(in srgb, var(--warm) 22%, transparent), transparent 70%);
+            pointer-events: none;
+        }
+
+        .kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.74rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--warm);
+            margin-bottom: 10px;
+        }
+
+        .hero-card h1 {
+            font-family: 'Fraunces', serif;
+            font-size: 2.2rem;
+            line-height: 1.15;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .hero-card p {
+            color: var(--muted);
+            font-size: 0.93rem;
+            max-width: 560px;
+        }
+
+        .social-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 18px;
+        }
+
+        .social-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            color: var(--ink);
+            text-decoration: none;
+            padding: 7px 14px;
+            border-radius: 11px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .social-pill:hover {
+            background: var(--accent);
+            color: var(--accent-ink);
+            border-color: var(--accent);
+        }
+
+        .category-bar {
+            max-width: 1140px;
+            width: 100%;
+            margin: 14px auto 4px;
+            padding: 0 20px;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .category-bar::-webkit-scrollbar { display: none; }
+
+        .cat-btn {
+            background: var(--surface);
+            color: var(--muted);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .cat-btn.active, .cat-btn:hover {
+            background: var(--accent);
+            color: var(--accent-ink);
+            border-color: var(--accent);
+        }
+
+        .container {
+            max-width: 1140px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 16px 20px 36px;
+            flex: 1;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 18px;
+        }
+
+        .app-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .app-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent);
+        }
+
+        .app-icon {
+            width: 66px;
+            height: 66px;
+            border-radius: 16px;
+            object-fit: cover;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        .app-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .cat-badge {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+            background: color-mix(in srgb, var(--accent) 13%, transparent);
+            padding: 2px 8px;
+            border-radius: 6px;
+            margin-bottom: 4px;
+        }
+
+        .paid-tag {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--warm);
+            background: color-mix(in srgb, var(--warm) 16%, transparent);
+            padding: 2px 8px;
+            border-radius: 6px;
+            margin-left: 4px;
+        }
+
+        .app-title {
+            font-weight: 700;
+            font-size: 1.02rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .app-desc-short {
+            font-size: 0.78rem;
+            color: var(--muted);
+            margin: 3px 0 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .install-btn {
+            background: var(--accent);
+            color: var(--accent-ink);
+            font-weight: 700;
+            border: none;
+            padding: 7px 15px;
+            border-radius: 10px;
+            font-size: 0.78rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: opacity 0.2s, transform 0.15s;
+        }
+
+        .install-btn:hover { opacity: 0.92; transform: translateY(-1px); }
+        .install-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        .install-btn.pay-btn {
+            background: var(--warm);
+            color: #141820;
+        }
+
+        .install-btn.ghost-btn {
+            background: var(--surface-2);
+            color: var(--ink);
+            border: 1px solid var(--border);
+        }
+
+        .paid-section {
+            margin-top: 34px;
+            padding-top: 26px;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .section-top-row h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.55rem;
+        }
+
+        .filter-pills {
+            display: flex;
+            gap: 8px;
+        }
+
+        /* FULL SHOWCASE VIEW INSIDE SINGLE INDEX.HTML */
+        #itemShowcaseView {
+            display: none;
+            max-width: 1080px;
+            width: 100%;
+            margin: 22px auto 64px;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        .showcase-top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+            gap: 12px;
+        }
+
+        .showcase-hero {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 24px;
@@ -129,56 +420,17 @@
             justify-content: space-between;
             gap: 18px;
             flex-wrap: wrap;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
 
-        .meta-badges {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 8px;
-        }
-
-        .pill {
-            font-size: 0.72rem;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .pill.type {
-            background: color-mix(in srgb, var(--accent) 15%, transparent);
-            color: var(--accent);
-        }
-
-        .pill.paid {
-            background: color-mix(in srgb, var(--warm) 18%, transparent);
-            color: var(--warm);
-        }
-
-        .pill.free {
-            background: color-mix(in srgb, var(--accent) 15%, transparent);
-            color: var(--accent);
-        }
-
-        .item-heading {
+        .showcase-heading {
             font-family: 'Fraunces', serif;
-            font-size: 2rem;
+            font-size: 1.95rem;
             line-height: 1.15;
-            margin-bottom: 8px;
+            margin: 6px 0 8px;
         }
 
-        .item-sub {
-            color: var(--muted);
-            font-size: 0.9rem;
-            max-width: 680px;
-            line-height: 1.55;
-        }
-
-        .price-box-lg {
+        .showcase-price-box {
             background: var(--surface-2);
             border: 1px solid var(--border);
             border-radius: 18px;
@@ -186,67 +438,48 @@
             text-align: right;
         }
 
-        .price-num-lg {
+        .showcase-price-num {
             font-family: 'Fraunces', serif;
-            font-size: 1.85rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--warm);
             line-height: 1.1;
         }
 
-        .price-sub-lg {
-            font-size: 0.75rem;
-            color: var(--muted);
-        }
-
-        .stage-card {
+        .gallery-panel {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 24px;
             padding: 18px;
             box-shadow: var(--shadow);
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
 
-        .stage-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 12px;
-            gap: 10px;
-        }
-
-        .stage-title {
-            font-weight: 700;
-            font-size: 0.95rem;
-        }
-
-        .stage-main-frame {
+        .main-shot-box {
             background: var(--surface-2);
             border: 1px solid var(--border);
             border-radius: 18px;
             padding: 10px;
             text-align: center;
-            position: relative;
         }
 
-        .stage-main-img {
+        .main-shot-img {
             width: 100%;
-            max-height: 520px;
+            max-height: 500px;
             object-fit: contain;
             border-radius: 14px;
-            cursor: zoom-in;
             background: #090c11;
+            cursor: zoom-in;
         }
 
-        .shots-grid {
+        .all-shots-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
             gap: 14px;
             margin-top: 16px;
         }
 
-        .shot-card {
+        .shot-tile {
             background: var(--surface-2);
             border: 2px solid transparent;
             border-radius: 16px;
@@ -255,24 +488,24 @@
             transition: transform 0.2s, border-color 0.2s;
         }
 
-        .shot-card:hover {
+        .shot-tile:hover {
             transform: translateY(-2px);
-            border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+            border-color: color-mix(in srgb, var(--accent) 50%, transparent);
         }
 
-        .shot-card.active {
+        .shot-tile.active {
             border-color: var(--accent);
         }
 
-        .shot-card img {
+        .shot-tile img {
             width: 100%;
-            height: 155px;
+            height: 150px;
             object-fit: cover;
             display: block;
             background: #090c11;
         }
 
-        .shot-caption {
+        .shot-tile-foot {
             padding: 8px 10px;
             font-size: 0.76rem;
             color: var(--muted);
@@ -281,62 +514,27 @@
             align-items: center;
         }
 
-        .checkout-panel {
+        .buy-card-box {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 24px;
             padding: 24px;
             box-shadow: var(--shadow);
-            margin-bottom: 24px;
         }
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            border: none;
-            border-radius: 13px;
-            padding: 12px 22px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            text-decoration: none;
-            transition: transform 0.18s, opacity 0.18s;
-        }
-
-        .btn:hover { transform: translateY(-1px); opacity: 0.95; }
-        .btn:disabled { opacity: 0.6; cursor: not-allowed; }
-
-        .btn-buy {
-            background: var(--warm);
-            color: #141820;
-        }
-
-        .btn-green {
-            background: var(--accent);
-            color: var(--accent-ink);
-        }
-
-        .btn-ghost {
-            background: var(--surface-2);
-            color: var(--ink);
-            border: 1px solid var(--border);
-        }
-
-        .qr-panel {
-            margin-top: 16px;
+        .qr-box {
             background: var(--surface-2);
             border: 1px solid var(--border);
             border-radius: 18px;
             padding: 18px;
+            margin-top: 16px;
             text-align: center;
             display: none;
         }
 
-        .qr-panel img {
-            width: 185px;
-            height: 185px;
+        .qr-box img {
+            width: 180px;
+            height: 180px;
             border-radius: 14px;
             background: #ffffff;
             padding: 8px;
@@ -344,40 +542,68 @@
             display: block;
         }
 
-        .unlocked-card {
-            margin-top: 16px;
+        .unlocked-box {
             background: color-mix(in srgb, var(--accent) 12%, var(--surface-2));
             border: 1px solid var(--accent);
-            border-radius: 18px;
-            padding: 18px;
+            border-radius: 16px;
+            padding: 16px;
+            margin-top: 16px;
+            word-break: break-all;
             display: none;
         }
 
-        /* BOTTOM STICKY ACTION BAR */
-        .bottom-buy-bar {
+        /* APP MODAL (UNCHANGED) */
+        .modal {
+            display: none;
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 95;
-            background: color-mix(in srgb, var(--surface) 92%, transparent);
-            backdrop-filter: blur(16px);
-            border-top: 1px solid var(--border);
-            padding: 12px 5%;
-            display: flex;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.72);
+            backdrop-filter: blur(6px);
+            justify-content: center;
             align-items: center;
-            justify-content: space-between;
-            gap: 14px;
+            z-index: 200;
+            padding: 20px;
         }
 
-        .bar-info strong {
-            display: block;
-            font-size: 0.96rem;
+        .modal-content {
+            background: var(--surface);
+            color: var(--ink);
+            padding: 28px 22px;
+            border-radius: 22px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
         }
 
-        .bar-info span {
-            font-size: 0.78rem;
+        .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 1.5rem;
+            cursor: pointer;
             color: var(--muted);
+        }
+
+        .modal-icon {
+            width: 84px;
+            height: 84px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            object-fit: cover;
+            border: 1px solid var(--border);
+            background: var(--surface-2);
+        }
+
+        .modal-desc {
+            color: var(--muted);
+            font-size: 0.88rem;
+            margin: 12px 0 22px;
+            line-height: 1.6;
+            max-height: 150px;
+            overflow-y: auto;
         }
 
         /* LIGHTBOX */
@@ -385,8 +611,8 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.88);
-            z-index: 200;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 300;
             align-items: center;
             justify-content: center;
             padding: 20px;
@@ -396,168 +622,234 @@
             max-width: 95%;
             max-height: 88vh;
             border-radius: 14px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65);
         }
 
         .lightbox-close {
             position: fixed;
-            top: 18px;
-            right: 24px;
+            top: 16px;
+            right: 22px;
             font-size: 2rem;
             color: #fff;
             cursor: pointer;
         }
 
-        @media (max-width: 640px) {
-            .item-heading { font-size: 1.55rem; }
-            .price-box-lg { width: 100%; text-align: left; }
-            .bottom-buy-bar { flex-direction: column; align-items: stretch; gap: 8px; }
+        footer {
+            border-top: 1px solid var(--border);
+            background: var(--surface);
+            padding: 22px 20px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.82rem;
+            margin-top: auto;
+        }
+
+        footer .social-bar {
+            justify-content: center;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .search-box { width: 120px; font-size: 0.78rem; }
+            .search-box:focus { width: 145px; }
+            .hero-card h1, .showcase-heading { font-size: 1.65rem; }
+            .logo-text { font-size: 1.12rem; }
+            .showcase-price-box { width: 100%; text-align: left; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="index.html" class="back-link">
-            <i class="fa-solid fa-arrow-left"></i> Back to Store
+        <a onclick="backToStoreView()" class="brand">
+            <img id="storeLogo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzEwYjk4MSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmYiPk08L3RleHQ+PC9zdmc+" alt="Logo" class="store-logo">
+            <span id="storeName" class="logo-text">MAGGIE STORE</span>
         </a>
-        <div class="brand-mini">
-            <img id="topStoreLogo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzEwYjk4MSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmYiPk08L3RleHQ+PC9zdmc+" alt="Store">
-            <span id="topStoreName">MAGGIE STORE</span>
+        <div class="header-right">
+            <input type="text" id="searchInput" class="search-box" placeholder="Search apps...">
+            <button type="button" id="themeBtn" class="theme-toggle" title="Toggle Dark/Light Theme" onclick="toggleTheme()">
+                <i class="fa-solid fa-sun"></i>
+            </button>
         </div>
-        <button type="button" class="theme-btn" id="themeToggleBtn" onclick="toggleTheme()">
-            <i class="fa-solid fa-sun"></i>
-        </button>
     </header>
 
-    <main class="page-wrap">
-        <div id="loadingBox" style="text-align:center; padding:50px; color:var(--accent); font-weight:700;">
-            Loading preview & screenshots...
+    <!-- MAIN STORE VIEW -->
+    <div id="storeMainView">
+        <div class="hero-wrap">
+            <section class="hero-card">
+                <div class="kicker"><i class="fa-solid fa-sparkles"></i> Curated & Direct</div>
+                <h1 id="heroTitle">Discover & Download Apps</h1>
+                <p id="heroSubtitle">Fast, verified, and direct downloads powered by MAGGIE STORE</p>
+                <div id="socialBar" class="social-bar"></div>
+            </section>
         </div>
 
-        <div id="contentWrap" style="display:none;">
-            <section class="hero-banner">
-                <div>
-                    <div class="meta-badges">
-                        <span id="itemTypeBadge" class="pill type">XML</span>
-                        <span id="itemAccessBadge" class="pill free">FREE</span>
-                        <span id="shotCountBadge" class="pill type" style="background:var(--surface-2); color:var(--ink);">0 Screenshots</span>
+        <div id="categoryBar" class="category-bar"></div>
+
+        <!-- APPS SECTION (UNCHANGED) -->
+        <div class="container">
+            <div id="loader" style="text-align:center; padding:36px; color:var(--accent); font-weight:600;">Loading MAGGIE STORE...</div>
+            <div id="appGrid" class="app-grid"></div>
+
+            <!-- XML & TEMPLATES SECTION -->
+            <section id="paidItemsSection" class="paid-section">
+                <div class="section-top-row">
+                    <div>
+                        <div class="kicker" style="margin-bottom:4px;"><i class="fa-solid fa-layer-group"></i> XML & Templates</div>
+                        <h2>Paid Items</h2>
                     </div>
-                    <h1 id="itemTitle" class="item-heading">Loading Title...</h1>
-                    <p id="itemDesc" class="item-sub"></p>
-                </div>
-
-                <div id="heroPriceCard" class="price-box-lg">
-                    <div class="price-sub-lg">Unlock Price</div>
-                    <div id="heroPriceText" class="price-num-lg">FREE</div>
-                    <div class="price-sub-lg">Instant Access After Payment</div>
-                </div>
-            </section>
-
-            <section class="stage-card">
-                <div class="stage-top">
-                    <div class="stage-title"><i class="fa-solid fa-images"></i> All Screenshots Preview</div>
-                    <button type="button" class="btn btn-ghost" style="padding:7px 13px; font-size:0.78rem;" onclick="openLightbox()">
-                        <i class="fa-solid fa-expand"></i> Fullscreen
-                    </button>
-                </div>
-
-                <div class="stage-main-frame">
-                    <img id="mainPreviewImg" src="" alt="Main Screenshot" class="stage-main-img" onclick="openLightbox()">
-                </div>
-
-                <div id="allShotsGrid" class="shots-grid"></div>
-            </section>
-
-            <section id="buySection" class="checkout-panel">
-                <h2 style="font-family:'Fraunces',serif; font-size:1.4rem; margin-bottom:6px;" id="checkoutHeading">Get This Item</h2>
-                <p style="color:var(--muted); font-size:0.86rem; margin-bottom:14px;" id="checkoutSubtext">
-                    Saare screenshots dekhne ke baad neeche diye gaye button se unlock karein.
-                </p>
-
-                <div id="actionButtonsArea" style="display:flex; flex-wrap:wrap; gap:10px;"></div>
-
-                <div id="qrPanel" class="qr-panel">
-                    <div style="font-weight:700; font-size:0.9rem;">Scan QR or Pay via UPI</div>
-                    <img id="qrCodeImg" src="" alt="FamGateway QR">
-                    <div id="orderInfoText" style="font-size:0.78rem; color:var(--muted);"></div>
-                    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:10px;">
-                        <a id="upiAppBtn" href="#" class="btn btn-green" style="display:none;">
-                            <i class="fa-solid fa-mobile-screen-button"></i> Pay in UPI App
-                        </a>
-                        <a id="checkoutPageBtn" href="#" target="_blank" class="btn btn-buy" style="display:none;">
-                            <i class="fa-solid fa-up-right-from-square"></i> Open Checkout Page
-                        </a>
+                    <div class="filter-pills">
+                        <button class="cat-btn active" data-xmlfilter="paid" onclick="setXmlFilter('paid')">Paid Items</button>
+                        <button class="cat-btn" data-xmlfilter="all" onclick="setXmlFilter('all')">All XML & Templates</button>
                     </div>
                 </div>
-
-                <div id="statusLine" style="margin-top:12px; font-size:0.84rem; color:var(--muted);"></div>
-
-                <div id="unlockedCard" class="unlocked-card">
-                    <div style="color:var(--accent); font-weight:800; font-size:0.95rem; margin-bottom:8px;">
-                        <i class="fa-solid fa-circle-check"></i> Access Unlocked!
-                    </div>
-                    <a id="finalDownloadBtn" href="#" target="_blank" class="btn btn-green">
-                        <i class="fa-solid fa-download"></i> Open / Download Link
-                    </a>
-                    <div id="finalUrlDisplay" style="margin-top:10px; font-size:0.78rem; color:var(--muted); word-break:break-all;"></div>
+                <div id="paidXmlGrid" class="app-grid">
+                    <p style="color:var(--muted); grid-column:1/-1;">No items available yet.</p>
                 </div>
             </section>
         </div>
-    </main>
-
-    <div class="bottom-buy-bar">
-        <div class="bar-info">
-            <strong id="bottomItemTitle">MAGGIE STORE Item</strong>
-            <span id="bottomItemMeta">Preview all screenshots above</span>
-        </div>
-        <div id="bottomActionSlot"></div>
     </div>
 
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-        <img id="lightboxImg" src="" alt="Zoomed Screenshot" onclick="event.stopPropagation()">
+    <!-- FULL SHOWCASE VIEW FOR CLICKED XML / TEMPLATE (SAME INDEX.HTML) -->
+    <section id="itemShowcaseView">
+        <div class="showcase-top-bar">
+            <button type="button" class="install-btn ghost-btn" style="padding:9px 16px; font-size:0.84rem;" onclick="backToStoreView()">
+                <i class="fa-solid fa-arrow-left"></i> Back to Store
+            </button>
+            <button type="button" class="install-btn ghost-btn" style="padding:9px 16px; font-size:0.84rem;" onclick="openShowcaseLightbox()">
+                <i class="fa-solid fa-expand"></i> Fullscreen Photo
+            </button>
+        </div>
+
+        <div class="showcase-hero">
+            <div>
+                <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+                    <span id="scTypeBadge" class="cat-badge">XML</span>
+                    <span id="scAccessBadge" class="paid-tag">FREE</span>
+                    <span id="scShotCount" class="cat-badge" style="background:var(--surface-2); color:var(--ink);">0 Photos</span>
+                </div>
+                <h1 id="scTitle" class="showcase-heading">Title</h1>
+                <p id="scDesc" style="color:var(--muted); font-size:0.9rem; max-width:660px; line-height:1.55;"></p>
+            </div>
+
+            <div class="showcase-price-box">
+                <div style="font-size:0.74rem; color:var(--muted);">Price</div>
+                <div id="scPriceText" class="showcase-price-num">FREE</div>
+                <div style="font-size:0.74rem; color:var(--muted);">UPI Instant Unlock</div>
+            </div>
+        </div>
+
+        <div class="gallery-panel">
+            <div style="font-weight:700; font-size:0.95rem; margin-bottom:12px;">
+                <i class="fa-solid fa-images"></i> All Screenshots Preview
+            </div>
+            <div class="main-shot-box">
+                <img id="scMainImg" src="" alt="Preview Screenshot" class="main-shot-img" onclick="openShowcaseLightbox()">
+            </div>
+            <div id="scShotsGrid" class="all-shots-grid"></div>
+        </div>
+
+        <div id="scBuyBox" class="buy-card-box">
+            <h2 style="font-family:'Fraunces',serif; font-size:1.38rem; margin-bottom:6px;">Buy / Unlock</h2>
+            <p id="scBuySubtext" style="color:var(--muted); font-size:0.85rem; margin-bottom:14px;">
+                Screenshots dekhne ke baad neeche se unlock karein.
+            </p>
+
+            <button id="scBuyBtn" class="install-btn pay-btn" style="padding:12px 24px; font-size:0.92rem;" onclick="startShowcasePayment()">
+                <i class="fa-solid fa-lock"></i> Buy Now — ₹<span id="scBuyAmount">49</span>
+            </button>
+
+            <div id="scQrBox" class="qr-box">
+                <div style="font-weight:700; font-size:0.88rem;">Scan QR or Pay via UPI</div>
+                <img id="scQrImg" src="" alt="FamGateway QR">
+                <div id="scOrderText" style="font-size:0.76rem; color:var(--muted);"></div>
+                <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:10px;">
+                    <a id="scUpiBtn" href="#" class="install-btn" style="display:none; padding:9px 16px;">
+                        <i class="fa-solid fa-mobile-screen-button"></i> Open UPI App
+                    </a>
+                    <a id="scCheckoutBtn" href="#" target="_blank" class="install-btn pay-btn" style="display:none; padding:9px 16px;">
+                        <i class="fa-solid fa-up-right-from-square"></i> Checkout Page
+                    </a>
+                </div>
+            </div>
+
+            <div id="scStatusMsg" style="margin-top:12px; font-size:0.82rem; color:var(--muted);"></div>
+
+            <div id="scUnlockedBox" class="unlocked-box">
+                <div style="color:var(--accent); font-weight:800; margin-bottom:8px;">
+                    <i class="fa-solid fa-circle-check"></i> Unlocked! Aapki Link:
+                </div>
+                <a id="scUnlockedBtn" href="#" target="_blank" class="install-btn" style="padding:10px 20px; font-size:0.86rem;">
+                    <i class="fa-solid fa-download"></i> Open / Download Link
+                </a>
+                <div id="scUnlockedUrl" style="margin-top:10px; font-size:0.76rem; color:var(--muted);"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div id="footerSocials" class="social-bar"></div>
+        <p>&copy; 2026 <span class="store-footer-text">MAGGIE STORE</span>. All rights reserved.</p>
+    </footer>
+
+    <!-- APP MODAL (UNCHANGED) -->
+    <div id="appModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <img id="modalIcon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWMyMzMwIi8+PHRleHQgeD0iNTAlIiB5PSI1NSUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjOWE0YjhiIj5BUFA8L3RleHQ+PC9zdmc+" alt="Icon" class="modal-icon">
+            <div id="modalCat" class="cat-badge" style="margin-bottom:6px;">General</div>
+            <h2 id="modalTitle" style="font-family:'Fraunces',serif;">App Name</h2>
+            <p id="modalDesc" class="modal-desc"></p>
+            <a id="modalDownload" href="#" target="_blank" class="install-btn" style="padding: 11px 28px; font-size: 0.9rem;">
+                <i class="fa-solid fa-download"></i> Download Now
+            </a>
+        </div>
+    </div>
+
+    <!-- FULLSCREEN PHOTO LIGHTBOX -->
+    <div id="scLightbox" class="lightbox" onclick="closeShowcaseLightbox()">
+        <span class="lightbox-close" onclick="closeShowcaseLightbox()">&times;</span>
+        <img id="scLightboxImg" src="" alt="Zoomed Screenshot" onclick="event.stopPropagation()">
     </div>
 
     <script>
-        (function initTheme() {
+        (function initSavedTheme() {
             const saved = localStorage.getItem("maggie_theme") || "dark";
             document.documentElement.setAttribute("data-theme", saved);
-            updateThemeBtn(saved);
+            updateThemeIcon(saved);
         })();
 
-        function updateThemeBtn(theme) {
-            const btn = document.getElementById("themeToggleBtn");
-            if (btn) {
-                btn.innerHTML = theme === "dark"
-                    ? '<i class="fa-solid fa-sun"></i>'
-                    : '<i class="fa-solid fa-moon"></i>';
-            }
+        function updateThemeIcon(theme) {
+            const btn = document.getElementById("themeBtn");
+            if (!btn) return;
+            btn.innerHTML = theme === "dark"
+                ? '<i class="fa-solid fa-sun"></i>'
+                : '<i class="fa-solid fa-moon"></i>';
         }
 
         window.toggleTheme = function () {
-            const cur = document.documentElement.getAttribute("data-theme") || "dark";
-            const next = cur === "dark" ? "light" : "dark";
+            const current = document.documentElement.getAttribute("data-theme") || "dark";
+            const next = current === "dark" ? "light" : "dark";
             document.documentElement.setAttribute("data-theme", next);
             localStorage.setItem("maggie_theme", next);
-            updateThemeBtn(next);
+            updateThemeIcon(next);
         };
 
-        window.openLightbox = function () {
-            const src = document.getElementById("mainPreviewImg").src;
+        window.openShowcaseLightbox = function () {
+            const src = document.getElementById("scMainImg").src;
             if (!src) return;
-            document.getElementById("lightboxImg").src = src;
-            document.getElementById("lightbox").style.display = "flex";
+            document.getElementById("scLightboxImg").src = src;
+            document.getElementById("scLightbox").style.display = "flex";
         };
 
-        window.closeLightbox = function () {
-            document.getElementById("lightbox").style.display = "none";
+        window.closeShowcaseLightbox = function () {
+            document.getElementById("scLightbox").style.display = "none";
         };
     </script>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, doc, getDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, onSnapshot, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const FAMGATEWAY_BASE_URL = "https://famgateway.in";
         const FAMGATEWAY_API_KEY = "fam_95a256e60ea571df5923128a187d7659d00c5716";
@@ -576,29 +868,52 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        const FALLBACK_SHOT = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjYwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWIyMjMwIi8+PHRleHQgeD0iNTAlIiB5PSI1MiUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjIiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjOWE0YjhiIj5TQVZFIE1BREdJRSBQUkVWSUVXPC90ZXh0Pjwvc3ZnPg==";
+        const appGrid = document.getElementById('appGrid');
+        const categoryBar = document.getElementById('categoryBar');
+        const searchInput = document.getElementById('searchInput');
+        const socialBar = document.getElementById('socialBar');
+        const footerSocials = document.getElementById('footerSocials');
+        const paidXmlGrid = document.getElementById('paidXmlGrid');
 
-        let currentItem = null;
-        let currentItemId = "";
+        const FALLBACK_STORE = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzEwYjk4MSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmYiPk08L3RleHQ+PC9zdmc+";
+        const FALLBACK_APP = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWMyMzMwIi8+PHRleHQgeD0iNTAlIiB5PSI1NSUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjOWE0YjhiIj5BUFA8L3RleHQ+PC9zdmc+";
+
+        let allApps = [];
+        let allXmlItems = [];
+        let activeCategory = 'All';
+        let xmlFilterMode = 'paid';
+        let activeShowcaseItem = null;
         let pollTimer = null;
+        let baseStoreName = "MAGGIE STORE";
 
         function cleanUrl(raw) {
-            const val = (raw || "").trim();
-            if (!val) return "";
-            if (!val.startsWith("http://") && !val.startsWith("https://") && !val.startsWith("data:image/")) {
-                return "https://" + val;
+            const val = (raw || '').trim();
+            if (!val) return '';
+            if (!val.startsWith('http://') && !val.startsWith('https://') && !val.startsWith('data:image/')) {
+                return 'https://' + val;
             }
             return val;
         }
 
-        function setImg(el, url, fallback = FALLBACK_SHOT) {
-            if (!el) return;
-            const c = cleanUrl(url);
-            el.onerror = () => {
-                el.onerror = null;
-                el.src = fallback;
+        function getItemPhotos(item) {
+            const list = Array.isArray(item.photos) ? item.photos.map(cleanUrl).filter(Boolean) : [];
+            const thumb = cleanUrl(item.thumbUrl);
+            if (thumb && !list.includes(thumb)) list.unshift(thumb);
+            return list.length > 0 ? Array.from(new Set(list)) : [FALLBACK_APP];
+        }
+
+        function setImageDirect(imgEl, rawUrl, fallbackUrl) {
+            if (!imgEl) return;
+            const url = cleanUrl(rawUrl);
+            if (!url) {
+                imgEl.src = fallbackUrl;
+                return;
+            }
+            imgEl.onerror = () => {
+                imgEl.onerror = null;
+                imgEl.src = fallbackUrl;
             };
-            el.src = c || fallback;
+            imgEl.src = url;
         }
 
         function stopPolling() {
@@ -608,83 +923,254 @@
             }
         }
 
-        onSnapshot(doc(db, "settings", "general"), (snap) => {
-            if (snap.exists()) {
-                const s = snap.data();
-                if (s.storeName) document.getElementById("topStoreName").innerText = s.storeName;
-                if (s.logoUrl) setImg(document.getElementById("topStoreLogo"), s.logoUrl, FALLBACK_SHOT);
+        onSnapshot(doc(db, "settings", "general"), (docSnap) => {
+            if (docSnap.exists()) {
+                const settings = docSnap.data();
+                if (settings.logoUrl) {
+                    setImageDirect(document.getElementById('storeLogo'), settings.logoUrl, FALLBACK_STORE);
+                }
+                if (settings.storeName) {
+                    baseStoreName = settings.storeName;
+                    document.getElementById('storeName').innerText = settings.storeName;
+                    document.getElementById('pageTitle').innerText = settings.storeName + " - App Hub";
+                    document.getElementById('heroSubtitle').innerText = "Fast, verified, and direct downloads powered by " + settings.storeName;
+                    document.querySelectorAll('.store-footer-text').forEach(el => el.innerText = settings.storeName);
+                }
             }
         });
 
-        function buildScreenshotsList(item) {
-            const list = Array.isArray(item.photos) ? item.photos.map(cleanUrl).filter(Boolean) : [];
-            const thumb = cleanUrl(item.thumbUrl);
-            if (thumb && !list.includes(thumb)) list.unshift(thumb);
-            return list.length > 0 ? Array.from(new Set(list)) : [FALLBACK_SHOT];
+        function getPlatformIcon(platform) {
+            const p = (platform || '').toLowerCase();
+            if (p.includes('insta')) return 'fa-brands fa-instagram';
+            if (p.includes('tele')) return 'fa-brands fa-telegram';
+            if (p.includes('disc')) return 'fa-brands fa-discord';
+            if (p.includes('you')) return 'fa-brands fa-youtube';
+            if (p.includes('whats')) return 'fa-brands fa-whatsapp';
+            if (p.includes('x') || p.includes('twit')) return 'fa-brands fa-x-twitter';
+            if (p.includes('git')) return 'fa-brands fa-github';
+            return 'fa-solid fa-link';
         }
 
-        function renderScreenshots(shots) {
-            const mainImg = document.getElementById("mainPreviewImg");
-            const grid = document.getElementById("allShotsGrid");
-            document.getElementById("shotCountBadge").innerText = `${shots.length} Screenshot${shots.length > 1 ? "s" : ""}`;
+        onSnapshot(collection(db, "socials"), (snapshot) => {
+            socialBar.innerHTML = '';
+            footerSocials.innerHTML = '';
+            snapshot.forEach((docSnap) => {
+                const data = docSnap.data();
+                const iconClass = getPlatformIcon(data.platform);
+                const html = `
+                    <a href="${cleanUrl(data.url)}" target="_blank" class="social-pill">
+                        <i class="${iconClass}"></i> ${data.platform}
+                    </a>
+                `;
+                socialBar.innerHTML += html;
+                footerSocials.innerHTML += html;
+            });
+        });
 
-            setImg(mainImg, shots[0], FALLBACK_SHOT);
-            grid.innerHTML = "";
+        // APPS COLLECTION (UNCHANGED)
+        onSnapshot(collection(db, "apps"), (snapshot) => {
+            document.getElementById('loader').style.display = 'none';
+            allApps = [];
+            const categories = new Set(['All']);
 
-            shots.forEach((url, idx) => {
-                const card = document.createElement("div");
-                card.className = `shot-card ${idx === 0 ? "active" : ""}`;
+            snapshot.forEach((docSnap) => {
+                const appData = { id: docSnap.id, ...docSnap.data() };
+                allApps.push(appData);
+                if (appData.category) categories.add(appData.category);
+            });
+
+            renderCategories(Array.from(categories));
+            filterAndRender();
+        }, (err) => {
+            document.getElementById('loader').innerHTML = `<span style="color:#ef4444;">Error: ${err.message}</span>`;
+        });
+
+        function renderCategories(cats) {
+            categoryBar.innerHTML = '';
+            cats.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.className = `cat-btn ${activeCategory === cat ? 'active' : ''}`;
+                btn.innerText = cat;
+                btn.onclick = () => {
+                    activeCategory = cat;
+                    categoryBar.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    filterAndRender();
+                };
+                categoryBar.appendChild(btn);
+            });
+        }
+
+        function filterAndRender() {
+            const term = searchInput.value.toLowerCase();
+            const filtered = allApps.filter(appItem => {
+                const name = (appItem.name || '').toLowerCase();
+                const matchesSearch = name.includes(term);
+                const matchesCat = activeCategory === 'All' || (appItem.category || 'General') === activeCategory;
+                return matchesSearch && matchesCat;
+            });
+            renderApps(filtered);
+        }
+
+        function renderApps(apps) {
+            appGrid.innerHTML = '';
+            if (apps.length === 0) {
+                appGrid.innerHTML = '<p style="color:var(--muted); grid-column: 1/-1; text-align:center; padding:20px;">No apps found in this category.</p>';
+                return;
+            }
+
+            apps.forEach((appItem) => {
+                const card = document.createElement('div');
+                card.className = 'app-card';
                 card.innerHTML = `
-                    <img src="${FALLBACK_SHOT}" alt="Screenshot ${idx + 1}">
-                    <div class="shot-caption">
+                    <img src="${FALLBACK_APP}" alt="Icon" class="app-icon">
+                    <div class="app-info">
+                        <span class="cat-badge">${appItem.category || 'General'}</span>
+                        <div class="app-title">${appItem.name || 'Unnamed App'}</div>
+                        <div class="app-desc-short">${appItem.description || 'Tap to view details'}</div>
+                        <a href="${cleanUrl(appItem.downloadUrl) || '#'}" target="_blank" class="install-btn" onclick="event.stopPropagation()">
+                            <i class="fa-solid fa-download"></i> Install
+                        </a>
+                    </div>
+                `;
+                setImageDirect(card.querySelector('.app-icon'), appItem.logoUrl, FALLBACK_APP);
+                card.onclick = () => openModal(appItem);
+                appGrid.appendChild(card);
+            });
+        }
+
+        searchInput.addEventListener('input', filterAndRender);
+
+        window.openModal = (appItem) => {
+            setImageDirect(document.getElementById('modalIcon'), appItem.logoUrl, FALLBACK_APP);
+            document.getElementById('modalCat').innerText = appItem.category || 'General';
+            document.getElementById('modalTitle').innerText = appItem.name || 'App';
+            document.getElementById('modalDesc').innerText = appItem.description || 'No description provided for this app.';
+            document.getElementById('modalDownload').href = cleanUrl(appItem.downloadUrl) || '#';
+            document.getElementById('appModal').style.display = 'flex';
+        };
+
+        window.closeModal = () => document.getElementById('appModal').style.display = 'none';
+
+        // XML & TEMPLATES — FULL PAGE VIEW INSIDE SAME INDEX.HTML
+        window.setXmlFilter = (mode) => {
+            xmlFilterMode = mode;
+            document.querySelectorAll('[data-xmlfilter]').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-xmlfilter') === mode);
+            });
+            renderPaidXmlSection();
+        };
+
+        onSnapshot(collection(db, "xmlTemplates"), (snapshot) => {
+            allXmlItems = [];
+            snapshot.forEach((docSnap) => {
+                allXmlItems.push({ id: docSnap.id, ...docSnap.data() });
+            });
+            renderPaidXmlSection();
+        });
+
+        function renderPaidXmlSection() {
+            paidXmlGrid.innerHTML = '';
+            const items = xmlFilterMode === 'paid'
+                ? allXmlItems.filter(i => Boolean(i.isPaid))
+                : allXmlItems;
+
+            if (items.length === 0) {
+                paidXmlGrid.innerHTML = '<p style="color:var(--muted); grid-column:1/-1; text-align:center; padding:18px;">Abhi is section mein koi item nahi hai.</p>';
+                return;
+            }
+
+            items.forEach((item) => {
+                const card = document.createElement('div');
+                card.className = 'app-card';
+                const photos = getItemPhotos(item);
+                const priceBadge = item.isPaid
+                    ? `<span class="paid-tag"><i class="fa-solid fa-lock"></i> ₹${item.price || 49}</span>`
+                    : `<span class="paid-tag" style="color:var(--accent); background:color-mix(in srgb, var(--accent) 14%, transparent);">FREE</span>`;
+
+                const shotBadge = photos.length > 0
+                    ? `<span class="paid-tag" style="color:var(--ink); background:var(--surface-2);"><i class="fa-solid fa-images"></i> ${photos.length}</span>`
+                    : '';
+
+                const btnHtml = item.isPaid
+                    ? `<button class="install-btn pay-btn" onclick="event.stopPropagation(); openItemFullShowcase('${item.id}')"><i class="fa-solid fa-up-right-from-square"></i> Preview & Buy ₹${item.price || 49}</button>`
+                    : `<button class="install-btn" onclick="event.stopPropagation(); openItemFullShowcase('${item.id}')"><i class="fa-solid fa-up-right-from-square"></i> View Screenshots</button>`;
+
+                card.innerHTML = `
+                    <img src="${FALLBACK_APP}" alt="XML/Template" class="app-icon">
+                    <div class="app-info">
+                        <div>
+                            <span class="cat-badge">${item.type || 'XML'}</span>
+                            ${priceBadge}
+                            ${shotBadge}
+                        </div>
+                        <div class="app-title" style="margin-top:3px;">${item.title || 'Untitled'}</div>
+                        <div class="app-desc-short">${item.description || 'Tap to view all screenshots & buy'}</div>
+                        ${btnHtml}
+                    </div>
+                `;
+                setImageDirect(card.querySelector('.app-icon'), item.thumbUrl || photos[0], FALLBACK_APP);
+                card.onclick = () => window.openItemFullShowcase(item.id);
+                paidXmlGrid.appendChild(card);
+            });
+        }
+
+        function renderShowcaseGallery(photos) {
+            const mainImg = document.getElementById('scMainImg');
+            const grid = document.getElementById('scShotsGrid');
+            document.getElementById('scShotCount').innerText = `${photos.length} Photo${photos.length > 1 ? 's' : ''}`;
+
+            setImageDirect(mainImg, photos[0], FALLBACK_APP);
+            grid.innerHTML = '';
+
+            photos.forEach((url, idx) => {
+                const tile = document.createElement('div');
+                tile.className = `shot-tile ${idx === 0 ? 'active' : ''}`;
+                tile.innerHTML = `
+                    <img src="${FALLBACK_APP}" alt="Screenshot ${idx + 1}">
+                    <div class="shot-tile-foot">
                         <span>Screenshot #${idx + 1}</span>
                         <i class="fa-solid fa-magnifying-glass-plus"></i>
                     </div>
                 `;
-                setImg(card.querySelector("img"), url, FALLBACK_SHOT);
-                card.onclick = () => {
-                    grid.querySelectorAll(".shot-card").forEach(c => c.classList.remove("active"));
-                    card.classList.add("active");
-                    setImg(mainImg, url, FALLBACK_SHOT);
-                    mainImg.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                setImageDirect(tile.querySelector('img'), url, FALLBACK_APP);
+                tile.onclick = () => {
+                    grid.querySelectorAll('.shot-tile').forEach(t => t.classList.remove('active'));
+                    tile.classList.add('active');
+                    setImageDirect(mainImg, url, FALLBACK_APP);
+                    mainImg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 };
-                grid.appendChild(card);
+                grid.appendChild(tile);
             });
         }
 
-        function unlockItemNow(item, persist = true) {
+        function unlockShowcaseItem(item, persist = true) {
             stopPolling();
             if (persist) {
-                localStorage.setItem("maggie_unlocked_" + currentItemId, "1");
+                localStorage.setItem('maggie_unlocked_' + item.id, '1');
             }
-            const link = cleanUrl(item.protectedLink) || "#";
-            document.getElementById("qrPanel").style.display = "none";
-            document.getElementById("statusLine").innerHTML = '<span style="color:var(--accent); font-weight:700;">Link ready!</span>';
+            const link = cleanUrl(item.protectedLink) || '#';
+            document.getElementById('scBuyBtn').style.display = 'none';
+            document.getElementById('scQrBox').style.display = 'none';
+            document.getElementById('scStatusMsg').innerHTML = '<span style="color:var(--accent); font-weight:700;">Unlocked!</span>';
 
-            const unlockedCard = document.getElementById("unlockedCard");
-            document.getElementById("finalDownloadBtn").href = link;
-            document.getElementById("finalUrlDisplay").innerText = link;
-            unlockedCard.style.display = "block";
-
-            document.getElementById("bottomActionSlot").innerHTML = `
-                <a href="${link}" target="_blank" class="btn btn-green">
-                    <i class="fa-solid fa-download"></i> Download / Open Link
-                </a>
-            `;
+            document.getElementById('scUnlockedBtn').href = link;
+            document.getElementById('scUnlockedUrl').innerText = link;
+            document.getElementById('scUnlockedBox').style.display = 'block';
         }
 
-        function startStatusPolling(orderId, item) {
+        function startShowcasePolling(orderId, item) {
             stopPolling();
-            const statusLine = document.getElementById("statusLine");
+            const statusEl = document.getElementById('scStatusMsg');
             const pollUrl = `${FAMGATEWAY_BASE_URL}/api/checkout-status.php?order_id=${encodeURIComponent(orderId)}`;
             const deadline = Date.now() + 10 * 60 * 1000;
 
-            statusLine.innerText = "Waiting for UPI payment confirmation (auto-checking every 3s)...";
+            statusEl.innerText = "Waiting for UPI payment confirmation (auto-checking every 3s)...";
 
             pollTimer = setInterval(async () => {
                 if (Date.now() > deadline) {
                     stopPolling();
-                    statusLine.innerText = "Payment session timed out. Click Buy again.";
+                    statusEl.innerText = "Session timed out. Please try again.";
                     return;
                 }
                 try {
@@ -692,40 +1178,97 @@
                     if (!res.ok) return;
                     const data = await res.json();
                     if (data && data.status === "success") {
-                        unlockItemNow(item, true);
+                        unlockShowcaseItem(item, true);
                     } else if (data && data.status === "expired") {
                         stopPolling();
-                        statusLine.innerText = "Order expired. Click Buy to create a new QR.";
+                        statusEl.innerText = "Order expired. Click Buy Now to generate a new QR.";
                     }
                 } catch (_) {}
             }, 3000);
         }
 
-        window.startBuyFlow = async function () {
-            if (!currentItem) return;
-            const amountRupees = Math.max(1, Number(currentItem.price || 49));
-            const statusLine = document.getElementById("statusLine");
-            const buyBtn = document.getElementById("mainBuyBtn");
-            if (buyBtn) {
-                buyBtn.disabled = true;
-                buyBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating UPI QR...';
+        window.openItemFullShowcase = (id) => {
+            stopPolling();
+            const item = allXmlItems.find(x => x.id === id);
+            if (!item) return;
+            activeShowcaseItem = item;
+
+            const isPaid = Boolean(item.isPaid);
+            const price = Number(item.price || 49);
+            const alreadyUnlocked = localStorage.getItem('maggie_unlocked_' + item.id) === '1';
+
+            document.getElementById('pageTitle').innerText = `${item.title || 'Preview'} - ${baseStoreName}`;
+            document.getElementById('scTypeBadge').innerText = item.type || 'XML';
+
+            const accessBadge = document.getElementById('scAccessBadge');
+            if (isPaid) {
+                accessBadge.className = 'paid-tag';
+                accessBadge.innerText = `PAID • ₹${price}`;
+                document.getElementById('scPriceText').innerText = `₹${price}`;
+            } else {
+                accessBadge.className = 'paid-tag';
+                accessBadge.style.color = 'var(--accent)';
+                accessBadge.style.background = 'color-mix(in srgb, var(--accent) 14%, transparent)';
+                accessBadge.innerText = 'FREE';
+                document.getElementById('scPriceText').innerText = 'FREE';
             }
-            statusLine.innerText = "";
+
+            document.getElementById('scTitle').innerText = item.title || 'Untitled';
+            document.getElementById('scDesc').innerText = item.description || 'Saare screenshots dekhein. Payment ke baad download/access link khul jayega.';
+            document.getElementById('scStatusMsg').innerText = '';
+            document.getElementById('scQrBox').style.display = 'none';
+            document.getElementById('scUnlockedBox').style.display = 'none';
+
+            renderShowcaseGallery(getItemPhotos(item));
+
+            const buyBtn = document.getElementById('scBuyBtn');
+            if (!isPaid || alreadyUnlocked) {
+                unlockShowcaseItem(item, false);
+            } else {
+                document.getElementById('scBuyAmount').innerText = price;
+                buyBtn.disabled = false;
+                buyBtn.style.display = 'inline-flex';
+                buyBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Buy Now — ₹${price}`;
+            }
+
+            document.getElementById('storeMainView').style.display = 'none';
+            document.getElementById('itemShowcaseView').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        window.backToStoreView = () => {
+            stopPolling();
+            activeShowcaseItem = null;
+            document.getElementById('itemShowcaseView').style.display = 'none';
+            document.getElementById('storeMainView').style.display = 'block';
+            document.getElementById('pageTitle').innerText = `${baseStoreName} - App Hub`;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        window.startShowcasePayment = async () => {
+            if (!activeShowcaseItem) return;
+            const amountRupees = Math.max(1, Number(activeShowcaseItem.price || 49));
+            const buyBtn = document.getElementById('scBuyBtn');
+            const statusEl = document.getElementById('scStatusMsg');
+
+            buyBtn.disabled = true;
+            buyBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating UPI QR...';
+            statusEl.innerText = '';
 
             try {
-                let orderJson;
+                let orderPayload;
                 if (FAMGATEWAY_BACKEND_ORDER_URL) {
                     const r = await fetch(FAMGATEWAY_BACKEND_ORDER_URL, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
                             amount: amountRupees,
-                            customer_name: `${currentItem.type || "Item"} - ${currentItem.title || "MAGGIE STORE"}`
+                            customer_name: `${activeShowcaseItem.type || "Item"} - ${activeShowcaseItem.title || "MAGGIE STORE"}`
                         })
                     });
-                    orderJson = await r.json();
-                    if (!r.ok || orderJson.status !== "success" || !orderJson.data) {
-                        throw new Error(orderJson.message || "Backend order failed.");
+                    orderPayload = await r.json();
+                    if (!r.ok || orderPayload.status !== "success" || !orderPayload.data) {
+                        throw new Error(orderPayload.message || "Backend order failed.");
                     }
                 } else {
                     const r = await fetch(`${FAMGATEWAY_BASE_URL}/api/create-order`, {
@@ -737,125 +1280,49 @@
                         body: JSON.stringify({
                             api_key: FAMGATEWAY_API_KEY,
                             amount: amountRupees,
-                            customer_name: `${currentItem.type || "Item"}: ${currentItem.title || "MAGGIE STORE"}`
+                            customer_name: `${activeShowcaseItem.type || "Item"}: ${activeShowcaseItem.title || "MAGGIE STORE"}`
                         })
                     });
-                    orderJson = await r.json();
-                    if (!r.ok || orderJson.status !== "success" || !orderJson.data) {
-                        throw new Error(orderJson.message || "FamGateway order failed.");
+                    orderPayload = await r.json();
+                    if (!r.ok || orderPayload.status !== "success" || !orderPayload.data) {
+                        throw new Error(orderPayload.message || "FamGateway order creation failed.");
                     }
                 }
 
-                const d = orderJson.data;
+                const d = orderPayload.data;
                 const orderId = d.order_id;
                 const qrUrl = d.qr_url || `${FAMGATEWAY_BASE_URL}/api/qr-image.php?order_id=${encodeURIComponent(orderId)}`;
                 const checkoutUrl = d.checkout_url || `${FAMGATEWAY_BASE_URL}/pay.php?order_id=${encodeURIComponent(orderId)}`;
 
-                document.getElementById("qrCodeImg").src = qrUrl;
-                document.getElementById("orderInfoText").innerText = `Order ID: ${orderId} • Amount: ₹${d.payable_amount || amountRupees}`;
+                document.getElementById('scQrImg').src = qrUrl;
+                document.getElementById('scOrderText').innerText = `Order ID: ${orderId} • Amount: ₹${d.payable_amount || amountRupees}`;
 
-                const upiBtn = document.getElementById("upiAppBtn");
+                const upiBtn = document.getElementById('scUpiBtn');
                 if (d.upi_intent) {
                     upiBtn.href = d.upi_intent;
-                    upiBtn.style.display = "inline-flex";
+                    upiBtn.style.display = 'inline-flex';
                 } else {
-                    upiBtn.style.display = "none";
+                    upiBtn.style.display = 'none';
                 }
 
-                const cpBtn = document.getElementById("checkoutPageBtn");
+                const cpBtn = document.getElementById('scCheckoutBtn');
                 cpBtn.href = checkoutUrl;
-                cpBtn.style.display = "inline-flex";
+                cpBtn.style.display = 'inline-flex';
 
-                document.getElementById("qrPanel").style.display = "block";
-                if (buyBtn) buyBtn.style.display = "none";
+                document.getElementById('scQrBox').style.display = 'block';
+                buyBtn.style.display = 'none';
 
-                startStatusPolling(orderId, currentItem);
+                startShowcasePolling(orderId, activeShowcaseItem);
             } catch (err) {
-                if (buyBtn) {
-                    buyBtn.disabled = false;
-                    buyBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Buy Now — ₹${amountRupees}`;
-                }
-                statusLine.innerHTML = `<span style="color:#ef4444;">${err.message}</span>`;
+                buyBtn.disabled = false;
+                buyBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Buy Now — ₹${amountRupees}`;
+                statusEl.innerHTML = `<span style="color:#ef4444;">${err.message}</span>`;
             }
         };
 
-        window.scrollToBuy = function () {
-            document.getElementById("buySection").scrollIntoView({ behavior: "smooth" });
+        window.onclick = (e) => {
+            if (e.target === document.getElementById('appModal')) closeModal();
         };
-
-        async function initPage() {
-            const params = new URLSearchParams(window.location.search);
-            const id = (params.get("id") || "").trim();
-            const loadingBox = document.getElementById("loadingBox");
-
-            if (!id) {
-                loadingBox.innerHTML = 'Invalid item ID. <a href="index.html" style="color:var(--accent);">Go back to Store</a>';
-                return;
-            }
-
-            try {
-                const snap = await getDoc(doc(db, "xmlTemplates", id));
-                if (!snap.exists()) {
-                    loadingBox.innerHTML = 'Item not found. <a href="index.html" style="color:var(--accent);">Go back to Store</a>';
-                    return;
-                }
-
-                currentItemId = snap.id;
-                currentItem = snap.data();
-
-                const isPaid = Boolean(currentItem.isPaid);
-                const price = Number(currentItem.price || 49);
-                const alreadyUnlocked = localStorage.getItem("maggie_unlocked_" + currentItemId) === "1";
-
-                document.title = `${currentItem.title || "Preview"} - MAGGIE STORE`;
-                document.getElementById("itemTypeBadge").innerText = currentItem.type || "XML";
-
-                const accessBadge = document.getElementById("itemAccessBadge");
-                if (isPaid) {
-                    accessBadge.className = "pill paid";
-                    accessBadge.innerText = `PAID • ₹${price}`;
-                    document.getElementById("heroPriceText").innerText = `₹${price}`;
-                } else {
-                    accessBadge.className = "pill free";
-                    accessBadge.innerText = "FREE";
-                    document.getElementById("heroPriceText").innerText = "FREE";
-                }
-
-                document.getElementById("itemTitle").innerText = currentItem.title || "Untitled";
-                document.getElementById("itemDesc").innerText = currentItem.description || "Preview all screenshots below.";
-                document.getElementById("bottomItemTitle").innerText = currentItem.title || "Untitled";
-                document.getElementById("bottomItemMeta").innerText = isPaid
-                    ? `Paid ${currentItem.type || "Item"} • ₹${price} via UPI`
-                    : `Free ${currentItem.type || "Item"} • Instant Access`;
-
-                renderScreenshots(buildScreenshotsList(currentItem));
-
-                const actionsArea = document.getElementById("actionButtonsArea");
-                const bottomSlot = document.getElementById("bottomActionSlot");
-
-                if (!isPaid || alreadyUnlocked) {
-                    unlockItemNow(currentItem, false);
-                } else {
-                    actionsArea.innerHTML = `
-                        <button id="mainBuyBtn" class="btn btn-buy" onclick="startBuyFlow()">
-                            <i class="fa-solid fa-lock"></i> Buy Now — ₹${price}
-                        </button>
-                    `;
-                    bottomSlot.innerHTML = `
-                        <button class="btn btn-buy" onclick="scrollToBuy()">
-                            <i class="fa-solid fa-shopping-bag"></i> Buy Now — ₹${price}
-                        </button>
-                    `;
-                }
-
-                loadingBox.style.display = "none";
-                document.getElementById("contentWrap").style.display = "block";
-            } catch (err) {
-                loadingBox.innerHTML = `<span style="color:#ef4444;">Error loading item: ${err.message}</span>`;
-            }
-        }
-
-        initPage();
     </script>
 </body>
 </html>
