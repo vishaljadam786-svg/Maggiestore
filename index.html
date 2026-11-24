@@ -18,6 +18,7 @@
             --warm: #f59e0b;
             --border: rgba(255, 255, 255, 0.09);
             --shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+            --glow: 0 18px 40px rgba(16, 185, 129, 0.14);
         }
 
         [data-theme="light"] {
@@ -31,6 +32,7 @@
             --warm: #d97706;
             --border: rgba(20, 24, 32, 0.11);
             --shadow: 0 12px 28px rgba(20, 24, 32, 0.08);
+            --glow: 0 16px 34px rgba(5, 150, 105, 0.12);
         }
 
         * {
@@ -47,7 +49,58 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            transition: background-color 0.25s ease, color 0.25s ease;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        /* SMOOTH KEYFRAMES */
+        @keyframes viewEnter {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes modalPop {
+            from {
+                opacity: 0;
+                transform: translateY(12px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes orbDrift {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(-14px, 12px) scale(1.08);
+            }
+        }
+
+        .view-animate {
+            animation: viewEnter 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .reveal-card {
+            opacity: 0;
+            transform: translateY(18px) scale(0.985);
+            transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                        border-color 0.25s ease,
+                        box-shadow 0.25s ease;
+        }
+
+        .reveal-card.is-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
 
         header {
@@ -79,6 +132,11 @@
             object-fit: cover;
             border: 1.5px solid var(--accent);
             background: var(--surface-2);
+            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .brand:hover .store-logo {
+            transform: rotate(-4deg) scale(1.05);
         }
 
         .logo-text {
@@ -104,12 +162,13 @@
             font-size: 0.85rem;
             width: 195px;
             outline: none;
-            transition: border-color 0.2s, width 0.25s;
+            transition: border-color 0.25s ease, width 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
         }
 
         .search-box:focus {
             border-color: var(--accent);
             width: 235px;
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent);
         }
 
         .theme-toggle {
@@ -124,13 +183,17 @@
             align-items: center;
             justify-content: center;
             font-size: 0.95rem;
-            transition: transform 0.2s, border-color 0.2s;
+            transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, background 0.25s ease;
             flex-shrink: 0;
         }
 
         .theme-toggle:hover {
             border-color: var(--accent);
-            transform: translateY(-1px);
+            transform: translateY(-1px) rotate(14deg);
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.92);
         }
 
         .hero-wrap {
@@ -148,6 +211,7 @@
             box-shadow: var(--shadow);
             position: relative;
             overflow: hidden;
+            animation: viewEnter 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
         .hero-card::before {
@@ -155,11 +219,12 @@
             position: absolute;
             top: -50px;
             right: -50px;
-            width: 170px;
-            height: 170px;
+            width: 185px;
+            height: 185px;
             border-radius: 50%;
-            background: radial-gradient(circle, color-mix(in srgb, var(--warm) 22%, transparent), transparent 70%);
+            background: radial-gradient(circle, color-mix(in srgb, var(--warm) 24%, transparent), transparent 70%);
             pointer-events: none;
+            animation: orbDrift 6s ease-in-out infinite;
         }
 
         .kicker {
@@ -207,13 +272,18 @@
             border-radius: 11px;
             font-size: 0.8rem;
             font-weight: 600;
-            transition: all 0.2s ease;
+            transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
         }
 
         .social-pill:hover {
             background: var(--accent);
             color: var(--accent-ink);
             border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .social-pill:active {
+            transform: scale(0.96);
         }
 
         .category-bar {
@@ -238,13 +308,18 @@
             font-size: 0.82rem;
             font-weight: 600;
             white-space: nowrap;
-            transition: all 0.2s ease;
+            transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
         }
 
         .cat-btn.active, .cat-btn:hover {
             background: var(--accent);
             color: var(--accent-ink);
             border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .cat-btn:active {
+            transform: scale(0.95);
         }
 
         .container {
@@ -295,12 +370,16 @@
             gap: 15px;
             cursor: pointer;
             box-shadow: var(--shadow);
-            transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
-        .app-card:hover {
-            transform: translateY(-3px);
+        .app-card.is-visible:hover {
+            transform: translateY(-4px);
             border-color: var(--accent);
+            box-shadow: var(--glow);
+        }
+
+        .app-card.is-visible:active {
+            transform: translateY(-1px) scale(0.985);
         }
 
         .app-icon {
@@ -311,6 +390,11 @@
             background: var(--surface-2);
             border: 1px solid var(--border);
             flex-shrink: 0;
+            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .app-card.is-visible:hover .app-icon {
+            transform: scale(1.05);
         }
 
         .app-info {
@@ -384,21 +468,39 @@
             align-items: center;
             justify-content: center;
             gap: 6px;
-            transition: opacity 0.2s, transform 0.15s;
+            transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .install-btn:hover { opacity: 0.92; transform: translateY(-1px); }
-        .install-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        .install-btn:hover {
+            opacity: 0.95;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px color-mix(in srgb, var(--accent) 28%, transparent);
+        }
+
+        .install-btn:active {
+            transform: scale(0.95);
+        }
+
+        .install-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
 
         .install-btn.pay-btn {
             background: var(--warm);
             color: #141820;
         }
 
+        .install-btn.pay-btn:hover {
+            box-shadow: 0 8px 18px color-mix(in srgb, var(--warm) 30%, transparent);
+        }
+
         .install-btn.ghost-btn {
             background: var(--surface-2);
             color: var(--ink);
             border: 1px solid var(--border);
+        }
+
+        .install-btn.ghost-btn:hover {
+            box-shadow: none;
+            border-color: var(--accent);
         }
 
         /* FULL SHOWCASE VIEW FOR CLICKED XML / TEMPLATE */
@@ -484,6 +586,12 @@
             background: #090c11;
             cursor: zoom-in;
             display: block;
+            transition: opacity 0.28s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .main-shot-img.is-swapping {
+            opacity: 0.25;
+            transform: scale(0.985);
         }
 
         .all-shots-grid {
@@ -500,12 +608,16 @@
             border-radius: 16px;
             overflow: hidden;
             cursor: pointer;
-            transition: transform 0.2s, border-color 0.2s;
+            transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease;
         }
 
         .shot-tile:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
             border-color: color-mix(in srgb, var(--accent) 50%, transparent);
+        }
+
+        .shot-tile:active {
+            transform: scale(0.97);
         }
 
         .shot-tile.active {
@@ -545,6 +657,7 @@
             padding: 16px;
             margin-top: 14px;
             display: none;
+            animation: viewEnter 0.3s ease both;
         }
 
         .unlocked-box {
@@ -555,6 +668,7 @@
             margin-top: 16px;
             word-break: break-all;
             display: none;
+            animation: modalPop 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
         /* APP MODAL */
@@ -568,6 +682,10 @@
             align-items: center;
             z-index: 200;
             padding: 20px;
+        }
+
+        .modal.is-open .modal-content {
+            animation: modalPop 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
         .modal-content {
@@ -590,6 +708,12 @@
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--muted);
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--ink);
+            transform: rotate(90deg);
         }
 
         .modal-icon {
@@ -623,6 +747,10 @@
             padding: 16px;
         }
 
+        .lightbox.is-open img {
+            animation: modalPop 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
         .lightbox img {
             max-width: 96vw;
             max-height: 92vh;
@@ -639,6 +767,11 @@
             font-size: 2rem;
             color: #fff;
             cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .lightbox-close:hover {
+            transform: scale(1.12);
         }
 
         footer {
@@ -664,6 +797,19 @@
             .logo-text { font-size: 1.12rem; }
             .showcase-price-box { width: 100%; text-align: left; }
             .all-shots-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            .reveal-card {
+                opacity: 1 !important;
+                transform: none !important;
+            }
         }
     </style>
 </head>
@@ -853,12 +999,40 @@
         window.openShowcaseLightbox = function () {
             const src = document.getElementById("scMainImg").src;
             if (!src) return;
+            const lb = document.getElementById("scLightbox");
             document.getElementById("scLightboxImg").src = src;
-            document.getElementById("scLightbox").style.display = "flex";
+            lb.classList.remove("is-open");
+            lb.style.display = "flex";
+            requestAnimationFrame(() => lb.classList.add("is-open"));
         };
 
         window.closeShowcaseLightbox = function () {
-            document.getElementById("scLightbox").style.display = "none";
+            const lb = document.getElementById("scLightbox");
+            lb.classList.remove("is-open");
+            lb.style.display = "none";
+        };
+
+        // SMOOTH SCROLL REVEAL FOR CARDS
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const delay = Number(entry.target.dataset.animDelay || 0);
+                    setTimeout(() => {
+                        entry.target.classList.add("is-visible");
+                    }, delay);
+                    cardObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: "0px 0px -24px 0px" });
+
+        window.observeRevealCards = function (containerEl) {
+            if (!containerEl) return;
+            const cards = containerEl.querySelectorAll(".reveal-card");
+            cards.forEach((card, idx) => {
+                card.classList.remove("is-visible");
+                card.dataset.animDelay = String(Math.min(idx * 55, 280));
+                cardObserver.observe(card);
+            });
         };
     </script>
 
@@ -1098,7 +1272,7 @@
                 const dlUrl = cleanUrl(appItem.downloadUrl) || '#';
 
                 const card = document.createElement('div');
-                card.className = 'app-card';
+                card.className = 'app-card reveal-card';
 
                 const statusBadge = isPaidApp
                     ? `<span class="paid-tag"><i class="fa-solid fa-lock"></i> ₹${price}</span>`
@@ -1124,6 +1298,8 @@
                 card.onclick = () => openModal(appItem);
                 appGrid.appendChild(card);
             });
+
+            window.observeRevealCards(appGrid);
         }
 
         searchInput.addEventListener('input', filterAndRender);
@@ -1175,13 +1351,18 @@
                 `;
             }
 
-            document.getElementById('appModal').style.display = 'flex';
+            const modal = document.getElementById('appModal');
+            modal.classList.remove('is-open');
+            modal.style.display = 'flex';
+            requestAnimationFrame(() => modal.classList.add('is-open'));
         };
 
         window.closeModal = () => {
             stopModalPolling();
             activeModalApp = null;
-            document.getElementById('appModal').style.display = 'none';
+            const modal = document.getElementById('appModal');
+            modal.classList.remove('is-open');
+            modal.style.display = 'none';
         };
 
         function startAppStatusPolling(orderId, appItem) {
@@ -1293,7 +1474,7 @@
 
             items.forEach((item) => {
                 const card = document.createElement('div');
-                card.className = 'app-card';
+                card.className = 'app-card reveal-card';
                 const photos = getItemPhotos(item);
                 const priceBadge = item.isPaid
                     ? `<span class="paid-tag"><i class="fa-solid fa-lock"></i> ₹${item.price || 49}</span>`
@@ -1324,6 +1505,8 @@
                 card.onclick = () => window.openItemFullShowcase(item.id);
                 paidXmlGrid.appendChild(card);
             });
+
+            window.observeRevealCards(paidXmlGrid);
         }
 
         function renderShowcaseGallery(photos) {
@@ -1348,7 +1531,11 @@
                 tile.onclick = () => {
                     grid.querySelectorAll('.shot-tile').forEach(t => t.classList.remove('active'));
                     tile.classList.add('active');
-                    setImageDirect(mainImg, url, FALLBACK_APP);
+                    mainImg.classList.add('is-swapping');
+                    setTimeout(() => {
+                        setImageDirect(mainImg, url, FALLBACK_APP);
+                        mainImg.classList.remove('is-swapping');
+                    }, 120);
                     mainImg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 };
                 grid.appendChild(tile);
@@ -1444,17 +1631,27 @@
                 buyBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Buy Now — ₹${price}`;
             }
 
+            const showcaseEl = document.getElementById('itemShowcaseView');
             document.getElementById('storeMainView').style.display = 'none';
-            document.getElementById('itemShowcaseView').style.display = 'block';
+            showcaseEl.style.display = 'block';
+            showcaseEl.classList.remove('view-animate');
+            void showcaseEl.offsetWidth;
+            showcaseEl.classList.add('view-animate');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
         window.backToStoreView = () => {
             stopShowcasePolling();
             activeShowcaseItem = null;
+            const mainEl = document.getElementById('storeMainView');
             document.getElementById('itemShowcaseView').style.display = 'none';
-            document.getElementById('storeMainView').style.display = 'block';
+            mainEl.style.display = 'block';
+            mainEl.classList.remove('view-animate');
+            void mainEl.offsetWidth;
+            mainEl.classList.add('view-animate');
             document.getElementById('pageTitle').innerText = `${baseStoreName} - App Hub`;
+            window.observeRevealCards(paidXmlGrid);
+            window.observeRevealCards(appGrid);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
