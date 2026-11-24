@@ -18,7 +18,8 @@
             --warm: #f59e0b;
             --border: rgba(255, 255, 255, 0.09);
             --shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
-            --glow: 0 18px 40px rgba(16, 185, 129, 0.14);
+            --glow: 0 20px 44px rgba(16, 185, 129, 0.18);
+            --sheen: rgba(255, 255, 255, 0.07);
         }
 
         [data-theme="light"] {
@@ -32,7 +33,8 @@
             --warm: #d97706;
             --border: rgba(20, 24, 32, 0.11);
             --shadow: 0 12px 28px rgba(20, 24, 32, 0.08);
-            --glow: 0 16px 34px rgba(5, 150, 105, 0.12);
+            --glow: 0 18px 38px rgba(5, 150, 105, 0.15);
+            --sheen: rgba(255, 255, 255, 0.45);
         }
 
         * {
@@ -53,22 +55,42 @@
             overflow-x: hidden;
         }
 
+        /* SCROLL PROGRESS LINE */
+        .scroll-track {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            z-index: 120;
+            pointer-events: none;
+            background: transparent;
+        }
+
+        .scroll-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent), var(--warm));
+            box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 55%, transparent);
+            transition: width 0.08s linear;
+        }
+
         /* SMOOTH KEYFRAMES */
         @keyframes viewEnter {
             from {
                 opacity: 0;
-                transform: translateY(14px);
+                transform: translateY(16px) scale(0.988);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
 
         @keyframes modalPop {
             from {
                 opacity: 0;
-                transform: translateY(12px) scale(0.96);
+                transform: translateY(14px) scale(0.95);
             }
             to {
                 opacity: 1;
@@ -81,26 +103,46 @@
                 transform: translate(0, 0) scale(1);
             }
             50% {
-                transform: translate(-14px, 12px) scale(1.08);
+                transform: translate(-18px, 14px) scale(1.1);
+            }
+        }
+
+        @keyframes badgePulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 color-mix(in srgb, var(--warm) 0%, transparent);
+            }
+            50% {
+                box-shadow: 0 0 0 6px color-mix(in srgb, var(--warm) 14%, transparent);
             }
         }
 
         .view-animate {
-            animation: viewEnter 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+            animation: viewEnter 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
+        /* BIDIRECTIONAL SCROLL CARD STATES (DOWN + UP) */
         .reveal-card {
+            --tilt-x: 0deg;
+            --tilt-y: 0deg;
+            --hover-lift: 0px;
             opacity: 0;
-            transform: translateY(18px) scale(0.985);
-            transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-                        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-                        border-color 0.25s ease,
-                        box-shadow 0.25s ease;
+            transform: perspective(900px) translateY(28px) rotateX(-6deg) scale(0.96);
+            transform-origin: center center;
+            transition:
+                opacity 0.48s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.52s cubic-bezier(0.22, 1, 0.36, 1),
+                border-color 0.25s ease,
+                box-shadow 0.3s ease;
+            will-change: transform, opacity;
+        }
+
+        .reveal-card.from-top {
+            transform: perspective(900px) translateY(-24px) rotateX(5deg) scale(0.965);
         }
 
         .reveal-card.is-visible {
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform: perspective(900px) translateY(var(--hover-lift)) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) scale(1);
         }
 
         header {
@@ -132,11 +174,11 @@
             object-fit: cover;
             border: 1.5px solid var(--accent);
             background: var(--surface-2);
-            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .brand:hover .store-logo {
-            transform: rotate(-4deg) scale(1.05);
+            transform: rotate(-6deg) scale(1.07);
         }
 
         .logo-text {
@@ -189,7 +231,7 @@
 
         .theme-toggle:hover {
             border-color: var(--accent);
-            transform: translateY(-1px) rotate(14deg);
+            transform: translateY(-1px) rotate(16deg);
         }
 
         .theme-toggle:active {
@@ -219,10 +261,10 @@
             position: absolute;
             top: -50px;
             right: -50px;
-            width: 185px;
-            height: 185px;
+            width: 195px;
+            height: 195px;
             border-radius: 50%;
-            background: radial-gradient(circle, color-mix(in srgb, var(--warm) 24%, transparent), transparent 70%);
+            background: radial-gradient(circle, color-mix(in srgb, var(--warm) 26%, transparent), transparent 70%);
             pointer-events: none;
             animation: orbDrift 6s ease-in-out infinite;
         }
@@ -361,6 +403,8 @@
         }
 
         .app-card {
+            position: relative;
+            overflow: hidden;
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 20px;
@@ -372,14 +416,29 @@
             box-shadow: var(--shadow);
         }
 
+        /* SHIMMER SWEEP ON CARD */
+        .app-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(115deg, transparent 30%, var(--sheen) 50%, transparent 70%);
+            transform: translateX(-140%);
+            transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+            pointer-events: none;
+        }
+
         .app-card.is-visible:hover {
-            transform: translateY(-4px);
+            --hover-lift: -5px;
             border-color: var(--accent);
             box-shadow: var(--glow);
         }
 
+        .app-card.is-visible:hover::after {
+            transform: translateX(140%);
+        }
+
         .app-card.is-visible:active {
-            transform: translateY(-1px) scale(0.985);
+            --hover-lift: -1px;
         }
 
         .app-icon {
@@ -390,11 +449,11 @@
             background: var(--surface-2);
             border: 1px solid var(--border);
             flex-shrink: 0;
-            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .app-card.is-visible:hover .app-icon {
-            transform: scale(1.05);
+            transform: scale(1.07) rotate(-2deg);
         }
 
         .app-info {
@@ -424,6 +483,7 @@
             padding: 2px 8px;
             border-radius: 6px;
             margin-left: 4px;
+            animation: badgePulse 2.8s ease-in-out infinite;
         }
 
         .free-tag {
@@ -815,6 +875,10 @@
 </head>
 <body>
 
+    <div class="scroll-track" aria-hidden="true">
+        <div id="scrollProgressBar" class="scroll-bar"></div>
+    </div>
+
     <header>
         <a onclick="backToStoreView()" class="brand">
             <img id="storeLogo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzEwYjk4MSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmYiPk08L3RleHQ+PC9zdmc+" alt="Logo" class="store-logo">
@@ -1012,25 +1076,73 @@
             lb.style.display = "none";
         };
 
-        // SMOOTH SCROLL REVEAL FOR CARDS
+        // TRACK SCROLL DIRECTION (DOWN vs UP) + PROGRESS BAR
+        let lastScrollY = window.scrollY;
+        let scrollDir = "down";
+
+        window.addEventListener("scroll", () => {
+            const y = window.scrollY;
+            if (y > lastScrollY + 2) {
+                scrollDir = "down";
+            } else if (y < lastScrollY - 2) {
+                scrollDir = "up";
+            }
+            lastScrollY = Math.max(0, y);
+
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? Math.min(100, Math.max(0, (y / docHeight) * 100)) : 0;
+            const bar = document.getElementById("scrollProgressBar");
+            if (bar) bar.style.width = `${pct}%`;
+        }, { passive: true });
+
+        // BIDIRECTIONAL SCROLL REVEAL (TRIGGERS ON SCROLL DOWN & SCROLL UP)
         const cardObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
+                const el = entry.target;
+                const delay = Number(el.dataset.animDelay || 0);
+                clearTimeout(Number(el._revealTimer || 0));
+
                 if (entry.isIntersecting) {
-                    const delay = Number(entry.target.dataset.animDelay || 0);
-                    setTimeout(() => {
-                        entry.target.classList.add("is-visible");
+                    const rectTop = entry.boundingClientRect.top;
+                    const enteredFromTop = rectTop < window.innerHeight * 0.45 && scrollDir === "up";
+                    el.classList.toggle("from-top", enteredFromTop);
+                    el._revealTimer = setTimeout(() => {
+                        el.classList.add("is-visible");
                     }, delay);
-                    cardObserver.unobserve(entry.target);
+                } else {
+                    el.classList.remove("is-visible");
+                    const exitedAbove = entry.boundingClientRect.top < 0;
+                    el.classList.toggle("from-top", exitedAbove);
                 }
             });
-        }, { threshold: 0.08, rootMargin: "0px 0px -24px 0px" });
+        }, { threshold: 0.08, rootMargin: "20px 0px 20px 0px" });
+
+        function attachCardTilt(card) {
+            if (card._tiltBound) return;
+            card._tiltBound = true;
+
+            card.addEventListener("pointermove", (e) => {
+                if (e.pointerType === "touch") return;
+                const rect = card.getBoundingClientRect();
+                const px = (e.clientX - rect.left) / rect.width - 0.5;
+                const py = (e.clientY - rect.top) / rect.height - 0.5;
+                card.style.setProperty("--tilt-y", `${(px * 8).toFixed(2)}deg`);
+                card.style.setProperty("--tilt-x", `${(-py * 7).toFixed(2)}deg`);
+            });
+
+            card.addEventListener("pointerleave", () => {
+                card.style.setProperty("--tilt-x", "0deg");
+                card.style.setProperty("--tilt-y", "0deg");
+            });
+        }
 
         window.observeRevealCards = function (containerEl) {
             if (!containerEl) return;
             const cards = containerEl.querySelectorAll(".reveal-card");
             cards.forEach((card, idx) => {
                 card.classList.remove("is-visible");
-                card.dataset.animDelay = String(Math.min(idx * 55, 280));
+                card.dataset.animDelay = String(Math.min(idx * 45, 220));
+                attachCardTilt(card);
                 cardObserver.observe(card);
             });
         };
