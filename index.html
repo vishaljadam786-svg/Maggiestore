@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">MAGGIE STORE - App Hub</title>
+    <title id="previewPageTitle">XML & Template Preview - MAGGIE STORE</title>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root, [data-theme="dark"] {
-            --bg: #0c0f14;
-            --surface: #141922;
-            --surface-2: #1c2330;
-            --ink: #f4f6fb;
-            --muted: #9aa4b8;
+            --bg: #0b0e14;
+            --surface: #131822;
+            --surface-2: #1b2230;
+            --ink: #f5f7fc;
+            --muted: #9ba5b9;
             --accent: #10b981;
             --accent-ink: #04130d;
             --warm: #f59e0b;
             --border: rgba(255, 255, 255, 0.09);
-            --shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.42);
         }
 
         [data-theme="light"] {
@@ -30,7 +30,7 @@
             --accent-ink: #ffffff;
             --warm: #d97706;
             --border: rgba(20, 24, 32, 0.11);
-            --shadow: 0 12px 28px rgba(20, 24, 32, 0.08);
+            --shadow: 0 14px 30px rgba(20, 24, 32, 0.08);
         }
 
         * {
@@ -38,23 +38,21 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg);
+            background: var(--bg);
             color: var(--ink);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            transition: background-color 0.25s ease, color 0.25s ease;
+            padding-bottom: 104px;
+            transition: background 0.25s ease, color 0.25s ease;
         }
 
         header {
             position: sticky;
             top: 0;
-            z-index: 100;
-            background: color-mix(in srgb, var(--bg) 82%, transparent);
+            z-index: 90;
+            background: color-mix(in srgb, var(--bg) 85%, transparent);
             backdrop-filter: blur(14px);
             border-bottom: 1px solid var(--border);
             padding: 12px 5%;
@@ -64,54 +62,44 @@
             gap: 12px;
         }
 
-        .brand {
-            display: flex;
+        .back-link {
+            display: inline-flex;
             align-items: center;
-            gap: 11px;
+            gap: 8px;
             text-decoration: none;
-        }
-
-        .store-logo {
-            width: 42px;
-            height: 42px;
-            border-radius: 14px;
-            object-fit: cover;
-            border: 1.5px solid var(--accent);
-            background: var(--surface-2);
-        }
-
-        .logo-text {
-            font-family: 'Fraunces', serif;
-            font-size: 1.35rem;
-            font-weight: 700;
             color: var(--ink);
-            letter-spacing: -0.02em;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .search-box {
             background: var(--surface);
             border: 1px solid var(--border);
-            color: var(--ink);
             padding: 8px 14px;
             border-radius: 12px;
-            font-size: 0.85rem;
-            width: 195px;
-            outline: none;
-            transition: border-color 0.2s, width 0.25s;
+            font-size: 0.84rem;
+            font-weight: 700;
+            transition: border-color 0.2s, transform 0.2s;
         }
 
-        .search-box:focus {
+        .back-link:hover {
             border-color: var(--accent);
-            width: 235px;
+            transform: translateX(-2px);
         }
 
-        .theme-toggle {
+        .brand-mini {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-family: 'Fraunces', serif;
+            font-weight: 700;
+            font-size: 1.15rem;
+        }
+
+        .brand-mini img {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 1px solid var(--accent);
+        }
+
+        .theme-btn {
             background: var(--surface);
             border: 1px solid var(--border);
             color: var(--ink);
@@ -122,578 +110,454 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.95rem;
-            transition: transform 0.2s, border-color 0.2s;
-            flex-shrink: 0;
         }
 
-        .theme-toggle:hover {
-            border-color: var(--accent);
-            transform: translateY(-1px);
-        }
-
-        .hero-wrap {
-            max-width: 1140px;
-            width: 100%;
-            margin: 24px auto 8px;
+        .page-wrap {
+            max-width: 1080px;
+            margin: 24px auto;
             padding: 0 20px;
         }
 
-        .hero-card {
+        .hero-banner {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 24px;
-            padding: 32px 24px;
+            padding: 24px;
             box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-card::before {
-            content: "";
-            position: absolute;
-            top: -50px;
-            right: -50px;
-            width: 170px;
-            height: 170px;
-            border-radius: 50%;
-            background: radial-gradient(circle, color-mix(in srgb, var(--warm) 22%, transparent), transparent 70%);
-            pointer-events: none;
-        }
-
-        .kicker {
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 6px;
-            font-size: 0.74rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--warm);
-            margin-bottom: 10px;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-bottom: 22px;
         }
 
-        .hero-card h1 {
-            font-family: 'Fraunces', serif;
-            font-size: 2.2rem;
-            line-height: 1.15;
-            font-weight: 700;
+        .meta-badges {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
             margin-bottom: 8px;
         }
 
-        .hero-card p {
-            color: var(--muted);
-            font-size: 0.93rem;
-            max-width: 560px;
-        }
-
-        .social-bar {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 9px;
-            margin-top: 18px;
-        }
-
-        .social-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            background: var(--surface-2);
-            border: 1px solid var(--border);
-            color: var(--ink);
-            text-decoration: none;
-            padding: 7px 14px;
-            border-radius: 11px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: all 0.2s ease;
-        }
-
-        .social-pill:hover {
-            background: var(--accent);
-            color: var(--accent-ink);
-            border-color: var(--accent);
-        }
-
-        .category-bar {
-            max-width: 1140px;
-            width: 100%;
-            margin: 14px auto 4px;
-            padding: 0 20px;
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
-        .category-bar::-webkit-scrollbar { display: none; }
-
-        .cat-btn {
-            background: var(--surface);
-            color: var(--muted);
-            border: 1px solid var(--border);
-            padding: 8px 16px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 0.82rem;
-            font-weight: 600;
-            white-space: nowrap;
-            transition: all 0.2s ease;
-        }
-
-        .cat-btn.active, .cat-btn:hover {
-            background: var(--accent);
-            color: var(--accent-ink);
-            border-color: var(--accent);
-        }
-
-        .container {
-            max-width: 1140px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 16px 20px 36px;
-            flex: 1;
-        }
-
-        .app-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-            gap: 18px;
-        }
-
-        .app-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 18px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            cursor: pointer;
-            box-shadow: var(--shadow);
-            transition: transform 0.2s ease, border-color 0.2s ease;
-        }
-
-        .app-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent);
-        }
-
-        .app-icon {
-            width: 66px;
-            height: 66px;
-            border-radius: 16px;
-            object-fit: cover;
-            background: var(--surface-2);
-            border: 1px solid var(--border);
-            flex-shrink: 0;
-        }
-
-        .app-info {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .cat-badge {
-            display: inline-block;
-            font-size: 0.68rem;
+        .pill {
+            font-size: 0.72rem;
             font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 8px;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            color: var(--accent);
-            background: color-mix(in srgb, var(--accent) 13%, transparent);
-            padding: 2px 8px;
-            border-radius: 6px;
-            margin-bottom: 4px;
         }
 
-        .paid-tag {
-            display: inline-block;
-            font-size: 0.68rem;
+        .pill.type {
+            background: color-mix(in srgb, var(--accent) 15%, transparent);
+            color: var(--accent);
+        }
+
+        .pill.paid {
+            background: color-mix(in srgb, var(--warm) 18%, transparent);
+            color: var(--warm);
+        }
+
+        .pill.free {
+            background: color-mix(in srgb, var(--accent) 15%, transparent);
+            color: var(--accent);
+        }
+
+        .item-heading {
+            font-family: 'Fraunces', serif;
+            font-size: 2rem;
+            line-height: 1.15;
+            margin-bottom: 8px;
+        }
+
+        .item-sub {
+            color: var(--muted);
+            font-size: 0.9rem;
+            max-width: 680px;
+            line-height: 1.55;
+        }
+
+        .price-box-lg {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 14px 20px;
+            text-align: right;
+        }
+
+        .price-num-lg {
+            font-family: 'Fraunces', serif;
+            font-size: 1.85rem;
             font-weight: 700;
             color: var(--warm);
-            background: color-mix(in srgb, var(--warm) 16%, transparent);
-            padding: 2px 8px;
-            border-radius: 6px;
-            margin-left: 4px;
+            line-height: 1.1;
         }
 
-        .app-title {
-            font-weight: 700;
-            font-size: 1.02rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .app-desc-short {
-            font-size: 0.78rem;
+        .price-sub-lg {
+            font-size: 0.75rem;
             color: var(--muted);
-            margin: 3px 0 10px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
 
-        .install-btn {
-            background: var(--accent);
-            color: var(--accent-ink);
+        .stage-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 18px;
+            box-shadow: var(--shadow);
+            margin-bottom: 22px;
+        }
+
+        .stage-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            gap: 10px;
+        }
+
+        .stage-title {
             font-weight: 700;
-            border: none;
-            padding: 6px 15px;
-            border-radius: 10px;
-            font-size: 0.78rem;
+            font-size: 0.95rem;
+        }
+
+        .stage-main-frame {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+        }
+
+        .stage-main-img {
+            width: 100%;
+            max-height: 520px;
+            object-fit: contain;
+            border-radius: 14px;
+            cursor: zoom-in;
+            background: #090c11;
+        }
+
+        .shots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 14px;
+            margin-top: 16px;
+        }
+
+        .shot-card {
+            background: var(--surface-2);
+            border: 2px solid transparent;
+            border-radius: 16px;
+            overflow: hidden;
             cursor: pointer;
-            text-decoration: none;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .shot-card:hover {
+            transform: translateY(-2px);
+            border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+        }
+
+        .shot-card.active {
+            border-color: var(--accent);
+        }
+
+        .shot-card img {
+            width: 100%;
+            height: 155px;
+            object-fit: cover;
+            display: block;
+            background: #090c11;
+        }
+
+        .shot-caption {
+            padding: 8px 10px;
+            font-size: 0.76rem;
+            color: var(--muted);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .checkout-panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+            margin-bottom: 24px;
+        }
+
+        .btn {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            transition: opacity 0.2s;
+            justify-content: center;
+            gap: 8px;
+            border: none;
+            border-radius: 13px;
+            padding: 12px 22px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.18s, opacity 0.18s;
         }
 
-        .install-btn.pay-btn {
+        .btn:hover { transform: translateY(-1px); opacity: 0.95; }
+        .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        .btn-buy {
             background: var(--warm);
             color: #141820;
         }
 
-        .install-btn:hover { opacity: 0.9; }
-
-        .paid-section {
-            margin-top: 34px;
-            padding-top: 26px;
-            border-top: 1px solid var(--border);
+        .btn-green {
+            background: var(--accent);
+            color: var(--accent-ink);
         }
 
-        .section-top-row {
+        .btn-ghost {
+            background: var(--surface-2);
+            color: var(--ink);
+            border: 1px solid var(--border);
+        }
+
+        .qr-panel {
+            margin-top: 16px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 18px;
+            text-align: center;
+            display: none;
+        }
+
+        .qr-panel img {
+            width: 185px;
+            height: 185px;
+            border-radius: 14px;
+            background: #ffffff;
+            padding: 8px;
+            margin: 10px auto;
+            display: block;
+        }
+
+        .unlocked-card {
+            margin-top: 16px;
+            background: color-mix(in srgb, var(--accent) 12%, var(--surface-2));
+            border: 1px solid var(--accent);
+            border-radius: 18px;
+            padding: 18px;
+            display: none;
+        }
+
+        /* BOTTOM STICKY ACTION BAR */
+        .bottom-buy-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 95;
+            background: color-mix(in srgb, var(--surface) 92%, transparent);
+            backdrop-filter: blur(16px);
+            border-top: 1px solid var(--border);
+            padding: 12px 5%;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 16px;
+            gap: 14px;
         }
 
-        .section-top-row h2 {
-            font-family: 'Fraunces', serif;
-            font-size: 1.55rem;
-        }
-
-        .filter-pills {
-            display: flex;
-            gap: 8px;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.72);
-            backdrop-filter: blur(6px);
-            justify-content: center;
-            align-items: center;
-            z-index: 200;
-            padding: 18px;
-            overflow-y: auto;
-        }
-
-        .modal-content {
-            background: var(--surface);
-            color: var(--ink);
-            padding: 24px 20px;
-            border-radius: 22px;
-            max-width: 470px;
-            width: 100%;
-            text-align: center;
-            position: relative;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow);
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 12px;
-            right: 16px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--muted);
-        }
-
-        .modal-icon {
-            width: 72px;
-            height: 72px;
-            border-radius: 18px;
-            margin-bottom: 8px;
-            object-fit: cover;
-            border: 1px solid var(--border);
-            background: var(--surface-2);
-        }
-
-        /* MULTI-PHOTO GALLERY IN MODAL */
-        .showcase-gallery {
-            margin: 12px 0 14px;
-            background: var(--surface-2);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 10px;
-        }
-
-        .showcase-main-img {
-            width: 100%;
-            max-height: 240px;
-            object-fit: cover;
-            border-radius: 12px;
+        .bar-info strong {
             display: block;
-            background: var(--surface);
+            font-size: 0.96rem;
         }
 
-        .showcase-thumbs {
-            display: flex;
-            gap: 8px;
-            margin-top: 9px;
-            overflow-x: auto;
-            padding-bottom: 2px;
-            justify-content: center;
-        }
-
-        .showcase-thumb {
-            width: 52px;
-            height: 52px;
-            border-radius: 10px;
-            object-fit: cover;
-            cursor: pointer;
-            border: 2px solid transparent;
-            opacity: 0.72;
-            flex-shrink: 0;
-            transition: all 0.18s ease;
-        }
-
-        .showcase-thumb.active, .showcase-thumb:hover {
-            border-color: var(--accent);
-            opacity: 1;
-            transform: translateY(-1px);
-        }
-
-        .modal-desc {
-            color: var(--muted);
-            font-size: 0.86rem;
-            margin: 10px 0 14px;
-            line-height: 1.55;
-        }
-
-        .qr-box {
-            background: var(--surface-2);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 14px;
-            margin-top: 14px;
-            display: none;
-        }
-
-        .qr-box img {
-            width: 170px;
-            height: 170px;
-            border-radius: 12px;
-            background: #fff;
-            padding: 6px;
-            margin: 8px auto;
-            display: block;
-        }
-
-        .action-row-modal {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .unlocked-box {
-            background: var(--surface-2);
-            border: 1px solid var(--accent);
-            border-radius: 14px;
-            padding: 12px;
-            margin-top: 12px;
-            word-break: break-all;
-            font-size: 0.82rem;
-        }
-
-        .pay-status {
-            margin-top: 10px;
+        .bar-info span {
             font-size: 0.78rem;
             color: var(--muted);
         }
 
-        footer {
-            border-top: 1px solid var(--border);
-            background: var(--surface);
-            padding: 22px 20px;
-            text-align: center;
-            color: var(--muted);
-            font-size: 0.82rem;
-            margin-top: auto;
-        }
-
-        footer .social-bar {
+        /* LIGHTBOX */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.88);
+            z-index: 200;
+            align-items: center;
             justify-content: center;
-            margin-top: 0;
-            margin-bottom: 10px;
+            padding: 20px;
         }
 
-        @media (max-width: 600px) {
-            .search-box { width: 120px; font-size: 0.78rem; }
-            .search-box:focus { width: 145px; }
-            .hero-card h1 { font-size: 1.7rem; }
-            .logo-text { font-size: 1.12rem; }
+        .lightbox img {
+            max-width: 95%;
+            max-height: 88vh;
+            border-radius: 14px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65);
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 18px;
+            right: 24px;
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        @media (max-width: 640px) {
+            .item-heading { font-size: 1.55rem; }
+            .price-box-lg { width: 100%; text-align: left; }
+            .bottom-buy-bar { flex-direction: column; align-items: stretch; gap: 8px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#" class="brand">
-            <img id="storeLogo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzEwYjk4MSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmYiPk08L3RleHQ+PC9zdmc+" alt="Logo" class="store-logo">
-            <span id="storeName" class="logo-text">MAGGIE STORE</span>
+        <a href="index.html" class="back-link">
+            <i class="fa-solid fa-arrow-left"></i> Back to Store
         </a>
-        <div class="header-right">
-            <input type="text" id="searchInput" class="search-box" placeholder="Search apps...">
-            <button type="button" id="themeBtn" class="theme-toggle" title="Toggle Dark/Light Theme" onclick="toggleTheme()">
-                <i class="fa-solid fa-sun"></i>
-            </button>
+        <div class="brand-mini">
+            <img id="topStoreLogo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzEwYjk4MSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmYiPk08L3RleHQ+PC9zdmc+" alt="Store">
+            <span id="topStoreName">MAGGIE STORE</span>
         </div>
+        <button type="button" class="theme-btn" id="themeToggleBtn" onclick="toggleTheme()">
+            <i class="fa-solid fa-sun"></i>
+        </button>
     </header>
 
-    <div class="hero-wrap">
-        <section class="hero-card">
-            <div class="kicker"><i class="fa-solid fa-sparkles"></i> Curated & Direct</div>
-            <h1 id="heroTitle">Discover & Download Apps</h1>
-            <p id="heroSubtitle">Fast, verified, and direct downloads powered by MAGGIE STORE</p>
-            <div id="socialBar" class="social-bar"></div>
-        </section>
-    </div>
+    <main class="page-wrap">
+        <div id="loadingBox" style="text-align:center; padding:50px; color:var(--accent); font-weight:700;">
+            Loading preview & screenshots...
+        </div>
 
-    <div id="categoryBar" class="category-bar"></div>
-
-    <!-- APPS SECTION (UNCHANGED) -->
-    <div class="container">
-        <div id="loader" style="text-align:center; padding:36px; color:var(--accent); font-weight:600;">Loading MAGGIE STORE...</div>
-        <div id="appGrid" class="app-grid"></div>
-
-        <!-- PAID ITEMS & XML / TEMPLATES SECTION -->
-        <section id="paidItemsSection" class="paid-section">
-            <div class="section-top-row">
+        <div id="contentWrap" style="display:none;">
+            <section class="hero-banner">
                 <div>
-                    <div class="kicker" style="margin-bottom:4px;"><i class="fa-solid fa-lock-open"></i> XML & Templates</div>
-                    <h2>Paid Items</h2>
+                    <div class="meta-badges">
+                        <span id="itemTypeBadge" class="pill type">XML</span>
+                        <span id="itemAccessBadge" class="pill free">FREE</span>
+                        <span id="shotCountBadge" class="pill type" style="background:var(--surface-2); color:var(--ink);">0 Screenshots</span>
+                    </div>
+                    <h1 id="itemTitle" class="item-heading">Loading Title...</h1>
+                    <p id="itemDesc" class="item-sub"></p>
                 </div>
-                <div class="filter-pills">
-                    <button class="cat-btn active" data-xmlfilter="paid" onclick="setXmlFilter('paid')">Paid Items</button>
-                    <button class="cat-btn" data-xmlfilter="all" onclick="setXmlFilter('all')">All XML & Templates</button>
+
+                <div id="heroPriceCard" class="price-box-lg">
+                    <div class="price-sub-lg">Unlock Price</div>
+                    <div id="heroPriceText" class="price-num-lg">FREE</div>
+                    <div class="price-sub-lg">Instant Access After Payment</div>
                 </div>
-            </div>
-            <div id="paidXmlGrid" class="app-grid">
-                <p style="color:var(--muted); grid-column:1/-1;">No items available yet.</p>
-            </div>
-        </section>
+            </section>
+
+            <section class="stage-card">
+                <div class="stage-top">
+                    <div class="stage-title"><i class="fa-solid fa-images"></i> All Screenshots Preview</div>
+                    <button type="button" class="btn btn-ghost" style="padding:7px 13px; font-size:0.78rem;" onclick="openLightbox()">
+                        <i class="fa-solid fa-expand"></i> Fullscreen
+                    </button>
+                </div>
+
+                <div class="stage-main-frame">
+                    <img id="mainPreviewImg" src="" alt="Main Screenshot" class="stage-main-img" onclick="openLightbox()">
+                </div>
+
+                <div id="allShotsGrid" class="shots-grid"></div>
+            </section>
+
+            <section id="buySection" class="checkout-panel">
+                <h2 style="font-family:'Fraunces',serif; font-size:1.4rem; margin-bottom:6px;" id="checkoutHeading">Get This Item</h2>
+                <p style="color:var(--muted); font-size:0.86rem; margin-bottom:14px;" id="checkoutSubtext">
+                    Saare screenshots dekhne ke baad neeche diye gaye button se unlock karein.
+                </p>
+
+                <div id="actionButtonsArea" style="display:flex; flex-wrap:wrap; gap:10px;"></div>
+
+                <div id="qrPanel" class="qr-panel">
+                    <div style="font-weight:700; font-size:0.9rem;">Scan QR or Pay via UPI</div>
+                    <img id="qrCodeImg" src="" alt="FamGateway QR">
+                    <div id="orderInfoText" style="font-size:0.78rem; color:var(--muted);"></div>
+                    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:10px;">
+                        <a id="upiAppBtn" href="#" class="btn btn-green" style="display:none;">
+                            <i class="fa-solid fa-mobile-screen-button"></i> Pay in UPI App
+                        </a>
+                        <a id="checkoutPageBtn" href="#" target="_blank" class="btn btn-buy" style="display:none;">
+                            <i class="fa-solid fa-up-right-from-square"></i> Open Checkout Page
+                        </a>
+                    </div>
+                </div>
+
+                <div id="statusLine" style="margin-top:12px; font-size:0.84rem; color:var(--muted);"></div>
+
+                <div id="unlockedCard" class="unlocked-card">
+                    <div style="color:var(--accent); font-weight:800; font-size:0.95rem; margin-bottom:8px;">
+                        <i class="fa-solid fa-circle-check"></i> Access Unlocked!
+                    </div>
+                    <a id="finalDownloadBtn" href="#" target="_blank" class="btn btn-green">
+                        <i class="fa-solid fa-download"></i> Open / Download Link
+                    </a>
+                    <div id="finalUrlDisplay" style="margin-top:10px; font-size:0.78rem; color:var(--muted); word-break:break-all;"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div class="bottom-buy-bar">
+        <div class="bar-info">
+            <strong id="bottomItemTitle">MAGGIE STORE Item</strong>
+            <span id="bottomItemMeta">Preview all screenshots above</span>
+        </div>
+        <div id="bottomActionSlot"></div>
     </div>
 
-    <footer>
-        <div id="footerSocials" class="social-bar"></div>
-        <p>&copy; 2026 <span class="store-footer-text">MAGGIE STORE</span>. All rights reserved.</p>
-    </footer>
-
-    <!-- APP MODAL (UNCHANGED) -->
-    <div id="appModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <img id="modalIcon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWMyMzMwIi8+PHRleHQgeD0iNTAlIiB5PSI1NSUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjOWE0YjhiIj5BUFA8L3RleHQ+PC9zdmc+" alt="Icon" class="modal-icon">
-            <div id="modalCat" class="cat-badge" style="margin-bottom:6px;">General</div>
-            <h2 id="modalTitle" style="font-family:'Fraunces',serif;">App Name</h2>
-            <p id="modalDesc" class="modal-desc"></p>
-            <a id="modalDownload" href="#" target="_blank" class="install-btn" style="padding: 11px 28px; font-size: 0.9rem;">
-                <i class="fa-solid fa-download"></i> Download Now
-            </a>
-        </div>
-    </div>
-
-    <!-- XML / TEMPLATE PREVIEW GALLERY + FAMGATEWAY PAYMENT MODAL -->
-    <div id="payModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closePayModal()">&times;</span>
-            <div id="payTypeBadge" class="cat-badge" style="margin-bottom:6px;">XML</div>
-            <h2 id="payTitle" style="font-family:'Fraunces',serif;">Item Title</h2>
-
-            <!-- Multi-photo preview gallery -->
-            <div id="showcaseGallery" class="showcase-gallery">
-                <img id="showcaseMainImg" src="" alt="Preview Photo" class="showcase-main-img">
-                <div id="showcaseThumbs" class="showcase-thumbs"></div>
-            </div>
-
-            <p id="payDesc" class="modal-desc" style="margin-bottom:12px;"></p>
-
-            <div id="payPriceBox" style="font-size:1.15rem; font-weight:800; color:var(--warm); margin-bottom:12px;">
-                Price: ₹<span id="payAmount">49</span>
-            </div>
-
-            <button id="payActionBtn" class="install-btn pay-btn" style="padding:11px 22px; font-size:0.9rem;" onclick="processItemPayment()">
-                <i class="fa-solid fa-qrcode"></i> Pay ₹<span id="payBtnAmount">49</span> via UPI
-            </button>
-
-            <div id="qrPaymentBox" class="qr-box">
-                <div style="font-size:0.8rem; font-weight:700;">Scan QR or Pay via UPI App</div>
-                <img id="fgQrImg" src="" alt="UPI QR">
-                <div style="font-size:0.74rem; color:var(--muted);" id="fgOrderLabel"></div>
-                <div class="action-row-modal">
-                    <a id="fgUpiIntentBtn" href="#" class="install-btn" style="display:none;">
-                        <i class="fa-solid fa-mobile-screen-button"></i> Open UPI App
-                    </a>
-                    <a id="fgCheckoutBtn" href="#" target="_blank" class="install-btn pay-btn" style="display:none;">
-                        <i class="fa-solid fa-up-right-from-square"></i> Checkout Page
-                    </a>
-                </div>
-            </div>
-
-            <div id="payStatusMsg" class="pay-status"></div>
-
-            <div id="unlockedLinkArea" class="unlocked-box" style="display:none;">
-                <div style="color:var(--accent); font-weight:700; margin-bottom:6px;">
-                    <i class="fa-solid fa-circle-check"></i> Payment Verified! Link Unlocked:
-                </div>
-                <a id="unlockedDirectLink" href="#" target="_blank" class="install-btn" style="padding:9px 18px;">
-                    <i class="fa-solid fa-download"></i> Open / Download Link
-                </a>
-                <div style="margin-top:8px; font-size:0.75rem; color:var(--muted);" id="unlockedUrlText"></div>
-            </div>
-        </div>
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightboxImg" src="" alt="Zoomed Screenshot" onclick="event.stopPropagation()">
     </div>
 
     <script>
-        (function initSavedTheme() {
+        (function initTheme() {
             const saved = localStorage.getItem("maggie_theme") || "dark";
             document.documentElement.setAttribute("data-theme", saved);
-            updateThemeIcon(saved);
+            updateThemeBtn(saved);
         })();
 
-        function updateThemeIcon(theme) {
-            const btn = document.getElementById("themeBtn");
-            if (!btn) return;
-            btn.innerHTML = theme === "dark"
-                ? '<i class="fa-solid fa-sun"></i>'
-                : '<i class="fa-solid fa-moon"></i>';
+        function updateThemeBtn(theme) {
+            const btn = document.getElementById("themeToggleBtn");
+            if (btn) {
+                btn.innerHTML = theme === "dark"
+                    ? '<i class="fa-solid fa-sun"></i>'
+                    : '<i class="fa-solid fa-moon"></i>';
+            }
         }
 
         window.toggleTheme = function () {
-            const current = document.documentElement.getAttribute("data-theme") || "dark";
-            const next = current === "dark" ? "light" : "dark";
+            const cur = document.documentElement.getAttribute("data-theme") || "dark";
+            const next = cur === "dark" ? "light" : "dark";
             document.documentElement.setAttribute("data-theme", next);
             localStorage.setItem("maggie_theme", next);
-            updateThemeIcon(next);
+            updateThemeBtn(next);
+        };
+
+        window.openLightbox = function () {
+            const src = document.getElementById("mainPreviewImg").src;
+            if (!src) return;
+            document.getElementById("lightboxImg").src = src;
+            document.getElementById("lightbox").style.display = "flex";
+        };
+
+        window.closeLightbox = function () {
+            document.getElementById("lightbox").style.display = "none";
         };
     </script>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, onSnapshot, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const FAMGATEWAY_BASE_URL = "https://famgateway.in";
         const FAMGATEWAY_API_KEY = "fam_95a256e60ea571df5923128a187d7659d00c5716";
@@ -712,51 +576,29 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        const appGrid = document.getElementById('appGrid');
-        const categoryBar = document.getElementById('categoryBar');
-        const searchInput = document.getElementById('searchInput');
-        const socialBar = document.getElementById('socialBar');
-        const footerSocials = document.getElementById('footerSocials');
-        const paidXmlGrid = document.getElementById('paidXmlGrid');
+        const FALLBACK_SHOT = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0iMjYwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWIyMjMwIi8+PHRleHQgeD0iNTAlIiB5PSI1MiUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjIiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjOWE0YjhiIj5TQVZFIE1BREdJRSBQUkVWSUVXPC90ZXh0Pjwvc3ZnPg==";
 
-        const FALLBACK_STORE = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzEwYjk4MSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmYiPk08L3RleHQ+PC9zdmc+";
-        const FALLBACK_APP = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWMyMzMwIi8+PHRleHQgeD0iNTAlIiB5PSI1NSUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjOWE0YjhiIj5BUFA8L3RleHQ+PC9zdmc+";
-
-        let allApps = [];
-        let allXmlItems = [];
-        let activeCategory = 'All';
-        let xmlFilterMode = 'paid';
-        let selectedXmlItem = null;
+        let currentItem = null;
+        let currentItemId = "";
         let pollTimer = null;
 
         function cleanUrl(raw) {
-            const val = (raw || '').trim();
-            if (!val) return '';
-            if (!val.startsWith('http://') && !val.startsWith('https://') && !val.startsWith('data:image/')) {
-                return 'https://' + val;
+            const val = (raw || "").trim();
+            if (!val) return "";
+            if (!val.startsWith("http://") && !val.startsWith("https://") && !val.startsWith("data:image/")) {
+                return "https://" + val;
             }
             return val;
         }
 
-        function getItemPhotos(item) {
-            const list = Array.isArray(item.photos) ? item.photos.map(cleanUrl).filter(Boolean) : [];
-            if (list.length > 0) return Array.from(new Set(list));
-            const single = cleanUrl(item.thumbUrl);
-            return single ? [single] : [FALLBACK_APP];
-        }
-
-        function setImageDirect(imgEl, rawUrl, fallbackUrl) {
-            if (!imgEl) return;
-            const url = cleanUrl(rawUrl);
-            if (!url) {
-                imgEl.src = fallbackUrl;
-                return;
-            }
-            imgEl.onerror = () => {
-                imgEl.onerror = null;
-                imgEl.src = fallbackUrl;
+        function setImg(el, url, fallback = FALLBACK_SHOT) {
+            if (!el) return;
+            const c = cleanUrl(url);
+            el.onerror = () => {
+                el.onerror = null;
+                el.src = fallback;
             };
-            imgEl.src = url;
+            el.src = c || fallback;
         }
 
         function stopPolling() {
@@ -766,343 +608,127 @@
             }
         }
 
-        onSnapshot(doc(db, "settings", "general"), (docSnap) => {
-            if (docSnap.exists()) {
-                const settings = docSnap.data();
-                if (settings.logoUrl) {
-                    setImageDirect(document.getElementById('storeLogo'), settings.logoUrl, FALLBACK_STORE);
-                }
-                if (settings.storeName) {
-                    document.getElementById('storeName').innerText = settings.storeName;
-                    document.getElementById('pageTitle').innerText = settings.storeName + " - App Hub";
-                    document.getElementById('heroSubtitle').innerText = "Fast, verified, and direct downloads powered by " + settings.storeName;
-                    document.querySelectorAll('.store-footer-text').forEach(el => el.innerText = settings.storeName);
-                }
+        onSnapshot(doc(db, "settings", "general"), (snap) => {
+            if (snap.exists()) {
+                const s = snap.data();
+                if (s.storeName) document.getElementById("topStoreName").innerText = s.storeName;
+                if (s.logoUrl) setImg(document.getElementById("topStoreLogo"), s.logoUrl, FALLBACK_SHOT);
             }
         });
 
-        function getPlatformIcon(platform) {
-            const p = (platform || '').toLowerCase();
-            if (p.includes('insta')) return 'fa-brands fa-instagram';
-            if (p.includes('tele')) return 'fa-brands fa-telegram';
-            if (p.includes('disc')) return 'fa-brands fa-discord';
-            if (p.includes('you')) return 'fa-brands fa-youtube';
-            if (p.includes('whats')) return 'fa-brands fa-whatsapp';
-            if (p.includes('x') || p.includes('twit')) return 'fa-brands fa-x-twitter';
-            if (p.includes('git')) return 'fa-brands fa-github';
-            return 'fa-solid fa-link';
+        function buildScreenshotsList(item) {
+            const list = Array.isArray(item.photos) ? item.photos.map(cleanUrl).filter(Boolean) : [];
+            const thumb = cleanUrl(item.thumbUrl);
+            if (thumb && !list.includes(thumb)) list.unshift(thumb);
+            return list.length > 0 ? Array.from(new Set(list)) : [FALLBACK_SHOT];
         }
 
-        onSnapshot(collection(db, "socials"), (snapshot) => {
-            socialBar.innerHTML = '';
-            footerSocials.innerHTML = '';
-            snapshot.forEach((docSnap) => {
-                const data = docSnap.data();
-                const iconClass = getPlatformIcon(data.platform);
-                const html = `
-                    <a href="${cleanUrl(data.url)}" target="_blank" class="social-pill">
-                        <i class="${iconClass}"></i> ${data.platform}
-                    </a>
-                `;
-                socialBar.innerHTML += html;
-                footerSocials.innerHTML += html;
-            });
-        });
+        function renderScreenshots(shots) {
+            const mainImg = document.getElementById("mainPreviewImg");
+            const grid = document.getElementById("allShotsGrid");
+            document.getElementById("shotCountBadge").innerText = `${shots.length} Screenshot${shots.length > 1 ? "s" : ""}`;
 
-        // APPS COLLECTION (UNCHANGED)
-        onSnapshot(collection(db, "apps"), (snapshot) => {
-            document.getElementById('loader').style.display = 'none';
-            allApps = [];
-            const categories = new Set(['All']);
+            setImg(mainImg, shots[0], FALLBACK_SHOT);
+            grid.innerHTML = "";
 
-            snapshot.forEach((docSnap) => {
-                const appData = { id: docSnap.id, ...docSnap.data() };
-                allApps.push(appData);
-                if (appData.category) categories.add(appData.category);
-            });
-
-            renderCategories(Array.from(categories));
-            filterAndRender();
-        }, (err) => {
-            document.getElementById('loader').innerHTML = `<span style="color:#ef4444;">Error: ${err.message}</span>`;
-        });
-
-        function renderCategories(cats) {
-            categoryBar.innerHTML = '';
-            cats.forEach(cat => {
-                const btn = document.createElement('button');
-                btn.className = `cat-btn ${activeCategory === cat ? 'active' : ''}`;
-                btn.innerText = cat;
-                btn.onclick = () => {
-                    activeCategory = cat;
-                    categoryBar.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    filterAndRender();
-                };
-                categoryBar.appendChild(btn);
-            });
-        }
-
-        function filterAndRender() {
-            const term = searchInput.value.toLowerCase();
-            const filtered = allApps.filter(appItem => {
-                const name = (appItem.name || '').toLowerCase();
-                const matchesSearch = name.includes(term);
-                const matchesCat = activeCategory === 'All' || (appItem.category || 'General') === activeCategory;
-                return matchesSearch && matchesCat;
-            });
-            renderApps(filtered);
-        }
-
-        function renderApps(apps) {
-            appGrid.innerHTML = '';
-            if (apps.length === 0) {
-                appGrid.innerHTML = '<p style="color:var(--muted); grid-column: 1/-1; text-align:center; padding:20px;">No apps found in this category.</p>';
-                return;
-            }
-
-            apps.forEach((appItem) => {
-                const card = document.createElement('div');
-                card.className = 'app-card';
+            shots.forEach((url, idx) => {
+                const card = document.createElement("div");
+                card.className = `shot-card ${idx === 0 ? "active" : ""}`;
                 card.innerHTML = `
-                    <img src="${FALLBACK_APP}" alt="Icon" class="app-icon">
-                    <div class="app-info">
-                        <span class="cat-badge">${appItem.category || 'General'}</span>
-                        <div class="app-title">${appItem.name || 'Unnamed App'}</div>
-                        <div class="app-desc-short">${appItem.description || 'Tap to view details'}</div>
-                        <a href="${cleanUrl(appItem.downloadUrl) || '#'}" target="_blank" class="install-btn" onclick="event.stopPropagation()">
-                            <i class="fa-solid fa-download"></i> Install
-                        </a>
+                    <img src="${FALLBACK_SHOT}" alt="Screenshot ${idx + 1}">
+                    <div class="shot-caption">
+                        <span>Screenshot #${idx + 1}</span>
+                        <i class="fa-solid fa-magnifying-glass-plus"></i>
                     </div>
                 `;
-                setImageDirect(card.querySelector('.app-icon'), appItem.logoUrl, FALLBACK_APP);
-                card.onclick = () => openModal(appItem);
-                appGrid.appendChild(card);
-            });
-        }
-
-        searchInput.addEventListener('input', filterAndRender);
-
-        window.openModal = (appItem) => {
-            setImageDirect(document.getElementById('modalIcon'), appItem.logoUrl, FALLBACK_APP);
-            document.getElementById('modalCat').innerText = appItem.category || 'General';
-            document.getElementById('modalTitle').innerText = appItem.name || 'App';
-            document.getElementById('modalDesc').innerText = appItem.description || 'No description provided for this app.';
-            document.getElementById('modalDownload').href = cleanUrl(appItem.downloadUrl) || '#';
-            document.getElementById('appModal').style.display = 'flex';
-        };
-
-        window.closeModal = () => document.getElementById('appModal').style.display = 'none';
-
-        // PAID ITEMS & MULTI-PHOTO PREVIEW + FAMGATEWAY PAYMENT
-        window.setXmlFilter = (mode) => {
-            xmlFilterMode = mode;
-            document.querySelectorAll('[data-xmlfilter]').forEach(btn => {
-                btn.classList.toggle('active', btn.getAttribute('data-xmlfilter') === mode);
-            });
-            renderPaidXmlSection();
-        };
-
-        onSnapshot(collection(db, "xmlTemplates"), (snapshot) => {
-            allXmlItems = [];
-            snapshot.forEach((docSnap) => {
-                allXmlItems.push({ id: docSnap.id, ...docSnap.data() });
-            });
-            renderPaidXmlSection();
-        });
-
-        function renderPaidXmlSection() {
-            paidXmlGrid.innerHTML = '';
-            const items = xmlFilterMode === 'paid'
-                ? allXmlItems.filter(i => Boolean(i.isPaid))
-                : allXmlItems;
-
-            if (items.length === 0) {
-                paidXmlGrid.innerHTML = '<p style="color:var(--muted); grid-column:1/-1; text-align:center; padding:18px;">Abhi is section mein koi item nahi hai.</p>';
-                return;
-            }
-
-            items.forEach((item) => {
-                const card = document.createElement('div');
-                card.className = 'app-card';
-                const photos = getItemPhotos(item);
-                const priceBadge = item.isPaid
-                    ? `<span class="paid-tag"><i class="fa-solid fa-lock"></i> ₹${item.price || 49}</span>`
-                    : `<span class="paid-tag" style="color:var(--accent); background:color-mix(in srgb, var(--accent) 14%, transparent);">FREE</span>`;
-
-                const photoBadge = photos.length > 1
-                    ? `<span class="paid-tag" style="color:var(--ink); background:var(--surface-2);"><i class="fa-solid fa-images"></i> ${photos.length}</span>`
-                    : '';
-
-                const btnHtml = item.isPaid
-                    ? `<button class="install-btn pay-btn" onclick="event.stopPropagation(); openPayModal('${item.id}')"><i class="fa-solid fa-eye"></i> Preview & Buy ₹${item.price || 49}</button>`
-                    : `<a href="${cleanUrl(item.protectedLink) || '#'}" target="_blank" class="install-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-download"></i> Free Download</a>`;
-
-                card.innerHTML = `
-                    <img src="${FALLBACK_APP}" alt="XML/Template" class="app-icon">
-                    <div class="app-info">
-                        <div>
-                            <span class="cat-badge">${item.type || 'XML'}</span>
-                            ${priceBadge}
-                            ${photoBadge}
-                        </div>
-                        <div class="app-title" style="margin-top:3px;">${item.title || 'Untitled'}</div>
-                        <div class="app-desc-short">${item.description || 'Tap to see preview photos & details'}</div>
-                        ${btnHtml}
-                    </div>
-                `;
-                setImageDirect(card.querySelector('.app-icon'), item.thumbUrl || photos[0], FALLBACK_APP);
-                card.onclick = () => window.openPayModal(item.id);
-                paidXmlGrid.appendChild(card);
-            });
-        }
-
-        function renderShowcaseGallery(photos) {
-            const mainImg = document.getElementById('showcaseMainImg');
-            const thumbsWrap = document.getElementById('showcaseThumbs');
-            thumbsWrap.innerHTML = '';
-
-            const validPhotos = photos && photos.length > 0 ? photos : [FALLBACK_APP];
-            setImageDirect(mainImg, validPhotos[0], FALLBACK_APP);
-
-            if (validPhotos.length <= 1) {
-                thumbsWrap.style.display = 'none';
-                return;
-            }
-
-            thumbsWrap.style.display = 'flex';
-            validPhotos.forEach((url, idx) => {
-                const thumb = document.createElement('img');
-                thumb.className = `showcase-thumb ${idx === 0 ? 'active' : ''}`;
-                thumb.alt = `Preview ${idx + 1}`;
-                setImageDirect(thumb, url, FALLBACK_APP);
-                thumb.onclick = () => {
-                    thumbsWrap.querySelectorAll('.showcase-thumb').forEach(t => t.classList.remove('active'));
-                    thumb.classList.add('active');
-                    setImageDirect(mainImg, url, FALLBACK_APP);
+                setImg(card.querySelector("img"), url, FALLBACK_SHOT);
+                card.onclick = () => {
+                    grid.querySelectorAll(".shot-card").forEach(c => c.classList.remove("active"));
+                    card.classList.add("active");
+                    setImg(mainImg, url, FALLBACK_SHOT);
+                    mainImg.scrollIntoView({ behavior: "smooth", block: "nearest" });
                 };
-                thumbsWrap.appendChild(thumb);
+                grid.appendChild(card);
             });
         }
 
-        window.openPayModal = (id) => {
-            stopPolling();
-            const item = allXmlItems.find(x => x.id === id);
-            if (!item) return;
-            selectedXmlItem = item;
-
-            renderShowcaseGallery(getItemPhotos(item));
-            document.getElementById('payTypeBadge').innerText = `${item.type || 'XML'} ${item.isPaid ? '• PAID' : '• FREE'}`;
-            document.getElementById('payTitle').innerText = item.title || 'Item';
-            document.getElementById('payDesc').innerText = item.description || 'Preview photos dekhein. UPI payment complete hote hi download/access link unlock ho jayega.';
-            document.getElementById('payStatusMsg').innerText = '';
-            document.getElementById('qrPaymentBox').style.display = 'none';
-
-            const unlockedArea = document.getElementById('unlockedLinkArea');
-            const payPriceBox = document.getElementById('payPriceBox');
-            const payBtn = document.getElementById('payActionBtn');
-
-            const alreadyUnlocked = localStorage.getItem('maggie_unlocked_' + item.id) === '1';
-
-            if (!item.isPaid || alreadyUnlocked) {
-                payPriceBox.style.display = 'none';
-                payBtn.style.display = 'none';
-                revealUnlockedLink(item, false);
-            } else {
-                const amt = Number(item.price || 49);
-                payPriceBox.style.display = 'block';
-                document.getElementById('payAmount').innerText = amt;
-                document.getElementById('payBtnAmount').innerText = amt;
-                payBtn.style.display = 'inline-flex';
-                payBtn.disabled = false;
-                unlockedArea.style.display = 'none';
-            }
-
-            document.getElementById('payModal').style.display = 'flex';
-        };
-
-        window.closePayModal = () => {
-            stopPolling();
-            document.getElementById('payModal').style.display = 'none';
-            selectedXmlItem = null;
-        };
-
-        function revealUnlockedLink(item, persist = true) {
+        function unlockItemNow(item, persist = true) {
             stopPolling();
             if (persist) {
-                localStorage.setItem('maggie_unlocked_' + item.id, '1');
+                localStorage.setItem("maggie_unlocked_" + currentItemId, "1");
             }
-            const link = cleanUrl(item.protectedLink) || '#';
-            document.getElementById('payPriceBox').style.display = 'none';
-            document.getElementById('payActionBtn').style.display = 'none';
-            document.getElementById('qrPaymentBox').style.display = 'none';
-            document.getElementById('payStatusMsg').innerHTML = '<span style="color:var(--accent); font-weight:700;">Payment verified!</span>';
+            const link = cleanUrl(item.protectedLink) || "#";
+            document.getElementById("qrPanel").style.display = "none";
+            document.getElementById("statusLine").innerHTML = '<span style="color:var(--accent); font-weight:700;">Link ready!</span>';
 
-            const unlockedArea = document.getElementById('unlockedLinkArea');
-            const unlockedLink = document.getElementById('unlockedDirectLink');
-            const unlockedUrlText = document.getElementById('unlockedUrlText');
+            const unlockedCard = document.getElementById("unlockedCard");
+            document.getElementById("finalDownloadBtn").href = link;
+            document.getElementById("finalUrlDisplay").innerText = link;
+            unlockedCard.style.display = "block";
 
-            unlockedLink.href = link;
-            unlockedUrlText.innerText = link;
-            unlockedArea.style.display = 'block';
+            document.getElementById("bottomActionSlot").innerHTML = `
+                <a href="${link}" target="_blank" class="btn btn-green">
+                    <i class="fa-solid fa-download"></i> Download / Open Link
+                </a>
+            `;
         }
 
-        function startPublicStatusPolling(orderId, item) {
+        function startStatusPolling(orderId, item) {
             stopPolling();
-            const statusEl = document.getElementById('payStatusMsg');
-            const statusUrl = `${FAMGATEWAY_BASE_URL}/api/checkout-status.php?order_id=${encodeURIComponent(orderId)}`;
+            const statusLine = document.getElementById("statusLine");
+            const pollUrl = `${FAMGATEWAY_BASE_URL}/api/checkout-status.php?order_id=${encodeURIComponent(orderId)}`;
             const deadline = Date.now() + 10 * 60 * 1000;
 
-            statusEl.innerText = "Waiting for UPI payment confirmation (auto-checking every 3s)...";
+            statusLine.innerText = "Waiting for UPI payment confirmation (auto-checking every 3s)...";
 
             pollTimer = setInterval(async () => {
                 if (Date.now() > deadline) {
                     stopPolling();
-                    statusEl.innerText = "Order session timed out. Please try again.";
+                    statusLine.innerText = "Payment session timed out. Click Buy again.";
                     return;
                 }
                 try {
-                    const res = await fetch(statusUrl, { cache: "no-store" });
+                    const res = await fetch(pollUrl, { cache: "no-store" });
                     if (!res.ok) return;
-                    const st = await res.json();
-                    if (st && st.status === "success") {
-                        revealUnlockedLink(item, true);
-                    } else if (st && st.status === "expired") {
+                    const data = await res.json();
+                    if (data && data.status === "success") {
+                        unlockItemNow(item, true);
+                    } else if (data && data.status === "expired") {
                         stopPolling();
-                        statusEl.innerText = "Order expired. Click Pay again to generate a new QR.";
+                        statusLine.innerText = "Order expired. Click Buy to create a new QR.";
                     }
                 } catch (_) {}
             }, 3000);
         }
 
-        window.processItemPayment = async () => {
-            if (!selectedXmlItem) return;
-            const amountRupees = Math.max(1, Number(selectedXmlItem.price || 49));
-            const payBtn = document.getElementById('payActionBtn');
-            const statusEl = document.getElementById('payStatusMsg');
-
-            payBtn.disabled = true;
-            payBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating UPI QR...';
-            statusEl.innerText = '';
+        window.startBuyFlow = async function () {
+            if (!currentItem) return;
+            const amountRupees = Math.max(1, Number(currentItem.price || 49));
+            const statusLine = document.getElementById("statusLine");
+            const buyBtn = document.getElementById("mainBuyBtn");
+            if (buyBtn) {
+                buyBtn.disabled = true;
+                buyBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating UPI QR...';
+            }
+            statusLine.innerText = "";
 
             try {
-                let orderPayload;
-
+                let orderJson;
                 if (FAMGATEWAY_BACKEND_ORDER_URL) {
-                    const backendRes = await fetch(FAMGATEWAY_BACKEND_ORDER_URL, {
+                    const r = await fetch(FAMGATEWAY_BACKEND_ORDER_URL, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
                             amount: amountRupees,
-                            customer_name: `${selectedXmlItem.type || "Item"} - ${selectedXmlItem.title || "MAGGIE STORE"}`
+                            customer_name: `${currentItem.type || "Item"} - ${currentItem.title || "MAGGIE STORE"}`
                         })
                     });
-                    orderPayload = await backendRes.json();
-                    if (!backendRes.ok || orderPayload.status !== "success" || !orderPayload.data) {
-                        throw new Error(orderPayload.message || "Failed to create order via backend.");
+                    orderJson = await r.json();
+                    if (!r.ok || orderJson.status !== "success" || !orderJson.data) {
+                        throw new Error(orderJson.message || "Backend order failed.");
                     }
                 } else {
-                    const fgRes = await fetch(`${FAMGATEWAY_BASE_URL}/api/create-order`, {
+                    const r = await fetch(`${FAMGATEWAY_BASE_URL}/api/create-order`, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -1111,50 +737,125 @@
                         body: JSON.stringify({
                             api_key: FAMGATEWAY_API_KEY,
                             amount: amountRupees,
-                            customer_name: `${selectedXmlItem.type || "Item"}: ${selectedXmlItem.title || "MAGGIE STORE"}`
+                            customer_name: `${currentItem.type || "Item"}: ${currentItem.title || "MAGGIE STORE"}`
                         })
                     });
-                    orderPayload = await fgRes.json();
-                    if (!fgRes.ok || orderPayload.status !== "success" || !orderPayload.data) {
-                        throw new Error(orderPayload.message || "FamGateway order creation failed.");
+                    orderJson = await r.json();
+                    if (!r.ok || orderJson.status !== "success" || !orderJson.data) {
+                        throw new Error(orderJson.message || "FamGateway order failed.");
                     }
                 }
 
-                const d = orderPayload.data;
+                const d = orderJson.data;
                 const orderId = d.order_id;
                 const qrUrl = d.qr_url || `${FAMGATEWAY_BASE_URL}/api/qr-image.php?order_id=${encodeURIComponent(orderId)}`;
                 const checkoutUrl = d.checkout_url || `${FAMGATEWAY_BASE_URL}/pay.php?order_id=${encodeURIComponent(orderId)}`;
 
-                document.getElementById('fgQrImg').src = qrUrl;
-                document.getElementById('fgOrderLabel').innerText = `Order ID: ${orderId} • Amount: ₹${d.payable_amount || amountRupees}`;
+                document.getElementById("qrCodeImg").src = qrUrl;
+                document.getElementById("orderInfoText").innerText = `Order ID: ${orderId} • Amount: ₹${d.payable_amount || amountRupees}`;
 
-                const upiBtn = document.getElementById('fgUpiIntentBtn');
+                const upiBtn = document.getElementById("upiAppBtn");
                 if (d.upi_intent) {
                     upiBtn.href = d.upi_intent;
-                    upiBtn.style.display = 'inline-flex';
+                    upiBtn.style.display = "inline-flex";
                 } else {
-                    upiBtn.style.display = 'none';
+                    upiBtn.style.display = "none";
                 }
 
-                const checkoutBtn = document.getElementById('fgCheckoutBtn');
-                checkoutBtn.href = checkoutUrl;
-                checkoutBtn.style.display = 'inline-flex';
+                const cpBtn = document.getElementById("checkoutPageBtn");
+                cpBtn.href = checkoutUrl;
+                cpBtn.style.display = "inline-flex";
 
-                document.getElementById('qrPaymentBox').style.display = 'block';
-                payBtn.style.display = 'none';
+                document.getElementById("qrPanel").style.display = "block";
+                if (buyBtn) buyBtn.style.display = "none";
 
-                startPublicStatusPolling(orderId, selectedXmlItem);
+                startStatusPolling(orderId, currentItem);
             } catch (err) {
-                payBtn.disabled = false;
-                payBtn.innerHTML = `<i class="fa-solid fa-qrcode"></i> Pay ₹${amountRupees} via UPI`;
-                statusEl.innerHTML = `<span style="color:#ef4444;">${err.message}</span>`;
+                if (buyBtn) {
+                    buyBtn.disabled = false;
+                    buyBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Buy Now — ₹${amountRupees}`;
+                }
+                statusLine.innerHTML = `<span style="color:#ef4444;">${err.message}</span>`;
             }
         };
 
-        window.onclick = (e) => {
-            if (e.target === document.getElementById('appModal')) closeModal();
-            if (e.target === document.getElementById('payModal')) closePayModal();
+        window.scrollToBuy = function () {
+            document.getElementById("buySection").scrollIntoView({ behavior: "smooth" });
         };
+
+        async function initPage() {
+            const params = new URLSearchParams(window.location.search);
+            const id = (params.get("id") || "").trim();
+            const loadingBox = document.getElementById("loadingBox");
+
+            if (!id) {
+                loadingBox.innerHTML = 'Invalid item ID. <a href="index.html" style="color:var(--accent);">Go back to Store</a>';
+                return;
+            }
+
+            try {
+                const snap = await getDoc(doc(db, "xmlTemplates", id));
+                if (!snap.exists()) {
+                    loadingBox.innerHTML = 'Item not found. <a href="index.html" style="color:var(--accent);">Go back to Store</a>';
+                    return;
+                }
+
+                currentItemId = snap.id;
+                currentItem = snap.data();
+
+                const isPaid = Boolean(currentItem.isPaid);
+                const price = Number(currentItem.price || 49);
+                const alreadyUnlocked = localStorage.getItem("maggie_unlocked_" + currentItemId) === "1";
+
+                document.title = `${currentItem.title || "Preview"} - MAGGIE STORE`;
+                document.getElementById("itemTypeBadge").innerText = currentItem.type || "XML";
+
+                const accessBadge = document.getElementById("itemAccessBadge");
+                if (isPaid) {
+                    accessBadge.className = "pill paid";
+                    accessBadge.innerText = `PAID • ₹${price}`;
+                    document.getElementById("heroPriceText").innerText = `₹${price}`;
+                } else {
+                    accessBadge.className = "pill free";
+                    accessBadge.innerText = "FREE";
+                    document.getElementById("heroPriceText").innerText = "FREE";
+                }
+
+                document.getElementById("itemTitle").innerText = currentItem.title || "Untitled";
+                document.getElementById("itemDesc").innerText = currentItem.description || "Preview all screenshots below.";
+                document.getElementById("bottomItemTitle").innerText = currentItem.title || "Untitled";
+                document.getElementById("bottomItemMeta").innerText = isPaid
+                    ? `Paid ${currentItem.type || "Item"} • ₹${price} via UPI`
+                    : `Free ${currentItem.type || "Item"} • Instant Access`;
+
+                renderScreenshots(buildScreenshotsList(currentItem));
+
+                const actionsArea = document.getElementById("actionButtonsArea");
+                const bottomSlot = document.getElementById("bottomActionSlot");
+
+                if (!isPaid || alreadyUnlocked) {
+                    unlockItemNow(currentItem, false);
+                } else {
+                    actionsArea.innerHTML = `
+                        <button id="mainBuyBtn" class="btn btn-buy" onclick="startBuyFlow()">
+                            <i class="fa-solid fa-lock"></i> Buy Now — ₹${price}
+                        </button>
+                    `;
+                    bottomSlot.innerHTML = `
+                        <button class="btn btn-buy" onclick="scrollToBuy()">
+                            <i class="fa-solid fa-shopping-bag"></i> Buy Now — ₹${price}
+                        </button>
+                    `;
+                }
+
+                loadingBox.style.display = "none";
+                document.getElementById("contentWrap").style.display = "block";
+            } catch (err) {
+                loadingBox.innerHTML = `<span style="color:#ef4444;">Error loading item: ${err.message}</span>`;
+            }
+        }
+
+        initPage();
     </script>
 </body>
 </html>
