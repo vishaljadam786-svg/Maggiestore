@@ -914,9 +914,9 @@
 
         function getItemPhotos(item) {
             const list = Array.isArray(item.photos) ? item.photos.map(cleanUrl).filter(Boolean) : [];
+            if (list.length > 0) return list;
             const thumb = cleanUrl(item.thumbUrl);
-            if (thumb && !list.includes(thumb)) list.unshift(thumb);
-            return list.length > 0 ? Array.from(new Set(list)) : [FALLBACK_APP];
+            return thumb ? [thumb] : [FALLBACK_APP];
         }
 
         function setImageDirect(imgEl, rawUrl, fallbackUrl) {
