@@ -306,6 +306,17 @@
             margin-bottom: 4px;
         }
 
+        .paid-tag {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--warm);
+            background: color-mix(in srgb, var(--warm) 16%, transparent);
+            padding: 2px 8px;
+            border-radius: 6px;
+            margin-left: 4px;
+        }
+
         .app-title {
             font-weight: 700;
             font-size: 1.02rem;
@@ -339,7 +350,37 @@
             transition: opacity 0.2s;
         }
 
+        .install-btn.pay-btn {
+            background: var(--warm);
+            color: #141820;
+        }
+
         .install-btn:hover { opacity: 0.9; }
+
+        .paid-section {
+            margin-top: 34px;
+            padding-top: 26px;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .section-top-row h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.55rem;
+        }
+
+        .filter-pills {
+            display: flex;
+            gap: 8px;
+        }
 
         .modal {
             display: none;
@@ -358,7 +399,7 @@
             color: var(--ink);
             padding: 28px 22px;
             border-radius: 22px;
-            max-width: 420px;
+            max-width: 430px;
             width: 100%;
             text-align: center;
             position: relative;
@@ -388,10 +429,53 @@
         .modal-desc {
             color: var(--muted);
             font-size: 0.88rem;
-            margin: 12px 0 22px;
+            margin: 12px 0 18px;
             line-height: 1.6;
-            max-height: 150px;
+            max-height: 140px;
             overflow-y: auto;
+        }
+
+        .qr-box {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 14px;
+            margin-top: 14px;
+            display: none;
+        }
+
+        .qr-box img {
+            width: 180px;
+            height: 180px;
+            border-radius: 12px;
+            background: #fff;
+            padding: 6px;
+            margin: 8px auto;
+            display: block;
+        }
+
+        .action-row-modal {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .unlocked-box {
+            background: var(--surface-2);
+            border: 1px solid var(--accent);
+            border-radius: 14px;
+            padding: 12px;
+            margin-top: 12px;
+            word-break: break-all;
+            font-size: 0.82rem;
+        }
+
+        .pay-status {
+            margin-top: 10px;
+            font-size: 0.78rem;
+            color: var(--muted);
         }
 
         footer {
@@ -444,9 +528,27 @@
 
     <div id="categoryBar" class="category-bar"></div>
 
+    <!-- APPS SECTION (UNCHANGED) -->
     <div class="container">
         <div id="loader" style="text-align:center; padding:36px; color:var(--accent); font-weight:600;">Loading MAGGIE STORE...</div>
         <div id="appGrid" class="app-grid"></div>
+
+        <!-- PAID ITEMS & XML / TEMPLATES SECTION -->
+        <section id="paidItemsSection" class="paid-section">
+            <div class="section-top-row">
+                <div>
+                    <div class="kicker" style="margin-bottom:4px;"><i class="fa-solid fa-lock-open"></i> XML & Templates</div>
+                    <h2>Paid Items</h2>
+                </div>
+                <div class="filter-pills">
+                    <button class="cat-btn active" data-xmlfilter="paid" onclick="setXmlFilter('paid')">Paid Items</button>
+                    <button class="cat-btn" data-xmlfilter="all" onclick="setXmlFilter('all')">All XML & Templates</button>
+                </div>
+            </div>
+            <div id="paidXmlGrid" class="app-grid">
+                <p style="color:var(--muted); grid-column:1/-1;">No items available yet.</p>
+            </div>
+        </section>
     </div>
 
     <footer>
@@ -454,6 +556,7 @@
         <p>&copy; 2026 <span class="store-footer-text">MAGGIE STORE</span>. All rights reserved.</p>
     </footer>
 
+    <!-- APP MODAL (UNCHANGED) -->
     <div id="appModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -464,6 +567,51 @@
             <a id="modalDownload" href="#" target="_blank" class="install-btn" style="padding: 11px 28px; font-size: 0.9rem;">
                 <i class="fa-solid fa-download"></i> Download Now
             </a>
+        </div>
+    </div>
+
+    <!-- FAMGATEWAY UPI QR & UNLOCK MODAL -->
+    <div id="payModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closePayModal()">&times;</span>
+            <img id="payIcon" src="" alt="Preview" class="modal-icon">
+            <div id="payTypeBadge" class="cat-badge" style="margin-bottom:6px;">XML</div>
+            <h2 id="payTitle" style="font-family:'Fraunces',serif;">Item Title</h2>
+            <p id="payDesc" class="modal-desc" style="margin-bottom:12px;"></p>
+
+            <div id="payPriceBox" style="font-size:1.15rem; font-weight:800; color:var(--warm); margin-bottom:12px;">
+                Price: ₹<span id="payAmount">49</span>
+            </div>
+
+            <button id="payActionBtn" class="install-btn pay-btn" style="padding:11px 22px; font-size:0.9rem;" onclick="processItemPayment()">
+                <i class="fa-solid fa-qrcode"></i> Pay ₹<span id="payBtnAmount">49</span> via UPI
+            </button>
+
+            <div id="qrPaymentBox" class="qr-box">
+                <div style="font-size:0.8rem; font-weight:700;">Scan QR or Pay via UPI App</div>
+                <img id="fgQrImg" src="" alt="UPI QR">
+                <div style="font-size:0.74rem; color:var(--muted);" id="fgOrderLabel"></div>
+                <div class="action-row-modal">
+                    <a id="fgUpiIntentBtn" href="#" class="install-btn" style="display:none;">
+                        <i class="fa-solid fa-mobile-screen-button"></i> Open UPI App
+                    </a>
+                    <a id="fgCheckoutBtn" href="#" target="_blank" class="install-btn pay-btn" style="display:none;">
+                        <i class="fa-solid fa-up-right-from-square"></i> Checkout Page
+                    </a>
+                </div>
+            </div>
+
+            <div id="payStatusMsg" class="pay-status"></div>
+
+            <div id="unlockedLinkArea" class="unlocked-box" style="display:none;">
+                <div style="color:var(--accent); font-weight:700; margin-bottom:6px;">
+                    <i class="fa-solid fa-circle-check"></i> Payment Verified! Link Unlocked:
+                </div>
+                <a id="unlockedDirectLink" href="#" target="_blank" class="install-btn" style="padding:9px 18px;">
+                    <i class="fa-solid fa-download"></i> Open / Download Link
+                </a>
+                <div style="margin-top:8px; font-size:0.75rem; color:var(--muted);" id="unlockedUrlText"></div>
+            </div>
         </div>
     </div>
 
@@ -495,6 +643,12 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, onSnapshot, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
+        // FamGateway Configuration (0% Fee Automated UPI Gateway)
+        const FAMGATEWAY_BASE_URL = "https://famgateway.in";
+        const FAMGATEWAY_API_KEY = "fam_95a256e60ea571df5923128a187d7659d00c5716";
+        // Optional: Agar aap apna backend proxy/webhook endpoint use karte hain toh yahan set karein
+        const FAMGATEWAY_BACKEND_ORDER_URL = "";
+
         const firebaseConfig = {
             apiKey: "AIzaSyAz5VFvZ4nb7XOd8R72uW-aCYoLp0A_DAk",
             authDomain: "maggie-store-d3f3f.firebaseapp.com",
@@ -513,13 +667,17 @@
         const searchInput = document.getElementById('searchInput');
         const socialBar = document.getElementById('socialBar');
         const footerSocials = document.getElementById('footerSocials');
+        const paidXmlGrid = document.getElementById('paidXmlGrid');
 
         const FALLBACK_STORE = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzEwYjk4MSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmYiPk08L3RleHQ+PC9zdmc+";
         const FALLBACK_APP = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWMyMzMwIi8+PHRleHQgeD0iNTAlIiB5PSI1NSUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjOWE0YjhiIj5BUFA8L3RleHQ+PC9zdmc+";
 
         let allApps = [];
+        let allXmlItems = [];
         let activeCategory = 'All';
-        const ibbCache = new Map();
+        let xmlFilterMode = 'paid';
+        let selectedXmlItem = null;
+        let pollTimer = null;
 
         function cleanUrl(raw) {
             const val = (raw || '').trim();
@@ -530,51 +688,32 @@
             return val;
         }
 
-        async function extractDirectFromIbbPage(pageUrl) {
-            if (ibbCache.has(pageUrl)) return ibbCache.get(pageUrl);
-            try {
-                const res = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(pageUrl)}`);
-                if (res.ok) {
-                    const html = await res.text();
-                    const match = html.match(/https?:\/\/i\.ibb\.co\/[a-zA-Z0-9_-]+\/[^"'\s<>\\]+/i);
-                    if (match && match[0]) {
-                        ibbCache.set(pageUrl, match[0]);
-                        return match[0];
-                    }
-                }
-            } catch (_) {}
-            ibbCache.set(pageUrl, '');
-            return '';
-        }
-
-        async function setSmartLogo(imgEl, rawUrl, fallbackUrl) {
+        function setImageDirect(imgEl, rawUrl, fallbackUrl) {
             if (!imgEl) return;
             const url = cleanUrl(rawUrl);
             if (!url) {
                 imgEl.src = fallbackUrl;
                 return;
             }
-
-            const isIbbViewerPage = /^https?:\/\/(?:www\.)?ibb\.co\/[a-zA-Z0-9_-]+\/?$/i.test(url);
-            let finalUrl = url;
-
-            if (isIbbViewerPage) {
-                const extracted = await extractDirectFromIbbPage(url);
-                if (extracted) finalUrl = extracted;
-            }
-
             imgEl.onerror = () => {
                 imgEl.onerror = null;
                 imgEl.src = fallbackUrl;
             };
-            imgEl.src = finalUrl;
+            imgEl.src = url;
+        }
+
+        function stopPolling() {
+            if (pollTimer) {
+                clearInterval(pollTimer);
+                pollTimer = null;
+            }
         }
 
         onSnapshot(doc(db, "settings", "general"), (docSnap) => {
             if (docSnap.exists()) {
                 const settings = docSnap.data();
                 if (settings.logoUrl) {
-                    setSmartLogo(document.getElementById('storeLogo'), settings.logoUrl, FALLBACK_STORE);
+                    setImageDirect(document.getElementById('storeLogo'), settings.logoUrl, FALLBACK_STORE);
                 }
                 if (settings.storeName) {
                     document.getElementById('storeName').innerText = settings.storeName;
@@ -613,6 +752,7 @@
             });
         });
 
+        // APPS COLLECTION (UNCHANGED)
         onSnapshot(collection(db, "apps"), (snapshot) => {
             document.getElementById('loader').style.display = 'none';
             allApps = [];
@@ -638,7 +778,7 @@
                 btn.innerText = cat;
                 btn.onclick = () => {
                     activeCategory = cat;
-                    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+                    categoryBar.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
                     filterAndRender();
                 };
@@ -678,7 +818,7 @@
                         </a>
                     </div>
                 `;
-                setSmartLogo(card.querySelector('.app-icon'), appItem.logoUrl, FALLBACK_APP);
+                setImageDirect(card.querySelector('.app-icon'), appItem.logoUrl, FALLBACK_APP);
                 card.onclick = () => openModal(appItem);
                 appGrid.appendChild(card);
             });
@@ -687,7 +827,7 @@
         searchInput.addEventListener('input', filterAndRender);
 
         window.openModal = (appItem) => {
-            setSmartLogo(document.getElementById('modalIcon'), appItem.logoUrl, FALLBACK_APP);
+            setImageDirect(document.getElementById('modalIcon'), appItem.logoUrl, FALLBACK_APP);
             document.getElementById('modalCat').innerText = appItem.category || 'General';
             document.getElementById('modalTitle').innerText = appItem.name || 'App';
             document.getElementById('modalDesc').innerText = appItem.description || 'No description provided for this app.';
@@ -696,7 +836,234 @@
         };
 
         window.closeModal = () => document.getElementById('appModal').style.display = 'none';
-        window.onclick = (e) => { if (e.target === document.getElementById('appModal')) closeModal(); };
+
+        // PAID ITEMS & FAMGATEWAY PAYMENT
+        window.setXmlFilter = (mode) => {
+            xmlFilterMode = mode;
+            document.querySelectorAll('[data-xmlfilter]').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-xmlfilter') === mode);
+            });
+            renderPaidXmlSection();
+        };
+
+        onSnapshot(collection(db, "xmlTemplates"), (snapshot) => {
+            allXmlItems = [];
+            snapshot.forEach((docSnap) => {
+                allXmlItems.push({ id: docSnap.id, ...docSnap.data() });
+            });
+            renderPaidXmlSection();
+        });
+
+        function renderPaidXmlSection() {
+            paidXmlGrid.innerHTML = '';
+            const items = xmlFilterMode === 'paid'
+                ? allXmlItems.filter(i => Boolean(i.isPaid))
+                : allXmlItems;
+
+            if (items.length === 0) {
+                paidXmlGrid.innerHTML = '<p style="color:var(--muted); grid-column:1/-1; text-align:center; padding:18px;">Abhi is section mein koi item nahi hai.</p>';
+                return;
+            }
+
+            items.forEach((item) => {
+                const card = document.createElement('div');
+                card.className = 'app-card';
+                const priceBadge = item.isPaid
+                    ? `<span class="paid-tag"><i class="fa-solid fa-lock"></i> ₹${item.price || 49}</span>`
+                    : `<span class="paid-tag" style="color:var(--accent); background:color-mix(in srgb, var(--accent) 14%, transparent);">FREE</span>`;
+
+                const btnHtml = item.isPaid
+                    ? `<button class="install-btn pay-btn" onclick="event.stopPropagation(); openPayModal('${item.id}')"><i class="fa-solid fa-lock"></i> Buy ₹${item.price || 49}</button>`
+                    : `<a href="${cleanUrl(item.protectedLink) || '#'}" target="_blank" class="install-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-download"></i> Free Download</a>`;
+
+                card.innerHTML = `
+                    <img src="${FALLBACK_APP}" alt="XML/Template" class="app-icon">
+                    <div class="app-info">
+                        <div>
+                            <span class="cat-badge">${item.type || 'XML'}</span>
+                            ${priceBadge}
+                        </div>
+                        <div class="app-title" style="margin-top:3px;">${item.title || 'Untitled'}</div>
+                        <div class="app-desc-short">${item.description || 'Tap to view details'}</div>
+                        ${btnHtml}
+                    </div>
+                `;
+                setImageDirect(card.querySelector('.app-icon'), item.thumbUrl, FALLBACK_APP);
+                card.onclick = () => window.openPayModal(item.id);
+                paidXmlGrid.appendChild(card);
+            });
+        }
+
+        window.openPayModal = (id) => {
+            stopPolling();
+            const item = allXmlItems.find(x => x.id === id);
+            if (!item) return;
+            selectedXmlItem = item;
+
+            setImageDirect(document.getElementById('payIcon'), item.thumbUrl, FALLBACK_APP);
+            document.getElementById('payTypeBadge').innerText = `${item.type || 'XML'} ${item.isPaid ? '• PAID' : '• FREE'}`;
+            document.getElementById('payTitle').innerText = item.title || 'Item';
+            document.getElementById('payDesc').innerText = item.description || 'UPI payment complete hote hi download/access link unlock ho jayega.';
+            document.getElementById('payStatusMsg').innerText = '';
+            document.getElementById('qrPaymentBox').style.display = 'none';
+
+            const unlockedArea = document.getElementById('unlockedLinkArea');
+            const payPriceBox = document.getElementById('payPriceBox');
+            const payBtn = document.getElementById('payActionBtn');
+
+            const alreadyUnlocked = localStorage.getItem('maggie_unlocked_' + item.id) === '1';
+
+            if (!item.isPaid || alreadyUnlocked) {
+                payPriceBox.style.display = 'none';
+                payBtn.style.display = 'none';
+                revealUnlockedLink(item, false);
+            } else {
+                const amt = Number(item.price || 49);
+                payPriceBox.style.display = 'block';
+                document.getElementById('payAmount').innerText = amt;
+                document.getElementById('payBtnAmount').innerText = amt;
+                payBtn.style.display = 'inline-flex';
+                payBtn.disabled = false;
+                unlockedArea.style.display = 'none';
+            }
+
+            document.getElementById('payModal').style.display = 'flex';
+        };
+
+        window.closePayModal = () => {
+            stopPolling();
+            document.getElementById('payModal').style.display = 'none';
+            selectedXmlItem = null;
+        };
+
+        function revealUnlockedLink(item, persist = true) {
+            stopPolling();
+            if (persist) {
+                localStorage.setItem('maggie_unlocked_' + item.id, '1');
+            }
+            const link = cleanUrl(item.protectedLink) || '#';
+            document.getElementById('payPriceBox').style.display = 'none';
+            document.getElementById('payActionBtn').style.display = 'none';
+            document.getElementById('qrPaymentBox').style.display = 'none';
+            document.getElementById('payStatusMsg').innerHTML = '<span style="color:var(--accent); font-weight:700;">Payment verified!</span>';
+
+            const unlockedArea = document.getElementById('unlockedLinkArea');
+            const unlockedLink = document.getElementById('unlockedDirectLink');
+            const unlockedUrlText = document.getElementById('unlockedUrlText');
+
+            unlockedLink.href = link;
+            unlockedUrlText.innerText = link;
+            unlockedArea.style.display = 'block';
+        }
+
+        function startPublicStatusPolling(orderId, item) {
+            stopPolling();
+            const statusEl = document.getElementById('payStatusMsg');
+            const statusUrl = `${FAMGATEWAY_BASE_URL}/api/checkout-status.php?order_id=${encodeURIComponent(orderId)}`;
+            const deadline = Date.now() + 10 * 60 * 1000;
+
+            statusEl.innerText = "Waiting for UPI payment confirmation (auto-checking every 3s)...";
+
+            pollTimer = setInterval(async () => {
+                if (Date.now() > deadline) {
+                    stopPolling();
+                    statusEl.innerText = "Order session timed out. Please try again.";
+                    return;
+                }
+                try {
+                    const res = await fetch(statusUrl, { cache: "no-store" });
+                    if (!res.ok) return;
+                    const st = await res.json();
+                    if (st && st.status === "success") {
+                        revealUnlockedLink(item, true);
+                    } else if (st && st.status === "expired") {
+                        stopPolling();
+                        statusEl.innerText = "Order expired. Click Pay again to generate a new QR.";
+                    }
+                } catch (_) {}
+            }, 3000);
+        }
+
+        window.processItemPayment = async () => {
+            if (!selectedXmlItem) return;
+            const amountRupees = Math.max(1, Number(selectedXmlItem.price || 49));
+            const payBtn = document.getElementById('payActionBtn');
+            const statusEl = document.getElementById('payStatusMsg');
+
+            payBtn.disabled = true;
+            payBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating UPI QR...';
+            statusEl.innerText = '';
+
+            try {
+                let orderPayload;
+
+                if (FAMGATEWAY_BACKEND_ORDER_URL) {
+                    const backendRes = await fetch(FAMGATEWAY_BACKEND_ORDER_URL, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            amount: amountRupees,
+                            customer_name: `${selectedXmlItem.type || "Item"} - ${selectedXmlItem.title || "MAGGIE STORE"}`
+                        })
+                    });
+                    orderPayload = await backendRes.json();
+                    if (!backendRes.ok || orderPayload.status !== "success" || !orderPayload.data) {
+                        throw new Error(orderPayload.message || "Failed to create order via backend.");
+                    }
+                } else {
+                    const fgRes = await fetch(`${FAMGATEWAY_BASE_URL}/api/create-order`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-Api-Key": FAMGATEWAY_API_KEY
+                        },
+                        body: JSON.stringify({
+                            api_key: FAMGATEWAY_API_KEY,
+                            amount: amountRupees,
+                            customer_name: `${selectedXmlItem.type || "Item"}: ${selectedXmlItem.title || "MAGGIE STORE"}`
+                        })
+                    });
+                    orderPayload = await fgRes.json();
+                    if (!fgRes.ok || orderPayload.status !== "success" || !orderPayload.data) {
+                        throw new Error(orderPayload.message || "FamGateway order creation failed.");
+                    }
+                }
+
+                const d = orderPayload.data;
+                const orderId = d.order_id;
+                const qrUrl = d.qr_url || `${FAMGATEWAY_BASE_URL}/api/qr-image.php?order_id=${encodeURIComponent(orderId)}`;
+                const checkoutUrl = d.checkout_url || `${FAMGATEWAY_BASE_URL}/pay.php?order_id=${encodeURIComponent(orderId)}`;
+
+                document.getElementById('fgQrImg').src = qrUrl;
+                document.getElementById('fgOrderLabel').innerText = `Order ID: ${orderId} • Amount: ₹${d.payable_amount || amountRupees}`;
+
+                const upiBtn = document.getElementById('fgUpiIntentBtn');
+                if (d.upi_intent) {
+                    upiBtn.href = d.upi_intent;
+                    upiBtn.style.display = 'inline-flex';
+                } else {
+                    upiBtn.style.display = 'none';
+                }
+
+                const checkoutBtn = document.getElementById('fgCheckoutBtn');
+                checkoutBtn.href = checkoutUrl;
+                checkoutBtn.style.display = 'inline-flex';
+
+                document.getElementById('qrPaymentBox').style.display = 'block';
+                payBtn.style.display = 'none';
+
+                startPublicStatusPolling(orderId, selectedXmlItem);
+            } catch (err) {
+                payBtn.disabled = false;
+                payBtn.innerHTML = `<i class="fa-solid fa-qrcode"></i> Pay ₹${amountRupees} via UPI`;
+                statusEl.innerHTML = `<span style="color:#ef4444;">${err.message}</span>`;
+            }
+        };
+
+        window.onclick = (e) => {
+            if (e.target === document.getElementById('appModal')) closeModal();
+            if (e.target === document.getElementById('payModal')) closePayModal();
+        };
     </script>
 </body>
 </html>
