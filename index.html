@@ -255,6 +255,30 @@
             flex: 1;
         }
 
+        .section-block {
+            margin-bottom: 30px;
+        }
+
+        .section-top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .section-top-row h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 1.55rem;
+        }
+
+        .filter-pills {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
         .app-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
@@ -318,6 +342,17 @@
             margin-left: 4px;
         }
 
+        .free-tag {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--accent);
+            background: color-mix(in srgb, var(--accent) 14%, transparent);
+            padding: 2px 8px;
+            border-radius: 6px;
+            margin-left: 4px;
+        }
+
         .app-title {
             font-weight: 700;
             font-size: 1.02rem;
@@ -366,32 +401,7 @@
             border: 1px solid var(--border);
         }
 
-        .paid-section {
-            margin-top: 34px;
-            padding-top: 26px;
-            border-top: 1px solid var(--border);
-        }
-
-        .section-top-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-
-        .section-top-row h2 {
-            font-family: 'Fraunces', serif;
-            font-size: 1.55rem;
-        }
-
-        .filter-pills {
-            display: flex;
-            gap: 8px;
-        }
-
-        /* FULL SHOWCASE VIEW INSIDE SINGLE INDEX.HTML */
+        /* FULL SHOWCASE VIEW FOR CLICKED XML / TEMPLATE */
         #itemShowcaseView {
             display: none;
             max-width: 1080px;
@@ -455,7 +465,6 @@
             margin-bottom: 20px;
         }
 
-        /* NO-CROP FULL RATIO PREVIEW (1:1, 9:16, 16:9, ANY RATIO) */
         .main-shot-box {
             background: var(--surface-2);
             border: 1px solid var(--border);
@@ -529,24 +538,13 @@
             box-shadow: var(--shadow);
         }
 
-        .qr-box {
+        .pending-payment-banner {
             background: var(--surface-2);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 18px;
-            margin-top: 16px;
-            text-align: center;
+            border: 1px solid var(--warm);
+            border-radius: 16px;
+            padding: 16px;
+            margin-top: 14px;
             display: none;
-        }
-
-        .qr-box img {
-            width: 180px;
-            height: 180px;
-            border-radius: 14px;
-            background: #ffffff;
-            padding: 8px;
-            margin: 10px auto;
-            display: block;
         }
 
         .unlocked-box {
@@ -559,7 +557,7 @@
             display: none;
         }
 
-        /* APP MODAL (UNCHANGED) */
+        /* APP MODAL */
         .modal {
             display: none;
             position: fixed;
@@ -677,7 +675,7 @@
             <span id="storeName" class="logo-text">MAGGIE STORE</span>
         </a>
         <div class="header-right">
-            <input type="text" id="searchInput" class="search-box" placeholder="Search apps...">
+            <input type="text" id="searchInput" class="search-box" placeholder="Search apps & XML...">
             <button type="button" id="themeBtn" class="theme-toggle" title="Toggle Dark/Light Theme" onclick="toggleTheme()">
                 <i class="fa-solid fa-sun"></i>
             </button>
@@ -689,7 +687,7 @@
         <div class="hero-wrap">
             <section class="hero-card">
                 <div class="kicker"><i class="fa-solid fa-sparkles"></i> Curated & Direct</div>
-                <h1 id="heroTitle">Discover & Download Apps</h1>
+                <h1 id="heroTitle">Discover XML, Templates & Apps</h1>
                 <p id="heroSubtitle">Fast, verified, and direct downloads powered by MAGGIE STORE</p>
                 <div id="socialBar" class="social-bar"></div>
             </section>
@@ -697,31 +695,39 @@
 
         <div id="categoryBar" class="category-bar"></div>
 
-        <!-- APPS SECTION (UNCHANGED) -->
         <div class="container">
-            <div id="loader" style="text-align:center; padding:36px; color:var(--accent); font-weight:600;">Loading MAGGIE STORE...</div>
-            <div id="appGrid" class="app-grid"></div>
-
-            <!-- XML & TEMPLATES SECTION -->
-            <section id="paidItemsSection" class="paid-section">
+            <!-- XML & TEMPLATES SECTION (MOVED TO TOP ABOVE APPS) -->
+            <section id="paidItemsSection" class="section-block">
                 <div class="section-top-row">
                     <div>
                         <div class="kicker" style="margin-bottom:4px;"><i class="fa-solid fa-layer-group"></i> XML & Templates</div>
-                        <h2>Paid Items</h2>
+                        <h2>Featured XML & Templates</h2>
                     </div>
                     <div class="filter-pills">
-                        <button class="cat-btn active" data-xmlfilter="paid" onclick="setXmlFilter('paid')">Paid Items</button>
-                        <button class="cat-btn" data-xmlfilter="all" onclick="setXmlFilter('all')">All XML & Templates</button>
+                        <button class="cat-btn active" data-xmlfilter="all" onclick="setXmlFilter('all')">All XML & Templates</button>
+                        <button class="cat-btn" data-xmlfilter="paid" onclick="setXmlFilter('paid')">Paid Only</button>
                     </div>
                 </div>
                 <div id="paidXmlGrid" class="app-grid">
                     <p style="color:var(--muted); grid-column:1/-1;">No items available yet.</p>
                 </div>
             </section>
+
+            <!-- APPS SECTION (SUPPORTS BOTH FREE AND PAID APPS) -->
+            <section class="section-block" style="padding-top:24px; border-top:1px solid var(--border);">
+                <div class="section-top-row">
+                    <div>
+                        <div class="kicker" style="margin-bottom:4px;"><i class="fa-solid fa-mobile-screen"></i> Applications</div>
+                        <h2>Apps</h2>
+                    </div>
+                </div>
+                <div id="loader" style="text-align:center; padding:36px; color:var(--accent); font-weight:600;">Loading MAGGIE STORE...</div>
+                <div id="appGrid" class="app-grid"></div>
+            </section>
         </div>
     </div>
 
-    <!-- FULL SHOWCASE VIEW FOR CLICKED XML / TEMPLATE (SAME INDEX.HTML) -->
+    <!-- FULL SHOWCASE VIEW FOR CLICKED XML / TEMPLATE -->
     <section id="itemShowcaseView">
         <div class="showcase-top-bar">
             <button type="button" class="install-btn ghost-btn" style="padding:9px 16px; font-size:0.84rem;" onclick="backToStoreView()">
@@ -736,7 +742,7 @@
             <div>
                 <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
                     <span id="scTypeBadge" class="cat-badge">XML</span>
-                    <span id="scAccessBadge" class="paid-tag">FREE</span>
+                    <span id="scAccessBadge" class="free-tag">FREE</span>
                     <span id="scShotCount" class="cat-badge" style="background:var(--surface-2); color:var(--ink);">0 Photos</span>
                 </div>
                 <h1 id="scTitle" class="showcase-heading">Title</h1>
@@ -746,7 +752,7 @@
             <div class="showcase-price-box">
                 <div style="font-size:0.74rem; color:var(--muted);">Price</div>
                 <div id="scPriceText" class="showcase-price-num">FREE</div>
-                <div style="font-size:0.74rem; color:var(--muted);">UPI Instant Unlock</div>
+                <div style="font-size:0.74rem; color:var(--muted);">Instant Auto-Open Link</div>
             </div>
         </div>
 
@@ -763,32 +769,28 @@
         <div id="scBuyBox" class="buy-card-box">
             <h2 style="font-family:'Fraunces',serif; font-size:1.38rem; margin-bottom:6px;">Buy / Unlock</h2>
             <p id="scBuySubtext" style="color:var(--muted); font-size:0.85rem; margin-bottom:14px;">
-                Screenshots dekhne ke baad neeche se unlock karein.
+                Buy par click karte hi checkout page khulega aur payment success hote hi download link khul jayega.
             </p>
 
             <button id="scBuyBtn" class="install-btn pay-btn" style="padding:12px 24px; font-size:0.92rem;" onclick="startShowcasePayment()">
                 <i class="fa-solid fa-lock"></i> Buy Now — ₹<span id="scBuyAmount">49</span>
             </button>
 
-            <div id="scQrBox" class="qr-box">
-                <div style="font-weight:700; font-size:0.88rem;">Scan QR or Pay via UPI</div>
-                <img id="scQrImg" src="" alt="FamGateway QR">
-                <div id="scOrderText" style="font-size:0.76rem; color:var(--muted);"></div>
-                <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:10px;">
-                    <a id="scUpiBtn" href="#" class="install-btn" style="display:none; padding:9px 16px;">
-                        <i class="fa-solid fa-mobile-screen-button"></i> Open UPI App
-                    </a>
-                    <a id="scCheckoutBtn" href="#" target="_blank" class="install-btn pay-btn" style="display:none; padding:9px 16px;">
-                        <i class="fa-solid fa-up-right-from-square"></i> Checkout Page
-                    </a>
+            <div id="scPendingBanner" class="pending-payment-banner">
+                <div style="font-weight:700; color:var(--warm); margin-bottom:6px;">
+                    <i class="fa-solid fa-clock"></i> Checkout Page Opened — Waiting for Payment...
                 </div>
+                <div id="scOrderText" style="font-size:0.78rem; color:var(--muted); margin-bottom:10px;"></div>
+                <a id="scCheckoutBtn" href="#" target="_blank" class="install-btn pay-btn" style="padding:9px 16px;">
+                    <i class="fa-solid fa-up-right-from-square"></i> Re-open Checkout Page
+                </a>
             </div>
 
             <div id="scStatusMsg" style="margin-top:12px; font-size:0.82rem; color:var(--muted);"></div>
 
             <div id="scUnlockedBox" class="unlocked-box">
                 <div style="color:var(--accent); font-weight:800; margin-bottom:8px;">
-                    <i class="fa-solid fa-circle-check"></i> Unlocked! Aapki Link:
+                    <i class="fa-solid fa-circle-check"></i> Payment Verified! Download Link Ready:
                 </div>
                 <a id="scUnlockedBtn" href="#" target="_blank" class="install-btn" style="padding:10px 20px; font-size:0.86rem;">
                     <i class="fa-solid fa-download"></i> Open / Download Link
@@ -803,17 +805,19 @@
         <p>&copy; 2026 <span class="store-footer-text">MAGGIE STORE</span>. All rights reserved.</p>
     </footer>
 
-    <!-- APP MODAL (UNCHANGED) -->
+    <!-- APP MODAL (SUPPORTS BOTH FREE AND PAID APPS) -->
     <div id="appModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
             <img id="modalIcon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWMyMzMwIi8+PHRleHQgeD0iNTAlIiB5PSI1NSUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjOWE0YjhiIj5BUFA8L3RleHQ+PC9zdmc+" alt="Icon" class="modal-icon">
-            <div id="modalCat" class="cat-badge" style="margin-bottom:6px;">General</div>
+            <div>
+                <span id="modalCat" class="cat-badge" style="margin-bottom:6px;">General</span>
+                <span id="modalPriceBadge" class="free-tag" style="margin-bottom:6px;">FREE</span>
+            </div>
             <h2 id="modalTitle" style="font-family:'Fraunces',serif;">App Name</h2>
             <p id="modalDesc" class="modal-desc"></p>
-            <a id="modalDownload" href="#" target="_blank" class="install-btn" style="padding: 11px 28px; font-size: 0.9rem;">
-                <i class="fa-solid fa-download"></i> Download Now
-            </a>
+            <div id="modalActionArea"></div>
+            <div id="modalStatusMsg" style="margin-top:10px; font-size:0.78rem; color:var(--muted); word-break:break-all;"></div>
         </div>
     </div>
 
@@ -892,9 +896,11 @@
         let allApps = [];
         let allXmlItems = [];
         let activeCategory = 'All';
-        let xmlFilterMode = 'paid';
+        let xmlFilterMode = 'all';
         let activeShowcaseItem = null;
-        let pollTimer = null;
+        let activeModalApp = null;
+        let showcasePollTimer = null;
+        let modalPollTimer = null;
         let baseStoreName = "MAGGIE STORE";
 
         function cleanUrl(raw) {
@@ -927,11 +933,65 @@
             imgEl.src = url;
         }
 
-        function stopPolling() {
-            if (pollTimer) {
-                clearInterval(pollTimer);
-                pollTimer = null;
+        function stopShowcasePolling() {
+            if (showcasePollTimer) {
+                clearInterval(showcasePollTimer);
+                showcasePollTimer = null;
             }
+        }
+
+        function stopModalPolling() {
+            if (modalPollTimer) {
+                clearInterval(modalPollTimer);
+                modalPollTimer = null;
+            }
+        }
+
+        function openDownloadLink(rawUrl, autoTrigger = true) {
+            const url = cleanUrl(rawUrl);
+            if (!url || url === '#') return;
+            if (autoTrigger) {
+                const opened = window.open(url, '_blank', 'noopener,noreferrer');
+                if (!opened) {
+                    window.location.href = url;
+                }
+            }
+        }
+
+        async function createFamGatewayOrder(amountRupees, customerName) {
+            if (FAMGATEWAY_BACKEND_ORDER_URL) {
+                const r = await fetch(FAMGATEWAY_BACKEND_ORDER_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        amount: amountRupees,
+                        customer_name: customerName
+                    })
+                });
+                const payload = await r.json();
+                if (!r.ok || payload.status !== "success" || !payload.data) {
+                    throw new Error(payload.message || "Backend order creation failed.");
+                }
+                return payload.data;
+            }
+
+            const r = await fetch(`${FAMGATEWAY_BASE_URL}/api/create-order`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-Api-Key": FAMGATEWAY_API_KEY
+                },
+                body: JSON.stringify({
+                    api_key: FAMGATEWAY_API_KEY,
+                    amount: amountRupees,
+                    customer_name: customerName
+                })
+            });
+            const payload = await r.json();
+            if (!r.ok || payload.status !== "success" || !payload.data) {
+                throw new Error(payload.message || "FamGateway order creation failed.");
+            }
+            return payload.data;
         }
 
         onSnapshot(doc(db, "settings", "general"), (docSnap) => {
@@ -978,7 +1038,7 @@
             });
         });
 
-        // APPS COLLECTION (UNCHANGED)
+        // APPS COLLECTION (SUPPORTS BOTH PAID & FREE APPS)
         onSnapshot(collection(db, "apps"), (snapshot) => {
             document.getElementById('loader').style.display = 'none';
             allApps = [];
@@ -1014,13 +1074,14 @@
 
         function filterAndRender() {
             const term = searchInput.value.toLowerCase();
-            const filtered = allApps.filter(appItem => {
+            const filteredApps = allApps.filter(appItem => {
                 const name = (appItem.name || '').toLowerCase();
                 const matchesSearch = name.includes(term);
                 const matchesCat = activeCategory === 'All' || (appItem.category || 'General') === activeCategory;
                 return matchesSearch && matchesCat;
             });
-            renderApps(filtered);
+            renderApps(filteredApps);
+            renderPaidXmlSection(term);
         }
 
         function renderApps(apps) {
@@ -1031,17 +1092,32 @@
             }
 
             apps.forEach((appItem) => {
+                const isPaidApp = Boolean(appItem.isPaid);
+                const price = Number(appItem.price || 49);
+                const unlocked = !isPaidApp || localStorage.getItem('maggie_app_unlocked_' + appItem.id) === '1';
+                const dlUrl = cleanUrl(appItem.downloadUrl) || '#';
+
                 const card = document.createElement('div');
                 card.className = 'app-card';
+
+                const statusBadge = isPaidApp
+                    ? `<span class="paid-tag"><i class="fa-solid fa-lock"></i> ₹${price}</span>`
+                    : `<span class="free-tag">FREE</span>`;
+
+                const actionBtnHtml = (!isPaidApp || unlocked)
+                    ? `<a href="${dlUrl}" target="_blank" class="install-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-download"></i> Install</a>`
+                    : `<button type="button" class="install-btn pay-btn" onclick="event.stopPropagation(); triggerAppDirectBuy('${appItem.id}')"><i class="fa-solid fa-lock"></i> Buy ₹${price}</button>`;
+
                 card.innerHTML = `
                     <img src="${FALLBACK_APP}" alt="Icon" class="app-icon">
                     <div class="app-info">
-                        <span class="cat-badge">${appItem.category || 'General'}</span>
+                        <div>
+                            <span class="cat-badge">${appItem.category || 'General'}</span>
+                            ${statusBadge}
+                        </div>
                         <div class="app-title">${appItem.name || 'Unnamed App'}</div>
                         <div class="app-desc-short">${appItem.description || 'Tap to view details'}</div>
-                        <a href="${cleanUrl(appItem.downloadUrl) || '#'}" target="_blank" class="install-btn" onclick="event.stopPropagation()">
-                            <i class="fa-solid fa-download"></i> Install
-                        </a>
+                        ${actionBtnHtml}
                     </div>
                 `;
                 setImageDirect(card.querySelector('.app-icon'), appItem.logoUrl, FALLBACK_APP);
@@ -1052,16 +1128,138 @@
 
         searchInput.addEventListener('input', filterAndRender);
 
+        window.triggerAppDirectBuy = async (appId) => {
+            const appItem = allApps.find(a => a.id === appId);
+            if (!appItem) return;
+            openModal(appItem);
+            await startAppPayment();
+        };
+
         window.openModal = (appItem) => {
+            stopModalPolling();
+            activeModalApp = appItem;
+
+            const isPaidApp = Boolean(appItem.isPaid);
+            const price = Number(appItem.price || 49);
+            const unlocked = !isPaidApp || localStorage.getItem('maggie_app_unlocked_' + appItem.id) === '1';
+            const dlUrl = cleanUrl(appItem.downloadUrl) || '#';
+
             setImageDirect(document.getElementById('modalIcon'), appItem.logoUrl, FALLBACK_APP);
             document.getElementById('modalCat').innerText = appItem.category || 'General';
+
+            const pBadge = document.getElementById('modalPriceBadge');
+            if (isPaidApp) {
+                pBadge.className = 'paid-tag';
+                pBadge.innerText = unlocked ? `PAID • UNLOCKED` : `PAID • ₹${price}`;
+            } else {
+                pBadge.className = 'free-tag';
+                pBadge.innerText = 'FREE';
+            }
+
             document.getElementById('modalTitle').innerText = appItem.name || 'App';
             document.getElementById('modalDesc').innerText = appItem.description || 'No description provided for this app.';
-            document.getElementById('modalDownload').href = cleanUrl(appItem.downloadUrl) || '#';
+            document.getElementById('modalStatusMsg').innerText = '';
+
+            const actionArea = document.getElementById('modalActionArea');
+            if (!isPaidApp || unlocked) {
+                actionArea.innerHTML = `
+                    <a href="${dlUrl}" target="_blank" class="install-btn" style="padding: 11px 28px; font-size: 0.9rem;">
+                        <i class="fa-solid fa-download"></i> Download Now
+                    </a>
+                `;
+            } else {
+                actionArea.innerHTML = `
+                    <button id="modalBuyBtn" type="button" class="install-btn pay-btn" style="padding: 11px 26px; font-size: 0.9rem;" onclick="startAppPayment()">
+                        <i class="fa-solid fa-lock"></i> Buy Now — ₹${price}
+                    </button>
+                `;
+            }
+
             document.getElementById('appModal').style.display = 'flex';
         };
 
-        window.closeModal = () => document.getElementById('appModal').style.display = 'none';
+        window.closeModal = () => {
+            stopModalPolling();
+            activeModalApp = null;
+            document.getElementById('appModal').style.display = 'none';
+        };
+
+        function startAppStatusPolling(orderId, appItem) {
+            stopModalPolling();
+            const statusEl = document.getElementById('modalStatusMsg');
+            const pollUrl = `${FAMGATEWAY_BASE_URL}/api/checkout-status.php?order_id=${encodeURIComponent(orderId)}`;
+            const deadline = Date.now() + 10 * 60 * 1000;
+
+            statusEl.innerText = "Checkout khul gaya hai. Payment complete hote hi download link khul jayega...";
+
+            modalPollTimer = setInterval(async () => {
+                if (Date.now() > deadline) {
+                    stopModalPolling();
+                    statusEl.innerText = "Payment session timed out.";
+                    return;
+                }
+                try {
+                    const res = await fetch(pollUrl, { cache: "no-store" });
+                    if (!res.ok) return;
+                    const data = await res.json();
+                    if (data && data.status === "success") {
+                        stopModalPolling();
+                        localStorage.setItem('maggie_app_unlocked_' + appItem.id, '1');
+                        const link = cleanUrl(appItem.downloadUrl) || '#';
+                        document.getElementById('modalPriceBadge').className = 'free-tag';
+                        document.getElementById('modalPriceBadge').innerText = 'UNLOCKED';
+                        document.getElementById('modalActionArea').innerHTML = `
+                            <a href="${link}" target="_blank" class="install-btn" style="padding: 11px 28px; font-size: 0.9rem;">
+                                <i class="fa-solid fa-download"></i> Download Now
+                            </a>
+                        `;
+                        statusEl.innerHTML = `<span style="color:var(--accent); font-weight:700;">Payment success! Download link open ho raha hai...</span>`;
+                        filterAndRender();
+                        openDownloadLink(link, true);
+                    } else if (data && data.status === "expired") {
+                        stopModalPolling();
+                        statusEl.innerText = "Order expired. Buy Now par dubara click karein.";
+                    }
+                } catch (_) {}
+            }, 3000);
+        }
+
+        window.startAppPayment = async () => {
+            if (!activeModalApp) return;
+            const amountRupees = Math.max(1, Number(activeModalApp.price || 49));
+            const buyBtn = document.getElementById('modalBuyBtn');
+            const statusEl = document.getElementById('modalStatusMsg');
+
+            if (buyBtn) {
+                buyBtn.disabled = true;
+                buyBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Opening Checkout...';
+            }
+            statusEl.innerText = '';
+
+            try {
+                const d = await createFamGatewayOrder(
+                    amountRupees,
+                    `App: ${activeModalApp.name || "MAGGIE STORE"}`
+                );
+                const orderId = d.order_id;
+                const checkoutUrl = cleanUrl(d.checkout_url || `${FAMGATEWAY_BASE_URL}/pay.php?order_id=${encodeURIComponent(orderId)}`);
+
+                if (buyBtn) {
+                    buyBtn.disabled = false;
+                    buyBtn.innerHTML = `<i class="fa-solid fa-up-right-from-square"></i> Re-open Checkout (₹${amountRupees})`;
+                    buyBtn.onclick = () => window.open(checkoutUrl, '_blank', 'noopener,noreferrer');
+                }
+
+                window.open(checkoutUrl, '_blank', 'noopener,noreferrer');
+                startAppStatusPolling(orderId, activeModalApp);
+            } catch (err) {
+                if (buyBtn) {
+                    buyBtn.disabled = false;
+                    buyBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Buy Now — ₹${amountRupees}`;
+                }
+                statusEl.innerHTML = `<span style="color:#ef4444;">${err.message}</span>`;
+            }
+        };
 
         // XML & TEMPLATES — FULL PAGE VIEW INSIDE SAME INDEX.HTML
         window.setXmlFilter = (mode) => {
@@ -1069,7 +1267,7 @@
             document.querySelectorAll('[data-xmlfilter]').forEach(btn => {
                 btn.classList.toggle('active', btn.getAttribute('data-xmlfilter') === mode);
             });
-            renderPaidXmlSection();
+            renderPaidXmlSection(searchInput.value.toLowerCase());
         };
 
         onSnapshot(collection(db, "xmlTemplates"), (snapshot) => {
@@ -1077,14 +1275,16 @@
             snapshot.forEach((docSnap) => {
                 allXmlItems.push({ id: docSnap.id, ...docSnap.data() });
             });
-            renderPaidXmlSection();
+            renderPaidXmlSection(searchInput.value.toLowerCase());
         });
 
-        function renderPaidXmlSection() {
+        function renderPaidXmlSection(term = '') {
             paidXmlGrid.innerHTML = '';
-            const items = xmlFilterMode === 'paid'
-                ? allXmlItems.filter(i => Boolean(i.isPaid))
-                : allXmlItems;
+            const items = allXmlItems.filter(i => {
+                const matchesPaid = xmlFilterMode !== 'paid' || Boolean(i.isPaid);
+                const matchesSearch = !term || (i.title || '').toLowerCase().includes(term) || (i.type || '').toLowerCase().includes(term);
+                return matchesPaid && matchesSearch;
+            });
 
             if (items.length === 0) {
                 paidXmlGrid.innerHTML = '<p style="color:var(--muted); grid-column:1/-1; text-align:center; padding:18px;">Abhi is section mein koi item nahi hai.</p>';
@@ -1097,7 +1297,7 @@
                 const photos = getItemPhotos(item);
                 const priceBadge = item.isPaid
                     ? `<span class="paid-tag"><i class="fa-solid fa-lock"></i> ₹${item.price || 49}</span>`
-                    : `<span class="paid-tag" style="color:var(--accent); background:color-mix(in srgb, var(--accent) 14%, transparent);">FREE</span>`;
+                    : `<span class="free-tag">FREE</span>`;
 
                 const shotBadge = photos.length > 0
                     ? `<span class="paid-tag" style="color:var(--ink); background:var(--surface-2);"><i class="fa-solid fa-images"></i> ${photos.length}</span>`
@@ -1155,33 +1355,37 @@
             });
         }
 
-        function unlockShowcaseItem(item, persist = true) {
-            stopPolling();
+        function unlockShowcaseItem(item, persist = true, autoOpenLink = false) {
+            stopShowcasePolling();
             if (persist) {
                 localStorage.setItem('maggie_unlocked_' + item.id, '1');
             }
             const link = cleanUrl(item.protectedLink) || '#';
             document.getElementById('scBuyBtn').style.display = 'none';
-            document.getElementById('scQrBox').style.display = 'none';
-            document.getElementById('scStatusMsg').innerHTML = '<span style="color:var(--accent); font-weight:700;">Unlocked!</span>';
+            document.getElementById('scPendingBanner').style.display = 'none';
+            document.getElementById('scStatusMsg').innerHTML = '<span style="color:var(--accent); font-weight:700;">Unlocked! Link ready.</span>';
 
             document.getElementById('scUnlockedBtn').href = link;
             document.getElementById('scUnlockedUrl').innerText = link;
             document.getElementById('scUnlockedBox').style.display = 'block';
+
+            if (autoOpenLink && link !== '#') {
+                openDownloadLink(link, true);
+            }
         }
 
         function startShowcasePolling(orderId, item) {
-            stopPolling();
+            stopShowcasePolling();
             const statusEl = document.getElementById('scStatusMsg');
             const pollUrl = `${FAMGATEWAY_BASE_URL}/api/checkout-status.php?order_id=${encodeURIComponent(orderId)}`;
             const deadline = Date.now() + 10 * 60 * 1000;
 
-            statusEl.innerText = "Waiting for UPI payment confirmation (auto-checking every 3s)...";
+            statusEl.innerText = "Checkout page open ho gaya hai. Payment success hote hi link automatically khul jayega...";
 
-            pollTimer = setInterval(async () => {
+            showcasePollTimer = setInterval(async () => {
                 if (Date.now() > deadline) {
-                    stopPolling();
-                    statusEl.innerText = "Session timed out. Please try again.";
+                    stopShowcasePolling();
+                    statusEl.innerText = "Session timed out. Please click Buy Now again.";
                     return;
                 }
                 try {
@@ -1189,17 +1393,17 @@
                     if (!res.ok) return;
                     const data = await res.json();
                     if (data && data.status === "success") {
-                        unlockShowcaseItem(item, true);
+                        unlockShowcaseItem(item, true, true);
                     } else if (data && data.status === "expired") {
-                        stopPolling();
-                        statusEl.innerText = "Order expired. Click Buy Now to generate a new QR.";
+                        stopShowcasePolling();
+                        statusEl.innerText = "Order expired. Click Buy Now to open a new checkout.";
                     }
                 } catch (_) {}
             }, 3000);
         }
 
         window.openItemFullShowcase = (id) => {
-            stopPolling();
+            stopShowcasePolling();
             const item = allXmlItems.find(x => x.id === id);
             if (!item) return;
             activeShowcaseItem = item;
@@ -1217,24 +1421,22 @@
                 accessBadge.innerText = `PAID • ₹${price}`;
                 document.getElementById('scPriceText').innerText = `₹${price}`;
             } else {
-                accessBadge.className = 'paid-tag';
-                accessBadge.style.color = 'var(--accent)';
-                accessBadge.style.background = 'color-mix(in srgb, var(--accent) 14%, transparent)';
+                accessBadge.className = 'free-tag';
                 accessBadge.innerText = 'FREE';
                 document.getElementById('scPriceText').innerText = 'FREE';
             }
 
             document.getElementById('scTitle').innerText = item.title || 'Untitled';
-            document.getElementById('scDesc').innerText = item.description || 'Saare screenshots dekhein. Payment ke baad download/access link khul jayega.';
+            document.getElementById('scDesc').innerText = item.description || 'Saare screenshots dekhein. Buy par click karte hi checkout page khulega aur payment ke baad link khul jayega.';
             document.getElementById('scStatusMsg').innerText = '';
-            document.getElementById('scQrBox').style.display = 'none';
+            document.getElementById('scPendingBanner').style.display = 'none';
             document.getElementById('scUnlockedBox').style.display = 'none';
 
             renderShowcaseGallery(getItemPhotos(item));
 
             const buyBtn = document.getElementById('scBuyBtn');
             if (!isPaid || alreadyUnlocked) {
-                unlockShowcaseItem(item, false);
+                unlockShowcaseItem(item, false, false);
             } else {
                 document.getElementById('scBuyAmount').innerText = price;
                 buyBtn.disabled = false;
@@ -1248,7 +1450,7 @@
         };
 
         window.backToStoreView = () => {
-            stopPolling();
+            stopShowcasePolling();
             activeShowcaseItem = null;
             document.getElementById('itemShowcaseView').style.display = 'none';
             document.getElementById('storeMainView').style.display = 'block';
@@ -1263,65 +1465,25 @@
             const statusEl = document.getElementById('scStatusMsg');
 
             buyBtn.disabled = true;
-            buyBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating UPI QR...';
+            buyBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Opening Checkout...';
             statusEl.innerText = '';
 
             try {
-                let orderPayload;
-                if (FAMGATEWAY_BACKEND_ORDER_URL) {
-                    const r = await fetch(FAMGATEWAY_BACKEND_ORDER_URL, {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                            amount: amountRupees,
-                            customer_name: `${activeShowcaseItem.type || "Item"} - ${activeShowcaseItem.title || "MAGGIE STORE"}`
-                        })
-                    });
-                    orderPayload = await r.json();
-                    if (!r.ok || orderPayload.status !== "success" || !orderPayload.data) {
-                        throw new Error(orderPayload.message || "Backend order failed.");
-                    }
-                } else {
-                    const r = await fetch(`${FAMGATEWAY_BASE_URL}/api/create-order`, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "X-Api-Key": FAMGATEWAY_API_KEY
-                        },
-                        body: JSON.stringify({
-                            api_key: FAMGATEWAY_API_KEY,
-                            amount: amountRupees,
-                            customer_name: `${activeShowcaseItem.type || "Item"}: ${activeShowcaseItem.title || "MAGGIE STORE"}`
-                        })
-                    });
-                    orderPayload = await r.json();
-                    if (!r.ok || orderPayload.status !== "success" || !orderPayload.data) {
-                        throw new Error(orderPayload.message || "FamGateway order creation failed.");
-                    }
-                }
-
-                const d = orderPayload.data;
+                const d = await createFamGatewayOrder(
+                    amountRupees,
+                    `${activeShowcaseItem.type || "Item"}: ${activeShowcaseItem.title || "MAGGIE STORE"}`
+                );
                 const orderId = d.order_id;
-                const qrUrl = d.qr_url || `${FAMGATEWAY_BASE_URL}/api/qr-image.php?order_id=${encodeURIComponent(orderId)}`;
-                const checkoutUrl = d.checkout_url || `${FAMGATEWAY_BASE_URL}/pay.php?order_id=${encodeURIComponent(orderId)}`;
+                const checkoutUrl = cleanUrl(d.checkout_url || `${FAMGATEWAY_BASE_URL}/pay.php?order_id=${encodeURIComponent(orderId)}`);
 
-                document.getElementById('scQrImg').src = qrUrl;
                 document.getElementById('scOrderText').innerText = `Order ID: ${orderId} • Amount: ₹${d.payable_amount || amountRupees}`;
-
-                const upiBtn = document.getElementById('scUpiBtn');
-                if (d.upi_intent) {
-                    upiBtn.href = d.upi_intent;
-                    upiBtn.style.display = 'inline-flex';
-                } else {
-                    upiBtn.style.display = 'none';
-                }
-
                 const cpBtn = document.getElementById('scCheckoutBtn');
                 cpBtn.href = checkoutUrl;
-                cpBtn.style.display = 'inline-flex';
-
-                document.getElementById('scQrBox').style.display = 'block';
+                document.getElementById('scPendingBanner').style.display = 'block';
                 buyBtn.style.display = 'none';
+
+                // Direct open FamGateway checkout page (3rd screen)
+                window.open(checkoutUrl, '_blank', 'noopener,noreferrer');
 
                 startShowcasePolling(orderId, activeShowcaseItem);
             } catch (err) {
