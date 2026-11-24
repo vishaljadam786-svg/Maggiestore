@@ -687,7 +687,7 @@
         <div class="hero-wrap">
             <section class="hero-card">
                 <div class="kicker"><i class="fa-solid fa-sparkles"></i> Curated & Direct</div>
-                <h1 id="heroTitle">Discover XML, Templates & Apps</h1>
+                <h1 id="heroTitle">Discover Paid Items & Apps</h1>
                 <p id="heroSubtitle">Fast, verified, and direct downloads powered by MAGGIE STORE</p>
                 <div id="socialBar" class="social-bar"></div>
             </section>
@@ -696,16 +696,16 @@
         <div id="categoryBar" class="category-bar"></div>
 
         <div class="container">
-            <!-- XML & TEMPLATES SECTION (MOVED TO TOP ABOVE APPS) -->
+            <!-- PAID ITEMS / XML & TEMPLATES SECTION (FIRST / TOP) -->
             <section id="paidItemsSection" class="section-block">
                 <div class="section-top-row">
                     <div>
                         <div class="kicker" style="margin-bottom:4px;"><i class="fa-solid fa-layer-group"></i> XML & Templates</div>
-                        <h2>Featured XML & Templates</h2>
+                        <h2>Paid Items</h2>
                     </div>
                     <div class="filter-pills">
-                        <button class="cat-btn active" data-xmlfilter="all" onclick="setXmlFilter('all')">All XML & Templates</button>
-                        <button class="cat-btn" data-xmlfilter="paid" onclick="setXmlFilter('paid')">Paid Only</button>
+                        <button class="cat-btn active" data-xmlfilter="paid" onclick="setXmlFilter('paid')">Paid Items</button>
+                        <button class="cat-btn" data-xmlfilter="all" onclick="setXmlFilter('all')">All XML & Templates</button>
                     </div>
                 </div>
                 <div id="paidXmlGrid" class="app-grid">
@@ -713,7 +713,7 @@
                 </div>
             </section>
 
-            <!-- APPS SECTION (SUPPORTS BOTH FREE AND PAID APPS) -->
+            <!-- APPS SECTION (BELOW PAID ITEMS) -->
             <section class="section-block" style="padding-top:24px; border-top:1px solid var(--border);">
                 <div class="section-top-row">
                     <div>
@@ -896,7 +896,7 @@
         let allApps = [];
         let allXmlItems = [];
         let activeCategory = 'All';
-        let xmlFilterMode = 'all';
+        let xmlFilterMode = 'paid';
         let activeShowcaseItem = null;
         let activeModalApp = null;
         let showcasePollTimer = null;
@@ -1482,7 +1482,6 @@
                 document.getElementById('scPendingBanner').style.display = 'block';
                 buyBtn.style.display = 'none';
 
-                // Direct open FamGateway checkout page (3rd screen)
                 window.open(checkoutUrl, '_blank', 'noopener,noreferrer');
 
                 startShowcasePolling(orderId, activeShowcaseItem);
