@@ -386,25 +386,28 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.68);
+            background: rgba(0, 0, 0, 0.72);
             backdrop-filter: blur(6px);
             justify-content: center;
             align-items: center;
             z-index: 200;
-            padding: 20px;
+            padding: 18px;
+            overflow-y: auto;
         }
 
         .modal-content {
             background: var(--surface);
             color: var(--ink);
-            padding: 28px 22px;
+            padding: 24px 20px;
             border-radius: 22px;
-            max-width: 430px;
+            max-width: 470px;
             width: 100%;
             text-align: center;
             position: relative;
             border: 1px solid var(--border);
             box-shadow: var(--shadow);
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         .close-btn {
@@ -417,22 +420,65 @@
         }
 
         .modal-icon {
-            width: 84px;
-            height: 84px;
-            border-radius: 20px;
-            margin-bottom: 10px;
+            width: 72px;
+            height: 72px;
+            border-radius: 18px;
+            margin-bottom: 8px;
             object-fit: cover;
             border: 1px solid var(--border);
             background: var(--surface-2);
         }
 
+        /* MULTI-PHOTO GALLERY IN MODAL */
+        .showcase-gallery {
+            margin: 12px 0 14px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 10px;
+        }
+
+        .showcase-main-img {
+            width: 100%;
+            max-height: 240px;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+            background: var(--surface);
+        }
+
+        .showcase-thumbs {
+            display: flex;
+            gap: 8px;
+            margin-top: 9px;
+            overflow-x: auto;
+            padding-bottom: 2px;
+            justify-content: center;
+        }
+
+        .showcase-thumb {
+            width: 52px;
+            height: 52px;
+            border-radius: 10px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            opacity: 0.72;
+            flex-shrink: 0;
+            transition: all 0.18s ease;
+        }
+
+        .showcase-thumb.active, .showcase-thumb:hover {
+            border-color: var(--accent);
+            opacity: 1;
+            transform: translateY(-1px);
+        }
+
         .modal-desc {
             color: var(--muted);
-            font-size: 0.88rem;
-            margin: 12px 0 18px;
-            line-height: 1.6;
-            max-height: 140px;
-            overflow-y: auto;
+            font-size: 0.86rem;
+            margin: 10px 0 14px;
+            line-height: 1.55;
         }
 
         .qr-box {
@@ -445,8 +491,8 @@
         }
 
         .qr-box img {
-            width: 180px;
-            height: 180px;
+            width: 170px;
+            height: 170px;
             border-radius: 12px;
             background: #fff;
             padding: 6px;
@@ -570,13 +616,19 @@
         </div>
     </div>
 
-    <!-- FAMGATEWAY UPI QR & UNLOCK MODAL -->
+    <!-- XML / TEMPLATE PREVIEW GALLERY + FAMGATEWAY PAYMENT MODAL -->
     <div id="payModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closePayModal()">&times;</span>
-            <img id="payIcon" src="" alt="Preview" class="modal-icon">
             <div id="payTypeBadge" class="cat-badge" style="margin-bottom:6px;">XML</div>
             <h2 id="payTitle" style="font-family:'Fraunces',serif;">Item Title</h2>
+
+            <!-- Multi-photo preview gallery -->
+            <div id="showcaseGallery" class="showcase-gallery">
+                <img id="showcaseMainImg" src="" alt="Preview Photo" class="showcase-main-img">
+                <div id="showcaseThumbs" class="showcase-thumbs"></div>
+            </div>
+
             <p id="payDesc" class="modal-desc" style="margin-bottom:12px;"></p>
 
             <div id="payPriceBox" style="font-size:1.15rem; font-weight:800; color:var(--warm); margin-bottom:12px;">
@@ -643,10 +695,8 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, onSnapshot, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // FamGateway Configuration (0% Fee Automated UPI Gateway)
         const FAMGATEWAY_BASE_URL = "https://famgateway.in";
         const FAMGATEWAY_API_KEY = "fam_95a256e60ea571df5923128a187d7659d00c5716";
-        // Optional: Agar aap apna backend proxy/webhook endpoint use karte hain toh yahan set karein
         const FAMGATEWAY_BACKEND_ORDER_URL = "";
 
         const firebaseConfig = {
@@ -686,6 +736,13 @@
                 return 'https://' + val;
             }
             return val;
+        }
+
+        function getItemPhotos(item) {
+            const list = Array.isArray(item.photos) ? item.photos.map(cleanUrl).filter(Boolean) : [];
+            if (list.length > 0) return Array.from(new Set(list));
+            const single = cleanUrl(item.thumbUrl);
+            return single ? [single] : [FALLBACK_APP];
         }
 
         function setImageDirect(imgEl, rawUrl, fallbackUrl) {
@@ -837,7 +894,7 @@
 
         window.closeModal = () => document.getElementById('appModal').style.display = 'none';
 
-        // PAID ITEMS & FAMGATEWAY PAYMENT
+        // PAID ITEMS & MULTI-PHOTO PREVIEW + FAMGATEWAY PAYMENT
         window.setXmlFilter = (mode) => {
             xmlFilterMode = mode;
             document.querySelectorAll('[data-xmlfilter]').forEach(btn => {
@@ -868,12 +925,17 @@
             items.forEach((item) => {
                 const card = document.createElement('div');
                 card.className = 'app-card';
+                const photos = getItemPhotos(item);
                 const priceBadge = item.isPaid
                     ? `<span class="paid-tag"><i class="fa-solid fa-lock"></i> ₹${item.price || 49}</span>`
                     : `<span class="paid-tag" style="color:var(--accent); background:color-mix(in srgb, var(--accent) 14%, transparent);">FREE</span>`;
 
+                const photoBadge = photos.length > 1
+                    ? `<span class="paid-tag" style="color:var(--ink); background:var(--surface-2);"><i class="fa-solid fa-images"></i> ${photos.length}</span>`
+                    : '';
+
                 const btnHtml = item.isPaid
-                    ? `<button class="install-btn pay-btn" onclick="event.stopPropagation(); openPayModal('${item.id}')"><i class="fa-solid fa-lock"></i> Buy ₹${item.price || 49}</button>`
+                    ? `<button class="install-btn pay-btn" onclick="event.stopPropagation(); openPayModal('${item.id}')"><i class="fa-solid fa-eye"></i> Preview & Buy ₹${item.price || 49}</button>`
                     : `<a href="${cleanUrl(item.protectedLink) || '#'}" target="_blank" class="install-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-download"></i> Free Download</a>`;
 
                 card.innerHTML = `
@@ -882,15 +944,44 @@
                         <div>
                             <span class="cat-badge">${item.type || 'XML'}</span>
                             ${priceBadge}
+                            ${photoBadge}
                         </div>
                         <div class="app-title" style="margin-top:3px;">${item.title || 'Untitled'}</div>
-                        <div class="app-desc-short">${item.description || 'Tap to view details'}</div>
+                        <div class="app-desc-short">${item.description || 'Tap to see preview photos & details'}</div>
                         ${btnHtml}
                     </div>
                 `;
-                setImageDirect(card.querySelector('.app-icon'), item.thumbUrl, FALLBACK_APP);
+                setImageDirect(card.querySelector('.app-icon'), item.thumbUrl || photos[0], FALLBACK_APP);
                 card.onclick = () => window.openPayModal(item.id);
                 paidXmlGrid.appendChild(card);
+            });
+        }
+
+        function renderShowcaseGallery(photos) {
+            const mainImg = document.getElementById('showcaseMainImg');
+            const thumbsWrap = document.getElementById('showcaseThumbs');
+            thumbsWrap.innerHTML = '';
+
+            const validPhotos = photos && photos.length > 0 ? photos : [FALLBACK_APP];
+            setImageDirect(mainImg, validPhotos[0], FALLBACK_APP);
+
+            if (validPhotos.length <= 1) {
+                thumbsWrap.style.display = 'none';
+                return;
+            }
+
+            thumbsWrap.style.display = 'flex';
+            validPhotos.forEach((url, idx) => {
+                const thumb = document.createElement('img');
+                thumb.className = `showcase-thumb ${idx === 0 ? 'active' : ''}`;
+                thumb.alt = `Preview ${idx + 1}`;
+                setImageDirect(thumb, url, FALLBACK_APP);
+                thumb.onclick = () => {
+                    thumbsWrap.querySelectorAll('.showcase-thumb').forEach(t => t.classList.remove('active'));
+                    thumb.classList.add('active');
+                    setImageDirect(mainImg, url, FALLBACK_APP);
+                };
+                thumbsWrap.appendChild(thumb);
             });
         }
 
@@ -900,10 +991,10 @@
             if (!item) return;
             selectedXmlItem = item;
 
-            setImageDirect(document.getElementById('payIcon'), item.thumbUrl, FALLBACK_APP);
+            renderShowcaseGallery(getItemPhotos(item));
             document.getElementById('payTypeBadge').innerText = `${item.type || 'XML'} ${item.isPaid ? '• PAID' : '• FREE'}`;
             document.getElementById('payTitle').innerText = item.title || 'Item';
-            document.getElementById('payDesc').innerText = item.description || 'UPI payment complete hote hi download/access link unlock ho jayega.';
+            document.getElementById('payDesc').innerText = item.description || 'Preview photos dekhein. UPI payment complete hote hi download/access link unlock ho jayega.';
             document.getElementById('payStatusMsg').innerText = '';
             document.getElementById('qrPaymentBox').style.display = 'none';
 
