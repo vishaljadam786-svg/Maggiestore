@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="pageTitle">MAGGIE STORE - App Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Noto+Sans:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root, [data-theme="dark"] {
@@ -41,8 +41,18 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-family: 'Plus Jakarta Sans', 'Noto Sans', sans-serif;
             scroll-behavior: smooth;
+        }
+
+        /* WIDE UNICODE SUPPORT FOR STYLIZED GAME FONTS & SYMBOLS */
+        .styled-name-text {
+            font-family: 'Noto Sans', 'Plus Jakarta Sans', 'DejaVu Sans', 'Segoe UI Symbol', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif !important;
+            text-transform: none !important;
+            letter-spacing: 0.02em;
+            line-height: 1.45;
+            padding: 3px 2px;
+            font-variant-ligatures: none;
         }
 
         body {
@@ -587,6 +597,15 @@
             align-items: center;
             gap: 15px;
             min-width: 0;
+            flex: 1;
+        }
+
+        .game-name-display {
+            font-size: 1.08rem;
+            font-weight: 700;
+            color: var(--ink);
+            word-break: break-word;
+            margin-bottom: 6px;
         }
 
         .game-uid-pill {
@@ -600,7 +619,6 @@
             font-size: 0.85rem;
             font-weight: 700;
             color: var(--ink);
-            margin-top: 6px;
         }
 
         .game-extra-grid {
@@ -951,7 +969,7 @@
     <header>
         <a onclick="backToStoreView()" class="brand">
             <img id="storeLogo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzEwYjk4MSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmYiPk08L3RleHQ+PC9zdmc+" alt="Logo" class="store-logo">
-            <span id="storeName" class="logo-text">MAGGIE STORE</span>
+            <span id="storeName" class="logo-text styled-name-text">MAGGIE STORE</span>
         </a>
         <div class="header-right">
             <input type="text" id="searchInput" class="search-box" placeholder="Search apps & XML...">
@@ -1012,10 +1030,10 @@
                     <div class="game-main-left">
                         <img id="gameMainPhotoEl" src="" alt="Game Profile" class="app-icon" style="display:none; cursor:zoom-in;" onclick="openCustomLightbox(this.src)">
                         <div class="app-info">
-                            <span id="gameLabelBadge" class="cat-badge" style="display:none;">Game Profile</span>
+                            <div id="gameNameDisplay" class="game-name-display styled-name-text" style="display:none;"></div>
                             <div id="gameUidBox" class="game-uid-pill" style="display:none;">
                                 <i class="fa-solid fa-id-card" style="color:var(--accent);"></i>
-                                <span>UID: <strong id="gameUidValue"></strong></span>
+                                <span>UID: <strong id="gameUidValue" class="styled-name-text"></strong></span>
                             </div>
                         </div>
                     </div>
@@ -1047,8 +1065,8 @@
                     <span id="scAccessBadge" class="free-tag">FREE</span>
                     <span id="scShotCount" class="cat-badge" style="background:var(--surface-2); color:var(--ink);">0 Photos</span>
                 </div>
-                <h1 id="scTitle" class="showcase-heading">Title</h1>
-                <p id="scDesc" style="color:var(--muted); font-size:0.9rem; max-width:660px; line-height:1.55;"></p>
+                <h1 id="scTitle" class="showcase-heading styled-name-text">Title</h1>
+                <p id="scDesc" class="styled-name-text" style="color:var(--muted); font-size:0.9rem; max-width:660px; line-height:1.55;"></p>
             </div>
 
             <div class="showcase-price-box">
@@ -1104,7 +1122,7 @@
 
     <footer>
         <div id="footerSocials" class="social-bar"></div>
-        <p>&copy; 2026 <span class="store-footer-text">MAGGIE STORE</span>. All rights reserved.</p>
+        <p>&copy; 2026 <span class="store-footer-text styled-name-text">MAGGIE STORE</span>. All rights reserved.</p>
     </footer>
 
     <!-- APP MODAL (SUPPORTS BOTH FREE AND PAID APPS) -->
@@ -1116,8 +1134,8 @@
                 <span id="modalCat" class="cat-badge" style="margin-bottom:6px;">General</span>
                 <span id="modalPriceBadge" class="free-tag" style="margin-bottom:6px;">FREE</span>
             </div>
-            <h2 id="modalTitle" style="font-family:'Fraunces',serif;">App Name</h2>
-            <p id="modalDesc" class="modal-desc"></p>
+            <h2 id="modalTitle" class="styled-name-text" style="font-family:'Fraunces',serif;">App Name</h2>
+            <p id="modalDesc" class="modal-desc styled-name-text"></p>
             <div id="modalActionArea"></div>
             <div id="modalStatusMsg" style="margin-top:10px; font-size:0.78rem; color:var(--muted); word-break:break-all;"></div>
         </div>
@@ -1332,7 +1350,7 @@
             const wrap = document.getElementById('gameBottomSection');
             const mainCard = document.getElementById('gameMainCard');
             const mainPhotoEl = document.getElementById('gameMainPhotoEl');
-            const labelBadge = document.getElementById('gameLabelBadge');
+            const nameDisplay = document.getElementById('gameNameDisplay');
             const uidBox = document.getElementById('gameUidBox');
             const uidValue = document.getElementById('gameUidValue');
             const copyBtn = document.getElementById('copyGameUidBtn');
@@ -1352,10 +1370,11 @@
                 mainCard.classList.add('reveal-card');
 
                 if (label) {
-                    labelBadge.style.display = 'inline-block';
-                    labelBadge.innerText = label;
+                    nameDisplay.style.display = 'block';
+                    nameDisplay.innerText = label;
                 } else {
-                    labelBadge.style.display = 'none';
+                    nameDisplay.style.display = 'none';
+                    nameDisplay.innerText = '';
                 }
 
                 if (uid) {
@@ -1519,7 +1538,7 @@
                 const iconClass = getPlatformIcon(data.platform);
                 const html = `
                     <a href="${cleanUrl(data.url)}" target="_blank" class="social-pill">
-                        <i class="${iconClass}"></i> ${data.platform}
+                        <i class="${iconClass}"></i> <span class="styled-name-text">${data.platform}</span>
                     </a>
                 `;
                 socialBar.innerHTML += html;
@@ -1604,8 +1623,8 @@
                             <span class="cat-badge">${appItem.category || 'General'}</span>
                             ${statusBadge}
                         </div>
-                        <div class="app-title">${appItem.name || 'Unnamed App'}</div>
-                        <div class="app-desc-short">${appItem.description || 'Tap to view details'}</div>
+                        <div class="app-title styled-name-text">${appItem.name || 'Unnamed App'}</div>
+                        <div class="app-desc-short styled-name-text">${appItem.description || 'Tap to view details'}</div>
                         ${actionBtnHtml}
                     </div>
                 `;
@@ -1811,8 +1830,8 @@
                             ${priceBadge}
                             ${shotBadge}
                         </div>
-                        <div class="app-title" style="margin-top:3px;">${item.title || 'Untitled'}</div>
-                        <div class="app-desc-short">${item.description || 'Tap to view all screenshots & buy'}</div>
+                        <div class="app-title styled-name-text" style="margin-top:3px;">${item.title || 'Untitled'}</div>
+                        <div class="app-desc-short styled-name-text">${item.description || 'Tap to view all screenshots & buy'}</div>
                         ${btnHtml}
                     </div>
                 `;
