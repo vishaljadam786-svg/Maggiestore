@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,34 +7,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Noto+Sans:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root, [data-theme="dark"] {
-            --bg: #0c0f14;
-            --surface: #141922;
-            --surface-2: #1c2330;
-            --ink: #f4f6fb;
-            --muted: #9aa4b8;
-            --accent: #10b981;
-            --accent-ink: #04130d;
-            --warm: #f59e0b;
-            --border: rgba(255, 255, 255, 0.09);
-            --shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
-            --glow: 0 20px 44px rgba(16, 185, 129, 0.18);
-            --sheen: rgba(255, 255, 255, 0.07);
-        }
-
-        [data-theme="light"] {
+        :root, [data-theme="light"] {
             --bg: #f6f4ef;
-            --surface: #ffffff;
-            --surface-2: #ece8df;
+            --surface: rgba(255, 255, 255, 0.84);
+            --surface-solid: #ffffff;
+            --surface-2: rgba(236, 232, 223, 0.78);
             --ink: #141820;
             --muted: #5b6475;
             --accent: #059669;
+            --accent-soft: rgba(5, 150, 105, 0.14);
             --accent-ink: #ffffff;
+            --violet: #6d28d9;
+            --violet-soft: rgba(109, 40, 217, 0.12);
             --warm: #d97706;
-            --border: rgba(20, 24, 32, 0.11);
-            --shadow: 0 12px 28px rgba(20, 24, 32, 0.08);
-            --glow: 0 18px 38px rgba(5, 150, 105, 0.15);
-            --sheen: rgba(255, 255, 255, 0.45);
+            --border: rgba(20, 24, 32, 0.10);
+            --shadow: 0 14px 32px rgba(20, 24, 32, 0.07);
+            --glow: 0 18px 36px rgba(109, 40, 217, 0.14);
+        }
+
+        [data-theme="dark"] {
+            --bg: #0c0f14;
+            --surface: rgba(22, 27, 37, 0.84);
+            --surface-solid: #161b25;
+            --surface-2: rgba(31, 38, 52, 0.82);
+            --ink: #f4f6fb;
+            --muted: #9aa4b8;
+            --accent: #10b981;
+            --accent-soft: rgba(16, 185, 129, 0.16);
+            --accent-ink: #04130d;
+            --violet: #a78bfa;
+            --violet-soft: rgba(167, 139, 250, 0.15);
+            --warm: #f59e0b;
+            --border: rgba(255, 255, 255, 0.10);
+            --shadow: 0 16px 36px rgba(0, 0, 0, 0.36);
+            --glow: 0 20px 42px rgba(167, 139, 250, 0.16);
         }
 
         * {
@@ -48,8 +54,7 @@
         .styled-name-text {
             font-family: 'Noto Sans', 'Plus Jakarta Sans', 'DejaVu Sans', 'Segoe UI Symbol', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif !important;
             text-transform: none !important;
-            letter-spacing: 0.02em;
-            line-height: 1.4;
+            line-height: 1.38;
         }
 
         body {
@@ -58,6 +63,7 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            padding-bottom: 92px;
             transition: background-color 0.3s ease, color 0.3s ease;
             overflow-x: hidden;
         }
@@ -70,59 +76,27 @@
             height: 3px;
             z-index: 120;
             pointer-events: none;
-            background: transparent;
         }
 
         .scroll-bar {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, var(--accent), var(--warm));
-            box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 55%, transparent);
+            background: linear-gradient(90deg, var(--accent), var(--violet));
             transition: width 0.08s linear;
         }
 
         @keyframes viewEnter {
-            from {
-                opacity: 0;
-                transform: translateY(16px) scale(0.988);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+            from { opacity: 0; transform: translateY(14px) scale(0.99); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         @keyframes modalPop {
-            from {
-                opacity: 0;
-                transform: translateY(14px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        @keyframes orbDrift {
-            0%, 100% {
-                transform: translate(0, 0) scale(1);
-            }
-            50% {
-                transform: translate(-18px, 14px) scale(1.1);
-            }
-        }
-
-        @keyframes badgePulse {
-            0%, 100% {
-                box-shadow: 0 0 0 0 color-mix(in srgb, var(--warm) 0%, transparent);
-            }
-            50% {
-                box-shadow: 0 0 0 6px color-mix(in srgb, var(--warm) 14%, transparent);
-            }
+            from { opacity: 0; transform: translateY(14px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .view-animate {
-            animation: viewEnter 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+            animation: viewEnter 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
         .reveal-card {
@@ -130,18 +104,17 @@
             --tilt-y: 0deg;
             --hover-lift: 0px;
             opacity: 0;
-            transform: perspective(900px) translateY(28px) rotateX(-6deg) scale(0.96);
-            transform-origin: center center;
+            transform: perspective(900px) translateY(22px) scale(0.97);
             transition:
-                opacity 0.48s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.52s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
                 border-color 0.25s ease,
                 box-shadow 0.3s ease;
             will-change: transform, opacity;
         }
 
         .reveal-card.from-top {
-            transform: perspective(900px) translateY(-24px) rotateX(5deg) scale(0.965);
+            transform: perspective(900px) translateY(-18px) scale(0.975);
         }
 
         .reveal-card.is-visible {
@@ -153,310 +126,422 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            background: color-mix(in srgb, var(--bg) 82%, transparent);
-            backdrop-filter: blur(14px);
+            background: color-mix(in srgb, var(--bg) 78%, transparent);
+            backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
-            padding: 12px 5%;
+            padding: 11px 5%;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
+            gap: 10px;
         }
 
         .brand {
             display: flex;
             align-items: center;
-            gap: 11px;
+            gap: 10px;
             text-decoration: none;
             cursor: pointer;
         }
 
         .store-logo {
-            width: 42px;
-            height: 42px;
-            border-radius: 14px;
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
             object-fit: cover;
-            border: 1.5px solid var(--accent);
+            border: 1.5px solid var(--border);
             background: var(--surface-2);
-            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .brand:hover .store-logo {
-            transform: rotate(-6deg) scale(1.07);
         }
 
         .logo-text {
             font-family: 'Fraunces', serif;
-            font-size: 1.35rem;
+            font-size: 1.22rem;
             font-weight: 700;
             color: var(--ink);
-            letter-spacing: -0.02em;
         }
 
         .header-right {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .search-box {
             background: var(--surface);
+            backdrop-filter: blur(12px);
             border: 1px solid var(--border);
             color: var(--ink);
-            padding: 8px 14px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            width: 195px;
+            padding: 8px 13px;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            width: 165px;
             outline: none;
-            transition: border-color 0.25s ease, width 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+            transition: border-color 0.25s ease, width 0.28s ease;
         }
 
         .search-box:focus {
-            border-color: var(--accent);
-            width: 235px;
-            box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent);
+            border-color: var(--violet);
+            width: 205px;
         }
 
         .theme-toggle {
             background: var(--surface);
+            backdrop-filter: blur(12px);
             border: 1px solid var(--border);
             color: var(--ink);
-            width: 38px;
-            height: 38px;
-            border-radius: 12px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.95rem;
-            transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, background 0.25s ease;
-            flex-shrink: 0;
+            font-size: 0.9rem;
+            transition: transform 0.22s ease, border-color 0.22s ease;
         }
 
         .theme-toggle:hover {
-            border-color: var(--accent);
-            transform: translateY(-1px) rotate(16deg);
+            border-color: var(--violet);
+            transform: rotate(15deg);
         }
 
-        .theme-toggle:active {
-            transform: scale(0.92);
-        }
-
-        .hero-wrap {
-            max-width: 1140px;
+        /* TOP FROSTED PROFILE & UID PILL */
+        .top-profile-wrap {
+            max-width: 1080px;
             width: 100%;
-            margin: 24px auto 8px;
-            padding: 0 20px;
+            margin: 18px auto 8px;
+            padding: 0 18px;
         }
 
-        .hero-card {
+        .profile-pill-bar {
             background: var(--surface);
+            backdrop-filter: blur(18px);
             border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 32px 24px;
+            border-radius: 28px;
+            padding: 12px 16px;
             box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-            animation: viewEnter 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
-        .hero-card::before {
-            content: "";
-            position: absolute;
-            top: -50px;
-            right: -50px;
-            width: 195px;
-            height: 195px;
+        .profile-left {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            min-width: 0;
+        }
+
+        .profile-avatar {
+            width: 58px;
+            height: 58px;
             border-radius: 50%;
-            background: radial-gradient(circle, color-mix(in srgb, var(--warm) 26%, transparent), transparent 70%);
-            pointer-events: none;
-            animation: orbDrift 6s ease-in-out infinite;
+            object-fit: cover;
+            border: 2px solid color-mix(in srgb, var(--violet) 45%, transparent);
+            background: var(--surface-2);
+            flex-shrink: 0;
+            cursor: zoom-in;
         }
 
-        .kicker {
+        .profile-title-line {
+            font-family: 'Fraunces', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .profile-sub-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 5px;
+        }
+
+        .uid-chip {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            font-size: 0.74rem;
+            font-size: 0.78rem;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--warm);
-            margin-bottom: 10px;
-        }
-
-        .hero-card h1 {
-            font-family: 'Fraunces', serif;
-            font-size: 2.2rem;
-            line-height: 1.15;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .hero-card p {
             color: var(--muted);
-            font-size: 0.93rem;
-            max-width: 560px;
+            background: var(--surface-2);
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
         }
 
-        .social-bar {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 9px;
-            margin-top: 18px;
-        }
-
-        .social-pill {
+        .copy-uid-pill {
+            background: var(--surface-solid);
+            color: var(--ink);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 4px 11px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 7px;
-            background: var(--surface-2);
-            border: 1px solid var(--border);
-            color: var(--ink);
-            text-decoration: none;
-            padding: 7px 14px;
-            border-radius: 11px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+            gap: 5px;
+            transition: border-color 0.2s ease, transform 0.15s ease;
         }
 
-        .social-pill:hover {
-            background: var(--accent);
-            color: var(--accent-ink);
-            border-color: var(--accent);
-            transform: translateY(-2px);
-        }
-
-        .social-pill:active {
-            transform: scale(0.96);
-        }
-
-        .category-bar {
-            max-width: 1140px;
-            width: 100%;
-            margin: 14px auto 4px;
-            padding: 0 20px;
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
-        .category-bar::-webkit-scrollbar { display: none; }
-
-        .cat-btn {
-            background: var(--surface);
-            color: var(--muted);
-            border: 1px solid var(--border);
-            padding: 8px 16px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 0.82rem;
-            font-weight: 600;
-            white-space: nowrap;
-            transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
-        }
-
-        .cat-btn.active, .cat-btn:hover {
-            background: var(--accent);
-            color: var(--accent-ink);
-            border-color: var(--accent);
+        .copy-uid-pill:hover {
+            border-color: var(--violet);
             transform: translateY(-1px);
         }
 
-        .cat-btn:active {
-            transform: scale(0.95);
+        .top-socials-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
+        .icon-social-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 12px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            color: var(--ink);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 0.92rem;
+            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+        }
+
+        .icon-social-btn:hover {
+            background: var(--violet);
+            color: #fff;
+            border-color: var(--violet);
+            transform: translateY(-2px);
+        }
+
+        /* FEATURED DIGITAL PACK CARD (MINIMAL LUXURY) */
         .container {
-            max-width: 1140px;
+            max-width: 1080px;
             width: 100%;
             margin: 0 auto;
-            padding: 16px 20px 36px;
+            padding: 12px 18px 24px;
             flex: 1;
         }
 
-        .section-block {
-            margin-bottom: 30px;
-        }
-
-        .section-top-row {
+        .section-heading-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 10px;
-            margin-bottom: 16px;
+            margin: 18px 0 12px;
         }
 
-        .section-top-row h2 {
+        .section-heading-row h2 {
             font-family: 'Fraunces', serif;
-            font-size: 1.55rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .filter-pills {
             display: flex;
-            gap: 8px;
+            gap: 7px;
             flex-wrap: wrap;
         }
 
+        .pill-btn {
+            background: var(--surface);
+            backdrop-filter: blur(12px);
+            color: var(--muted);
+            border: 1px solid var(--border);
+            padding: 6px 13px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: 0.77rem;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+
+        .pill-btn.active, .pill-btn:hover {
+            background: var(--ink);
+            color: var(--bg);
+            border-color: var(--ink);
+        }
+
+        .featured-pack-card {
+            background: var(--surface);
+            backdrop-filter: blur(18px);
+            border: 1px solid var(--border);
+            border-radius: 26px;
+            padding: 18px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            cursor: pointer;
+        }
+
+        .featured-pack-card.is-visible:hover {
+            --hover-lift: -3px;
+            border-color: color-mix(in srgb, var(--violet) 45%, transparent);
+            box-shadow: var(--glow);
+        }
+
+        .featured-top-split {
+            display: grid;
+            grid-template-columns: 155px 1fr;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .featured-cover-box {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--surface-2);
+            aspect-ratio: 1 / 1;
+        }
+
+        .featured-cover-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-count-badge {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(20, 24, 32, 0.82);
+            color: #fff;
+            font-size: 0.66rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 8px;
+            letter-spacing: 0.04em;
+        }
+
+        .featured-title {
+            font-family: 'Fraunces', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            line-height: 1.22;
+            margin-bottom: 6px;
+        }
+
+        .featured-desc {
+            font-size: 0.83rem;
+            color: var(--muted);
+            line-height: 1.45;
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .featured-actions-row {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            flex-wrap: wrap;
+        }
+
+        .price-pill {
+            background: var(--accent-soft);
+            color: var(--accent);
+            border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+            padding: 7px 13px;
+            border-radius: 12px;
+            font-size: 0.82rem;
+            font-weight: 800;
+        }
+
+        .unlock-pill-btn {
+            background: var(--surface-solid);
+            color: var(--ink);
+            border: 1px solid var(--border);
+            padding: 8px 15px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .unlock-pill-btn:hover {
+            border-color: var(--violet);
+            color: var(--violet);
+        }
+
+        .thumb-strip {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+
+        .thumb-strip-item {
+            height: 54px;
+            border-radius: 11px;
+            object-fit: cover;
+            width: 100%;
+            border: 1px solid var(--border);
+            background: var(--surface-2);
+            display: block;
+        }
+
+        .extra-packs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 14px;
+            margin-top: 14px;
+        }
+
+        /* APPS GRID */
         .app-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+            gap: 14px;
         }
 
         .app-card {
-            position: relative;
-            overflow: hidden;
             background: var(--surface);
+            backdrop-filter: blur(16px);
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 18px;
+            border-radius: 22px;
+            padding: 15px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 13px;
             cursor: pointer;
             box-shadow: var(--shadow);
         }
 
-        .app-card::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(115deg, transparent 30%, var(--sheen) 50%, transparent 70%);
-            transform: translateX(-140%);
-            transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
-            pointer-events: none;
-        }
-
         .app-card.is-visible:hover {
-            --hover-lift: -5px;
-            border-color: var(--accent);
+            --hover-lift: -4px;
+            border-color: color-mix(in srgb, var(--violet) 48%, transparent);
             box-shadow: var(--glow);
         }
 
-        .app-card.is-visible:hover::after {
-            transform: translateX(140%);
-        }
-
-        .app-card.is-visible:active {
-            --hover-lift: -1px;
-        }
-
         .app-icon {
-            width: 66px;
-            height: 66px;
+            width: 60px;
+            height: 60px;
             border-radius: 16px;
             object-fit: cover;
             background: var(--surface-2);
             border: 1px solid var(--border);
             flex-shrink: 0;
-            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .app-card.is-visible:hover .app-icon {
-            transform: scale(1.07) rotate(-2deg);
         }
 
         .app-info {
@@ -464,95 +549,78 @@
             min-width: 0;
         }
 
-        .cat-badge {
+        .free-tag {
             display: inline-block;
-            font-size: 0.68rem;
-            font-weight: 700;
+            font-size: 0.66rem;
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             color: var(--accent);
-            background: color-mix(in srgb, var(--accent) 13%, transparent);
+            background: var(--accent-soft);
             padding: 2px 8px;
-            border-radius: 6px;
+            border-radius: 999px;
             margin-bottom: 4px;
         }
 
         .paid-tag {
             display: inline-block;
-            font-size: 0.68rem;
-            font-weight: 700;
-            color: var(--warm);
-            background: color-mix(in srgb, var(--warm) 16%, transparent);
+            font-size: 0.66rem;
+            font-weight: 800;
+            color: var(--violet);
+            background: var(--violet-soft);
             padding: 2px 8px;
-            border-radius: 6px;
-            margin-left: 4px;
-            animation: badgePulse 2.8s ease-in-out infinite;
-        }
-
-        .free-tag {
-            display: inline-block;
-            font-size: 0.68rem;
-            font-weight: 700;
-            color: var(--accent);
-            background: color-mix(in srgb, var(--accent) 14%, transparent);
-            padding: 2px 8px;
-            border-radius: 6px;
-            margin-left: 4px;
+            border-radius: 999px;
+            margin-bottom: 4px;
         }
 
         .app-title {
             font-weight: 700;
-            font-size: 1.02rem;
+            font-size: 0.98rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
         .app-desc-short {
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             color: var(--muted);
-            margin: 3px 0 10px;
+            margin: 2px 0 9px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
         .install-btn {
-            background: var(--accent);
-            color: var(--accent-ink);
+            background: var(--accent-soft);
+            color: var(--accent);
+            border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
             font-weight: 700;
-            border: none;
-            padding: 7px 15px;
-            border-radius: 10px;
-            font-size: 0.78rem;
+            padding: 6px 13px;
+            border-radius: 11px;
+            font-size: 0.76rem;
             cursor: pointer;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 6px;
-            transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease, box-shadow 0.2s ease;
+            transition: transform 0.18s ease, background 0.2s ease, color 0.2s ease;
         }
 
         .install-btn:hover {
-            opacity: 0.95;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 18px color-mix(in srgb, var(--accent) 28%, transparent);
+            background: var(--accent);
+            color: var(--accent-ink);
+            transform: translateY(-1px);
         }
-
-        .install-btn:active {
-            transform: scale(0.95);
-        }
-
-        .install-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
 
         .install-btn.pay-btn {
-            background: var(--warm);
-            color: #141820;
+            background: var(--violet-soft);
+            color: var(--violet);
+            border-color: color-mix(in srgb, var(--violet) 30%, transparent);
         }
 
         .install-btn.pay-btn:hover {
-            box-shadow: 0 8px 18px color-mix(in srgb, var(--warm) 30%, transparent);
+            background: var(--violet);
+            color: #fff;
         }
 
         .install-btn.ghost-btn {
@@ -561,160 +629,94 @@
             border: 1px solid var(--border);
         }
 
-        .install-btn.ghost-btn:hover {
-            box-shadow: none;
-            border-color: var(--accent);
-        }
-
-        /* BOTTOM GAME PROFILE & UID SECTION */
-        .game-bottom-wrap {
-            max-width: 1140px;
-            width: 100%;
-            margin: 0 auto 34px;
-            padding: 0 20px;
-            display: none;
-        }
-
-        .game-profile-card {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 16px;
-            cursor: default;
-            margin-bottom: 16px;
-        }
-
-        .game-main-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            min-width: 0;
-            flex: 1;
-        }
-
-        .game-name-display {
-            font-size: 1.08rem;
-            font-weight: 700;
-            color: var(--ink);
-            word-break: break-word;
-            margin-bottom: 6px;
-        }
-
-        .game-uid-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--surface-2);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 8px 13px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--ink);
-        }
-
+        /* GAME EXTRA PHOTOS AT BOTTOM */
         .game-extra-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 14px;
+            margin-top: 12px;
         }
 
         .game-extra-card {
             flex-direction: column;
             align-items: stretch;
-            padding: 12px;
-            gap: 10px;
+            padding: 11px;
+            gap: 8px;
             cursor: zoom-in;
         }
 
         .game-extra-photo {
             width: 100%;
-            height: 180px;
+            height: 170px;
             border-radius: 14px;
             object-fit: cover;
             background: var(--surface-2);
-            border: 1px solid var(--border);
             display: block;
-            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        .game-extra-card.is-visible:hover .game-extra-photo {
-            transform: scale(1.03);
+        /* FLOATING BOTTOM PILL BAR */
+        .floating-dock-wrap {
+            position: fixed;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 110;
+            width: calc(100% - 32px);
+            max-width: 440px;
         }
 
-        /* FULL SHOWCASE VIEW FOR CLICKED XML / TEMPLATE */
+        .floating-dock {
+            background: var(--surface);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 6px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+        }
+
+        .dock-btn {
+            background: transparent;
+            border: none;
+            color: var(--ink);
+            padding: 9px 10px;
+            border-radius: 999px;
+            font-size: 0.79rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .dock-btn.active {
+            background: var(--surface-solid);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            color: var(--violet);
+        }
+
+        /* SHOWCASE VIEW FOR XML / TEMPLATE */
         #itemShowcaseView {
             display: none;
-            max-width: 1080px;
+            max-width: 1040px;
             width: 100%;
-            margin: 22px auto 64px;
-            padding: 0 20px;
+            margin: 20px auto 50px;
+            padding: 0 18px;
             flex: 1;
         }
 
-        .showcase-top-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        .showcase-hero, .gallery-panel, .buy-card-box {
+            background: var(--surface);
+            backdrop-filter: blur(18px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: var(--shadow);
             margin-bottom: 18px;
-            gap: 12px;
-        }
-
-        .showcase-hero {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 24px;
-            box-shadow: var(--shadow);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 18px;
-            flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-
-        .showcase-heading {
-            font-family: 'Fraunces', serif;
-            font-size: 1.95rem;
-            line-height: 1.15;
-            margin: 6px 0 8px;
-        }
-
-        .showcase-price-box {
-            background: var(--surface-2);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 14px 20px;
-            text-align: right;
-        }
-
-        .showcase-price-num {
-            font-family: 'Fraunces', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--warm);
-            line-height: 1.1;
-        }
-
-        .gallery-panel {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 18px;
-            box-shadow: var(--shadow);
-            margin-bottom: 20px;
-        }
-
-        .main-shot-box {
-            background: var(--surface-2);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .main-shot-img {
@@ -723,95 +725,50 @@
             max-height: 75vh;
             object-fit: contain;
             border-radius: 14px;
-            background: #090c11;
+            background: #0c0f14;
             cursor: zoom-in;
             display: block;
-            transition: opacity 0.28s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .main-shot-img.is-swapping {
-            opacity: 0.25;
-            transform: scale(0.985);
         }
 
         .all-shots-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 14px;
-            margin-top: 16px;
-            align-items: start;
+            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+            gap: 12px;
+            margin-top: 14px;
         }
 
         .shot-tile {
             background: var(--surface-2);
             border: 2px solid transparent;
-            border-radius: 16px;
+            border-radius: 14px;
             overflow: hidden;
             cursor: pointer;
-            transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease;
-        }
-
-        .shot-tile:hover {
-            transform: translateY(-3px);
-            border-color: color-mix(in srgb, var(--accent) 50%, transparent);
-        }
-
-        .shot-tile:active {
-            transform: scale(0.97);
         }
 
         .shot-tile.active {
-            border-color: var(--accent);
+            border-color: var(--violet);
         }
 
         .shot-tile img {
             width: 100%;
             height: auto;
-            max-height: 360px;
+            max-height: 320px;
             object-fit: contain;
             display: block;
-            background: #090c11;
+            background: #0c0f14;
         }
 
-        .shot-tile-foot {
-            padding: 8px 10px;
-            font-size: 0.76rem;
-            color: var(--muted);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .buy-card-box {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 24px;
-            box-shadow: var(--shadow);
-        }
-
-        .pending-payment-banner {
+        .pending-payment-banner, .unlocked-box {
             background: var(--surface-2);
-            border: 1px solid var(--warm);
+            border: 1px solid var(--border);
             border-radius: 16px;
-            padding: 16px;
+            padding: 15px;
             margin-top: 14px;
             display: none;
-            animation: viewEnter 0.3s ease both;
-        }
-
-        .unlocked-box {
-            background: color-mix(in srgb, var(--accent) 12%, var(--surface-2));
-            border: 1px solid var(--accent);
-            border-radius: 16px;
-            padding: 16px;
-            margin-top: 16px;
             word-break: break-all;
-            display: none;
-            animation: modalPop 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
-        .modal {
+        .modal, .lightbox {
             display: none;
             position: fixed;
             inset: 0;
@@ -820,19 +777,19 @@
             justify-content: center;
             align-items: center;
             z-index: 200;
-            padding: 20px;
+            padding: 18px;
         }
 
-        .modal.is-open .modal-content {
-            animation: modalPop 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+        .modal.is-open .modal-content, .lightbox.is-open img {
+            animation: modalPop 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
         .modal-content {
-            background: var(--surface);
+            background: var(--surface-solid);
             color: var(--ink);
-            padding: 28px 22px;
-            border-radius: 22px;
-            max-width: 420px;
+            padding: 26px 20px;
+            border-radius: 24px;
+            max-width: 410px;
             width: 100%;
             text-align: center;
             position: relative;
@@ -840,114 +797,34 @@
             box-shadow: var(--shadow);
         }
 
-        .close-btn {
+        .close-btn, .lightbox-close {
             position: absolute;
             top: 12px;
             right: 16px;
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--muted);
-            transition: transform 0.2s ease, color 0.2s ease;
         }
 
-        .close-btn:hover {
-            color: var(--ink);
-            transform: rotate(90deg);
-        }
-
-        .modal-icon {
-            width: 84px;
-            height: 84px;
-            border-radius: 20px;
-            margin-bottom: 10px;
-            object-fit: cover;
-            border: 1px solid var(--border);
-            background: var(--surface-2);
-        }
-
-        .modal-desc {
-            color: var(--muted);
-            font-size: 0.88rem;
-            margin: 12px 0 22px;
-            line-height: 1.6;
-            max-height: 150px;
-            overflow-y: auto;
-        }
-
-        .lightbox {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.92);
-            z-index: 300;
-            align-items: center;
-            justify-content: center;
-            padding: 16px;
-        }
-
-        .lightbox.is-open img {
-            animation: modalPop 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
-        }
-
-        .lightbox img {
-            max-width: 96vw;
-            max-height: 92vh;
-            width: auto;
-            height: auto;
-            object-fit: contain;
-            border-radius: 14px;
-        }
-
-        .lightbox-close {
-            position: fixed;
-            top: 16px;
-            right: 22px;
-            font-size: 2rem;
-            color: #fff;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .lightbox-close:hover {
-            transform: scale(1.12);
-        }
+        .lightbox { z-index: 300; background: rgba(0, 0, 0, 0.92); }
+        .lightbox-close { color: #fff; font-size: 2rem; }
+        .lightbox img { max-width: 96vw; max-height: 92vh; object-fit: contain; border-radius: 14px; }
 
         footer {
             border-top: 1px solid var(--border);
             background: var(--surface);
-            padding: 22px 20px;
+            backdrop-filter: blur(14px);
+            padding: 20px;
             text-align: center;
             color: var(--muted);
-            font-size: 0.82rem;
-            margin-top: auto;
+            font-size: 0.8rem;
         }
 
-        footer .social-bar {
-            justify-content: center;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-
-        @media (max-width: 600px) {
-            .search-box { width: 120px; font-size: 0.78rem; }
-            .search-box:focus { width: 145px; }
-            .hero-card h1, .showcase-heading { font-size: 1.65rem; }
-            .logo-text { font-size: 1.12rem; }
-            .showcase-price-box { width: 100%; text-align: left; }
-            .all-shots-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-            .reveal-card {
-                opacity: 1 !important;
-                transform: none !important;
-            }
+        @media (max-width: 560px) {
+            .featured-top-split { grid-template-columns: 118px 1fr; gap: 12px; }
+            .featured-title { font-size: 1.12rem; }
+            .search-box { width: 122px; }
+            .search-box:focus { width: 148px; }
         }
     </style>
 </head>
@@ -959,184 +836,173 @@
 
     <header>
         <a onclick="backToStoreView()" class="brand">
-            <img id="storeLogo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzEwYjk4MSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmYiPk08L3RleHQ+PC9zdmc+" alt="Logo" class="store-logo">
+            <img id="storeLogo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzA1OTY2OSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmYiPk08L3RleHQ+PC9zdmc+" alt="Logo" class="store-logo">
             <span id="storeName" class="logo-text styled-name-text">MAGGIE STORE</span>
         </a>
         <div class="header-right">
-            <input type="text" id="searchInput" class="search-box" placeholder="Search apps & XML...">
-            <button type="button" id="themeBtn" class="theme-toggle" title="Toggle Dark/Light Theme" onclick="toggleTheme()">
-                <i class="fa-solid fa-sun"></i>
+            <input type="text" id="searchInput" class="search-box" placeholder="Search apps, XML...">
+            <button type="button" id="themeBtn" class="theme-toggle" title="Toggle Theme" onclick="toggleTheme()">
+                <i class="fa-solid fa-moon"></i>
             </button>
         </div>
     </header>
 
     <!-- MAIN STORE VIEW -->
     <div id="storeMainView">
-        <div class="hero-wrap">
-            <section class="hero-card">
-                <div class="kicker"><i class="fa-solid fa-sparkles"></i> Curated & Direct</div>
-                <h1 id="heroTitle">Discover Paid Items & Apps</h1>
-                <p id="heroSubtitle">Fast, verified, and direct downloads powered by MAGGIE STORE</p>
-                <div id="socialBar" class="social-bar"></div>
-            </section>
-        </div>
-
-        <div id="categoryBar" class="category-bar"></div>
-
-        <div class="container">
-            <section id="paidItemsSection" class="section-block">
-                <div class="section-top-row">
+        <!-- TOP PROFILE & UID PILL -->
+        <div class="top-profile-wrap">
+            <section class="profile-pill-bar">
+                <div class="profile-left">
+                    <img id="topProfileAvatar" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzA1OTY2OSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmYiPk08L3RleHQ+PC9zdmc+" alt="Profile" class="profile-avatar" onclick="openCustomLightbox(this.src)">
                     <div>
-                        <div class="kicker" style="margin-bottom:4px;"><i class="fa-solid fa-layer-group"></i> XML & Templates</div>
-                        <h2>Paid Items</h2>
-                    </div>
-                    <div class="filter-pills">
-                        <button class="cat-btn active" data-xmlfilter="paid" onclick="setXmlFilter('paid')">Paid Items</button>
-                        <button class="cat-btn" data-xmlfilter="all" onclick="setXmlFilter('all')">All XML & Templates</button>
-                    </div>
-                </div>
-                <div id="paidXmlGrid" class="app-grid">
-                    <p style="color:var(--muted); grid-column:1/-1;">No items available yet.</p>
-                </div>
-            </section>
-
-            <section class="section-block" style="padding-top:24px; border-top:1px solid var(--border);">
-                <div class="section-top-row">
-                    <div>
-                        <div class="kicker" style="margin-bottom:4px;"><i class="fa-solid fa-mobile-screen"></i> Applications</div>
-                        <h2>Apps</h2>
-                    </div>
-                </div>
-                <div id="loader" style="text-align:center; padding:36px; color:var(--accent); font-weight:600;">Loading MAGGIE STORE...</div>
-                <div id="appGrid" class="app-grid"></div>
-            </section>
-        </div>
-
-        <!-- SABSE NICHE: GAME UID & PROFILE PHOTOS -->
-        <section id="gameBottomSection" class="game-bottom-wrap">
-            <div style="padding-top:24px; border-top:1px solid var(--border);">
-                <div id="gameMainCard" class="app-card reveal-card game-profile-card" style="display:none;">
-                    <div class="game-main-left">
-                        <img id="gameMainPhotoEl" src="" alt="Game Profile" class="app-icon" style="display:none; cursor:zoom-in;" onclick="openCustomLightbox(this.src)">
-                        <div class="app-info">
-                            <div id="gameNameDisplay" class="game-name-display styled-name-text" style="display:none;"></div>
-                            <div id="gameUidBox" class="game-uid-pill" style="display:none;">
-                                <i class="fa-solid fa-id-card" style="color:var(--accent);"></i>
-                                <span>UID: <strong id="gameUidValue" class="styled-name-text"></strong></span>
-                            </div>
+                        <div id="heroProfileTitle" class="profile-title-line styled-name-text">MAGGIE STORE</div>
+                        <div class="profile-sub-row">
+                            <span id="uidPillBadge" class="uid-chip" style="display:none;">
+                                UID: <span id="gameUidValue" class="styled-name-text"></span>
+                            </span>
+                            <button id="copyGameUidBtn" type="button" class="copy-uid-pill" style="display:none;" onclick="copyGameUid()">
+                                <i class="fa-regular fa-copy"></i> Copy UID
+                            </button>
                         </div>
                     </div>
-                    <button id="copyGameUidBtn" type="button" class="install-btn ghost-btn" style="display:none; padding:9px 14px;" onclick="copyGameUid()">
-                        <i class="fa-regular fa-copy"></i> Copy UID
-                    </button>
                 </div>
+                <div id="topSocialBar" class="top-socials-row"></div>
+            </section>
+        </div>
 
-                <div id="gameExtraPhotosGrid" class="game-extra-grid" style="display:none;"></div>
-            </div>
-        </section>
+        <div class="container">
+            <!-- FEATURED DIGITAL PACK (XML / TEMPLATES) -->
+            <section id="featuredPackSection">
+                <div class="section-heading-row">
+                    <h2><i class="fa-regular fa-bookmark" style="color:var(--violet);"></i> Featured Digital Pack</h2>
+                    <div class="filter-pills">
+                        <button class="pill-btn active" data-xmlfilter="paid" onclick="setXmlFilter('paid')">Paid XMLs</button>
+                        <button class="pill-btn" data-xmlfilter="all" onclick="setXmlFilter('all')">All XML & Templates</button>
+                    </div>
+                </div>
+                <div id="featuredPackContainer">
+                    <p style="color:var(--muted);">No digital packs available yet.</p>
+                </div>
+            </section>
+
+            <!-- APPLICATIONS -->
+            <section id="appsSection" style="margin-top: 22px;">
+                <div class="section-heading-row">
+                    <h2><i class="fa-regular fa-bookmark" style="color:var(--accent);"></i> APPLICATIONS</h2>
+                </div>
+                <div id="loader" style="text-align:center; padding:26px; color:var(--accent); font-weight:600;">Loading...</div>
+                <div id="appGrid" class="app-grid"></div>
+            </section>
+
+            <!-- EXTRA GAME PROFILE PHOTOS (ONLY IF SET IN ADMIN) -->
+            <section id="gameExtraSection" style="display:none; margin-top:22px;">
+                <div class="section-heading-row">
+                    <h2><i class="fa-regular fa-images" style="color:var(--violet);"></i> Gallery</h2>
+                </div>
+                <div id="gameExtraPhotosGrid" class="game-extra-grid"></div>
+            </section>
+        </div>
     </div>
 
-    <!-- FULL SHOWCASE VIEW FOR CLICKED XML / TEMPLATE -->
+    <!-- FULL SHOWCASE VIEW FOR XML / TEMPLATE -->
     <section id="itemShowcaseView">
-        <div class="showcase-top-bar">
-            <button type="button" class="install-btn ghost-btn" style="padding:9px 16px; font-size:0.84rem;" onclick="backToStoreView()">
-                <i class="fa-solid fa-arrow-left"></i> Back to Store
+        <div style="display:flex; justify-content:space-between; gap:10px; margin-bottom:14px;">
+            <button type="button" class="install-btn ghost-btn" style="padding:9px 15px;" onclick="backToStoreView()">
+                <i class="fa-solid fa-arrow-left"></i> Back
             </button>
-            <button type="button" class="install-btn ghost-btn" style="padding:9px 16px; font-size:0.84rem;" onclick="openShowcaseLightbox()">
-                <i class="fa-solid fa-expand"></i> Fullscreen Photo
+            <button type="button" class="install-btn ghost-btn" style="padding:9px 15px;" onclick="openShowcaseLightbox()">
+                <i class="fa-solid fa-expand"></i> Fullscreen
             </button>
         </div>
 
         <div class="showcase-hero">
-            <div>
-                <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
-                    <span id="scTypeBadge" class="cat-badge">XML</span>
-                    <span id="scAccessBadge" class="free-tag">FREE</span>
-                    <span id="scShotCount" class="cat-badge" style="background:var(--surface-2); color:var(--ink);">0 Photos</span>
-                </div>
-                <h1 id="scTitle" class="showcase-heading styled-name-text">Title</h1>
-                <p id="scDesc" class="styled-name-text" style="color:var(--muted); font-size:0.9rem; max-width:660px; line-height:1.55;"></p>
+            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+                <span id="scTypeBadge" class="free-tag">XML</span>
+                <span id="scAccessBadge" class="paid-tag">PAID</span>
+                <span id="scShotCount" class="free-tag" style="background:var(--surface-2); color:var(--ink);">0 Photos</span>
             </div>
-
-            <div class="showcase-price-box">
-                <div style="font-size:0.74rem; color:var(--muted);">Price</div>
-                <div id="scPriceText" class="showcase-price-num">FREE</div>
-                <div style="font-size:0.74rem; color:var(--muted);">Instant Auto-Open Link</div>
-            </div>
+            <h1 id="scTitle" class="styled-name-text" style="font-family:'Fraunces',serif; font-size:1.75rem; margin-bottom:6px;">Title</h1>
+            <p id="scDesc" class="styled-name-text" style="color:var(--muted); font-size:0.88rem; line-height:1.5;"></p>
+            <div id="scPriceText" style="font-family:'Fraunces',serif; font-size:1.5rem; font-weight:700; color:var(--violet); margin-top:10px;">₹9</div>
         </div>
 
         <div class="gallery-panel">
-            <div style="font-weight:700; font-size:0.95rem; margin-bottom:12px;">
-                <i class="fa-solid fa-images"></i> All Screenshots Preview
-            </div>
-            <div class="main-shot-box">
-                <img id="scMainImg" src="" alt="Preview Screenshot" class="main-shot-img" onclick="openShowcaseLightbox()">
-            </div>
+            <img id="scMainImg" src="" alt="Preview Screenshot" class="main-shot-img" onclick="openShowcaseLightbox()">
             <div id="scShotsGrid" class="all-shots-grid"></div>
         </div>
 
-        <div id="scBuyBox" class="buy-card-box">
-            <h2 style="font-family:'Fraunces',serif; font-size:1.38rem; margin-bottom:6px;">Buy / Unlock</h2>
-            <p id="scBuySubtext" style="color:var(--muted); font-size:0.85rem; margin-bottom:14px;">
-                Buy par click karte hi checkout page khulega aur payment success hote hi download link khul jayega.
+        <div class="buy-card-box">
+            <h2 style="font-family:'Fraunces',serif; font-size:1.3rem; margin-bottom:6px;">Instant Unlock</h2>
+            <p style="color:var(--muted); font-size:0.84rem; margin-bottom:14px;">
+                Checkout complete hote hi download link automatically unlock aur open ho jayega.
             </p>
 
-            <button id="scBuyBtn" class="install-btn pay-btn" style="padding:12px 24px; font-size:0.92rem;" onclick="startShowcasePayment()">
-                <i class="fa-solid fa-lock"></i> Buy Now — ₹<span id="scBuyAmount">49</span>
+            <button id="scBuyBtn" class="install-btn pay-btn" style="padding:11px 22px; font-size:0.88rem;" onclick="startShowcasePayment()">
+                <i class="fa-solid fa-lock"></i> Instant Unlock — ₹<span id="scBuyAmount">9</span>
             </button>
 
             <div id="scPendingBanner" class="pending-payment-banner">
-                <div style="font-weight:700; color:var(--warm); margin-bottom:6px;">
-                    <i class="fa-solid fa-clock"></i> Checkout Page Opened — Waiting for Payment...
-                </div>
+                <div style="font-weight:700; color:var(--warm); margin-bottom:6px;">Checkout Opened — Waiting for Payment...</div>
                 <div id="scOrderText" style="font-size:0.78rem; color:var(--muted); margin-bottom:10px;"></div>
-                <a id="scCheckoutBtn" href="#" target="_blank" class="install-btn pay-btn" style="padding:9px 16px;">
-                    <i class="fa-solid fa-up-right-from-square"></i> Re-open Checkout Page
-                </a>
+                <a id="scCheckoutBtn" href="#" target="_blank" class="install-btn pay-btn">Re-open Checkout</a>
             </div>
 
-            <div id="scStatusMsg" style="margin-top:12px; font-size:0.82rem; color:var(--muted);"></div>
+            <div id="scStatusMsg" style="margin-top:10px; font-size:0.82rem; color:var(--muted);"></div>
 
             <div id="scUnlockedBox" class="unlocked-box">
                 <div style="color:var(--accent); font-weight:800; margin-bottom:8px;">
-                    <i class="fa-solid fa-circle-check"></i> Payment Verified! Download Link Ready:
+                    <i class="fa-solid fa-circle-check"></i> Unlocked! Download Link Ready:
                 </div>
-                <a id="scUnlockedBtn" href="#" target="_blank" class="install-btn" style="padding:10px 20px; font-size:0.86rem;">
+                <a id="scUnlockedBtn" href="#" target="_blank" class="install-btn" style="padding:10px 18px;">
                     <i class="fa-solid fa-download"></i> Open / Download Link
                 </a>
-                <div id="scUnlockedUrl" style="margin-top:10px; font-size:0.76rem; color:var(--muted);"></div>
+                <div id="scUnlockedUrl" style="margin-top:8px; font-size:0.76rem; color:var(--muted);"></div>
             </div>
         </div>
     </section>
 
+    <!-- FLOATING BOTTOM PILL DOCK -->
+    <div class="floating-dock-wrap">
+        <nav class="floating-dock" aria-label="Quick navigation">
+            <button type="button" class="dock-btn active" onclick="scrollToSection('appsSection', this)">
+                <i class="fa-solid fa-border-all"></i> Apps
+            </button>
+            <button type="button" class="dock-btn" onclick="filterDockType('XML', this)">
+                <i class="fa-regular fa-file-code"></i> Paid XMLs
+            </button>
+            <button type="button" class="dock-btn" onclick="filterDockType('Template', this)">
+                <i class="fa-regular fa-window-restore"></i> Templates
+            </button>
+        </nav>
+    </div>
+
     <footer>
-        <div id="footerSocials" class="social-bar"></div>
         <p>&copy; 2026 <span class="store-footer-text styled-name-text">MAGGIE STORE</span>. All rights reserved.</p>
     </footer>
 
     <div id="appModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <img id="modalIcon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWMyMzMwIi8+PHRleHQgeD0iNTAlIiB5PSI1NSUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjOWE0YjhiIj5BUFA8L3RleHQ+PC9zdmc+" alt="Icon" class="modal-icon">
+            <img id="modalIcon" src="" alt="Icon" style="width:78px; height:78px; border-radius:18px; object-fit:cover; margin-bottom:10px;">
             <div>
-                <span id="modalCat" class="cat-badge" style="margin-bottom:6px;">General</span>
-                <span id="modalPriceBadge" class="free-tag" style="margin-bottom:6px;">FREE</span>
+                <span id="modalCat" class="free-tag">General</span>
+                <span id="modalPriceBadge" class="free-tag">FREE</span>
             </div>
-            <h2 id="modalTitle" class="styled-name-text" style="font-family:'Fraunces',serif;">App Name</h2>
-            <p id="modalDesc" class="modal-desc styled-name-text"></p>
+            <h2 id="modalTitle" class="styled-name-text" style="font-family:'Fraunces',serif; margin-top:4px;">App Name</h2>
+            <p id="modalDesc" class="styled-name-text" style="color:var(--muted); font-size:0.86rem; margin:12px 0 20px; line-height:1.55;"></p>
             <div id="modalActionArea"></div>
-            <div id="modalStatusMsg" style="margin-top:10px; font-size:0.78rem; color:var(--muted); word-break:break-all;"></div>
+            <div id="modalStatusMsg" style="margin-top:10px; font-size:0.78rem; color:var(--muted);"></div>
         </div>
     </div>
 
     <div id="scLightbox" class="lightbox" onclick="closeShowcaseLightbox()">
         <span class="lightbox-close" onclick="closeShowcaseLightbox()">&times;</span>
-        <img id="scLightboxImg" src="" alt="Zoomed Screenshot" onclick="event.stopPropagation()">
+        <img id="scLightboxImg" src="" alt="Zoomed Photo" onclick="event.stopPropagation()">
     </div>
 
     <script>
         (function initSavedTheme() {
-            const saved = localStorage.getItem("maggie_theme") || "dark";
+            const saved = localStorage.getItem("maggie_theme") || "light";
             document.documentElement.setAttribute("data-theme", saved);
             updateThemeIcon(saved);
         })();
@@ -1144,20 +1010,19 @@
         function updateThemeIcon(theme) {
             const btn = document.getElementById("themeBtn");
             if (!btn) return;
-            btn.innerHTML = theme === "dark"
-                ? '<i class="fa-solid fa-sun"></i>'
-                : '<i class="fa-solid fa-moon"></i>';
+            btn.innerHTML = theme === "light"
+                ? '<i class="fa-solid fa-moon"></i>'
+                : '<i class="fa-solid fa-sun"></i>';
         }
 
         window.toggleTheme = function () {
-            const current = document.documentElement.getAttribute("data-theme") || "dark";
-            const next = current === "dark" ? "light" : "dark";
+            const current = document.documentElement.getAttribute("data-theme") || "light";
+            const next = current === "light" ? "dark" : "light";
             document.documentElement.setAttribute("data-theme", next);
             localStorage.setItem("maggie_theme", next);
             updateThemeIcon(next);
         };
 
-        // REMOVES BROKEN DIACRITICS / ZALGO MARKS SO [] BOXES NEVER APPEAR
         window.sanitizeDisplayText = function (raw) {
             if (!raw) return "";
             return String(raw)
@@ -1178,8 +1043,7 @@
 
         window.openShowcaseLightbox = function () {
             const src = document.getElementById("scMainImg").src;
-            if (!src) return;
-            window.openCustomLightbox(src);
+            if (src) window.openCustomLightbox(src);
         };
 
         window.closeShowcaseLightbox = function () {
@@ -1200,16 +1064,23 @@
             }
         };
 
+        window.scrollToSection = function (id, btn) {
+            document.querySelectorAll(".dock-btn").forEach(b => b.classList.remove("active"));
+            if (btn) btn.classList.add("active");
+            if (document.getElementById("itemShowcaseView").style.display === "block") {
+                window.backToStoreView();
+            }
+            const target = document.getElementById(id);
+            if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+        };
+
         let lastScrollY = window.scrollY;
         let scrollDir = "down";
 
         window.addEventListener("scroll", () => {
             const y = window.scrollY;
-            if (y > lastScrollY + 2) {
-                scrollDir = "down";
-            } else if (y < lastScrollY - 2) {
-                scrollDir = "up";
-            }
+            if (y > lastScrollY + 2) scrollDir = "down";
+            else if (y < lastScrollY - 2) scrollDir = "up";
             lastScrollY = Math.max(0, y);
 
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -1225,16 +1096,12 @@
                 clearTimeout(Number(el._revealTimer || 0));
 
                 if (entry.isIntersecting) {
-                    const rectTop = entry.boundingClientRect.top;
-                    const enteredFromTop = rectTop < window.innerHeight * 0.45 && scrollDir === "up";
+                    const enteredFromTop = entry.boundingClientRect.top < window.innerHeight * 0.45 && scrollDir === "up";
                     el.classList.toggle("from-top", enteredFromTop);
-                    el._revealTimer = setTimeout(() => {
-                        el.classList.add("is-visible");
-                    }, delay);
+                    el._revealTimer = setTimeout(() => el.classList.add("is-visible"), delay);
                 } else {
                     el.classList.remove("is-visible");
-                    const exitedAbove = entry.boundingClientRect.top < 0;
-                    el.classList.toggle("from-top", exitedAbove);
+                    el.classList.toggle("from-top", entry.boundingClientRect.top < 0);
                 }
             });
         }, { threshold: 0.08, rootMargin: "20px 0px 20px 0px" });
@@ -1242,16 +1109,14 @@
         function attachCardTilt(card) {
             if (card._tiltBound) return;
             card._tiltBound = true;
-
             card.addEventListener("pointermove", (e) => {
                 if (e.pointerType === "touch") return;
                 const rect = card.getBoundingClientRect();
                 const px = (e.clientX - rect.left) / rect.width - 0.5;
                 const py = (e.clientY - rect.top) / rect.height - 0.5;
-                card.style.setProperty("--tilt-y", `${(px * 8).toFixed(2)}deg`);
-                card.style.setProperty("--tilt-x", `${(-py * 7).toFixed(2)}deg`);
+                card.style.setProperty("--tilt-y", `${(px * 6).toFixed(2)}deg`);
+                card.style.setProperty("--tilt-x", `${(-py * 5).toFixed(2)}deg`);
             });
-
             card.addEventListener("pointerleave", () => {
                 card.style.setProperty("--tilt-x", "0deg");
                 card.style.setProperty("--tilt-y", "0deg");
@@ -1260,10 +1125,9 @@
 
         window.observeRevealCards = function (containerEl) {
             if (!containerEl) return;
-            const cards = containerEl.querySelectorAll(".reveal-card");
-            cards.forEach((card, idx) => {
+            containerEl.querySelectorAll(".reveal-card").forEach((card, idx) => {
                 card.classList.remove("is-visible");
-                card.dataset.animDelay = String(Math.min(idx * 45, 220));
+                card.dataset.animDelay = String(Math.min(idx * 40, 200));
                 attachCardTilt(card);
                 cardObserver.observe(card);
             });
@@ -1292,19 +1156,17 @@
         const db = getFirestore(app);
 
         const appGrid = document.getElementById('appGrid');
-        const categoryBar = document.getElementById('categoryBar');
         const searchInput = document.getElementById('searchInput');
-        const socialBar = document.getElementById('socialBar');
-        const footerSocials = document.getElementById('footerSocials');
-        const paidXmlGrid = document.getElementById('paidXmlGrid');
+        const topSocialBar = document.getElementById('topSocialBar');
+        const featuredPackContainer = document.getElementById('featuredPackContainer');
 
-        const FALLBACK_STORE = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzEwYjk4MSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmYiPk08L3RleHQ+PC9zdmc+";
-        const FALLBACK_APP = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNDAiIGhlaWdodD0iMTQwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWMyMzMwIi8+PHRleHQgeD0iNTAlIiB5PSI1NSUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjOWE0YjhiIj5BUFA8L3RleHQ+PC9zdmc+";
+        const FALLBACK_STORE = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzA1OTY2OSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmYiPk08L3RleHQ+PC9zdmc+";
+        const FALLBACK_APP = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NDAiIGhlaWdodD0iNTQwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWYyNjM0Ii8+PHRleHQgeD0iNTAlIiB5PSI1MiUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNDgiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNhNzh Promise: I'm using #a78bfa\"\u003e".replace(" Promise: I'm using #a78bfa\"\u003e", "\">#a78bfa\">") + "MAGGIE</text></svg>";
 
         let allApps = [];
         let allXmlItems = [];
-        let activeCategory = 'All';
         let xmlFilterMode = 'paid';
+        let dockTypeFilter = 'all';
         let activeShowcaseItem = null;
         let activeModalApp = null;
         let showcasePollTimer = null;
@@ -1341,176 +1203,71 @@
             imgEl.src = url;
         }
 
-        function renderGameBottomSection(settings = {}) {
-            const wrap = document.getElementById('gameBottomSection');
-            const mainCard = document.getElementById('gameMainCard');
-            const mainPhotoEl = document.getElementById('gameMainPhotoEl');
-            const nameDisplay = document.getElementById('gameNameDisplay');
-            const uidBox = document.getElementById('gameUidBox');
-            const uidValue = document.getElementById('gameUidValue');
-            const copyBtn = document.getElementById('copyGameUidBtn');
-            const extraGrid = document.getElementById('gameExtraPhotosGrid');
-
+        function renderProfileAndGameData(settings = {}) {
             const uid = window.sanitizeDisplayText(settings.gameUid || '');
             const label = window.sanitizeDisplayText(settings.gameLabel || '');
             const mainPhoto = cleanUrl(settings.gameMainPhoto || '');
+            const logoUrl = cleanUrl(settings.logoUrl || '');
             const extraPhotos = Array.isArray(settings.gameExtraPhotos)
                 ? settings.gameExtraPhotos.map(cleanUrl).filter(Boolean)
                 : [];
 
-            const hasMainCardContent = Boolean(uid || mainPhoto || label);
+            document.getElementById('heroProfileTitle').innerText = label || baseStoreName;
 
-            if (hasMainCardContent) {
-                mainCard.style.display = 'flex';
-                mainCard.classList.add('reveal-card');
+            const avatarEl = document.getElementById('topProfileAvatar');
+            setImageDirect(avatarEl, mainPhoto || logoUrl, FALLBACK_STORE);
 
-                if (label) {
-                    nameDisplay.style.display = 'block';
-                    nameDisplay.innerText = label;
-                } else {
-                    nameDisplay.style.display = 'none';
-                    nameDisplay.innerText = '';
-                }
+            const uidBadge = document.getElementById('uidPillBadge');
+            const uidVal = document.getElementById('gameUidValue');
+            const copyBtn = document.getElementById('copyGameUidBtn');
 
-                if (uid) {
-                    uidBox.style.display = 'inline-flex';
-                    uidValue.innerText = uid;
-                    copyBtn.style.display = 'inline-flex';
-                } else {
-                    uidBox.style.display = 'none';
-                    uidValue.innerText = '';
-                    copyBtn.style.display = 'none';
-                }
-
-                if (mainPhoto) {
-                    mainPhotoEl.style.display = 'block';
-                    mainPhotoEl.onerror = () => {
-                        mainPhotoEl.style.display = 'none';
-                    };
-                    mainPhotoEl.src = mainPhoto;
-                } else {
-                    mainPhotoEl.style.display = 'none';
-                    mainPhotoEl.src = '';
-                }
+            if (uid) {
+                uidVal.innerText = uid;
+                uidBadge.style.display = 'inline-flex';
+                copyBtn.style.display = 'inline-flex';
             } else {
-                mainCard.style.display = 'none';
-                mainPhotoEl.style.display = 'none';
-                mainPhotoEl.src = '';
-                uidBox.style.display = 'none';
+                uidVal.innerText = '';
+                uidBadge.style.display = 'none';
                 copyBtn.style.display = 'none';
             }
 
+            const extraSection = document.getElementById('gameExtraSection');
+            const extraGrid = document.getElementById('gameExtraPhotosGrid');
             extraGrid.innerHTML = '';
+
             if (extraPhotos.length > 0) {
-                extraGrid.style.display = 'grid';
+                extraSection.style.display = 'block';
                 extraPhotos.forEach((url, idx) => {
                     const card = document.createElement('div');
                     card.className = 'app-card reveal-card game-extra-card';
                     card.innerHTML = `
-                        <img src="${url}" alt="Profile Photo ${idx + 1}" class="game-extra-photo">
-                        <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.78rem; color:var(--muted);">
-                            <span><i class="fa-solid fa-image" style="color:var(--accent);"></i> Profile Photo #${idx + 1}</span>
+                        <img src="${url}" alt="Photo ${idx + 1}" class="game-extra-photo">
+                        <div style="font-size:0.76rem; color:var(--muted); display:flex; justify-content:space-between;">
+                            <span>Photo #${idx + 1}</span>
                             <i class="fa-solid fa-expand"></i>
                         </div>
                     `;
-                    const img = card.querySelector('img');
-                    img.onerror = () => {
-                        card.remove();
-                        if (!extraGrid.children.length) extraGrid.style.display = 'none';
-                    };
                     card.onclick = () => window.openCustomLightbox(url);
                     extraGrid.appendChild(card);
                 });
+                window.observeRevealCards(extraSection);
             } else {
-                extraGrid.style.display = 'none';
+                extraSection.style.display = 'none';
             }
-
-            if (hasMainCardContent || extraPhotos.length > 0) {
-                wrap.style.display = 'block';
-                window.observeRevealCards(wrap);
-            } else {
-                wrap.style.display = 'none';
-            }
-        }
-
-        function stopShowcasePolling() {
-            if (showcasePollTimer) {
-                clearInterval(showcasePollTimer);
-                showcasePollTimer = null;
-            }
-        }
-
-        function stopModalPolling() {
-            if (modalPollTimer) {
-                clearInterval(modalPollTimer);
-                modalPollTimer = null;
-            }
-        }
-
-        function openDownloadLink(rawUrl, autoTrigger = true) {
-            const url = cleanUrl(rawUrl);
-            if (!url || url === '#') return;
-            if (autoTrigger) {
-                const opened = window.open(url, '_blank', 'noopener,noreferrer');
-                if (!opened) {
-                    window.location.href = url;
-                }
-            }
-        }
-
-        async function createFamGatewayOrder(amountRupees, customerName) {
-            if (FAMGATEWAY_BACKEND_ORDER_URL) {
-                const r = await fetch(FAMGATEWAY_BACKEND_ORDER_URL, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        amount: amountRupees,
-                        customer_name: customerName
-                    })
-                });
-                const payload = await r.json();
-                if (!r.ok || payload.status !== "success" || !payload.data) {
-                    throw new Error(payload.message || "Backend order creation failed.");
-                }
-                return payload.data;
-            }
-
-            const r = await fetch(`${FAMGATEWAY_BASE_URL}/api/create-order`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-Api-Key": FAMGATEWAY_API_KEY
-                },
-                body: JSON.stringify({
-                    api_key: FAMGATEWAY_API_KEY,
-                    amount: amountRupees,
-                    customer_name: customerName
-                })
-            });
-            const payload = await r.json();
-            if (!r.ok || payload.status !== "success" || !payload.data) {
-                throw new Error(payload.message || "FamGateway order creation failed.");
-            }
-            return payload.data;
         }
 
         onSnapshot(doc(db, "settings", "general"), (docSnap) => {
-            if (docSnap.exists()) {
-                const settings = docSnap.data();
-                if (settings.logoUrl) {
-                    setImageDirect(document.getElementById('storeLogo'), settings.logoUrl, FALLBACK_STORE);
-                }
-                if (settings.storeName) {
-                    baseStoreName = window.sanitizeDisplayText(settings.storeName) || "MAGGIE STORE";
-                    document.getElementById('storeName').innerText = baseStoreName;
-                    document.getElementById('pageTitle').innerText = baseStoreName + " - App Hub";
-                    document.getElementById('heroSubtitle').innerText = "Fast, verified, and direct downloads powered by " + baseStoreName;
-                    document.querySelectorAll('.store-footer-text').forEach(el => el.innerText = baseStoreName);
-                }
-                renderGameBottomSection(settings);
-            } else {
-                renderGameBottomSection({});
+            const s = docSnap.exists() ? docSnap.data() : {};
+            if (s.logoUrl) {
+                setImageDirect(document.getElementById('storeLogo'), s.logoUrl, FALLBACK_STORE);
             }
+            if (s.storeName) {
+                baseStoreName = window.sanitizeDisplayText(s.storeName) || "MAGGIE STORE";
+                document.getElementById('storeName').innerText = baseStoreName;
+                document.getElementById('pageTitle').innerText = baseStoreName + " - App Hub";
+                document.querySelectorAll('.store-footer-text').forEach(el => el.innerText = baseStoreName);
+            }
+            renderProfileAndGameData(s);
         });
 
         function getPlatformIcon(platform) {
@@ -1520,84 +1277,74 @@
             if (p.includes('disc')) return 'fa-brands fa-discord';
             if (p.includes('you')) return 'fa-brands fa-youtube';
             if (p.includes('whats')) return 'fa-brands fa-whatsapp';
-            if (p.includes('x') || p.includes('twit')) return 'fa-brands fa-x-twitter';
             if (p.includes('git')) return 'fa-brands fa-github';
             return 'fa-solid fa-link';
         }
 
         onSnapshot(collection(db, "socials"), (snapshot) => {
-            socialBar.innerHTML = '';
-            footerSocials.innerHTML = '';
+            topSocialBar.innerHTML = '';
             snapshot.forEach((docSnap) => {
                 const data = docSnap.data();
-                const iconClass = getPlatformIcon(data.platform);
                 const platName = window.sanitizeDisplayText(data.platform || "Link");
-                const html = `
-                    <a href="${cleanUrl(data.url)}" target="_blank" class="social-pill">
-                        <i class="${iconClass}"></i> <span class="styled-name-text">${platName}</span>
+                topSocialBar.innerHTML += `
+                    <a href="${cleanUrl(data.url)}" target="_blank" class="icon-social-btn" title="${platName}">
+                        <i class="${getPlatformIcon(data.platform)}"></i>
                     </a>
                 `;
-                socialBar.innerHTML += html;
-                footerSocials.innerHTML += html;
             });
         });
 
         onSnapshot(collection(db, "apps"), (snapshot) => {
             document.getElementById('loader').style.display = 'none';
             allApps = [];
-            const categories = new Set(['All']);
-
             snapshot.forEach((docSnap) => {
-                const appData = { id: docSnap.id, ...docSnap.data() };
-                allApps.push(appData);
-                if (appData.category) categories.add(appData.category);
+                allApps.push({ id: docSnap.id, ...docSnap.data() });
             });
-
-            renderCategories(Array.from(categories));
             filterAndRender();
-        }, (err) => {
-            document.getElementById('loader').innerHTML = `<span style="color:#ef4444;">Error: ${err.message}</span>`;
         });
 
-        function renderCategories(cats) {
-            categoryBar.innerHTML = '';
-            cats.forEach(cat => {
-                const btn = document.createElement('button');
-                btn.className = `cat-btn ${activeCategory === cat ? 'active' : ''}`;
-                btn.innerText = cat;
-                btn.onclick = () => {
-                    activeCategory = cat;
-                    categoryBar.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    filterAndRender();
-                };
-                categoryBar.appendChild(btn);
+        onSnapshot(collection(db, "xmlTemplates"), (snapshot) => {
+            allXmlItems = [];
+            snapshot.forEach((docSnap) => {
+                allXmlItems.push({ id: docSnap.id, ...docSnap.data() });
             });
-        }
+            filterAndRender();
+        });
+
+        window.setXmlFilter = (mode) => {
+            xmlFilterMode = mode;
+            document.querySelectorAll('[data-xmlfilter]').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-xmlfilter') === mode);
+            });
+            filterAndRender();
+        };
+
+        window.filterDockType = (typeName, btn) => {
+            dockTypeFilter = dockTypeFilter === typeName ? 'all' : typeName;
+            document.querySelectorAll(".dock-btn").forEach(b => b.classList.remove("active"));
+            if (btn && dockTypeFilter !== 'all') btn.classList.add("active");
+            filterAndRender();
+            document.getElementById("featuredPackSection")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        };
 
         function filterAndRender() {
-            const term = searchInput.value.toLowerCase();
-            const filteredApps = allApps.filter(appItem => {
-                const name = (appItem.name || '').toLowerCase();
-                const matchesSearch = name.includes(term);
-                const matchesCat = activeCategory === 'All' || (appItem.category || 'General') === activeCategory;
-                return matchesSearch && matchesCat;
-            });
+            const term = searchInput.value.toLowerCase().trim();
+            const filteredApps = allApps.filter(a => !term || (a.name || '').toLowerCase().includes(term) || (a.category || '').toLowerCase().includes(term));
             renderApps(filteredApps);
-            renderPaidXmlSection(term);
+            renderFeaturedAndPacks(term);
         }
 
         function renderApps(apps) {
             appGrid.innerHTML = '';
             if (apps.length === 0) {
-                appGrid.innerHTML = '<p style="color:var(--muted); grid-column: 1/-1; text-align:center; padding:20px;">No apps found in this category.</p>';
+                appGrid.innerHTML = '<p style="color:var(--muted); grid-column:1/-1;">No apps found.</p>';
                 return;
             }
 
             apps.forEach((appItem) => {
-                const isPaidApp = Boolean(appItem.isPaid);
+                const isPaid = Boolean(appItem.isPaid);
                 const price = Number(appItem.price || 49);
-                const unlocked = !isPaidApp || localStorage.getItem('maggie_app_unlocked_' + appItem.id) === '1';
+                const unlocked = !isPaid || localStorage.getItem('maggie_app_unlocked_' + appItem.id) === '1';
                 const dlUrl = cleanUrl(appItem.downloadUrl) || '#';
                 const safeTitle = window.sanitizeDisplayText(appItem.name || 'Unnamed App');
                 const safeDesc = window.sanitizeDisplayText(appItem.description || 'Tap to view details');
@@ -1605,24 +1352,21 @@
                 const card = document.createElement('div');
                 card.className = 'app-card reveal-card';
 
-                const statusBadge = isPaidApp
-                    ? `<span class="paid-tag"><i class="fa-solid fa-lock"></i> ₹${price}</span>`
+                const badgeHtml = isPaid
+                    ? `<span class="paid-tag">${unlocked ? 'UNLOCKED' : `₹${price}`}</span>`
                     : `<span class="free-tag">FREE</span>`;
 
-                const actionBtnHtml = (!isPaidApp || unlocked)
+                const btnHtml = (!isPaid || unlocked)
                     ? `<a href="${dlUrl}" target="_blank" class="install-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-download"></i> Install</a>`
                     : `<button type="button" class="install-btn pay-btn" onclick="event.stopPropagation(); triggerAppDirectBuy('${appItem.id}')"><i class="fa-solid fa-lock"></i> Buy ₹${price}</button>`;
 
                 card.innerHTML = `
                     <img src="${FALLBACK_APP}" alt="Icon" class="app-icon">
                     <div class="app-info">
-                        <div>
-                            <span class="cat-badge">${appItem.category || 'General'}</span>
-                            ${statusBadge}
-                        </div>
+                        ${badgeHtml}
                         <div class="app-title styled-name-text">${safeTitle}</div>
                         <div class="app-desc-short styled-name-text">${safeDesc}</div>
-                        ${actionBtnHtml}
+                        ${btnHtml}
                     </div>
                 `;
                 setImageDirect(card.querySelector('.app-icon'), appItem.logoUrl, FALLBACK_APP);
@@ -1633,7 +1377,116 @@
             window.observeRevealCards(appGrid);
         }
 
+        function renderFeaturedAndPacks(term = '') {
+            const items = allXmlItems.filter(i => {
+                const matchesPaid = xmlFilterMode !== 'paid' || Boolean(i.isPaid);
+                const matchesType = dockTypeFilter === 'all' || (i.type || '').toLowerCase() === dockTypeFilter.toLowerCase();
+                const matchesSearch = !term || (i.title || '').toLowerCase().includes(term) || (i.type || '').toLowerCase().includes(term);
+                return matchesPaid && matchesType && matchesSearch;
+            });
+
+            featuredPackContainer.innerHTML = '';
+            if (items.length === 0) {
+                featuredPackContainer.innerHTML = '<p style="color:var(--muted);">Abhi koi pack available nahi hai.</p>';
+                return;
+            }
+
+            const first = items[0];
+            const photos = getItemPhotos(first);
+            const isPaid = Boolean(first.isPaid);
+            const price = Number(first.price || 9);
+            const safeTitle = window.sanitizeDisplayText(first.title || 'Featured Pack');
+            const safeDesc = window.sanitizeDisplayText(first.description || 'Tap to view full preview gallery and unlock.');
+
+            const heroCard = document.createElement('div');
+            heroCard.className = 'featured-pack-card reveal-card';
+            heroCard.onclick = () => window.openItemFullShowcase(first.id);
+
+            const thumbsHtml = photos.slice(0, 5).map(u => `<img src="${u}" alt="Thumb" class="thumb-strip-item">`).join('');
+
+            heroCard.innerHTML = `
+                <div class="featured-top-split">
+                    <div class="featured-cover-box">
+                        <img src="${cleanUrl(first.thumbUrl) || photos[0]}" alt="Cover" class="featured-cover-img">
+                        <span class="photo-count-badge">${photos.length} PHOTOS</span>
+                    </div>
+                    <div>
+                        <div class="featured-title styled-name-text">${safeTitle}</div>
+                        <p class="featured-desc styled-name-text">${safeDesc}</p>
+                        <div class="featured-actions-row">
+                            <span class="price-pill">${isPaid ? `₹${price}` : 'FREE'}</span>
+                            <button type="button" class="unlock-pill-btn" onclick="event.stopPropagation(); openItemFullShowcase('${first.id}')">
+                                <i class="fa-solid fa-sparkles"></i> ${isPaid ? 'Instant Unlock' : 'Preview'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="thumb-strip">${thumbsHtml}</div>
+            `;
+            featuredPackContainer.appendChild(heroCard);
+
+            if (items.length > 1) {
+                const subGrid = document.createElement('div');
+                subGrid.className = 'extra-packs-grid';
+                items.slice(1).forEach(item => {
+                    const pList = getItemPhotos(item);
+                    const c = document.createElement('div');
+                    c.className = 'app-card reveal-card';
+                    c.onclick = () => window.openItemFullShowcase(item.id);
+                    c.innerHTML = `
+                        <img src="${cleanUrl(item.thumbUrl) || pList[0]}" alt="Pack" class="app-icon">
+                        <div class="app-info">
+                            <span class="paid-tag">${item.isPaid ? `₹${item.price || 9}` : 'FREE'} • ${pList.length} Photos</span>
+                            <div class="app-title styled-name-text">${window.sanitizeDisplayText(item.title || 'Pack')}</div>
+                            <div class="app-desc-short styled-name-text">${window.sanitizeDisplayText(item.description || 'Tap to preview')}</div>
+                            <button type="button" class="install-btn pay-btn">Preview</button>
+                        </div>
+                    `;
+                    subGrid.appendChild(c);
+                });
+                featuredPackContainer.appendChild(subGrid);
+            }
+
+            window.observeRevealCards(featuredPackContainer);
+        }
+
         searchInput.addEventListener('input', filterAndRender);
+
+        function stopModalPolling() {
+            if (modalPollTimer) { clearInterval(modalPollTimer); modalPollTimer = null; }
+        }
+
+        function stopShowcasePolling() {
+            if (showcasePollTimer) { clearInterval(showcasePollTimer); showcasePollTimer = null; }
+        }
+
+        function openDownloadLink(rawUrl) {
+            const url = cleanUrl(rawUrl);
+            if (!url || url === '#') return;
+            const opened = window.open(url, '_blank', 'noopener,noreferrer');
+            if (!opened) window.location.href = url;
+        }
+
+        async function createFamGatewayOrder(amountRupees, customerName) {
+            if (FAMGATEWAY_BACKEND_ORDER_URL) {
+                const r = await fetch(FAMGATEWAY_BACKEND_ORDER_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ amount: amountRupees, customer_name: customerName })
+                });
+                const payload = await r.json();
+                if (!r.ok || payload.status !== "success" || !payload.data) throw new Error(payload.message || "Order failed");
+                return payload.data;
+            }
+            const r = await fetch(`${FAMGATEWAY_BASE_URL}/api/create-order`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json", "X-Api-Key": FAMGATEWAY_API_KEY },
+                body: JSON.stringify({ api_key: FAMGATEWAY_API_KEY, amount: amountRupees, customer_name: customerName })
+            });
+            const payload = await r.json();
+            if (!r.ok || payload.status !== "success" || !payload.data) throw new Error(payload.message || "Order failed");
+            return payload.data;
+        }
 
         window.triggerAppDirectBuy = async (appId) => {
             const appItem = allApps.find(a => a.id === appId);
@@ -1645,42 +1498,25 @@
         window.openModal = (appItem) => {
             stopModalPolling();
             activeModalApp = appItem;
-
-            const isPaidApp = Boolean(appItem.isPaid);
+            const isPaid = Boolean(appItem.isPaid);
             const price = Number(appItem.price || 49);
-            const unlocked = !isPaidApp || localStorage.getItem('maggie_app_unlocked_' + appItem.id) === '1';
+            const unlocked = !isPaid || localStorage.getItem('maggie_app_unlocked_' + appItem.id) === '1';
             const dlUrl = cleanUrl(appItem.downloadUrl) || '#';
 
             setImageDirect(document.getElementById('modalIcon'), appItem.logoUrl, FALLBACK_APP);
             document.getElementById('modalCat').innerText = appItem.category || 'General';
-
             const pBadge = document.getElementById('modalPriceBadge');
-            if (isPaidApp) {
-                pBadge.className = 'paid-tag';
-                pBadge.innerText = unlocked ? `PAID • UNLOCKED` : `PAID • ₹${price}`;
-            } else {
-                pBadge.className = 'free-tag';
-                pBadge.innerText = 'FREE';
-            }
+            pBadge.className = isPaid ? 'paid-tag' : 'free-tag';
+            pBadge.innerText = isPaid ? (unlocked ? 'UNLOCKED' : `₹${price}`) : 'FREE';
 
             document.getElementById('modalTitle').innerText = window.sanitizeDisplayText(appItem.name || 'App');
-            document.getElementById('modalDesc').innerText = window.sanitizeDisplayText(appItem.description || 'No description provided for this app.');
+            document.getElementById('modalDesc').innerText = window.sanitizeDisplayText(appItem.description || 'No description provided.');
             document.getElementById('modalStatusMsg').innerText = '';
 
-            const actionArea = document.getElementById('modalActionArea');
-            if (!isPaidApp || unlocked) {
-                actionArea.innerHTML = `
-                    <a href="${dlUrl}" target="_blank" class="install-btn" style="padding: 11px 28px; font-size: 0.9rem;">
-                        <i class="fa-solid fa-download"></i> Download Now
-                    </a>
-                `;
-            } else {
-                actionArea.innerHTML = `
-                    <button id="modalBuyBtn" type="button" class="install-btn pay-btn" style="padding: 11px 26px; font-size: 0.9rem;" onclick="startAppPayment()">
-                        <i class="fa-solid fa-lock"></i> Buy Now — ₹${price}
-                    </button>
-                `;
-            }
+            const area = document.getElementById('modalActionArea');
+            area.innerHTML = (!isPaid || unlocked)
+                ? `<a href="${dlUrl}" target="_blank" class="install-btn" style="padding:10px 24px;"><i class="fa-solid fa-download"></i> Download Now</a>`
+                : `<button id="modalBuyBtn" type="button" class="install-btn pay-btn" style="padding:10px 22px;" onclick="startAppPayment()"><i class="fa-solid fa-lock"></i> Buy Now — ₹${price}</button>`;
 
             const modal = document.getElementById('appModal');
             modal.classList.remove('is-open');
@@ -1696,229 +1532,72 @@
             modal.style.display = 'none';
         };
 
-        function startAppStatusPolling(orderId, appItem) {
-            stopModalPolling();
-            const statusEl = document.getElementById('modalStatusMsg');
-            const pollUrl = `${FAMGATEWAY_BASE_URL}/api/checkout-status.php?order_id=${encodeURIComponent(orderId)}`;
-            const deadline = Date.now() + 10 * 60 * 1000;
-
-            statusEl.innerText = "Checkout khul gaya hai. Payment complete hote hi download link khul jayega...";
-
-            modalPollTimer = setInterval(async () => {
-                if (Date.now() > deadline) {
-                    stopModalPolling();
-                    statusEl.innerText = "Payment session timed out.";
-                    return;
-                }
-                try {
-                    const res = await fetch(pollUrl, { cache: "no-store" });
-                    if (!res.ok) return;
-                    const data = await res.json();
-                    if (data && data.status === "success") {
-                        stopModalPolling();
-                        localStorage.setItem('maggie_app_unlocked_' + appItem.id, '1');
-                        const link = cleanUrl(appItem.downloadUrl) || '#';
-                        document.getElementById('modalPriceBadge').className = 'free-tag';
-                        document.getElementById('modalPriceBadge').innerText = 'UNLOCKED';
-                        document.getElementById('modalActionArea').innerHTML = `
-                            <a href="${link}" target="_blank" class="install-btn" style="padding: 11px 28px; font-size: 0.9rem;">
-                                <i class="fa-solid fa-download"></i> Download Now
-                            </a>
-                        `;
-                        statusEl.innerHTML = `<span style="color:var(--accent); font-weight:700;">Payment success! Download link open ho raha hai...</span>`;
-                        filterAndRender();
-                        openDownloadLink(link, true);
-                    } else if (data && data.status === "expired") {
-                        stopModalPolling();
-                        statusEl.innerText = "Order expired. Buy Now par dubara click karein.";
-                    }
-                } catch (_) {}
-            }, 3000);
-        }
-
         window.startAppPayment = async () => {
             if (!activeModalApp) return;
-            const amountRupees = Math.max(1, Number(activeModalApp.price || 49));
+            const amount = Math.max(1, Number(activeModalApp.price || 49));
             const buyBtn = document.getElementById('modalBuyBtn');
             const statusEl = document.getElementById('modalStatusMsg');
-
-            if (buyBtn) {
-                buyBtn.disabled = true;
-                buyBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Opening Checkout...';
-            }
-            statusEl.innerText = '';
+            if (buyBtn) { buyBtn.disabled = true; buyBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Opening...'; }
 
             try {
-                const d = await createFamGatewayOrder(
-                    amountRupees,
-                    `App: ${window.sanitizeDisplayText(activeModalApp.name || "MAGGIE STORE")}`
-                );
-                const orderId = d.order_id;
-                const checkoutUrl = cleanUrl(d.checkout_url || `${FAMGATEWAY_BASE_URL}/pay.php?order_id=${encodeURIComponent(orderId)}`);
-
-                if (buyBtn) {
-                    buyBtn.disabled = false;
-                    buyBtn.innerHTML = `<i class="fa-solid fa-up-right-from-square"></i> Re-open Checkout (₹${amountRupees})`;
-                    buyBtn.onclick = () => window.open(checkoutUrl, '_blank', 'noopener,noreferrer');
-                }
-
+                const d = await createFamGatewayOrder(amount, `App: ${window.sanitizeDisplayText(activeModalApp.name || "MAGGIE STORE")}`);
+                const checkoutUrl = cleanUrl(d.checkout_url || `${FAMGATEWAY_BASE_URL}/pay.php?order_id=${encodeURIComponent(d.order_id)}`);
                 window.open(checkoutUrl, '_blank', 'noopener,noreferrer');
-                startAppStatusPolling(orderId, activeModalApp);
+
+                const pollUrl = `${FAMGATEWAY_BASE_URL}/api/checkout-status.php?order_id=${encodeURIComponent(d.order_id)}`;
+                statusEl.innerText = "Payment complete hote hi download link unlock hoga...";
+                modalPollTimer = setInterval(async () => {
+                    try {
+                        const res = await fetch(pollUrl, { cache: "no-store" });
+                        if (!res.ok) return;
+                        const data = await res.json();
+                        if (data && data.status === "success") {
+                            stopModalPolling();
+                            localStorage.setItem('maggie_app_unlocked_' + activeModalApp.id, '1');
+                            const link = cleanUrl(activeModalApp.downloadUrl) || '#';
+                            document.getElementById('modalActionArea').innerHTML = `<a href="${link}" target="_blank" class="install-btn" style="padding:10px 24px;"><i class="fa-solid fa-download"></i> Download Now</a>`;
+                            filterAndRender();
+                            openDownloadLink(link);
+                        }
+                    } catch (_) {}
+                }, 3000);
             } catch (err) {
-                if (buyBtn) {
-                    buyBtn.disabled = false;
-                    buyBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Buy Now — ₹${amountRupees}`;
-                }
+                if (buyBtn) { buyBtn.disabled = false; buyBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Buy Now — ₹${amount}`; }
                 statusEl.innerHTML = `<span style="color:#ef4444;">${err.message}</span>`;
             }
         };
-
-        window.setXmlFilter = (mode) => {
-            xmlFilterMode = mode;
-            document.querySelectorAll('[data-xmlfilter]').forEach(btn => {
-                btn.classList.toggle('active', btn.getAttribute('data-xmlfilter') === mode);
-            });
-            renderPaidXmlSection(searchInput.value.toLowerCase());
-        };
-
-        onSnapshot(collection(db, "xmlTemplates"), (snapshot) => {
-            allXmlItems = [];
-            snapshot.forEach((docSnap) => {
-                allXmlItems.push({ id: docSnap.id, ...docSnap.data() });
-            });
-            renderPaidXmlSection(searchInput.value.toLowerCase());
-        });
-
-        function renderPaidXmlSection(term = '') {
-            paidXmlGrid.innerHTML = '';
-            const items = allXmlItems.filter(i => {
-                const matchesPaid = xmlFilterMode !== 'paid' || Boolean(i.isPaid);
-                const matchesSearch = !term || (i.title || '').toLowerCase().includes(term) || (i.type || '').toLowerCase().includes(term);
-                return matchesPaid && matchesSearch;
-            });
-
-            if (items.length === 0) {
-                paidXmlGrid.innerHTML = '<p style="color:var(--muted); grid-column:1/-1; text-align:center; padding:18px;">Abhi is section mein koi item nahi hai.</p>';
-                return;
-            }
-
-            items.forEach((item) => {
-                const card = document.createElement('div');
-                card.className = 'app-card reveal-card';
-                const photos = getItemPhotos(item);
-                const safeTitle = window.sanitizeDisplayText(item.title || 'Untitled');
-                const safeDesc = window.sanitizeDisplayText(item.description || 'Tap to view all screenshots & buy');
-                const priceBadge = item.isPaid
-                    ? `<span class="paid-tag"><i class="fa-solid fa-lock"></i> ₹${item.price || 49}</span>`
-                    : `<span class="free-tag">FREE</span>`;
-
-                const shotBadge = photos.length > 0
-                    ? `<span class="paid-tag" style="color:var(--ink); background:var(--surface-2);"><i class="fa-solid fa-images"></i> ${photos.length}</span>`
-                    : '';
-
-                const btnHtml = item.isPaid
-                    ? `<button class="install-btn pay-btn" onclick="event.stopPropagation(); openItemFullShowcase('${item.id}')"><i class="fa-solid fa-up-right-from-square"></i> Preview & Buy ₹${item.price || 49}</button>`
-                    : `<button class="install-btn" onclick="event.stopPropagation(); openItemFullShowcase('${item.id}')"><i class="fa-solid fa-up-right-from-square"></i> View Screenshots</button>`;
-
-                card.innerHTML = `
-                    <img src="${FALLBACK_APP}" alt="XML/Template" class="app-icon">
-                    <div class="app-info">
-                        <div>
-                            <span class="cat-badge">${item.type || 'XML'}</span>
-                            ${priceBadge}
-                            ${shotBadge}
-                        </div>
-                        <div class="app-title styled-name-text" style="margin-top:3px;">${safeTitle}</div>
-                        <div class="app-desc-short styled-name-text">${safeDesc}</div>
-                        ${btnHtml}
-                    </div>
-                `;
-                setImageDirect(card.querySelector('.app-icon'), item.thumbUrl || photos[0], FALLBACK_APP);
-                card.onclick = () => window.openItemFullShowcase(item.id);
-                paidXmlGrid.appendChild(card);
-            });
-
-            window.observeRevealCards(paidXmlGrid);
-        }
 
         function renderShowcaseGallery(photos) {
             const mainImg = document.getElementById('scMainImg');
             const grid = document.getElementById('scShotsGrid');
             document.getElementById('scShotCount').innerText = `${photos.length} Photo${photos.length > 1 ? 's' : ''}`;
-
             setImageDirect(mainImg, photos[0], FALLBACK_APP);
             grid.innerHTML = '';
 
             photos.forEach((url, idx) => {
                 const tile = document.createElement('div');
                 tile.className = `shot-tile ${idx === 0 ? 'active' : ''}`;
-                tile.innerHTML = `
-                    <img src="${FALLBACK_APP}" alt="Screenshot ${idx + 1}">
-                    <div class="shot-tile-foot">
-                        <span>Screenshot #${idx + 1}</span>
-                        <i class="fa-solid fa-magnifying-glass-plus"></i>
-                    </div>
-                `;
+                tile.innerHTML = `<img src="${FALLBACK_APP}" alt="Shot ${idx + 1}">`;
                 setImageDirect(tile.querySelector('img'), url, FALLBACK_APP);
                 tile.onclick = () => {
                     grid.querySelectorAll('.shot-tile').forEach(t => t.classList.remove('active'));
                     tile.classList.add('active');
-                    mainImg.classList.add('is-swapping');
-                    setTimeout(() => {
-                        setImageDirect(mainImg, url, FALLBACK_APP);
-                        mainImg.classList.remove('is-swapping');
-                    }, 120);
-                    mainImg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    setImageDirect(mainImg, url, FALLBACK_APP);
                 };
                 grid.appendChild(tile);
             });
         }
 
-        function unlockShowcaseItem(item, persist = true, autoOpenLink = false) {
+        function unlockShowcaseItem(item, persist = true, autoOpen = false) {
             stopShowcasePolling();
-            if (persist) {
-                localStorage.setItem('maggie_unlocked_' + item.id, '1');
-            }
+            if (persist) localStorage.setItem('maggie_unlocked_' + item.id, '1');
             const link = cleanUrl(item.protectedLink) || '#';
             document.getElementById('scBuyBtn').style.display = 'none';
             document.getElementById('scPendingBanner').style.display = 'none';
-            document.getElementById('scStatusMsg').innerHTML = '<span style="color:var(--accent); font-weight:700;">Unlocked! Link ready.</span>';
-
             document.getElementById('scUnlockedBtn').href = link;
             document.getElementById('scUnlockedUrl').innerText = link;
             document.getElementById('scUnlockedBox').style.display = 'block';
-
-            if (autoOpenLink && link !== '#') {
-                openDownloadLink(link, true);
-            }
-        }
-
-        function startShowcasePolling(orderId, item) {
-            stopShowcasePolling();
-            const statusEl = document.getElementById('scStatusMsg');
-            const pollUrl = `${FAMGATEWAY_BASE_URL}/api/checkout-status.php?order_id=${encodeURIComponent(orderId)}`;
-            const deadline = Date.now() + 10 * 60 * 1000;
-
-            statusEl.innerText = "Checkout page open ho gaya hai. Payment success hote hi link automatically khul jayega...";
-
-            showcasePollTimer = setInterval(async () => {
-                if (Date.now() > deadline) {
-                    stopShowcasePolling();
-                    statusEl.innerText = "Session timed out. Please click Buy Now again.";
-                    return;
-                }
-                try {
-                    const res = await fetch(pollUrl, { cache: "no-store" });
-                    if (!res.ok) return;
-                    const data = await res.json();
-                    if (data && data.status === "success") {
-                        unlockShowcaseItem(item, true, true);
-                    } else if (data && data.status === "expired") {
-                        stopShowcasePolling();
-                        statusEl.innerText = "Order expired. Click Buy Now to open a new checkout.";
-                    }
-                } catch (_) {}
-            }, 3000);
+            if (autoOpen && link !== '#') openDownloadLink(link);
         }
 
         window.openItemFullShowcase = (id) => {
@@ -1928,27 +1607,14 @@
             activeShowcaseItem = item;
 
             const isPaid = Boolean(item.isPaid);
-            const price = Number(item.price || 49);
+            const price = Number(item.price || 9);
             const alreadyUnlocked = localStorage.getItem('maggie_unlocked_' + item.id) === '1';
-            const safeTitle = window.sanitizeDisplayText(item.title || 'Untitled');
-            const safeDesc = window.sanitizeDisplayText(item.description || 'Saare screenshots dekhein. Buy par click karte hi checkout page khulega aur payment ke baad link khul jayega.');
 
-            document.getElementById('pageTitle').innerText = `${safeTitle} - ${baseStoreName}`;
             document.getElementById('scTypeBadge').innerText = item.type || 'XML';
-
-            const accessBadge = document.getElementById('scAccessBadge');
-            if (isPaid) {
-                accessBadge.className = 'paid-tag';
-                accessBadge.innerText = `PAID • ₹${price}`;
-                document.getElementById('scPriceText').innerText = `₹${price}`;
-            } else {
-                accessBadge.className = 'free-tag';
-                accessBadge.innerText = 'FREE';
-                document.getElementById('scPriceText').innerText = 'FREE';
-            }
-
-            document.getElementById('scTitle').innerText = safeTitle;
-            document.getElementById('scDesc').innerText = safeDesc;
+            document.getElementById('scAccessBadge').innerText = isPaid ? `PAID • ₹${price}` : 'FREE';
+            document.getElementById('scPriceText').innerText = isPaid ? `₹${price}` : 'FREE';
+            document.getElementById('scTitle').innerText = window.sanitizeDisplayText(item.title || 'Pack');
+            document.getElementById('scDesc').innerText = window.sanitizeDisplayText(item.description || '');
             document.getElementById('scStatusMsg').innerText = '';
             document.getElementById('scPendingBanner').style.display = 'none';
             document.getElementById('scUnlockedBox').style.display = 'none';
@@ -1962,7 +1628,7 @@
                 document.getElementById('scBuyAmount').innerText = price;
                 buyBtn.disabled = false;
                 buyBtn.style.display = 'inline-flex';
-                buyBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Buy Now — ₹${price}`;
+                buyBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Instant Unlock — ₹${price}`;
             }
 
             const showcaseEl = document.getElementById('itemShowcaseView');
@@ -1983,43 +1649,42 @@
             mainEl.classList.remove('view-animate');
             void mainEl.offsetWidth;
             mainEl.classList.add('view-animate');
-            document.getElementById('pageTitle').innerText = `${baseStoreName} - App Hub`;
-            window.observeRevealCards(paidXmlGrid);
-            window.observeRevealCards(appGrid);
-            window.observeRevealCards(document.getElementById('gameBottomSection'));
+            filterAndRender();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
         window.startShowcasePayment = async () => {
             if (!activeShowcaseItem) return;
-            const amountRupees = Math.max(1, Number(activeShowcaseItem.price || 49));
+            const amount = Math.max(1, Number(activeShowcaseItem.price || 9));
             const buyBtn = document.getElementById('scBuyBtn');
             const statusEl = document.getElementById('scStatusMsg');
-
             buyBtn.disabled = true;
             buyBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Opening Checkout...';
-            statusEl.innerText = '';
 
             try {
-                const d = await createFamGatewayOrder(
-                    amountRupees,
-                    `${activeShowcaseItem.type || "Item"}: ${window.sanitizeDisplayText(activeShowcaseItem.title || "MAGGIE STORE")}`
-                );
-                const orderId = d.order_id;
-                const checkoutUrl = cleanUrl(d.checkout_url || `${FAMGATEWAY_BASE_URL}/pay.php?order_id=${encodeURIComponent(orderId)}`);
-
-                document.getElementById('scOrderText').innerText = `Order ID: ${orderId} • Amount: ₹${d.payable_amount || amountRupees}`;
-                const cpBtn = document.getElementById('scCheckoutBtn');
-                cpBtn.href = checkoutUrl;
+                const d = await createFamGatewayOrder(amount, `${activeShowcaseItem.type || "Item"}: ${window.sanitizeDisplayText(activeShowcaseItem.title || "MAGGIE STORE")}`);
+                const checkoutUrl = cleanUrl(d.checkout_url || `${FAMGATEWAY_BASE_URL}/pay.php?order_id=${encodeURIComponent(d.order_id)}`);
+                document.getElementById('scOrderText').innerText = `Order ID: ${d.order_id} • Amount: ₹${d.payable_amount || amount}`;
+                document.getElementById('scCheckoutBtn').href = checkoutUrl;
                 document.getElementById('scPendingBanner').style.display = 'block';
                 buyBtn.style.display = 'none';
-
                 window.open(checkoutUrl, '_blank', 'noopener,noreferrer');
 
-                startShowcasePolling(orderId, activeShowcaseItem);
+                const pollUrl = `${FAMGATEWAY_BASE_URL}/api/checkout-status.php?order_id=${encodeURIComponent(d.order_id)}`;
+                statusEl.innerText = "Payment verify hote hi download link khul jayega...";
+                showcasePollTimer = setInterval(async () => {
+                    try {
+                        const res = await fetch(pollUrl, { cache: "no-store" });
+                        if (!res.ok) return;
+                        const data = await res.json();
+                        if (data && data.status === "success") {
+                            unlockShowcaseItem(activeShowcaseItem, true, true);
+                        }
+                    } catch (_) {}
+                }, 3000);
             } catch (err) {
                 buyBtn.disabled = false;
-                buyBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Buy Now — ₹${amountRupees}`;
+                buyBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Instant Unlock — ₹${amount}`;
                 statusEl.innerHTML = `<span style="color:#ef4444;">${err.message}</span>`;
             }
         };
