@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +7,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Noto+Sans:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root, [data-theme="light"] {
+        :root, [data-theme="dark"] {
+            --bg: #0c0f14;
+            --surface: rgba(22, 27, 37, 0.88);
+            --surface-solid: #161b25;
+            --surface-2: rgba(31, 38, 52, 0.85);
+            --ink: #f4f6fb;
+            --muted: #9aa4b8;
+            --accent: #10b981;
+            --accent-soft: rgba(16, 185, 129, 0.16);
+            --accent-ink: #04130d;
+            --violet: #a78bfa;
+            --violet-soft: rgba(167, 139, 250, 0.16);
+            --warm: #f59e0b;
+            --border: rgba(255, 255, 255, 0.10);
+            --shadow: 0 16px 36px rgba(0, 0, 0, 0.36);
+            --glow: 0 20px 42px rgba(16, 185, 129, 0.16);
+        }
+
+        [data-theme="light"] {
             --bg: #f6f4ef;
-            --surface: rgba(255, 255, 255, 0.84);
+            --surface: rgba(255, 255, 255, 0.88);
             --surface-solid: #ffffff;
-            --surface-2: rgba(236, 232, 223, 0.78);
+            --surface-2: rgba(236, 232, 223, 0.82);
             --ink: #141820;
             --muted: #5b6475;
             --accent: #059669;
@@ -22,25 +40,7 @@
             --warm: #d97706;
             --border: rgba(20, 24, 32, 0.10);
             --shadow: 0 14px 32px rgba(20, 24, 32, 0.07);
-            --glow: 0 18px 36px rgba(109, 40, 217, 0.14);
-        }
-
-        [data-theme="dark"] {
-            --bg: #0c0f14;
-            --surface: rgba(22, 27, 37, 0.84);
-            --surface-solid: #161b25;
-            --surface-2: rgba(31, 38, 52, 0.82);
-            --ink: #f4f6fb;
-            --muted: #9aa4b8;
-            --accent: #10b981;
-            --accent-soft: rgba(16, 185, 129, 0.16);
-            --accent-ink: #04130d;
-            --violet: #a78bfa;
-            --violet-soft: rgba(167, 139, 250, 0.15);
-            --warm: #f59e0b;
-            --border: rgba(255, 255, 255, 0.10);
-            --shadow: 0 16px 36px rgba(0, 0, 0, 0.36);
-            --glow: 0 20px 42px rgba(167, 139, 250, 0.16);
+            --glow: 0 18px 36px rgba(5, 150, 105, 0.14);
         }
 
         * {
@@ -126,7 +126,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            background: color-mix(in srgb, var(--bg) 78%, transparent);
+            background: color-mix(in srgb, var(--bg) 82%, transparent);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
             padding: 11px 5%;
@@ -142,6 +142,7 @@
             gap: 10px;
             text-decoration: none;
             cursor: pointer;
+            min-width: 0;
         }
 
         .store-logo {
@@ -151,19 +152,24 @@
             object-fit: cover;
             border: 1.5px solid var(--border);
             background: var(--surface-2);
+            flex-shrink: 0;
         }
 
         .logo-text {
             font-family: 'Fraunces', serif;
-            font-size: 1.22rem;
+            font-size: 1.15rem;
             font-weight: 700;
             color: var(--ink);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .header-right {
             display: flex;
             align-items: center;
             gap: 8px;
+            flex-shrink: 0;
         }
 
         .search-box {
@@ -174,14 +180,14 @@
             padding: 8px 13px;
             border-radius: 999px;
             font-size: 0.82rem;
-            width: 165px;
+            width: 150px;
             outline: none;
             transition: border-color 0.25s ease, width 0.28s ease;
         }
 
         .search-box:focus {
-            border-color: var(--violet);
-            width: 205px;
+            border-color: var(--accent);
+            width: 185px;
         }
 
         .theme-toggle {
@@ -198,14 +204,14 @@
             justify-content: center;
             font-size: 0.9rem;
             transition: transform 0.22s ease, border-color 0.22s ease;
+            flex-shrink: 0;
         }
 
         .theme-toggle:hover {
-            border-color: var(--violet);
+            border-color: var(--accent);
             transform: rotate(15deg);
         }
 
-        /* TOP FROSTED PROFILE & UID PILL */
         .top-profile-wrap {
             max-width: 1080px;
             width: 100%;
@@ -217,8 +223,8 @@
             background: var(--surface);
             backdrop-filter: blur(18px);
             border: 1px solid var(--border);
-            border-radius: 28px;
-            padding: 12px 16px;
+            border-radius: 24px;
+            padding: 14px 16px;
             box-shadow: var(--shadow);
             display: flex;
             align-items: center;
@@ -232,14 +238,15 @@
             align-items: center;
             gap: 13px;
             min-width: 0;
+            flex: 1;
         }
 
         .profile-avatar {
-            width: 58px;
-            height: 58px;
+            width: 56px;
+            height: 56px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid color-mix(in srgb, var(--violet) 45%, transparent);
+            border: 2px solid color-mix(in srgb, var(--accent) 45%, transparent);
             background: var(--surface-2);
             flex-shrink: 0;
             cursor: zoom-in;
@@ -247,9 +254,10 @@
 
         .profile-title-line {
             font-family: 'Fraunces', serif;
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            line-height: 1.2;
+            line-height: 1.25;
+            word-break: break-word;
         }
 
         .profile-sub-row {
@@ -257,7 +265,7 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 8px;
-            margin-top: 5px;
+            margin-top: 6px;
         }
 
         .uid-chip {
@@ -289,7 +297,7 @@
         }
 
         .copy-uid-pill:hover {
-            border-color: var(--violet);
+            border-color: var(--accent);
             transform: translateY(-1px);
         }
 
@@ -316,13 +324,12 @@
         }
 
         .icon-social-btn:hover {
-            background: var(--violet);
-            color: #fff;
-            border-color: var(--violet);
+            background: var(--accent);
+            color: var(--accent-ink);
+            border-color: var(--accent);
             transform: translateY(-2px);
         }
 
-        /* FEATURED DIGITAL PACK CARD (MINIMAL LUXURY) */
         .container {
             max-width: 1080px;
             width: 100%;
@@ -369,16 +376,16 @@
         }
 
         .pill-btn.active, .pill-btn:hover {
-            background: var(--ink);
-            color: var(--bg);
-            border-color: var(--ink);
+            background: var(--accent);
+            color: var(--accent-ink);
+            border-color: var(--accent);
         }
 
         .featured-pack-card {
             background: var(--surface);
             backdrop-filter: blur(18px);
             border: 1px solid var(--border);
-            border-radius: 26px;
+            border-radius: 24px;
             padding: 18px;
             box-shadow: var(--shadow);
             display: flex;
@@ -389,13 +396,13 @@
 
         .featured-pack-card.is-visible:hover {
             --hover-lift: -3px;
-            border-color: color-mix(in srgb, var(--violet) 45%, transparent);
+            border-color: var(--accent);
             box-shadow: var(--glow);
         }
 
         .featured-top-split {
             display: grid;
-            grid-template-columns: 155px 1fr;
+            grid-template-columns: 140px 1fr;
             gap: 16px;
             align-items: center;
         }
@@ -420,20 +427,19 @@
             position: absolute;
             bottom: 8px;
             right: 8px;
-            background: rgba(20, 24, 32, 0.82);
+            background: rgba(12, 15, 20, 0.85);
             color: #fff;
             font-size: 0.66rem;
             font-weight: 700;
             padding: 3px 8px;
             border-radius: 8px;
-            letter-spacing: 0.04em;
         }
 
         .featured-title {
             font-family: 'Fraunces', serif;
-            font-size: 1.35rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            line-height: 1.22;
+            line-height: 1.25;
             margin-bottom: 6px;
         }
 
@@ -481,13 +487,13 @@
         }
 
         .unlock-pill-btn:hover {
-            border-color: var(--violet);
-            color: var(--violet);
+            border-color: var(--accent);
+            color: var(--accent);
         }
 
         .thumb-strip {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
             gap: 8px;
         }
 
@@ -508,10 +514,9 @@
             margin-top: 14px;
         }
 
-        /* APPS GRID */
         .app-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
             gap: 14px;
         }
 
@@ -519,7 +524,7 @@
             background: var(--surface);
             backdrop-filter: blur(16px);
             border: 1px solid var(--border);
-            border-radius: 22px;
+            border-radius: 20px;
             padding: 15px;
             display: flex;
             align-items: center;
@@ -530,18 +535,19 @@
 
         .app-card.is-visible:hover {
             --hover-lift: -4px;
-            border-color: color-mix(in srgb, var(--violet) 48%, transparent);
+            border-color: var(--accent);
             box-shadow: var(--glow);
         }
 
         .app-icon {
-            width: 60px;
-            height: 60px;
+            width: 62px;
+            height: 62px;
             border-radius: 16px;
             object-fit: cover;
             background: var(--surface-2);
             border: 1px solid var(--border);
             flex-shrink: 0;
+            display: block;
         }
 
         .app-info {
@@ -566,8 +572,8 @@
             display: inline-block;
             font-size: 0.66rem;
             font-weight: 800;
-            color: var(--violet);
-            background: var(--violet-soft);
+            color: var(--warm);
+            background: color-mix(in srgb, var(--warm) 16%, transparent);
             padding: 2px 8px;
             border-radius: 999px;
             margin-bottom: 4px;
@@ -591,36 +597,30 @@
         }
 
         .install-btn {
-            background: var(--accent-soft);
-            color: var(--accent);
-            border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+            background: var(--accent);
+            color: var(--accent-ink);
+            border: none;
             font-weight: 700;
-            padding: 6px 13px;
-            border-radius: 11px;
+            padding: 7px 14px;
+            border-radius: 10px;
             font-size: 0.76rem;
             cursor: pointer;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            transition: transform 0.18s ease, background 0.2s ease, color 0.2s ease;
+            white-space: nowrap;
+            transition: transform 0.18s ease, opacity 0.2s ease;
         }
 
         .install-btn:hover {
-            background: var(--accent);
-            color: var(--accent-ink);
+            opacity: 0.92;
             transform: translateY(-1px);
         }
 
         .install-btn.pay-btn {
-            background: var(--violet-soft);
-            color: var(--violet);
-            border-color: color-mix(in srgb, var(--violet) 30%, transparent);
-        }
-
-        .install-btn.pay-btn:hover {
-            background: var(--violet);
-            color: #fff;
+            background: var(--warm);
+            color: #141820;
         }
 
         .install-btn.ghost-btn {
@@ -629,7 +629,6 @@
             border: 1px solid var(--border);
         }
 
-        /* GAME EXTRA PHOTOS AT BOTTOM */
         .game-extra-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -654,7 +653,6 @@
             display: block;
         }
 
-        /* FLOATING BOTTOM PILL BAR */
         .floating-dock-wrap {
             position: fixed;
             bottom: 16px;
@@ -671,7 +669,7 @@
             border: 1px solid var(--border);
             border-radius: 999px;
             padding: 6px;
-            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 4px;
@@ -683,23 +681,22 @@
             color: var(--ink);
             padding: 9px 10px;
             border-radius: 999px;
-            font-size: 0.79rem;
+            font-size: 0.78rem;
             font-weight: 700;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
+            white-space: nowrap;
             transition: background 0.2s ease, color 0.2s ease;
         }
 
         .dock-btn.active {
-            background: var(--surface-solid);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            color: var(--violet);
+            background: var(--accent);
+            color: var(--accent-ink);
         }
 
-        /* SHOWCASE VIEW FOR XML / TEMPLATE */
         #itemShowcaseView {
             display: none;
             max-width: 1040px;
@@ -746,7 +743,7 @@
         }
 
         .shot-tile.active {
-            border-color: var(--violet);
+            border-color: var(--accent);
         }
 
         .shot-tile img {
@@ -821,10 +818,11 @@
         }
 
         @media (max-width: 560px) {
-            .featured-top-split { grid-template-columns: 118px 1fr; gap: 12px; }
-            .featured-title { font-size: 1.12rem; }
-            .search-box { width: 122px; }
-            .search-box:focus { width: 148px; }
+            .featured-top-split { grid-template-columns: 112px 1fr; gap: 12px; }
+            .featured-title { font-size: 1.1rem; }
+            .search-box { width: 112px; }
+            .search-box:focus { width: 138px; }
+            .logo-text { font-size: 1rem; }
         }
     </style>
 </head>
@@ -836,24 +834,22 @@
 
     <header>
         <a onclick="backToStoreView()" class="brand">
-            <img id="storeLogo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzA1OTY2OSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmYiPk08L3RleHQ+PC9zdmc+" alt="Logo" class="store-logo">
+            <img id="storeLogo" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%2310b981%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2742%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%23ffffff%27%3EM%3C/text%3E%3C/svg%3E" alt="Logo" class="store-logo">
             <span id="storeName" class="logo-text styled-name-text">MAGGIE STORE</span>
         </a>
         <div class="header-right">
             <input type="text" id="searchInput" class="search-box" placeholder="Search apps, XML...">
             <button type="button" id="themeBtn" class="theme-toggle" title="Toggle Theme" onclick="toggleTheme()">
-                <i class="fa-solid fa-moon"></i>
+                <i class="fa-solid fa-sun"></i>
             </button>
         </div>
     </header>
 
-    <!-- MAIN STORE VIEW -->
     <div id="storeMainView">
-        <!-- TOP PROFILE & UID PILL -->
         <div class="top-profile-wrap">
             <section class="profile-pill-bar">
                 <div class="profile-left">
-                    <img id="topProfileAvatar" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzA1OTY2OSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmYiPk08L3RleHQ+PC9zdmc+" alt="Profile" class="profile-avatar" onclick="openCustomLightbox(this.src)">
+                    <img id="topProfileAvatar" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%2310b981%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2742%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%23ffffff%27%3EM%3C/text%3E%3C/svg%3E" alt="Profile" class="profile-avatar" onclick="openCustomLightbox(this.src)">
                     <div>
                         <div id="heroProfileTitle" class="profile-title-line styled-name-text">MAGGIE STORE</div>
                         <div class="profile-sub-row">
@@ -871,10 +867,9 @@
         </div>
 
         <div class="container">
-            <!-- FEATURED DIGITAL PACK (XML / TEMPLATES) -->
             <section id="featuredPackSection">
                 <div class="section-heading-row">
-                    <h2><i class="fa-regular fa-bookmark" style="color:var(--violet);"></i> Featured Digital Pack</h2>
+                    <h2><i class="fa-solid fa-layer-group" style="color:var(--warm);"></i> Featured Digital Pack</h2>
                     <div class="filter-pills">
                         <button class="pill-btn active" data-xmlfilter="paid" onclick="setXmlFilter('paid')">Paid XMLs</button>
                         <button class="pill-btn" data-xmlfilter="all" onclick="setXmlFilter('all')">All XML & Templates</button>
@@ -885,26 +880,23 @@
                 </div>
             </section>
 
-            <!-- APPLICATIONS -->
             <section id="appsSection" style="margin-top: 22px;">
                 <div class="section-heading-row">
-                    <h2><i class="fa-regular fa-bookmark" style="color:var(--accent);"></i> APPLICATIONS</h2>
+                    <h2><i class="fa-solid fa-mobile-screen" style="color:var(--accent);"></i> APPLICATIONS</h2>
                 </div>
                 <div id="loader" style="text-align:center; padding:26px; color:var(--accent); font-weight:600;">Loading...</div>
                 <div id="appGrid" class="app-grid"></div>
             </section>
 
-            <!-- EXTRA GAME PROFILE PHOTOS (ONLY IF SET IN ADMIN) -->
             <section id="gameExtraSection" style="display:none; margin-top:22px;">
                 <div class="section-heading-row">
-                    <h2><i class="fa-regular fa-images" style="color:var(--violet);"></i> Gallery</h2>
+                    <h2><i class="fa-solid fa-images" style="color:var(--violet);"></i> Gallery</h2>
                 </div>
                 <div id="gameExtraPhotosGrid" class="game-extra-grid"></div>
             </section>
         </div>
     </div>
 
-    <!-- FULL SHOWCASE VIEW FOR XML / TEMPLATE -->
     <section id="itemShowcaseView">
         <div style="display:flex; justify-content:space-between; gap:10px; margin-bottom:14px;">
             <button type="button" class="install-btn ghost-btn" style="padding:9px 15px;" onclick="backToStoreView()">
@@ -923,7 +915,7 @@
             </div>
             <h1 id="scTitle" class="styled-name-text" style="font-family:'Fraunces',serif; font-size:1.75rem; margin-bottom:6px;">Title</h1>
             <p id="scDesc" class="styled-name-text" style="color:var(--muted); font-size:0.88rem; line-height:1.5;"></p>
-            <div id="scPriceText" style="font-family:'Fraunces',serif; font-size:1.5rem; font-weight:700; color:var(--violet); margin-top:10px;">₹9</div>
+            <div id="scPriceText" style="font-family:'Fraunces',serif; font-size:1.5rem; font-weight:700; color:var(--warm); margin-top:10px;">₹9</div>
         </div>
 
         <div class="gallery-panel">
@@ -961,17 +953,16 @@
         </div>
     </section>
 
-    <!-- FLOATING BOTTOM PILL DOCK -->
     <div class="floating-dock-wrap">
         <nav class="floating-dock" aria-label="Quick navigation">
             <button type="button" class="dock-btn active" onclick="scrollToSection('appsSection', this)">
                 <i class="fa-solid fa-border-all"></i> Apps
             </button>
             <button type="button" class="dock-btn" onclick="filterDockType('XML', this)">
-                <i class="fa-regular fa-file-code"></i> Paid XMLs
+                <i class="fa-solid fa-code"></i> Paid XMLs
             </button>
             <button type="button" class="dock-btn" onclick="filterDockType('Template', this)">
-                <i class="fa-regular fa-window-restore"></i> Templates
+                <i class="fa-solid fa-layer-group"></i> Templates
             </button>
         </nav>
     </div>
@@ -1002,7 +993,7 @@
 
     <script>
         (function initSavedTheme() {
-            const saved = localStorage.getItem("maggie_theme") || "light";
+            const saved = localStorage.getItem("maggie_theme") || "dark";
             document.documentElement.setAttribute("data-theme", saved);
             updateThemeIcon(saved);
         })();
@@ -1010,14 +1001,14 @@
         function updateThemeIcon(theme) {
             const btn = document.getElementById("themeBtn");
             if (!btn) return;
-            btn.innerHTML = theme === "light"
-                ? '<i class="fa-solid fa-moon"></i>'
-                : '<i class="fa-solid fa-sun"></i>';
+            btn.innerHTML = theme === "dark"
+                ? '<i class="fa-solid fa-sun"></i>'
+                : '<i class="fa-solid fa-moon"></i>';
         }
 
         window.toggleTheme = function () {
-            const current = document.documentElement.getAttribute("data-theme") || "light";
-            const next = current === "light" ? "dark" : "light";
+            const current = document.documentElement.getAttribute("data-theme") || "dark";
+            const next = current === "dark" ? "light" : "dark";
             document.documentElement.setAttribute("data-theme", next);
             localStorage.setItem("maggie_theme", next);
             updateThemeIcon(next);
@@ -1160,8 +1151,8 @@
         const topSocialBar = document.getElementById('topSocialBar');
         const featuredPackContainer = document.getElementById('featuredPackContainer');
 
-        const FALLBACK_STORE = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4OCIgaGVpZ2h0PSI4OCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzA1OTY2OSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTglIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNmZmYiPk08L3RleHQ+PC9zdmc+";
-        const FALLBACK_APP = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NDAiIGhlaWdodD0iNTQwIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMWYyNjM0Ii8+PHRleHQgeD0iNTAlIiB5PSI1MiUiIGRvbWluYW50LWJhc2VsaW5lPSJtaWRkbGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNDgiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IiNhNzh Promise: I'm using #a78bfa\"\u003e".replace(" Promise: I'm using #a78bfa\"\u003e", "\">#a78bfa\">") + "MAGGIE</text></svg>";
+        const FALLBACK_STORE = "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%2310b981%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2742%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%23ffffff%27%3EM%3C/text%3E%3C/svg%3E";
+        const FALLBACK_APP = "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%231c2330%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2755%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2726%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%2310b981%27%3EAPP%3C/text%3E%3C/svg%3E";
 
         let allApps = [];
         let allXmlItems = [];
@@ -1402,12 +1393,12 @@
             heroCard.className = 'featured-pack-card reveal-card';
             heroCard.onclick = () => window.openItemFullShowcase(first.id);
 
-            const thumbsHtml = photos.slice(0, 5).map(u => `<img src="${u}" alt="Thumb" class="thumb-strip-item">`).join('');
+            const thumbsHtml = photos.slice(0, 5).map(u => `<img src="${u}" alt="Thumb" class="thumb-strip-item" onerror="this.style.display='none'">`).join('');
 
             heroCard.innerHTML = `
                 <div class="featured-top-split">
                     <div class="featured-cover-box">
-                        <img src="${cleanUrl(first.thumbUrl) || photos[0]}" alt="Cover" class="featured-cover-img">
+                        <img src="${cleanUrl(first.thumbUrl) || photos[0]}" alt="Cover" class="featured-cover-img" onerror="this.src='${FALLBACK_APP}'">
                         <span class="photo-count-badge">${photos.length} PHOTOS</span>
                     </div>
                     <div>
@@ -1434,7 +1425,7 @@
                     c.className = 'app-card reveal-card';
                     c.onclick = () => window.openItemFullShowcase(item.id);
                     c.innerHTML = `
-                        <img src="${cleanUrl(item.thumbUrl) || pList[0]}" alt="Pack" class="app-icon">
+                        <img src="${cleanUrl(item.thumbUrl) || pList[0]}" alt="Pack" class="app-icon" onerror="this.src='${FALLBACK_APP}'">
                         <div class="app-info">
                             <span class="paid-tag">${item.isPaid ? `₹${item.price || 9}` : 'FREE'} • ${pList.length} Photos</span>
                             <div class="app-title styled-name-text">${window.sanitizeDisplayText(item.title || 'Pack')}</div>
