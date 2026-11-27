@@ -9,38 +9,34 @@
     <style>
         :root, [data-theme="dark"] {
             --bg: #0c0f14;
-            --surface: rgba(22, 27, 37, 0.88);
+            --surface: #151a24;
             --surface-solid: #161b25;
-            --surface-2: rgba(31, 38, 52, 0.85);
+            --surface-2: #1d2432;
             --ink: #f4f6fb;
             --muted: #9aa4b8;
             --accent: #10b981;
             --accent-soft: rgba(16, 185, 129, 0.16);
             --accent-ink: #04130d;
             --violet: #a78bfa;
-            --violet-soft: rgba(167, 139, 250, 0.16);
             --warm: #f59e0b;
             --border: rgba(255, 255, 255, 0.10);
-            --shadow: 0 16px 36px rgba(0, 0, 0, 0.36);
-            --glow: 0 20px 42px rgba(16, 185, 129, 0.16);
+            --shadow: 0 10px 26px rgba(0, 0, 0, 0.32);
         }
 
         [data-theme="light"] {
             --bg: #f6f4ef;
-            --surface: rgba(255, 255, 255, 0.88);
+            --surface: #ffffff;
             --surface-solid: #ffffff;
-            --surface-2: rgba(236, 232, 223, 0.82);
+            --surface-2: #ece8df;
             --ink: #141820;
             --muted: #5b6475;
             --accent: #059669;
             --accent-soft: rgba(5, 150, 105, 0.14);
             --accent-ink: #ffffff;
             --violet: #6d28d9;
-            --violet-soft: rgba(109, 40, 217, 0.12);
             --warm: #d97706;
             --border: rgba(20, 24, 32, 0.10);
-            --shadow: 0 14px 32px rgba(20, 24, 32, 0.07);
-            --glow: 0 18px 36px rgba(5, 150, 105, 0.14);
+            --shadow: 0 10px 24px rgba(20, 24, 32, 0.06);
         }
 
         * {
@@ -48,6 +44,9 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Plus Jakarta Sans', 'Noto Sans', sans-serif;
+        }
+
+        html {
             scroll-behavior: smooth;
         }
 
@@ -64,8 +63,8 @@
             display: flex;
             flex-direction: column;
             padding-bottom: 92px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            overflow-x: hidden;
+            transition: background-color 0.25s ease, color 0.25s ease;
+            overflow-x: clip;
         }
 
         .scroll-track {
@@ -82,52 +81,45 @@
             height: 100%;
             width: 0%;
             background: linear-gradient(90deg, var(--accent), var(--violet));
-            transition: width 0.08s linear;
+            transform-origin: left center;
         }
 
         @keyframes viewEnter {
-            from { opacity: 0; transform: translateY(14px) scale(0.99); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes modalPop {
-            from { opacity: 0; transform: translateY(14px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .view-animate {
-            animation: viewEnter 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+            animation: viewEnter 0.28s ease-out both;
         }
 
         .reveal-card {
-            --tilt-x: 0deg;
-            --tilt-y: 0deg;
-            --hover-lift: 0px;
             opacity: 0;
-            transform: perspective(900px) translateY(22px) scale(0.97);
-            transition:
-                opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-                border-color 0.25s ease,
-                box-shadow 0.3s ease;
-            will-change: transform, opacity;
+            transform: translateY(14px);
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out, border-color 0.2s ease;
         }
 
         .reveal-card.from-top {
-            transform: perspective(900px) translateY(-18px) scale(0.975);
+            transform: translateY(-12px);
         }
 
         .reveal-card.is-visible {
             opacity: 1;
-            transform: perspective(900px) translateY(var(--hover-lift)) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) scale(1);
+            transform: translateY(0);
         }
 
         header {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: color-mix(in srgb, var(--bg) 82%, transparent);
-            backdrop-filter: blur(16px);
+            background: color-mix(in srgb, var(--bg) 88%, transparent);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
             padding: 11px 5%;
             display: flex;
@@ -174,7 +166,6 @@
 
         .search-box {
             background: var(--surface);
-            backdrop-filter: blur(12px);
             border: 1px solid var(--border);
             color: var(--ink);
             padding: 8px 13px;
@@ -182,7 +173,7 @@
             font-size: 0.82rem;
             width: 150px;
             outline: none;
-            transition: border-color 0.25s ease, width 0.28s ease;
+            transition: border-color 0.2s ease, width 0.22s ease;
         }
 
         .search-box:focus {
@@ -192,7 +183,6 @@
 
         .theme-toggle {
             background: var(--surface);
-            backdrop-filter: blur(12px);
             border: 1px solid var(--border);
             color: var(--ink);
             width: 36px;
@@ -203,13 +193,7 @@
             align-items: center;
             justify-content: center;
             font-size: 0.9rem;
-            transition: transform 0.22s ease, border-color 0.22s ease;
             flex-shrink: 0;
-        }
-
-        .theme-toggle:hover {
-            border-color: var(--accent);
-            transform: rotate(15deg);
         }
 
         .top-profile-wrap {
@@ -221,7 +205,6 @@
 
         .profile-pill-bar {
             background: var(--surface);
-            backdrop-filter: blur(18px);
             border: 1px solid var(--border);
             border-radius: 24px;
             padding: 14px 16px;
@@ -293,12 +276,6 @@
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            transition: border-color 0.2s ease, transform 0.15s ease;
-        }
-
-        .copy-uid-pill:hover {
-            border-color: var(--accent);
-            transform: translateY(-1px);
         }
 
         .top-socials-row {
@@ -320,14 +297,12 @@
             justify-content: center;
             text-decoration: none;
             font-size: 0.92rem;
-            transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+            transition: background-color 0.2s ease, color 0.2s ease;
         }
 
         .icon-social-btn:hover {
             background: var(--accent);
             color: var(--accent-ink);
-            border-color: var(--accent);
-            transform: translateY(-2px);
         }
 
         .container {
@@ -364,7 +339,6 @@
 
         .pill-btn {
             background: var(--surface);
-            backdrop-filter: blur(12px);
             color: var(--muted);
             border: 1px solid var(--border);
             padding: 6px 13px;
@@ -372,7 +346,7 @@
             cursor: pointer;
             font-size: 0.77rem;
             font-weight: 700;
-            transition: all 0.2s ease;
+            transition: background-color 0.2s ease, color 0.2s ease;
         }
 
         .pill-btn.active, .pill-btn:hover {
@@ -383,7 +357,6 @@
 
         .featured-pack-card {
             background: var(--surface);
-            backdrop-filter: blur(18px);
             border: 1px solid var(--border);
             border-radius: 24px;
             padding: 18px;
@@ -395,9 +368,7 @@
         }
 
         .featured-pack-card.is-visible:hover {
-            --hover-lift: -3px;
             border-color: var(--accent);
-            box-shadow: var(--glow);
         }
 
         .featured-top-split {
@@ -462,9 +433,9 @@
         }
 
         .price-pill {
-            background: var(--accent-soft);
-            color: var(--accent);
-            border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+            background: color-mix(in srgb, var(--warm) 16%, transparent);
+            color: var(--warm);
+            border: 1px solid color-mix(in srgb, var(--warm) 30%, transparent);
             padding: 7px 13px;
             border-radius: 12px;
             font-size: 0.82rem;
@@ -483,7 +454,6 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            transition: all 0.2s ease;
         }
 
         .unlock-pill-btn:hover {
@@ -522,7 +492,6 @@
 
         .app-card {
             background: var(--surface);
-            backdrop-filter: blur(16px);
             border: 1px solid var(--border);
             border-radius: 20px;
             padding: 15px;
@@ -534,9 +503,7 @@
         }
 
         .app-card.is-visible:hover {
-            --hover-lift: -4px;
             border-color: var(--accent);
-            box-shadow: var(--glow);
         }
 
         .app-icon {
@@ -553,19 +520,6 @@
         .app-info {
             flex: 1;
             min-width: 0;
-        }
-
-        .free-tag {
-            display: inline-block;
-            font-size: 0.66rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--accent);
-            background: var(--accent-soft);
-            padding: 2px 8px;
-            border-radius: 999px;
-            margin-bottom: 4px;
         }
 
         .paid-tag {
@@ -610,12 +564,6 @@
             align-items: center;
             gap: 6px;
             white-space: nowrap;
-            transition: transform 0.18s ease, opacity 0.2s ease;
-        }
-
-        .install-btn:hover {
-            opacity: 0.92;
-            transform: translateY(-1px);
         }
 
         .install-btn.pay-btn {
@@ -664,12 +612,13 @@
         }
 
         .floating-dock {
-            background: var(--surface);
-            backdrop-filter: blur(20px);
+            background: color-mix(in srgb, var(--surface) 92%, transparent);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--border);
             border-radius: 999px;
             padding: 6px;
-            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 4px;
@@ -689,7 +638,6 @@
             justify-content: center;
             gap: 6px;
             white-space: nowrap;
-            transition: background 0.2s ease, color 0.2s ease;
         }
 
         .dock-btn.active {
@@ -708,7 +656,6 @@
 
         .showcase-hero, .gallery-panel, .buy-card-box {
             background: var(--surface);
-            backdrop-filter: blur(18px);
             border: 1px solid var(--border);
             border-radius: 24px;
             padding: 20px;
@@ -770,7 +717,6 @@
             position: fixed;
             inset: 0;
             background: rgba(0, 0, 0, 0.72);
-            backdrop-filter: blur(6px);
             justify-content: center;
             align-items: center;
             z-index: 200;
@@ -778,7 +724,7 @@
         }
 
         .modal.is-open .modal-content, .lightbox.is-open img {
-            animation: modalPop 0.25s cubic-bezier(0.22, 1, 0.36, 1) both;
+            animation: modalPop 0.2s ease-out both;
         }
 
         .modal-content {
@@ -810,7 +756,6 @@
         footer {
             border-top: 1px solid var(--border);
             background: var(--surface);
-            backdrop-filter: blur(14px);
             padding: 20px;
             text-align: center;
             color: var(--muted);
@@ -908,14 +853,13 @@
         </div>
 
         <div class="showcase-hero">
-            <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
-                <span id="scTypeBadge" class="free-tag">XML</span>
-                <span id="scAccessBadge" class="paid-tag">PAID</span>
-                <span id="scShotCount" class="free-tag" style="background:var(--surface-2); color:var(--ink);">0 Photos</span>
+            <div id="scBadgeRow" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+                <span id="scAccessBadge" class="paid-tag" style="display:none;">PAID</span>
+                <span id="scShotCount" class="paid-tag" style="background:var(--surface-2); color:var(--ink);">0 Photos</span>
             </div>
             <h1 id="scTitle" class="styled-name-text" style="font-family:'Fraunces',serif; font-size:1.75rem; margin-bottom:6px;">Title</h1>
             <p id="scDesc" class="styled-name-text" style="color:var(--muted); font-size:0.88rem; line-height:1.5;"></p>
-            <div id="scPriceText" style="font-family:'Fraunces',serif; font-size:1.5rem; font-weight:700; color:var(--warm); margin-top:10px;">₹9</div>
+            <div id="scPriceText" style="font-family:'Fraunces',serif; font-size:1.5rem; font-weight:700; color:var(--warm); margin-top:10px; display:none;">₹9</div>
         </div>
 
         <div class="gallery-panel">
@@ -924,13 +868,13 @@
         </div>
 
         <div class="buy-card-box">
-            <h2 style="font-family:'Fraunces',serif; font-size:1.3rem; margin-bottom:6px;">Instant Unlock</h2>
-            <p style="color:var(--muted); font-size:0.84rem; margin-bottom:14px;">
+            <h2 id="scActionHeading" style="font-family:'Fraunces',serif; font-size:1.3rem; margin-bottom:6px;">Download / Unlock</h2>
+            <p id="scActionSubtext" style="color:var(--muted); font-size:0.84rem; margin-bottom:14px;">
                 Checkout complete hote hi download link automatically unlock aur open ho jayega.
             </p>
 
             <button id="scBuyBtn" class="install-btn pay-btn" style="padding:11px 22px; font-size:0.88rem;" onclick="startShowcasePayment()">
-                <i class="fa-solid fa-lock"></i> Instant Unlock — ₹<span id="scBuyAmount">9</span>
+                <i class="fa-solid fa-lock"></i> Buy Now — ₹<span id="scBuyAmount">9</span>
             </button>
 
             <div id="scPendingBanner" class="pending-payment-banner">
@@ -943,7 +887,7 @@
 
             <div id="scUnlockedBox" class="unlocked-box">
                 <div style="color:var(--accent); font-weight:800; margin-bottom:8px;">
-                    <i class="fa-solid fa-circle-check"></i> Unlocked! Download Link Ready:
+                    <i class="fa-solid fa-circle-check"></i> Download Link Ready:
                 </div>
                 <a id="scUnlockedBtn" href="#" target="_blank" class="install-btn" style="padding:10px 18px;">
                     <i class="fa-solid fa-download"></i> Open / Download Link
@@ -975,9 +919,8 @@
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
             <img id="modalIcon" src="" alt="Icon" style="width:78px; height:78px; border-radius:18px; object-fit:cover; margin-bottom:10px;">
-            <div>
-                <span id="modalCat" class="free-tag">General</span>
-                <span id="modalPriceBadge" class="free-tag">FREE</span>
+            <div id="modalPaidBadgeWrap" style="display:none; margin-bottom:4px;">
+                <span id="modalPriceBadge" class="paid-tag">PAID</span>
             </div>
             <h2 id="modalTitle" class="styled-name-text" style="font-family:'Fraunces',serif; margin-top:4px;">App Name</h2>
             <p id="modalDesc" class="styled-name-text" style="color:var(--muted); font-size:0.86rem; margin:12px 0 20px; line-height:1.55;"></p>
@@ -1067,17 +1010,23 @@
 
         let lastScrollY = window.scrollY;
         let scrollDir = "down";
+        let scrollTicking = false;
 
         window.addEventListener("scroll", () => {
-            const y = window.scrollY;
-            if (y > lastScrollY + 2) scrollDir = "down";
-            else if (y < lastScrollY - 2) scrollDir = "up";
-            lastScrollY = Math.max(0, y);
+            if (scrollTicking) return;
+            scrollTicking = true;
+            requestAnimationFrame(() => {
+                const y = window.scrollY;
+                if (y > lastScrollY + 2) scrollDir = "down";
+                else if (y < lastScrollY - 2) scrollDir = "up";
+                lastScrollY = Math.max(0, y);
 
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const pct = docHeight > 0 ? Math.min(100, Math.max(0, (y / docHeight) * 100)) : 0;
-            const bar = document.getElementById("scrollProgressBar");
-            if (bar) bar.style.width = `${pct}%`;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const pct = docHeight > 0 ? Math.min(100, Math.max(0, (y / docHeight) * 100)) : 0;
+                const bar = document.getElementById("scrollProgressBar");
+                if (bar) bar.style.width = `${pct}%`;
+                scrollTicking = false;
+            });
         }, { passive: true });
 
         const cardObserver = new IntersectionObserver((entries) => {
@@ -1095,31 +1044,13 @@
                     el.classList.toggle("from-top", entry.boundingClientRect.top < 0);
                 }
             });
-        }, { threshold: 0.08, rootMargin: "20px 0px 20px 0px" });
-
-        function attachCardTilt(card) {
-            if (card._tiltBound) return;
-            card._tiltBound = true;
-            card.addEventListener("pointermove", (e) => {
-                if (e.pointerType === "touch") return;
-                const rect = card.getBoundingClientRect();
-                const px = (e.clientX - rect.left) / rect.width - 0.5;
-                const py = (e.clientY - rect.top) / rect.height - 0.5;
-                card.style.setProperty("--tilt-y", `${(px * 6).toFixed(2)}deg`);
-                card.style.setProperty("--tilt-x", `${(-py * 5).toFixed(2)}deg`);
-            });
-            card.addEventListener("pointerleave", () => {
-                card.style.setProperty("--tilt-x", "0deg");
-                card.style.setProperty("--tilt-y", "0deg");
-            });
-        }
+        }, { threshold: 0.05, rootMargin: "40px 0px 40px 0px" });
 
         window.observeRevealCards = function (containerEl) {
             if (!containerEl) return;
             containerEl.querySelectorAll(".reveal-card").forEach((card, idx) => {
                 card.classList.remove("is-visible");
-                card.dataset.animDelay = String(Math.min(idx * 40, 200));
-                attachCardTilt(card);
+                card.dataset.animDelay = String(Math.min(idx * 25, 120));
                 cardObserver.observe(card);
             });
         };
@@ -1344,8 +1275,8 @@
                 card.className = 'app-card reveal-card';
 
                 const badgeHtml = isPaid
-                    ? `<span class="paid-tag">${unlocked ? 'UNLOCKED' : `₹${price}`}</span>`
-                    : `<span class="free-tag">FREE</span>`;
+                    ? `<span class="paid-tag">${unlocked ? 'PAID • UNLOCKED' : `PAID • ₹${price}`}</span>`
+                    : '';
 
                 const btnHtml = (!isPaid || unlocked)
                     ? `<a href="${dlUrl}" target="_blank" class="install-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-download"></i> Install</a>`
@@ -1394,6 +1325,14 @@
             heroCard.onclick = () => window.openItemFullShowcase(first.id);
 
             const thumbsHtml = photos.slice(0, 5).map(u => `<img src="${u}" alt="Thumb" class="thumb-strip-item" onerror="this.style.display='none'">`).join('');
+            const paidControlsHtml = isPaid
+                ? `<span class="price-pill">PAID • ₹${price}</span>
+                   <button type="button" class="unlock-pill-btn" onclick="event.stopPropagation(); openItemFullShowcase('${first.id}')">
+                       <i class="fa-solid fa-lock"></i> Buy / Unlock
+                   </button>`
+                : `<button type="button" class="unlock-pill-btn" onclick="event.stopPropagation(); openItemFullShowcase('${first.id}')">
+                       <i class="fa-solid fa-images"></i> Preview
+                   </button>`;
 
             heroCard.innerHTML = `
                 <div class="featured-top-split">
@@ -1404,12 +1343,7 @@
                     <div>
                         <div class="featured-title styled-name-text">${safeTitle}</div>
                         <p class="featured-desc styled-name-text">${safeDesc}</p>
-                        <div class="featured-actions-row">
-                            <span class="price-pill">${isPaid ? `₹${price}` : 'FREE'}</span>
-                            <button type="button" class="unlock-pill-btn" onclick="event.stopPropagation(); openItemFullShowcase('${first.id}')">
-                                <i class="fa-solid fa-sparkles"></i> ${isPaid ? 'Instant Unlock' : 'Preview'}
-                            </button>
-                        </div>
+                        <div class="featured-actions-row">${paidControlsHtml}</div>
                     </div>
                 </div>
                 <div class="thumb-strip">${thumbsHtml}</div>
@@ -1421,16 +1355,17 @@
                 subGrid.className = 'extra-packs-grid';
                 items.slice(1).forEach(item => {
                     const pList = getItemPhotos(item);
+                    const itemPaid = Boolean(item.isPaid);
                     const c = document.createElement('div');
                     c.className = 'app-card reveal-card';
                     c.onclick = () => window.openItemFullShowcase(item.id);
                     c.innerHTML = `
                         <img src="${cleanUrl(item.thumbUrl) || pList[0]}" alt="Pack" class="app-icon" onerror="this.src='${FALLBACK_APP}'">
                         <div class="app-info">
-                            <span class="paid-tag">${item.isPaid ? `₹${item.price || 9}` : 'FREE'} • ${pList.length} Photos</span>
+                            ${itemPaid ? `<span class="paid-tag">PAID • ₹${item.price || 9}</span>` : ''}
                             <div class="app-title styled-name-text">${window.sanitizeDisplayText(item.title || 'Pack')}</div>
                             <div class="app-desc-short styled-name-text">${window.sanitizeDisplayText(item.description || 'Tap to preview')}</div>
-                            <button type="button" class="install-btn pay-btn">Preview</button>
+                            <button type="button" class="install-btn ${itemPaid ? 'pay-btn' : ''}">Preview</button>
                         </div>
                     `;
                     subGrid.appendChild(c);
@@ -1495,10 +1430,14 @@
             const dlUrl = cleanUrl(appItem.downloadUrl) || '#';
 
             setImageDirect(document.getElementById('modalIcon'), appItem.logoUrl, FALLBACK_APP);
-            document.getElementById('modalCat').innerText = appItem.category || 'General';
+            const badgeWrap = document.getElementById('modalPaidBadgeWrap');
             const pBadge = document.getElementById('modalPriceBadge');
-            pBadge.className = isPaid ? 'paid-tag' : 'free-tag';
-            pBadge.innerText = isPaid ? (unlocked ? 'UNLOCKED' : `₹${price}`) : 'FREE';
+            if (isPaid) {
+                badgeWrap.style.display = 'block';
+                pBadge.innerText = unlocked ? 'PAID • UNLOCKED' : `PAID • ₹${price}`;
+            } else {
+                badgeWrap.style.display = 'none';
+            }
 
             document.getElementById('modalTitle').innerText = window.sanitizeDisplayText(appItem.name || 'App');
             document.getElementById('modalDesc').innerText = window.sanitizeDisplayText(appItem.description || 'No description provided.');
@@ -1601,9 +1540,18 @@
             const price = Number(item.price || 9);
             const alreadyUnlocked = localStorage.getItem('maggie_unlocked_' + item.id) === '1';
 
-            document.getElementById('scTypeBadge').innerText = item.type || 'XML';
-            document.getElementById('scAccessBadge').innerText = isPaid ? `PAID • ₹${price}` : 'FREE';
-            document.getElementById('scPriceText').innerText = isPaid ? `₹${price}` : 'FREE';
+            const accessBadge = document.getElementById('scAccessBadge');
+            const priceText = document.getElementById('scPriceText');
+            if (isPaid) {
+                accessBadge.style.display = 'inline-block';
+                accessBadge.innerText = `PAID • ₹${price}`;
+                priceText.style.display = 'block';
+                priceText.innerText = `₹${price}`;
+            } else {
+                accessBadge.style.display = 'none';
+                priceText.style.display = 'none';
+            }
+
             document.getElementById('scTitle').innerText = window.sanitizeDisplayText(item.title || 'Pack');
             document.getElementById('scDesc').innerText = window.sanitizeDisplayText(item.description || '');
             document.getElementById('scStatusMsg').innerText = '';
@@ -1619,7 +1567,7 @@
                 document.getElementById('scBuyAmount').innerText = price;
                 buyBtn.disabled = false;
                 buyBtn.style.display = 'inline-flex';
-                buyBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Instant Unlock — ₹${price}`;
+                buyBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Buy Now — ₹${price}`;
             }
 
             const showcaseEl = document.getElementById('itemShowcaseView');
@@ -1675,7 +1623,7 @@
                 }, 3000);
             } catch (err) {
                 buyBtn.disabled = false;
-                buyBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Instant Unlock — ₹${amount}`;
+                buyBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Buy Now — ₹${amount}`;
                 statusEl.innerHTML = `<span style="color:#ef4444;">${err.message}</span>`;
             }
         };
