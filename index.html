@@ -24,6 +24,7 @@
             --accent-soft: rgba(245, 185, 33, 0.18);
             --accent-ink: #1a1202;
             --accent-glow: 0 0 18px rgba(245, 185, 33, 0.45), 0 4px 14px rgba(245, 158, 11, 0.28);
+            --accent-glow-peak: 0 0 28px rgba(255, 211, 90, 0.82), 0 0 12px rgba(245, 185, 33, 0.65), 0 5px 18px rgba(245, 158, 11, 0.42);
             --violet: #a78bfa;
             --warm: #fbbf24;
             --border: rgba(255, 255, 255, 0.12);
@@ -50,6 +51,7 @@
             --accent-soft: rgba(234, 179, 8, 0.16);
             --accent-ink: #1c1404;
             --accent-glow: 0 0 16px rgba(234, 179, 8, 0.42), 0 4px 12px rgba(217, 119, 6, 0.22);
+            --accent-glow-peak: 0 0 26px rgba(250, 204, 21, 0.78), 0 0 10px rgba(234, 179, 8, 0.58), 0 5px 16px rgba(217, 119, 6, 0.36);
             --violet: #6d28d9;
             --warm: #d97706;
             --border: rgba(15, 23, 42, 0.10);
@@ -140,6 +142,26 @@
         @keyframes modalPop {
             from { opacity: 0; transform: scale(0.96); }
             to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes goldPulseGlow {
+            0% {
+                box-shadow: var(--accent-glow);
+                filter: brightness(0.98);
+            }
+            100% {
+                box-shadow: var(--accent-glow-peak);
+                filter: brightness(1.08);
+            }
+        }
+
+        @keyframes badgePulseGlow {
+            0% {
+                box-shadow: 0 0 8px rgba(245, 185, 33, 0.20);
+            }
+            100% {
+                box-shadow: 0 0 18px rgba(255, 211, 90, 0.52);
+            }
         }
 
         .view-animate {
@@ -367,7 +389,7 @@
         .icon-social-btn:hover {
             background: linear-gradient(135deg, var(--accent-bright), var(--accent));
             color: var(--accent-ink);
-            box-shadow: var(--accent-glow);
+            animation: goldPulseGlow 1.8s ease-in-out infinite alternate;
         }
 
         .container {
@@ -412,14 +434,20 @@
             cursor: pointer;
             font-size: 0.77rem;
             font-weight: 700;
-            transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
         }
 
-        .pill-btn.active, .pill-btn:hover {
+        .pill-btn.active {
             background: linear-gradient(135deg, var(--accent-bright), var(--accent));
             color: var(--accent-ink);
             border-color: transparent;
-            box-shadow: var(--accent-glow);
+            animation: goldPulseGlow 2.2s ease-in-out infinite alternate;
+        }
+
+        .pill-btn:hover:not(.active) {
+            color: var(--accent-bright);
+            border-color: var(--accent);
+            box-shadow: 0 0 14px rgba(245, 185, 33, 0.28);
         }
 
         .featured-pack-card {
@@ -505,12 +533,12 @@
         .price-pill {
             background: color-mix(in srgb, var(--accent) 18%, transparent);
             color: var(--accent-bright);
-            border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
-            box-shadow: 0 0 12px rgba(245, 185, 33, 0.22);
+            border: 1px solid color-mix(in srgb, var(--accent) 42%, transparent);
             padding: 7px 13px;
             border-radius: 12px;
             font-size: 0.82rem;
             font-weight: 800;
+            animation: badgePulseGlow 2.4s ease-in-out infinite alternate;
         }
 
         [data-theme="light"] .price-pill {
@@ -549,7 +577,7 @@
         .unlock-pill-btn:hover {
             border-color: var(--accent);
             color: var(--accent-bright);
-            box-shadow: 0 0 14px rgba(245, 185, 33, 0.28);
+            box-shadow: 0 0 16px rgba(245, 185, 33, 0.35);
         }
 
         .thumb-strip {
@@ -619,10 +647,10 @@
             color: var(--accent-bright);
             background: color-mix(in srgb, var(--accent) 18%, transparent);
             border: 1px solid color-mix(in srgb, var(--accent) 36%, transparent);
-            box-shadow: 0 0 10px rgba(245, 185, 33, 0.22);
             padding: 2px 8px;
             border-radius: 999px;
             margin-bottom: 4px;
+            animation: badgePulseGlow 2.4s ease-in-out infinite alternate;
         }
 
         [data-theme="light"] .paid-tag {
@@ -660,13 +688,8 @@
             align-items: center;
             gap: 6px;
             white-space: nowrap;
-            box-shadow: var(--accent-glow);
-            transition: transform 0.16s ease, box-shadow 0.2s ease, filter 0.2s ease;
-        }
-
-        .install-btn:hover {
-            filter: brightness(1.06);
-            box-shadow: 0 0 24px rgba(245, 185, 33, 0.62), 0 6px 16px rgba(245, 158, 11, 0.35);
+            animation: goldPulseGlow 2.3s ease-in-out infinite alternate;
+            transition: transform 0.16s ease;
         }
 
         .install-btn:active {
@@ -683,11 +706,12 @@
             color: var(--ink);
             border: 1px solid var(--border);
             box-shadow: inset 0 1px 0 var(--glass-inset);
+            animation: none;
         }
 
         .install-btn.ghost-btn:hover {
             border-color: var(--accent);
-            box-shadow: 0 0 14px rgba(245, 185, 33, 0.25);
+            box-shadow: 0 0 16px rgba(245, 185, 33, 0.32);
         }
 
         .game-extra-grid {
@@ -859,13 +883,13 @@
             justify-content: center;
             gap: 6px;
             white-space: nowrap;
-            transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+            transition: background 0.2s ease, color 0.2s ease;
         }
 
         .dock-btn.active {
             background: linear-gradient(135deg, var(--accent-bright), var(--accent));
             color: var(--accent-ink);
-            box-shadow: var(--accent-glow);
+            animation: goldPulseGlow 2.2s ease-in-out infinite alternate;
         }
 
         #itemShowcaseView {
@@ -922,7 +946,7 @@
 
         .shot-tile.active {
             border-color: var(--accent);
-            box-shadow: 0 0 14px rgba(245, 185, 33, 0.35);
+            animation: badgePulseGlow 2.2s ease-in-out infinite alternate;
         }
 
         .shot-tile img {
@@ -1015,6 +1039,9 @@
         @media (prefers-reduced-motion: reduce) {
             .reveal-card { opacity: 1; transform: none; transition: none; }
             .view-animate { animation: none; }
+            .pill-btn.active, .install-btn, .dock-btn.active, .paid-tag, .price-pill, .shot-tile.active {
+                animation: none !important;
+            }
         }
     </style>
 </head>
@@ -1171,7 +1198,7 @@
         <div class="showcase-hero">
             <div id="scBadgeRow" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
                 <span id="scAccessBadge" class="paid-tag" style="display:none;">PAID</span>
-                <span id="scShotCount" class="paid-tag" style="background:var(--surface-2); color:var(--ink); border-color:var(--border); box-shadow:none;">0 Photos</span>
+                <span id="scShotCount" class="paid-tag" style="background:var(--surface-2); color:var(--ink); border-color:var(--border); animation:none;">0 Photos</span>
             </div>
             <h1 id="scTitle" class="styled-name-text" style="font-family:'Fraunces',serif; font-size:1.75rem; margin-bottom:6px;">Title</h1>
             <p id="scDesc" class="styled-name-text" style="color:var(--muted); font-size:0.88rem; line-height:1.5;"></p>
