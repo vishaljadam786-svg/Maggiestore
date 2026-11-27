@@ -93,6 +93,122 @@
             position: relative;
         }
 
+        /* Infinity Trail Loading Overlay */
+        #infinityTrailLoader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: color-mix(in srgb, var(--bg) 92%, transparent);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.34s ease, visibility 0.34s ease;
+        }
+
+        #infinityTrailLoader.is-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .infinity-stage {
+            position: relative;
+            width: 186px;
+            height: 92px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .infinity-svg {
+            width: 186px;
+            height: 92px;
+            overflow: visible;
+        }
+
+        .infinity-track {
+            fill: none;
+            stroke: var(--border);
+            stroke-width: 5;
+            stroke-linecap: round;
+        }
+
+        .infinity-trail-stroke {
+            fill: none;
+            stroke: url(#maggieInfinityGrad);
+            stroke-width: 6.5;
+            stroke-linecap: round;
+            stroke-dasharray: 88 240;
+            stroke-dashoffset: 0;
+            filter: drop-shadow(0 0 12px rgba(245, 185, 33, 0.58));
+            animation: infinityTrailDash 1.45s linear infinite;
+        }
+
+        .infinity-head-dot {
+            fill: #ffffff;
+            filter: drop-shadow(0 0 10px var(--accent-bright)) drop-shadow(0 0 18px var(--accent));
+            offset-path: path("M 93,46 C 93,16 33,16 33,46 C 33,76 93,76 93,46 C 93,16 153,16 153,46 C 153,76 93,76 93,46 Z");
+            offset-rotate: auto;
+            animation: infinityTrailOrbit 1.45s linear infinite;
+        }
+
+        .infinity-tail-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            position: absolute;
+            background: var(--accent-bright);
+            box-shadow: 0 0 12px var(--accent);
+            offset-path: path("M 93,46 C 93,16 33,16 33,46 C 33,76 93,76 93,46 C 93,16 153,16 153,46 C 153,76 93,76 93,46 Z");
+            offset-rotate: auto;
+            animation: infinityTrailOrbit 1.45s linear infinite;
+        }
+
+        .infinity-tail-1 {
+            opacity: 0.72;
+            transform: scale(0.84);
+            animation-delay: -0.08s;
+            background: var(--accent-bright);
+        }
+
+        .infinity-tail-2 {
+            opacity: 0.48;
+            transform: scale(0.66);
+            animation-delay: -0.16s;
+            background: var(--accent);
+        }
+
+        .infinity-tail-3 {
+            opacity: 0.25;
+            transform: scale(0.48);
+            animation-delay: -0.24s;
+            background: var(--violet);
+        }
+
+        @keyframes infinityTrailDash {
+            from { stroke-dashoffset: 328; }
+            to { stroke-dashoffset: 0; }
+        }
+
+        @keyframes infinityTrailOrbit {
+            0% { offset-distance: 0%; }
+            100% { offset-distance: 100%; }
+        }
+
+        .infinity-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
         .liquid-bg {
             position: fixed;
             inset: 0;
@@ -1039,13 +1155,36 @@
         @media (prefers-reduced-motion: reduce) {
             .reveal-card { opacity: 1; transform: none; transition: none; }
             .view-animate { animation: none; }
-            .pill-btn.active, .install-btn, .dock-btn.active, .paid-tag, .price-pill, .shot-tile.active {
+            .pill-btn.active, .install-btn, .dock-btn.active, .paid-tag, .price-pill, .shot-tile.active,
+            .infinity-trail-stroke, .infinity-head-dot, .infinity-tail-dot {
                 animation: none !important;
             }
         }
     </style>
 </head>
 <body>
+
+    <!-- Infinity Trail Loading Overlay -->
+    <div id="infinityTrailLoader" aria-label="Loading store">
+        <div class="infinity-stage">
+            <svg class="infinity-svg" viewBox="0 0 186 92" aria-hidden="true">
+                <defs>
+                    <linearGradient id="maggieInfinityGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#f5b921" />
+                        <stop offset="50%" stop-color="#ffd35a" />
+                        <stop offset="100%" stop-color="#a78bfa" />
+                    </linearGradient>
+                </defs>
+                <path class="infinity-track" d="M 93,46 C 93,16 33,16 33,46 C 33,76 93,76 93,46 C 93,16 153,16 153,46 C 153,76 93,76 93,46 Z" />
+                <path class="infinity-trail-stroke" d="M 93,46 C 93,16 33,16 33,46 C 33,76 93,76 93,46 C 93,16 153,16 153,46 C 153,76 93,76 93,46 Z" />
+                <circle class="infinity-head-dot" r="4.5" />
+            </svg>
+            <span class="infinity-tail-dot infinity-tail-1"></span>
+            <span class="infinity-tail-dot infinity-tail-2"></span>
+            <span class="infinity-tail-dot infinity-tail-3"></span>
+        </div>
+        <div class="infinity-label">Loading Store...</div>
+    </div>
 
     <div class="liquid-bg" aria-hidden="true">
         <div class="liquid-orb orb-a"></div>
@@ -1296,6 +1435,27 @@
     </div>
 
     <script>
+        let trailHideTimer = null;
+
+        window.showInfinityTrail = function (text) {
+            clearTimeout(trailHideTimer);
+            const loader = document.getElementById("infinityTrailLoader");
+            const lbl = loader?.querySelector(".infinity-label");
+            if (lbl && text) lbl.innerText = text;
+            if (loader) loader.classList.remove("is-hidden");
+        };
+
+        window.hideInfinityTrail = function (delay = 220) {
+            clearTimeout(trailHideTimer);
+            trailHideTimer = setTimeout(() => {
+                const loader = document.getElementById("infinityTrailLoader");
+                if (loader) loader.classList.add("is-hidden");
+            }, delay);
+        };
+
+        window.addEventListener("load", () => window.hideInfinityTrail(280));
+        setTimeout(() => window.hideInfinityTrail(0), 3000);
+
         (function initSavedTheme() {
             const saved = localStorage.getItem("maggie_theme") || "dark";
             document.documentElement.setAttribute("data-theme", saved);
@@ -1479,6 +1639,14 @@
         let modalPollTimer = null;
         let baseStoreName = "MAGGIE STORE";
         let renderFrameId = 0;
+        let initialDataReady = 0;
+
+        function markInitialReady() {
+            initialDataReady += 1;
+            if (initialDataReady >= 2) {
+                window.hideInfinityTrail(180);
+            }
+        }
 
         function cleanUrl(raw) {
             const val = (raw || '').trim();
@@ -1622,7 +1790,8 @@
                 allApps.push({ id: docSnap.id, ...docSnap.data() });
             });
             scheduleRender();
-        });
+            markInitialReady();
+        }, () => markInitialReady());
 
         onSnapshot(collection(db, "xmlTemplates"), (snapshot) => {
             allXmlItems = [];
@@ -1630,7 +1799,8 @@
                 allXmlItems.push({ id: docSnap.id, ...docSnap.data() });
             });
             scheduleRender();
-        });
+            markInitialReady();
+        }, () => markInitialReady());
 
         window.setXmlFilter = (mode) => {
             xmlFilterMode = mode;
