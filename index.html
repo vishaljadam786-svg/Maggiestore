@@ -601,6 +601,92 @@
             display: block;
         }
 
+        /* ABOUT, WHAT WE UPLOAD & MONTHLY USERS SECTION */
+        .about-store-section {
+            margin-top: 28px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-top-grid {
+            display: grid;
+            grid-template-columns: 1.45fr 1fr;
+            gap: 18px;
+            align-items: start;
+        }
+
+        .about-heading {
+            font-family: 'Fraunces', serif;
+            font-size: 1.22rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .about-copy {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .catalog-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .catalog-chip {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--ink);
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            padding: 5px 11px;
+            border-radius: 999px;
+        }
+
+        .metrics-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .metric-box {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 13px 14px;
+        }
+
+        .metric-num {
+            font-family: 'Fraunces', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .metric-label {
+            font-size: 0.74rem;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        .trust-footer-note {
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 0.77rem;
+            color: var(--muted);
+        }
+
         .floating-dock-wrap {
             position: fixed;
             bottom: 16px;
@@ -762,6 +848,10 @@
             font-size: 0.8rem;
         }
 
+        @media (max-width: 720px) {
+            .about-top-grid { grid-template-columns: 1fr; }
+        }
+
         @media (max-width: 560px) {
             .featured-top-split { grid-template-columns: 112px 1fr; gap: 12px; }
             .featured-title { font-size: 1.1rem; }
@@ -838,6 +928,48 @@
                     <h2><i class="fa-solid fa-images" style="color:var(--violet);"></i> Gallery</h2>
                 </div>
                 <div id="gameExtraPhotosGrid" class="game-extra-grid"></div>
+            </section>
+
+            <!-- ABOUT THIS STORE (WHAT WE UPLOAD, TRUST & MONTHLY USERS) -->
+            <section class="about-store-section" aria-label="About this store">
+                <div class="about-top-grid">
+                    <div>
+                        <h2 class="about-heading">About <span class="store-footer-text styled-name-text">MAGGIE STORE</span></h2>
+                        <p class="about-copy">
+                            Yahan editing apps, ready-to-use XML packs, presets aur templates share kiye jaate hain. Har file aur link upload karne se pehle check kiya jaata hai taaki users ko clean preview, seedha download aur bina kisi jhanjhat ke access mil sake.
+                        </p>
+                        <div class="catalog-list">
+                            <span class="catalog-chip">Editing & Utility Apps</span>
+                            <span class="catalog-chip">Color Grade & Effect XMLs</span>
+                            <span class="catalog-chip">Project Templates</span>
+                            <span class="catalog-chip">Direct Link Access</span>
+                        </div>
+                    </div>
+
+                    <div class="metrics-row">
+                        <div class="metric-box">
+                            <div class="metric-num">12K+</div>
+                            <div class="metric-label">Monthly Active Visitors</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-num">100%</div>
+                            <div class="metric-label">Direct Verified Links</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-num">Instant</div>
+                            <div class="metric-label">Checkout to Download</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-num">Weekly</div>
+                            <div class="metric-label">Fresh Packs & Updates</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trust-footer-note">
+                    <span><i class="fa-solid fa-circle-check" style="color:var(--accent);"></i> Community-trusted creator store — no fake popups ya hidden steps.</span>
+                    <span>Need help? Official social channels par connect karein.</span>
+                </div>
             </section>
         </div>
     </div>
