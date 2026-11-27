@@ -6,37 +6,51 @@
     <title id="pageTitle">MAGGIE STORE - App Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Noto+Sans:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2895289176876081"
+     crossorigin="anonymous"></script>
     <style>
         :root, [data-theme="dark"] {
-            --bg: #0c0f14;
-            --surface: #151a24;
-            --surface-solid: #161b25;
-            --surface-2: #1d2432;
-            --ink: #f4f6fb;
-            --muted: #9aa4b8;
+            --bg: #090d14;
+            --glass: rgba(22, 29, 43, 0.58);
+            --glass-strong: rgba(26, 35, 52, 0.76);
+            --glass-hover: rgba(34, 45, 66, 0.72);
+            --glass-inset: rgba(255, 255, 255, 0.14);
+            --surface-solid: #141b29;
+            --surface-2: rgba(255, 255, 255, 0.05);
+            --ink: #f5f7fc;
+            --muted: #a2aec4;
             --accent: #10b981;
-            --accent-soft: rgba(16, 185, 129, 0.16);
+            --accent-soft: rgba(16, 185, 129, 0.18);
             --accent-ink: #04130d;
             --violet: #a78bfa;
             --warm: #f59e0b;
-            --border: rgba(255, 255, 255, 0.10);
-            --shadow: 0 10px 26px rgba(0, 0, 0, 0.32);
+            --border: rgba(255, 255, 255, 0.13);
+            --shadow: 0 14px 34px rgba(0, 0, 0, 0.36);
+            --orb-1: rgba(16, 185, 129, 0.16);
+            --orb-2: rgba(139, 92, 246, 0.15);
+            --orb-3: rgba(245, 158, 11, 0.10);
         }
 
         [data-theme="light"] {
-            --bg: #f6f4ef;
-            --surface: #ffffff;
+            --bg: #eef2f7;
+            --glass: rgba(255, 255, 255, 0.64);
+            --glass-strong: rgba(255, 255, 255, 0.82);
+            --glass-hover: rgba(255, 255, 255, 0.80);
+            --glass-inset: rgba(255, 255, 255, 0.90);
             --surface-solid: #ffffff;
-            --surface-2: #ece8df;
-            --ink: #141820;
-            --muted: #5b6475;
+            --surface-2: rgba(15, 23, 42, 0.045);
+            --ink: #0f172a;
+            --muted: #526077;
             --accent: #059669;
             --accent-soft: rgba(5, 150, 105, 0.14);
             --accent-ink: #ffffff;
             --violet: #6d28d9;
             --warm: #d97706;
-            --border: rgba(20, 24, 32, 0.10);
-            --shadow: 0 10px 24px rgba(20, 24, 32, 0.06);
+            --border: rgba(15, 23, 42, 0.10);
+            --shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+            --orb-1: rgba(16, 185, 129, 0.15);
+            --orb-2: rgba(124, 58, 237, 0.12);
+            --orb-3: rgba(245, 158, 11, 0.11);
         }
 
         * {
@@ -62,10 +76,30 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            padding-bottom: 92px;
+            padding-bottom: 96px;
             transition: background-color 0.25s ease, color 0.25s ease;
             overflow-x: clip;
+            position: relative;
         }
+
+        .liquid-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .liquid-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(72px);
+            opacity: 0.9;
+        }
+
+        .orb-a { width: 340px; height: 340px; top: -80px; left: -70px; background: var(--orb-1); }
+        .orb-b { width: 380px; height: 380px; top: 28%; right: -110px; background: var(--orb-2); }
+        .orb-c { width: 300px; height: 300px; bottom: 8%; left: 12%; background: var(--orb-3); }
 
         .scroll-track {
             position: fixed;
@@ -94,33 +128,26 @@
             to { opacity: 1; transform: scale(1); }
         }
 
-        .view-animate {
-            animation: viewEnter 0.28s ease-out both;
-        }
+        .view-animate { animation: viewEnter 0.28s ease-out both; }
 
         .reveal-card {
             opacity: 0;
             transform: translateY(14px);
-            transition: opacity 0.3s ease-out, transform 0.3s ease-out, border-color 0.2s ease;
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out, border-color 0.2s ease, background-color 0.2s ease;
         }
 
-        .reveal-card.from-top {
-            transform: translateY(-12px);
-        }
-
-        .reveal-card.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .reveal-card.from-top { transform: translateY(-12px); }
+        .reveal-card.is-visible { opacity: 1; transform: translateY(0); }
 
         header {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: color-mix(in srgb, var(--bg) 88%, transparent);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: var(--glass-strong);
+            backdrop-filter: blur(18px) saturate(160%);
+            -webkit-backdrop-filter: blur(18px) saturate(160%);
             border-bottom: 1px solid var(--border);
+            box-shadow: inset 0 -1px 0 var(--glass-inset);
             padding: 11px 5%;
             display: flex;
             align-items: center;
@@ -140,9 +167,9 @@
         .store-logo {
             width: 38px;
             height: 38px;
-            border-radius: 12px;
+            border-radius: 13px;
             object-fit: cover;
-            border: 1.5px solid var(--border);
+            border: 1px solid var(--glass-inset);
             background: var(--surface-2);
             flex-shrink: 0;
         }
@@ -165,25 +192,28 @@
         }
 
         .search-box {
-            background: var(--surface);
+            background: var(--glass);
             border: 1px solid var(--border);
+            box-shadow: inset 0 1px 0 var(--glass-inset);
             color: var(--ink);
             padding: 8px 13px;
             border-radius: 999px;
             font-size: 0.82rem;
             width: 150px;
             outline: none;
-            transition: border-color 0.2s ease, width 0.22s ease;
+            transition: border-color 0.2s ease, width 0.22s ease, background-color 0.2s ease;
         }
 
         .search-box:focus {
             border-color: var(--accent);
+            background: var(--glass-strong);
             width: 185px;
         }
 
         .theme-toggle {
-            background: var(--surface);
+            background: var(--glass);
             border: 1px solid var(--border);
+            box-shadow: inset 0 1px 0 var(--glass-inset);
             color: var(--ink);
             width: 36px;
             height: 36px;
@@ -204,11 +234,13 @@
         }
 
         .profile-pill-bar {
-            background: var(--surface);
+            background: var(--glass);
+            backdrop-filter: blur(18px) saturate(160%);
+            -webkit-backdrop-filter: blur(18px) saturate(160%);
             border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 14px 16px;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow), inset 0 1px 0 var(--glass-inset);
+            border-radius: 26px;
+            padding: 15px 17px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -229,7 +261,7 @@
             height: 56px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid color-mix(in srgb, var(--accent) 45%, transparent);
+            border: 2px solid color-mix(in srgb, var(--accent) 55%, transparent);
             background: var(--surface-2);
             flex-shrink: 0;
             cursor: zoom-in;
@@ -265,9 +297,10 @@
         }
 
         .copy-uid-pill {
-            background: var(--surface-solid);
+            background: var(--glass-strong);
             color: var(--ink);
             border: 1px solid var(--border);
+            box-shadow: inset 0 1px 0 var(--glass-inset);
             border-radius: 999px;
             padding: 4px 11px;
             font-size: 0.75rem;
@@ -288,9 +321,10 @@
         .icon-social-btn {
             width: 36px;
             height: 36px;
-            border-radius: 12px;
+            border-radius: 13px;
             background: var(--surface-2);
             border: 1px solid var(--border);
+            box-shadow: inset 0 1px 0 var(--glass-inset);
             color: var(--ink);
             display: inline-flex;
             align-items: center;
@@ -338,10 +372,11 @@
         }
 
         .pill-btn {
-            background: var(--surface);
+            background: var(--glass);
             color: var(--muted);
             border: 1px solid var(--border);
-            padding: 6px 13px;
+            box-shadow: inset 0 1px 0 var(--glass-inset);
+            padding: 6px 14px;
             border-radius: 999px;
             cursor: pointer;
             font-size: 0.77rem;
@@ -356,11 +391,13 @@
         }
 
         .featured-pack-card {
-            background: var(--surface);
+            background: var(--glass);
+            backdrop-filter: blur(14px) saturate(150%);
+            -webkit-backdrop-filter: blur(14px) saturate(150%);
             border: 1px solid var(--border);
-            border-radius: 24px;
+            box-shadow: var(--shadow), inset 0 1px 0 var(--glass-inset);
+            border-radius: 26px;
             padding: 18px;
-            box-shadow: var(--shadow);
             display: flex;
             flex-direction: column;
             gap: 14px;
@@ -368,7 +405,8 @@
         }
 
         .featured-pack-card.is-visible:hover {
-            border-color: var(--accent);
+            border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+            background: var(--glass-hover);
         }
 
         .featured-top-split {
@@ -380,9 +418,9 @@
 
         .featured-cover-box {
             position: relative;
-            border-radius: 18px;
+            border-radius: 19px;
             overflow: hidden;
-            border: 1px solid var(--border);
+            border: 1px solid var(--glass-inset);
             background: var(--surface-2);
             aspect-ratio: 1 / 1;
         }
@@ -398,12 +436,14 @@
             position: absolute;
             bottom: 8px;
             right: 8px;
-            background: rgba(12, 15, 20, 0.85);
+            background: rgba(9, 13, 20, 0.78);
+            backdrop-filter: blur(8px);
             color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.14);
             font-size: 0.66rem;
             font-weight: 700;
             padding: 3px 8px;
-            border-radius: 8px;
+            border-radius: 9px;
         }
 
         .featured-title {
@@ -433,9 +473,9 @@
         }
 
         .price-pill {
-            background: color-mix(in srgb, var(--warm) 16%, transparent);
+            background: color-mix(in srgb, var(--warm) 18%, transparent);
             color: var(--warm);
-            border: 1px solid color-mix(in srgb, var(--warm) 30%, transparent);
+            border: 1px solid color-mix(in srgb, var(--warm) 35%, transparent);
             padding: 7px 13px;
             border-radius: 12px;
             font-size: 0.82rem;
@@ -443,9 +483,9 @@
         }
 
         .video-pill {
-            background: color-mix(in srgb, var(--accent) 15%, transparent);
+            background: color-mix(in srgb, var(--accent) 16%, transparent);
             color: var(--accent);
-            border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+            border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
             padding: 7px 11px;
             border-radius: 12px;
             font-size: 0.76rem;
@@ -456,9 +496,10 @@
         }
 
         .unlock-pill-btn {
-            background: var(--surface-solid);
+            background: var(--glass-strong);
             color: var(--ink);
             border: 1px solid var(--border);
+            box-shadow: inset 0 1px 0 var(--glass-inset);
             padding: 8px 15px;
             border-radius: 12px;
             font-size: 0.8rem;
@@ -482,10 +523,10 @@
 
         .thumb-strip-item {
             height: 54px;
-            border-radius: 11px;
+            border-radius: 12px;
             object-fit: cover;
             width: 100%;
-            border: 1px solid var(--border);
+            border: 1px solid var(--glass-inset);
             background: var(--surface-2);
             display: block;
         }
@@ -504,43 +545,44 @@
         }
 
         .app-card {
-            background: var(--surface);
+            background: var(--glass);
+            backdrop-filter: blur(14px) saturate(150%);
+            -webkit-backdrop-filter: blur(14px) saturate(150%);
             border: 1px solid var(--border);
-            border-radius: 20px;
+            box-shadow: var(--shadow), inset 0 1px 0 var(--glass-inset);
+            border-radius: 22px;
             padding: 15px;
             display: flex;
             align-items: center;
             gap: 13px;
             cursor: pointer;
-            box-shadow: var(--shadow);
         }
 
         .app-card.is-visible:hover {
-            border-color: var(--accent);
+            border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+            background: var(--glass-hover);
         }
 
         .app-icon {
             width: 62px;
             height: 62px;
-            border-radius: 16px;
+            border-radius: 17px;
             object-fit: cover;
             background: var(--surface-2);
-            border: 1px solid var(--border);
+            border: 1px solid var(--glass-inset);
             flex-shrink: 0;
             display: block;
         }
 
-        .app-info {
-            flex: 1;
-            min-width: 0;
-        }
+        .app-info { flex: 1; min-width: 0; }
 
         .paid-tag {
             display: inline-block;
             font-size: 0.66rem;
             font-weight: 800;
             color: var(--warm);
-            background: color-mix(in srgb, var(--warm) 16%, transparent);
+            background: color-mix(in srgb, var(--warm) 18%, transparent);
+            border: 1px solid color-mix(in srgb, var(--warm) 28%, transparent);
             padding: 2px 8px;
             border-radius: 999px;
             margin-bottom: 4px;
@@ -569,7 +611,7 @@
             border: none;
             font-weight: 700;
             padding: 7px 14px;
-            border-radius: 10px;
+            border-radius: 11px;
             font-size: 0.76rem;
             cursor: pointer;
             text-decoration: none;
@@ -579,15 +621,13 @@
             white-space: nowrap;
         }
 
-        .install-btn.pay-btn {
-            background: var(--warm);
-            color: #141820;
-        }
+        .install-btn.pay-btn { background: var(--warm); color: #141820; }
 
         .install-btn.ghost-btn {
-            background: var(--surface-2);
+            background: var(--glass-strong);
             color: var(--ink);
             border: 1px solid var(--border);
+            box-shadow: inset 0 1px 0 var(--glass-inset);
         }
 
         .game-extra-grid {
@@ -608,19 +648,44 @@
         .game-extra-photo {
             width: 100%;
             height: 170px;
-            border-radius: 14px;
+            border-radius: 15px;
             object-fit: cover;
             background: var(--surface-2);
             display: block;
         }
 
-        .about-store-section {
-            margin-top: 28px;
-            background: var(--surface);
+        /* ADSENSE SLOT WRAPPER */
+        .ad-slot-card {
+            margin: 22px 0;
+            background: var(--glass);
+            backdrop-filter: blur(14px) saturate(150%);
+            -webkit-backdrop-filter: blur(14px) saturate(150%);
             border: 1px solid var(--border);
-            border-radius: 22px;
+            box-shadow: var(--shadow), inset 0 1px 0 var(--glass-inset);
+            border-radius: 20px;
+            padding: 10px 14px;
+            text-align: center;
+            min-height: 76px;
+        }
+
+        .ad-slot-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .about-store-section {
+            margin-top: 24px;
+            background: var(--glass);
+            backdrop-filter: blur(16px) saturate(155%);
+            -webkit-backdrop-filter: blur(16px) saturate(155%);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow), inset 0 1px 0 var(--glass-inset);
+            border-radius: 24px;
             padding: 20px;
-            box-shadow: var(--shadow);
         }
 
         .about-top-grid {
@@ -656,6 +721,7 @@
             color: var(--ink);
             background: var(--surface-2);
             border: 1px solid var(--border);
+            box-shadow: inset 0 1px 0 var(--glass-inset);
             padding: 5px 11px;
             border-radius: 999px;
         }
@@ -669,7 +735,8 @@
         .metric-box {
             background: var(--surface-2);
             border: 1px solid var(--border);
-            border-radius: 16px;
+            box-shadow: inset 0 1px 0 var(--glass-inset);
+            border-radius: 17px;
             padding: 13px 14px;
         }
 
@@ -710,13 +777,13 @@
         }
 
         .floating-dock {
-            background: color-mix(in srgb, var(--surface) 92%, transparent);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: var(--glass-strong);
+            backdrop-filter: blur(18px) saturate(165%);
+            -webkit-backdrop-filter: blur(18px) saturate(165%);
             border: 1px solid var(--border);
             border-radius: 999px;
             padding: 6px;
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28), inset 0 1px 0 var(--glass-inset);
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 4px;
@@ -753,18 +820,20 @@
         }
 
         .showcase-hero, .gallery-panel, .video-panel, .buy-card-box {
-            background: var(--surface);
+            background: var(--glass);
+            backdrop-filter: blur(16px) saturate(155%);
+            -webkit-backdrop-filter: blur(16px) saturate(155%);
             border: 1px solid var(--border);
-            border-radius: 24px;
+            box-shadow: var(--shadow), inset 0 1px 0 var(--glass-inset);
+            border-radius: 26px;
             padding: 20px;
-            box-shadow: var(--shadow);
             margin-bottom: 18px;
         }
 
         .showcase-video-player {
             width: 100%;
             max-height: 68vh;
-            border-radius: 14px;
+            border-radius: 15px;
             background: #000;
             display: block;
         }
@@ -774,8 +843,8 @@
             height: auto;
             max-height: 75vh;
             object-fit: contain;
-            border-radius: 14px;
-            background: #0c0f14;
+            border-radius: 15px;
+            background: rgba(9, 13, 20, 0.65);
             cursor: zoom-in;
             display: block;
         }
@@ -790,14 +859,12 @@
         .shot-tile {
             background: var(--surface-2);
             border: 2px solid transparent;
-            border-radius: 14px;
+            border-radius: 15px;
             overflow: hidden;
             cursor: pointer;
         }
 
-        .shot-tile.active {
-            border-color: var(--accent);
-        }
+        .shot-tile.active { border-color: var(--accent); }
 
         .shot-tile img {
             width: 100%;
@@ -805,12 +872,13 @@
             max-height: 320px;
             object-fit: contain;
             display: block;
-            background: #0c0f14;
+            background: rgba(9, 13, 20, 0.55);
         }
 
         .pending-payment-banner, .unlocked-box {
             background: var(--surface-2);
             border: 1px solid var(--border);
+            box-shadow: inset 0 1px 0 var(--glass-inset);
             border-radius: 16px;
             padding: 15px;
             margin-top: 14px;
@@ -822,7 +890,9 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.72);
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             justify-content: center;
             align-items: center;
             z-index: 200;
@@ -834,16 +904,18 @@
         }
 
         .modal-content {
-            background: var(--surface-solid);
+            background: var(--glass-strong);
+            backdrop-filter: blur(20px) saturate(165%);
+            -webkit-backdrop-filter: blur(20px) saturate(165%);
             color: var(--ink);
             padding: 26px 20px;
-            border-radius: 24px;
+            border-radius: 26px;
             max-width: 410px;
             width: 100%;
             text-align: center;
             position: relative;
             border: 1px solid var(--border);
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow), inset 0 1px 0 var(--glass-inset);
         }
 
         .close-btn, .lightbox-close {
@@ -855,13 +927,15 @@
             color: var(--muted);
         }
 
-        .lightbox { z-index: 300; background: rgba(0, 0, 0, 0.92); }
+        .lightbox { z-index: 300; background: rgba(0, 0, 0, 0.90); }
         .lightbox-close { color: #fff; font-size: 2rem; }
-        .lightbox img { max-width: 96vw; max-height: 92vh; object-fit: contain; border-radius: 14px; }
+        .lightbox img { max-width: 96vw; max-height: 92vh; object-fit: contain; border-radius: 15px; }
 
         footer {
             border-top: 1px solid var(--border);
-            background: var(--surface);
+            background: var(--glass);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             padding: 20px;
             text-align: center;
             color: var(--muted);
@@ -882,6 +956,12 @@
     </style>
 </head>
 <body>
+
+    <div class="liquid-bg" aria-hidden="true">
+        <div class="liquid-orb orb-a"></div>
+        <div class="liquid-orb orb-b"></div>
+        <div class="liquid-orb orb-c"></div>
+    </div>
 
     <div class="scroll-track" aria-hidden="true">
         <div id="scrollProgressBar" class="scroll-bar"></div>
@@ -935,6 +1015,17 @@
                 </div>
             </section>
 
+            <!-- ADSENSE SLOT 1: BETWEEN FEATURED PACKS & APPS -->
+            <div class="ad-slot-card" aria-label="Advertisement">
+                <span class="ad-slot-label">Sponsored</span>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-2895289176876081"
+                     data-ad-slot="YOUR_AD_SLOT_ID_1"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+            </div>
+
             <section id="appsSection" style="margin-top: 22px;">
                 <div class="section-heading-row">
                     <h2><i class="fa-solid fa-mobile-screen" style="color:var(--accent);"></i> APPLICATIONS</h2>
@@ -949,6 +1040,17 @@
                 </div>
                 <div id="gameExtraPhotosGrid" class="game-extra-grid"></div>
             </section>
+
+            <!-- ADSENSE SLOT 2: ABOVE ABOUT SECTION -->
+            <div class="ad-slot-card" aria-label="Advertisement">
+                <span class="ad-slot-label">Sponsored</span>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-2895289176876081"
+                     data-ad-slot="YOUR_AD_SLOT_ID_2"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+            </div>
 
             <section class="about-store-section" aria-label="About this store">
                 <div class="about-top-grid">
@@ -1006,14 +1108,13 @@
         <div class="showcase-hero">
             <div id="scBadgeRow" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
                 <span id="scAccessBadge" class="paid-tag" style="display:none;">PAID</span>
-                <span id="scShotCount" class="paid-tag" style="background:var(--surface-2); color:var(--ink);">0 Photos</span>
+                <span id="scShotCount" class="paid-tag" style="background:var(--surface-2); color:var(--ink); border-color:var(--border);">0 Photos</span>
             </div>
             <h1 id="scTitle" class="styled-name-text" style="font-family:'Fraunces',serif; font-size:1.75rem; margin-bottom:6px;">Title</h1>
             <p id="scDesc" class="styled-name-text" style="color:var(--muted); font-size:0.88rem; line-height:1.5;"></p>
             <div id="scPriceText" style="font-family:'Fraunces',serif; font-size:1.5rem; font-weight:700; color:var(--warm); margin-top:10px; display:none;">₹9</div>
         </div>
 
-        <!-- VIDEO PREVIEW PANEL (SHOWN ONLY IF VIDEO URL IS PRESENT) -->
         <div id="scVideoPanel" class="video-panel" style="display:none;">
             <h2 style="font-family:'Fraunces',serif; font-size:1.2rem; margin-bottom:10px;">
                 <i class="fa-solid fa-circle-play" style="color:var(--accent);"></i> Video Preview
@@ -1024,6 +1125,17 @@
         <div class="gallery-panel">
             <img id="scMainImg" src="" alt="Preview Screenshot" class="main-shot-img" onclick="openShowcaseLightbox()">
             <div id="scShotsGrid" class="all-shots-grid"></div>
+        </div>
+
+        <!-- ADSENSE SLOT 3: INSIDE PREVIEW SHOWCASE ABOVE UNLOCK BOX -->
+        <div class="ad-slot-card" aria-label="Advertisement">
+            <span class="ad-slot-label">Sponsored</span>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-2895289176876081"
+                 data-ad-slot="YOUR_AD_SLOT_ID_3"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
         </div>
 
         <div class="buy-card-box">
@@ -1098,6 +1210,15 @@
             const saved = localStorage.getItem("maggie_theme") || "dark";
             document.documentElement.setAttribute("data-theme", saved);
             updateThemeIcon(saved);
+        })();
+
+        (function initAdSenseSlots() {
+            try {
+                const slots = document.querySelectorAll("ins.adsbygoogle");
+                slots.forEach(() => {
+                    (window.adsbygoogle = window.adsbygoogle || []).push({});
+                });
+            } catch (_) {}
         })();
 
         function updateThemeIcon(theme) {
