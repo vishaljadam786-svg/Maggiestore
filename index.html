@@ -11,10 +11,10 @@
     <style>
         :root, [data-theme="dark"] {
             --bg: #090d14;
-            --glass: rgba(22, 29, 43, 0.58);
-            --glass-strong: rgba(26, 35, 52, 0.76);
-            --glass-hover: rgba(34, 45, 66, 0.72);
-            --glass-inset: rgba(255, 255, 255, 0.14);
+            --glass: rgba(20, 27, 40, 0.82);
+            --glass-strong: rgba(24, 32, 48, 0.92);
+            --glass-hover: rgba(32, 42, 62, 0.90);
+            --glass-inset: rgba(255, 255, 255, 0.12);
             --surface-solid: #141b29;
             --surface-2: rgba(255, 255, 255, 0.05);
             --ink: #f5f7fc;
@@ -24,18 +24,20 @@
             --accent-ink: #04130d;
             --violet: #a78bfa;
             --warm: #f59e0b;
-            --border: rgba(255, 255, 255, 0.13);
-            --shadow: 0 14px 34px rgba(0, 0, 0, 0.36);
-            --orb-1: rgba(16, 185, 129, 0.16);
-            --orb-2: rgba(139, 92, 246, 0.15);
-            --orb-3: rgba(245, 158, 11, 0.10);
+            --border: rgba(255, 255, 255, 0.12);
+            --shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+            --orb-1: rgba(16, 185, 129, 0.12);
+            --orb-2: rgba(139, 92, 246, 0.11);
+            --orb-3: rgba(245, 158, 11, 0.08);
+            --blur-main: 12px;
+            --blur-strong: 14px;
         }
 
         [data-theme="light"] {
             --bg: #eef2f7;
-            --glass: rgba(255, 255, 255, 0.64);
-            --glass-strong: rgba(255, 255, 255, 0.82);
-            --glass-hover: rgba(255, 255, 255, 0.80);
+            --glass: rgba(255, 255, 255, 0.82);
+            --glass-strong: rgba(255, 255, 255, 0.92);
+            --glass-hover: rgba(255, 255, 255, 0.94);
             --glass-inset: rgba(255, 255, 255, 0.90);
             --surface-solid: #ffffff;
             --surface-2: rgba(15, 23, 42, 0.045);
@@ -47,10 +49,12 @@
             --violet: #6d28d9;
             --warm: #d97706;
             --border: rgba(15, 23, 42, 0.10);
-            --shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
-            --orb-1: rgba(16, 185, 129, 0.15);
-            --orb-2: rgba(124, 58, 237, 0.12);
-            --orb-3: rgba(245, 158, 11, 0.11);
+            --shadow: 0 8px 20px rgba(15, 23, 42, 0.07);
+            --orb-1: rgba(16, 185, 129, 0.11);
+            --orb-2: rgba(124, 58, 237, 0.09);
+            --orb-3: rgba(245, 158, 11, 0.08);
+            --blur-main: 12px;
+            --blur-strong: 14px;
         }
 
         * {
@@ -58,6 +62,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Plus Jakarta Sans', 'Noto Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         html {
@@ -77,7 +82,7 @@
             display: flex;
             flex-direction: column;
             padding-bottom: 96px;
-            transition: background-color 0.25s ease, color 0.25s ease;
+            transition: background-color 0.2s ease, color 0.2s ease;
             overflow-x: clip;
             position: relative;
         }
@@ -88,18 +93,20 @@
             z-index: -1;
             pointer-events: none;
             overflow: hidden;
+            transform: translateZ(0);
         }
 
         .liquid-orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(72px);
-            opacity: 0.9;
+            filter: blur(56px);
+            opacity: 0.85;
+            transform: translateZ(0);
         }
 
-        .orb-a { width: 340px; height: 340px; top: -80px; left: -70px; background: var(--orb-1); }
-        .orb-b { width: 380px; height: 380px; top: 28%; right: -110px; background: var(--orb-2); }
-        .orb-c { width: 300px; height: 300px; bottom: 8%; left: 12%; background: var(--orb-3); }
+        .orb-a { width: 280px; height: 280px; top: -70px; left: -60px; background: var(--orb-1); }
+        .orb-b { width: 320px; height: 320px; top: 30%; right: -90px; background: var(--orb-2); }
+        .orb-c { width: 250px; height: 250px; bottom: 8%; left: 10%; background: var(--orb-3); }
 
         .scroll-track {
             position: fixed;
@@ -113,14 +120,16 @@
 
         .scroll-bar {
             height: 100%;
-            width: 0%;
+            width: 100%;
             background: linear-gradient(90deg, var(--accent), var(--violet));
+            transform: scaleX(0);
             transform-origin: left center;
+            will-change: transform;
         }
 
         @keyframes viewEnter {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translate3d(0, 12px, 0); }
+            to { opacity: 1; transform: translate3d(0, 0, 0); }
         }
 
         @keyframes modalPop {
@@ -128,24 +137,38 @@
             to { opacity: 1; transform: scale(1); }
         }
 
-        .view-animate { animation: viewEnter 0.28s ease-out both; }
-
-        .reveal-card {
-            opacity: 0;
-            transform: translateY(14px);
-            transition: opacity 0.3s ease-out, transform 0.3s ease-out, border-color 0.2s ease, background-color 0.2s ease;
+        .view-animate {
+            animation: viewEnter 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
-        .reveal-card.from-top { transform: translateY(-12px); }
-        .reveal-card.is-visible { opacity: 1; transform: translateY(0); }
+        /* Bidirectional Card Animation: smoothly animates on scroll-down & scroll-up */
+        .reveal-card {
+            opacity: 0;
+            transform: translate3d(0, 18px, 0);
+            transition:
+                opacity 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+                border-color 0.2s ease,
+                background-color 0.2s ease;
+            will-change: transform, opacity;
+        }
+
+        .reveal-card.from-top {
+            transform: translate3d(0, -16px, 0);
+        }
+
+        .reveal-card.is-visible {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
 
         header {
             position: sticky;
             top: 0;
             z-index: 100;
             background: var(--glass-strong);
-            backdrop-filter: blur(18px) saturate(160%);
-            -webkit-backdrop-filter: blur(18px) saturate(160%);
+            backdrop-filter: blur(var(--blur-strong)) saturate(145%);
+            -webkit-backdrop-filter: blur(var(--blur-strong)) saturate(145%);
             border-bottom: 1px solid var(--border);
             box-shadow: inset 0 -1px 0 var(--glass-inset);
             padding: 11px 5%;
@@ -153,6 +176,7 @@
             align-items: center;
             justify-content: space-between;
             gap: 10px;
+            transform: translateZ(0);
         }
 
         .brand {
@@ -201,7 +225,7 @@
             font-size: 0.82rem;
             width: 150px;
             outline: none;
-            transition: border-color 0.2s ease, width 0.22s ease, background-color 0.2s ease;
+            transition: border-color 0.2s ease, width 0.2s ease, background-color 0.2s ease;
         }
 
         .search-box:focus {
@@ -235,8 +259,8 @@
 
         .profile-pill-bar {
             background: var(--glass);
-            backdrop-filter: blur(18px) saturate(160%);
-            -webkit-backdrop-filter: blur(18px) saturate(160%);
+            backdrop-filter: blur(var(--blur-main)) saturate(140%);
+            -webkit-backdrop-filter: blur(var(--blur-main)) saturate(140%);
             border: 1px solid var(--border);
             box-shadow: var(--shadow), inset 0 1px 0 var(--glass-inset);
             border-radius: 26px;
@@ -392,8 +416,6 @@
 
         .featured-pack-card {
             background: var(--glass);
-            backdrop-filter: blur(14px) saturate(150%);
-            -webkit-backdrop-filter: blur(14px) saturate(150%);
             border: 1px solid var(--border);
             box-shadow: var(--shadow), inset 0 1px 0 var(--glass-inset);
             border-radius: 26px;
@@ -436,8 +458,7 @@
             position: absolute;
             bottom: 8px;
             right: 8px;
-            background: rgba(9, 13, 20, 0.78);
-            backdrop-filter: blur(8px);
+            background: rgba(9, 13, 20, 0.82);
             color: #fff;
             border: 1px solid rgba(255, 255, 255, 0.14);
             font-size: 0.66rem;
@@ -546,8 +567,6 @@
 
         .app-card {
             background: var(--glass);
-            backdrop-filter: blur(14px) saturate(150%);
-            -webkit-backdrop-filter: blur(14px) saturate(150%);
             border: 1px solid var(--border);
             box-shadow: var(--shadow), inset 0 1px 0 var(--glass-inset);
             border-radius: 22px;
@@ -657,8 +676,6 @@
         .ad-slot-card {
             margin: 22px 0;
             background: var(--glass);
-            backdrop-filter: blur(14px) saturate(150%);
-            -webkit-backdrop-filter: blur(14px) saturate(150%);
             border: 1px solid var(--border);
             box-shadow: var(--shadow), inset 0 1px 0 var(--glass-inset);
             border-radius: 20px;
@@ -679,8 +696,6 @@
         .about-store-section {
             margin-top: 24px;
             background: var(--glass);
-            backdrop-filter: blur(16px) saturate(155%);
-            -webkit-backdrop-filter: blur(16px) saturate(155%);
             border: 1px solid var(--border);
             box-shadow: var(--shadow), inset 0 1px 0 var(--glass-inset);
             border-radius: 24px;
@@ -769,20 +784,21 @@
             position: fixed;
             bottom: 16px;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translate3d(-50%, 0, 0);
             z-index: 110;
             width: calc(100% - 32px);
             max-width: 440px;
+            will-change: transform;
         }
 
         .floating-dock {
             background: var(--glass-strong);
-            backdrop-filter: blur(18px) saturate(165%);
-            -webkit-backdrop-filter: blur(18px) saturate(165%);
+            backdrop-filter: blur(var(--blur-strong)) saturate(145%);
+            -webkit-backdrop-filter: blur(var(--blur-strong)) saturate(145%);
             border: 1px solid var(--border);
             border-radius: 999px;
             padding: 6px;
-            box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28), inset 0 1px 0 var(--glass-inset);
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.24), inset 0 1px 0 var(--glass-inset);
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 4px;
@@ -820,8 +836,6 @@
 
         .showcase-hero, .gallery-panel, .video-panel, .buy-card-box {
             background: var(--glass);
-            backdrop-filter: blur(16px) saturate(155%);
-            -webkit-backdrop-filter: blur(16px) saturate(155%);
             border: 1px solid var(--border);
             box-shadow: var(--shadow), inset 0 1px 0 var(--glass-inset);
             border-radius: 26px;
@@ -889,9 +903,7 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.65);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.68);
             justify-content: center;
             align-items: center;
             z-index: 200;
@@ -899,13 +911,11 @@
         }
 
         .modal.is-open .modal-content, .lightbox.is-open img {
-            animation: modalPop 0.2s ease-out both;
+            animation: modalPop 0.18s ease-out both;
         }
 
         .modal-content {
             background: var(--glass-strong);
-            backdrop-filter: blur(20px) saturate(165%);
-            -webkit-backdrop-filter: blur(20px) saturate(165%);
             color: var(--ink);
             padding: 26px 20px;
             border-radius: 26px;
@@ -933,8 +943,6 @@
         footer {
             border-top: 1px solid var(--border);
             background: var(--glass);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
             padding: 20px;
             text-align: center;
             color: var(--muted);
@@ -942,6 +950,11 @@
         }
 
         @media (max-width: 720px) {
+            :root, [data-theme="dark"], [data-theme="light"] {
+                --blur-main: 6px;
+                --blur-strong: 8px;
+            }
+            .liquid-orb { filter: blur(42px); }
             .about-top-grid { grid-template-columns: 1fr; }
         }
 
@@ -951,6 +964,11 @@
             .search-box { width: 112px; }
             .search-box:focus { width: 138px; }
             .logo-text { font-size: 1rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-card { opacity: 1; transform: none; transition: none; }
+            .view-animate { animation: none; }
         }
     </style>
 </head>
@@ -981,7 +999,7 @@
 
     <div id="storeMainView">
         <div class="top-profile-wrap">
-            <section class="profile-pill-bar">
+            <section class="profile-pill-bar reveal-card">
                 <div class="profile-left">
                     <img id="topProfileAvatar" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%2310b981%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2742%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%23ffffff%27%3EM%3C/text%3E%3C/svg%3E" alt="Profile" class="profile-avatar" onclick="openCustomLightbox(this.src)">
                     <div>
@@ -1015,7 +1033,7 @@
             </section>
 
             <!-- Maggie slot 1 (Display) -->
-            <div class="ad-slot-card" aria-label="Advertisement">
+            <div class="ad-slot-card reveal-card" aria-label="Advertisement">
                 <span class="ad-slot-label">Sponsored</span>
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -1041,7 +1059,7 @@
             </section>
 
             <!-- Maggie multiplex (Multiplex) -->
-            <div class="ad-slot-card" aria-label="Advertisement">
+            <div class="ad-slot-card reveal-card" aria-label="Advertisement">
                 <span class="ad-slot-label">Recommended</span>
                 <ins class="adsbygoogle"
                      style="display:block"
@@ -1051,7 +1069,7 @@
                      data-full-width-responsive="true"></ins>
             </div>
 
-            <section class="about-store-section" aria-label="About this store">
+            <section class="about-store-section reveal-card" aria-label="About this store">
                 <div class="about-top-grid">
                     <div>
                         <h2 class="about-heading">About <span class="store-footer-text styled-name-text">MAGGIE STORE</span></h2>
@@ -1211,15 +1229,6 @@
             updateThemeIcon(saved);
         })();
 
-        (function initAdSenseSlots() {
-            try {
-                const slots = document.querySelectorAll("ins.adsbygoogle");
-                slots.forEach(() => {
-                    (window.adsbygoogle = window.adsbygoogle || []).push({});
-                });
-            } catch (_) {}
-        })();
-
         function updateThemeIcon(theme) {
             const btn = document.getElementById("themeBtn");
             if (!btn) return;
@@ -1287,52 +1296,77 @@
             if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
         };
 
+        /* Smooth Scroll Progress + Direction Tracking */
         let lastScrollY = window.scrollY;
         let scrollDir = "down";
-        let scrollTicking = false;
+        let scrollRaf = 0;
 
         window.addEventListener("scroll", () => {
-            if (scrollTicking) return;
-            scrollTicking = true;
-            requestAnimationFrame(() => {
-                const y = window.scrollY;
+            if (scrollRaf) return;
+            scrollRaf = requestAnimationFrame(() => {
+                const y = Math.max(0, window.scrollY);
                 if (y > lastScrollY + 2) scrollDir = "down";
                 else if (y < lastScrollY - 2) scrollDir = "up";
-                lastScrollY = Math.max(0, y);
+                lastScrollY = y;
 
                 const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const pct = docHeight > 0 ? Math.min(100, Math.max(0, (y / docHeight) * 100)) : 0;
+                const ratio = docHeight > 0 ? Math.min(1, Math.max(0, y / docHeight)) : 0;
                 const bar = document.getElementById("scrollProgressBar");
-                if (bar) bar.style.width = `${pct}%`;
-                scrollTicking = false;
+                if (bar) bar.style.transform = `scaleX(${ratio})`;
+                scrollRaf = 0;
             });
         }, { passive: true });
 
+        /* Bidirectional Card Animation Observer */
         const cardObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 const el = entry.target;
-                const delay = Number(el.dataset.animDelay || 0);
-                clearTimeout(Number(el._revealTimer || 0));
-
                 if (entry.isIntersecting) {
-                    const enteredFromTop = entry.boundingClientRect.top < window.innerHeight * 0.45 && scrollDir === "up";
-                    el.classList.toggle("from-top", enteredFromTop);
-                    el._revealTimer = setTimeout(() => el.classList.add("is-visible"), delay);
+                    const cameFromTop = scrollDir === "up" || entry.boundingClientRect.top < window.innerHeight * 0.25;
+                    el.classList.toggle("from-top", cameFromTop);
+                    requestAnimationFrame(() => {
+                        el.classList.add("is-visible");
+                    });
                 } else {
+                    const isAbove = entry.boundingClientRect.top < 0;
+                    el.classList.toggle("from-top", isAbove);
                     el.classList.remove("is-visible");
-                    el.classList.toggle("from-top", entry.boundingClientRect.top < 0);
                 }
             });
-        }, { threshold: 0.05, rootMargin: "40px 0px 40px 0px" });
+        }, {
+            threshold: 0.08,
+            rootMargin: "0px 0px -20px 0px"
+        });
+
+        function revealVisibleImmediately(containerEl) {
+            if (!containerEl) return;
+            const vh = window.innerHeight || 800;
+            containerEl.querySelectorAll(".reveal-card").forEach((card, idx) => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < vh * 0.95 && rect.bottom > 0) {
+                    card.style.transitionDelay = `${Math.min(idx * 35, 180)}ms`;
+                    requestAnimationFrame(() => {
+                        card.classList.add("is-visible");
+                        setTimeout(() => { card.style.transitionDelay = "0ms"; }, 350);
+                    });
+                }
+            });
+        }
 
         window.observeRevealCards = function (containerEl) {
             if (!containerEl) return;
-            containerEl.querySelectorAll(".reveal-card").forEach((card, idx) => {
+            const cards = containerEl.querySelectorAll(".reveal-card");
+            cards.forEach((card) => {
+                cardObserver.unobserve(card);
                 card.classList.remove("is-visible");
-                card.dataset.animDelay = String(Math.min(idx * 25, 120));
                 cardObserver.observe(card);
             });
+            revealVisibleImmediately(containerEl);
         };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            window.observeRevealCards(document.getElementById("storeMainView"));
+        });
     </script>
 
     <script type="module">
@@ -1373,6 +1407,7 @@
         let showcasePollTimer = null;
         let modalPollTimer = null;
         let baseStoreName = "MAGGIE STORE";
+        let renderFrameId = 0;
 
         function cleanUrl(raw) {
             const val = (raw || '').trim();
@@ -1438,19 +1473,21 @@
 
             if (extraPhotos.length > 0) {
                 extraSection.style.display = 'block';
+                const frag = document.createDocumentFragment();
                 extraPhotos.forEach((url, idx) => {
                     const card = document.createElement('div');
                     card.className = 'app-card reveal-card game-extra-card';
                     card.innerHTML = `
-                        <img src="${url}" alt="Photo ${idx + 1}" class="game-extra-photo">
+                        <img src="${url}" alt="Photo ${idx + 1}" class="game-extra-photo" loading="lazy">
                         <div style="font-size:0.76rem; color:var(--muted); display:flex; justify-content:space-between;">
                             <span>Photo #${idx + 1}</span>
                             <i class="fa-solid fa-expand"></i>
                         </div>
                     `;
                     card.onclick = () => window.openCustomLightbox(url);
-                    extraGrid.appendChild(card);
+                    frag.appendChild(card);
                 });
+                extraGrid.appendChild(frag);
                 window.observeRevealCards(extraSection);
             } else {
                 extraSection.style.display = 'none';
@@ -1483,17 +1520,29 @@
         }
 
         onSnapshot(collection(db, "socials"), (snapshot) => {
-            topSocialBar.innerHTML = '';
+            const frag = document.createDocumentFragment();
             snapshot.forEach((docSnap) => {
                 const data = docSnap.data();
                 const platName = window.sanitizeDisplayText(data.platform || "Link");
-                topSocialBar.innerHTML += `
-                    <a href="${cleanUrl(data.url)}" target="_blank" class="icon-social-btn" title="${platName}">
-                        <i class="${getPlatformIcon(data.platform)}"></i>
-                    </a>
-                `;
+                const a = document.createElement('a');
+                a.href = cleanUrl(data.url);
+                a.target = '_blank';
+                a.className = 'icon-social-btn';
+                a.title = platName;
+                a.innerHTML = `<i class="${getPlatformIcon(data.platform)}"></i>`;
+                frag.appendChild(a);
             });
+            topSocialBar.innerHTML = '';
+            topSocialBar.appendChild(frag);
         });
+
+        function scheduleRender() {
+            if (renderFrameId) return;
+            renderFrameId = requestAnimationFrame(() => {
+                renderFrameId = 0;
+                filterAndRender();
+            });
+        }
 
         onSnapshot(collection(db, "apps"), (snapshot) => {
             document.getElementById('loader').style.display = 'none';
@@ -1501,7 +1550,7 @@
             snapshot.forEach((docSnap) => {
                 allApps.push({ id: docSnap.id, ...docSnap.data() });
             });
-            filterAndRender();
+            scheduleRender();
         });
 
         onSnapshot(collection(db, "xmlTemplates"), (snapshot) => {
@@ -1509,7 +1558,7 @@
             snapshot.forEach((docSnap) => {
                 allXmlItems.push({ id: docSnap.id, ...docSnap.data() });
             });
-            filterAndRender();
+            scheduleRender();
         });
 
         window.setXmlFilter = (mode) => {
@@ -1542,6 +1591,7 @@
                 return;
             }
 
+            const frag = document.createDocumentFragment();
             apps.forEach((appItem) => {
                 const isPaid = Boolean(appItem.isPaid);
                 const price = Number(appItem.price || 49);
@@ -1562,7 +1612,7 @@
                     : `<button type="button" class="install-btn pay-btn" onclick="event.stopPropagation(); triggerAppDirectBuy('${appItem.id}')"><i class="fa-solid fa-lock"></i> Buy ₹${price}</button>`;
 
                 card.innerHTML = `
-                    <img src="${FALLBACK_APP}" alt="Icon" class="app-icon">
+                    <img src="${FALLBACK_APP}" alt="Icon" class="app-icon" loading="lazy">
                     <div class="app-info">
                         ${badgeHtml}
                         <div class="app-title styled-name-text">${safeTitle}</div>
@@ -1572,9 +1622,10 @@
                 `;
                 setImageDirect(card.querySelector('.app-icon'), appItem.logoUrl, FALLBACK_APP);
                 card.onclick = () => openModal(appItem);
-                appGrid.appendChild(card);
+                frag.appendChild(card);
             });
 
+            appGrid.appendChild(frag);
             window.observeRevealCards(appGrid);
         }
 
@@ -1604,7 +1655,7 @@
             heroCard.className = 'featured-pack-card reveal-card';
             heroCard.onclick = () => window.openItemFullShowcase(first.id);
 
-            const thumbsHtml = photos.slice(0, 5).map(u => `<img src="${u}" alt="Thumb" class="thumb-strip-item" onerror="this.style.display='none'">`).join('');
+            const thumbsHtml = photos.slice(0, 5).map(u => `<img src="${u}" alt="Thumb" class="thumb-strip-item" loading="lazy" onerror="this.style.display='none'">`).join('');
             const paidBadgeHtml = isPaid ? `<span class="price-pill">PAID • ₹${price}</span>` : '';
             const videoBadgeHtml = hasVideo ? `<span class="video-pill"><i class="fa-solid fa-play"></i> Video</span>` : '';
             const actionBtnHtml = `<button type="button" class="unlock-pill-btn" onclick="event.stopPropagation(); openItemFullShowcase('${first.id}')">
@@ -1630,6 +1681,7 @@
             if (items.length > 1) {
                 const subGrid = document.createElement('div');
                 subGrid.className = 'extra-packs-grid';
+                const frag = document.createDocumentFragment();
                 items.slice(1).forEach(item => {
                     const pList = getItemPhotos(item);
                     const itemPaid = Boolean(item.isPaid);
@@ -1638,7 +1690,7 @@
                     c.className = 'app-card reveal-card';
                     c.onclick = () => window.openItemFullShowcase(item.id);
                     c.innerHTML = `
-                        <img src="${cleanUrl(item.thumbUrl) || pList[0]}" alt="Pack" class="app-icon" onerror="this.src='${FALLBACK_APP}'">
+                        <img src="${cleanUrl(item.thumbUrl) || pList[0]}" alt="Pack" class="app-icon" loading="lazy" onerror="this.src='${FALLBACK_APP}'">
                         <div class="app-info">
                             ${itemPaid ? `<span class="paid-tag">PAID • ₹${item.price || 9}</span>` : ''}
                             ${itemHasVideo ? `<span class="video-pill" style="padding:2px 7px; font-size:0.64rem; margin-bottom:4px;"><i class="fa-solid fa-play"></i> Video</span>` : ''}
@@ -1647,15 +1699,20 @@
                             <button type="button" class="install-btn ${itemPaid ? 'pay-btn' : ''}">Preview</button>
                         </div>
                     `;
-                    subGrid.appendChild(c);
+                    frag.appendChild(c);
                 });
+                subGrid.appendChild(frag);
                 featuredPackContainer.appendChild(subGrid);
             }
 
             window.observeRevealCards(featuredPackContainer);
         }
 
-        searchInput.addEventListener('input', filterAndRender);
+        let searchDebounceTimer = 0;
+        searchInput.addEventListener('input', () => {
+            clearTimeout(searchDebounceTimer);
+            searchDebounceTimer = setTimeout(filterAndRender, 90);
+        });
 
         function stopModalPolling() {
             if (modalPollTimer) { clearInterval(modalPollTimer); modalPollTimer = null; }
@@ -1875,6 +1932,12 @@
             showcaseEl.classList.remove('view-animate');
             void showcaseEl.offsetWidth;
             showcaseEl.classList.add('view-animate');
+
+            const scAd = showcaseEl.querySelector('ins.adsbygoogle');
+            if (scAd && !scAd.getAttribute('data-adsbygoogle-status')) {
+                try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (_) {}
+            }
+
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
 
@@ -1931,6 +1994,13 @@
         window.onclick = (e) => {
             if (e.target === document.getElementById('appModal')) closeModal();
         };
+
+        /* Push visible main store ad slots once */
+        document.querySelectorAll('#storeMainView ins.adsbygoogle').forEach((ins) => {
+            if (!ins.getAttribute('data-adsbygoogle-status')) {
+                try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (_) {}
+            }
+        });
     </script>
 </body>
 </html>
