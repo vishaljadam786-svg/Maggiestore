@@ -19,16 +19,18 @@
             --surface-2: rgba(255, 255, 255, 0.05);
             --ink: #f5f7fc;
             --muted: #a2aec4;
-            --accent: #10b981;
-            --accent-soft: rgba(16, 185, 129, 0.18);
-            --accent-ink: #04130d;
+            --accent: #f5b921;
+            --accent-bright: #ffd35a;
+            --accent-soft: rgba(245, 185, 33, 0.18);
+            --accent-ink: #1a1202;
+            --accent-glow: 0 0 18px rgba(245, 185, 33, 0.45), 0 4px 14px rgba(245, 158, 11, 0.28);
             --violet: #a78bfa;
-            --warm: #f59e0b;
+            --warm: #fbbf24;
             --border: rgba(255, 255, 255, 0.12);
             --shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
-            --orb-1: rgba(16, 185, 129, 0.12);
+            --orb-1: rgba(245, 185, 33, 0.13);
             --orb-2: rgba(139, 92, 246, 0.11);
-            --orb-3: rgba(245, 158, 11, 0.08);
+            --orb-3: rgba(245, 158, 11, 0.10);
             --blur-main: 12px;
             --blur-strong: 14px;
         }
@@ -43,16 +45,18 @@
             --surface-2: rgba(15, 23, 42, 0.045);
             --ink: #0f172a;
             --muted: #526077;
-            --accent: #059669;
-            --accent-soft: rgba(5, 150, 105, 0.14);
-            --accent-ink: #ffffff;
+            --accent: #eab308;
+            --accent-bright: #facc15;
+            --accent-soft: rgba(234, 179, 8, 0.16);
+            --accent-ink: #1c1404;
+            --accent-glow: 0 0 16px rgba(234, 179, 8, 0.42), 0 4px 12px rgba(217, 119, 6, 0.22);
             --violet: #6d28d9;
             --warm: #d97706;
             --border: rgba(15, 23, 42, 0.10);
             --shadow: 0 8px 20px rgba(15, 23, 42, 0.07);
-            --orb-1: rgba(16, 185, 129, 0.11);
+            --orb-1: rgba(234, 179, 8, 0.13);
             --orb-2: rgba(124, 58, 237, 0.09);
-            --orb-3: rgba(245, 158, 11, 0.08);
+            --orb-3: rgba(245, 158, 11, 0.10);
             --blur-main: 12px;
             --blur-strong: 14px;
         }
@@ -121,7 +125,8 @@
         .scroll-bar {
             height: 100%;
             width: 100%;
-            background: linear-gradient(90deg, var(--accent), var(--violet));
+            background: linear-gradient(90deg, var(--accent), var(--accent-bright), var(--violet));
+            box-shadow: 0 0 10px rgba(245, 185, 33, 0.6);
             transform: scaleX(0);
             transform-origin: left center;
             will-change: transform;
@@ -141,7 +146,6 @@
             animation: viewEnter 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
-        /* Bidirectional Card Animation: smoothly animates on scroll-down & scroll-up */
         .reveal-card {
             opacity: 0;
             transform: translate3d(0, 18px, 0);
@@ -225,12 +229,13 @@
             font-size: 0.82rem;
             width: 150px;
             outline: none;
-            transition: border-color 0.2s ease, width 0.2s ease, background-color 0.2s ease;
+            transition: border-color 0.2s ease, width 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
         }
 
         .search-box:focus {
             border-color: var(--accent);
             background: var(--glass-strong);
+            box-shadow: var(--accent-glow);
             width: 185px;
         }
 
@@ -285,7 +290,8 @@
             height: 56px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid color-mix(in srgb, var(--accent) 55%, transparent);
+            border: 2px solid color-mix(in srgb, var(--accent) 65%, transparent);
+            box-shadow: 0 0 14px rgba(245, 185, 33, 0.28);
             background: var(--surface-2);
             flex-shrink: 0;
             cursor: zoom-in;
@@ -355,12 +361,13 @@
             justify-content: center;
             text-decoration: none;
             font-size: 0.92rem;
-            transition: background-color 0.2s ease, color 0.2s ease;
+            transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
         }
 
         .icon-social-btn:hover {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent-bright), var(--accent));
             color: var(--accent-ink);
+            box-shadow: var(--accent-glow);
         }
 
         .container {
@@ -405,13 +412,14 @@
             cursor: pointer;
             font-size: 0.77rem;
             font-weight: 700;
-            transition: background-color 0.2s ease, color 0.2s ease;
+            transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
 
         .pill-btn.active, .pill-btn:hover {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent-bright), var(--accent));
             color: var(--accent-ink);
-            border-color: var(--accent);
+            border-color: transparent;
+            box-shadow: var(--accent-glow);
         }
 
         .featured-pack-card {
@@ -427,8 +435,9 @@
         }
 
         .featured-pack-card.is-visible:hover {
-            border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+            border-color: color-mix(in srgb, var(--accent) 60%, var(--border));
             background: var(--glass-hover);
+            box-shadow: var(--shadow), 0 0 22px rgba(245, 185, 33, 0.14);
         }
 
         .featured-top-split {
@@ -494,19 +503,24 @@
         }
 
         .price-pill {
-            background: color-mix(in srgb, var(--warm) 18%, transparent);
-            color: var(--warm);
-            border: 1px solid color-mix(in srgb, var(--warm) 35%, transparent);
+            background: color-mix(in srgb, var(--accent) 18%, transparent);
+            color: var(--accent-bright);
+            border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+            box-shadow: 0 0 12px rgba(245, 185, 33, 0.22);
             padding: 7px 13px;
             border-radius: 12px;
             font-size: 0.82rem;
             font-weight: 800;
         }
 
+        [data-theme="light"] .price-pill {
+            color: #92400e;
+        }
+
         .video-pill {
             background: color-mix(in srgb, var(--accent) 16%, transparent);
             color: var(--accent);
-            border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+            border: 1px solid color-mix(in srgb, var(--accent) 32%, transparent);
             padding: 7px 11px;
             border-radius: 12px;
             font-size: 0.76rem;
@@ -529,11 +543,13 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
+            transition: border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
         }
 
         .unlock-pill-btn:hover {
             border-color: var(--accent);
-            color: var(--accent);
+            color: var(--accent-bright);
+            box-shadow: 0 0 14px rgba(245, 185, 33, 0.28);
         }
 
         .thumb-strip {
@@ -578,8 +594,9 @@
         }
 
         .app-card.is-visible:hover {
-            border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
+            border-color: color-mix(in srgb, var(--accent) 60%, var(--border));
             background: var(--glass-hover);
+            box-shadow: var(--shadow), 0 0 20px rgba(245, 185, 33, 0.14);
         }
 
         .app-icon {
@@ -599,12 +616,17 @@
             display: inline-block;
             font-size: 0.66rem;
             font-weight: 800;
-            color: var(--warm);
-            background: color-mix(in srgb, var(--warm) 18%, transparent);
-            border: 1px solid color-mix(in srgb, var(--warm) 28%, transparent);
+            color: var(--accent-bright);
+            background: color-mix(in srgb, var(--accent) 18%, transparent);
+            border: 1px solid color-mix(in srgb, var(--accent) 36%, transparent);
+            box-shadow: 0 0 10px rgba(245, 185, 33, 0.22);
             padding: 2px 8px;
             border-radius: 999px;
             margin-bottom: 4px;
+        }
+
+        [data-theme="light"] .paid-tag {
+            color: #92400e;
         }
 
         .app-title {
@@ -625,7 +647,7 @@
         }
 
         .install-btn {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent-bright), var(--accent));
             color: var(--accent-ink);
             border: none;
             font-weight: 700;
@@ -638,15 +660,34 @@
             align-items: center;
             gap: 6px;
             white-space: nowrap;
+            box-shadow: var(--accent-glow);
+            transition: transform 0.16s ease, box-shadow 0.2s ease, filter 0.2s ease;
         }
 
-        .install-btn.pay-btn { background: var(--warm); color: #141820; }
+        .install-btn:hover {
+            filter: brightness(1.06);
+            box-shadow: 0 0 24px rgba(245, 185, 33, 0.62), 0 6px 16px rgba(245, 158, 11, 0.35);
+        }
+
+        .install-btn:active {
+            transform: scale(0.97);
+        }
+
+        .install-btn.pay-btn {
+            background: linear-gradient(135deg, #fde047, var(--accent));
+            color: #1a1202;
+        }
 
         .install-btn.ghost-btn {
             background: var(--glass-strong);
             color: var(--ink);
             border: 1px solid var(--border);
             box-shadow: inset 0 1px 0 var(--glass-inset);
+        }
+
+        .install-btn.ghost-btn:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 14px rgba(245, 185, 33, 0.25);
         }
 
         .game-extra-grid {
@@ -818,11 +859,13 @@
             justify-content: center;
             gap: 6px;
             white-space: nowrap;
+            transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
         }
 
         .dock-btn.active {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent-bright), var(--accent));
             color: var(--accent-ink);
+            box-shadow: var(--accent-glow);
         }
 
         #itemShowcaseView {
@@ -877,7 +920,10 @@
             cursor: pointer;
         }
 
-        .shot-tile.active { border-color: var(--accent); }
+        .shot-tile.active {
+            border-color: var(--accent);
+            box-shadow: 0 0 14px rgba(245, 185, 33, 0.35);
+        }
 
         .shot-tile img {
             width: 100%;
@@ -986,7 +1032,7 @@
 
     <header>
         <a onclick="backToStoreView()" class="brand">
-            <img id="storeLogo" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%2310b981%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2742%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%23ffffff%27%3EM%3C/text%3E%3C/svg%3E" alt="Logo" class="store-logo">
+            <img id="storeLogo" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%23f5b921%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2742%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%231a1202%27%3EM%3C/text%3E%3C/svg%3E" alt="Logo" class="store-logo">
             <span id="storeName" class="logo-text styled-name-text">MAGGIE STORE</span>
         </a>
         <div class="header-right">
@@ -1001,7 +1047,7 @@
         <div class="top-profile-wrap">
             <section class="profile-pill-bar reveal-card">
                 <div class="profile-left">
-                    <img id="topProfileAvatar" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%2310b981%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2742%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%23ffffff%27%3EM%3C/text%3E%3C/svg%3E" alt="Profile" class="profile-avatar" onclick="openCustomLightbox(this.src)">
+                    <img id="topProfileAvatar" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%23f5b921%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2742%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%231a1202%27%3EM%3C/text%3E%3C/svg%3E" alt="Profile" class="profile-avatar" onclick="openCustomLightbox(this.src)">
                     <div>
                         <div id="heroProfileTitle" class="profile-title-line styled-name-text">MAGGIE STORE</div>
                         <div class="profile-sub-row">
@@ -1021,7 +1067,7 @@
         <div class="container">
             <section id="featuredPackSection">
                 <div class="section-heading-row">
-                    <h2><i class="fa-solid fa-layer-group" style="color:var(--warm);"></i> Featured Digital Pack</h2>
+                    <h2><i class="fa-solid fa-layer-group" style="color:var(--accent);"></i> Featured Digital Pack</h2>
                     <div class="filter-pills">
                         <button class="pill-btn active" data-xmlfilter="paid" onclick="setXmlFilter('paid')">Paid XMLs</button>
                         <button class="pill-btn" data-xmlfilter="all" onclick="setXmlFilter('all')">All XML & Templates</button>
@@ -1125,11 +1171,11 @@
         <div class="showcase-hero">
             <div id="scBadgeRow" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
                 <span id="scAccessBadge" class="paid-tag" style="display:none;">PAID</span>
-                <span id="scShotCount" class="paid-tag" style="background:var(--surface-2); color:var(--ink); border-color:var(--border);">0 Photos</span>
+                <span id="scShotCount" class="paid-tag" style="background:var(--surface-2); color:var(--ink); border-color:var(--border); box-shadow:none;">0 Photos</span>
             </div>
             <h1 id="scTitle" class="styled-name-text" style="font-family:'Fraunces',serif; font-size:1.75rem; margin-bottom:6px;">Title</h1>
             <p id="scDesc" class="styled-name-text" style="color:var(--muted); font-size:0.88rem; line-height:1.5;"></p>
-            <div id="scPriceText" style="font-family:'Fraunces',serif; font-size:1.5rem; font-weight:700; color:var(--warm); margin-top:10px; display:none;">₹9</div>
+            <div id="scPriceText" style="font-family:'Fraunces',serif; font-size:1.5rem; font-weight:700; color:var(--accent-bright); text-shadow:0 0 14px rgba(245,185,33,0.35); margin-top:10px; display:none;">₹9</div>
         </div>
 
         <div id="scVideoPanel" class="video-panel" style="display:none;">
@@ -1166,7 +1212,7 @@
             </button>
 
             <div id="scPendingBanner" class="pending-payment-banner">
-                <div style="font-weight:700; color:var(--warm); margin-bottom:6px;">Checkout Opened — Waiting for Payment...</div>
+                <div style="font-weight:700; color:var(--accent-bright); margin-bottom:6px;">Checkout Opened — Waiting for Payment...</div>
                 <div id="scOrderText" style="font-size:0.78rem; color:var(--muted); margin-bottom:10px;"></div>
                 <a id="scCheckoutBtn" href="#" target="_blank" class="install-btn pay-btn">Re-open Checkout</a>
             </div>
@@ -1174,7 +1220,7 @@
             <div id="scStatusMsg" style="margin-top:10px; font-size:0.82rem; color:var(--muted);"></div>
 
             <div id="scUnlockedBox" class="unlocked-box">
-                <div style="color:var(--accent); font-weight:800; margin-bottom:8px;">
+                <div style="color:var(--accent-bright); font-weight:800; margin-bottom:8px;">
                     <i class="fa-solid fa-circle-check"></i> Download Link Ready:
                 </div>
                 <a id="scUnlockedBtn" href="#" target="_blank" class="install-btn" style="padding:10px 18px;">
@@ -1296,7 +1342,6 @@
             if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
         };
 
-        /* Smooth Scroll Progress + Direction Tracking */
         let lastScrollY = window.scrollY;
         let scrollDir = "down";
         let scrollRaf = 0;
@@ -1317,7 +1362,6 @@
             });
         }, { passive: true });
 
-        /* Bidirectional Card Animation Observer */
         const cardObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 const el = entry.target;
@@ -1395,8 +1439,8 @@
         const topSocialBar = document.getElementById('topSocialBar');
         const featuredPackContainer = document.getElementById('featuredPackContainer');
 
-        const FALLBACK_STORE = "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%2310b981%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2742%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%23ffffff%27%3EM%3C/text%3E%3C/svg%3E";
-        const FALLBACK_APP = "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%231c2330%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2755%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2726%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%2310b981%27%3EAPP%3C/text%3E%3C/svg%3E";
+        const FALLBACK_STORE = "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%23f5b921%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2742%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%231a1202%27%3EM%3C/text%3E%3C/svg%3E";
+        const FALLBACK_APP = "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%231c2330%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2755%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2726%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%23f5b921%27%3EAPP%3C/text%3E%3C/svg%3E";
 
         let allApps = [];
         let allXmlItems = [];
@@ -1995,7 +2039,6 @@
             if (e.target === document.getElementById('appModal')) closeModal();
         };
 
-        /* Push visible main store ad slots once */
         document.querySelectorAll('#storeMainView ins.adsbygoogle').forEach((ins) => {
             if (!ins.getAttribute('data-adsbygoogle-status')) {
                 try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (_) {}
