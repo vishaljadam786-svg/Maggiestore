@@ -442,6 +442,19 @@
             font-weight: 800;
         }
 
+        .video-pill {
+            background: color-mix(in srgb, var(--accent) 15%, transparent);
+            color: var(--accent);
+            border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+            padding: 7px 11px;
+            border-radius: 12px;
+            font-size: 0.76rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
         .unlock-pill-btn {
             background: var(--surface-solid);
             color: var(--ink);
@@ -601,7 +614,6 @@
             display: block;
         }
 
-        /* ABOUT, WHAT WE UPLOAD & MONTHLY USERS SECTION */
         .about-store-section {
             margin-top: 28px;
             background: var(--surface);
@@ -740,13 +752,21 @@
             flex: 1;
         }
 
-        .showcase-hero, .gallery-panel, .buy-card-box {
+        .showcase-hero, .gallery-panel, .video-panel, .buy-card-box {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 24px;
             padding: 20px;
             box-shadow: var(--shadow);
             margin-bottom: 18px;
+        }
+
+        .showcase-video-player {
+            width: 100%;
+            max-height: 68vh;
+            border-radius: 14px;
+            background: #000;
+            display: block;
         }
 
         .main-shot-img {
@@ -930,18 +950,17 @@
                 <div id="gameExtraPhotosGrid" class="game-extra-grid"></div>
             </section>
 
-            <!-- ABOUT THIS STORE (WHAT WE UPLOAD, TRUST & MONTHLY USERS) -->
             <section class="about-store-section" aria-label="About this store">
                 <div class="about-top-grid">
                     <div>
                         <h2 class="about-heading">About <span class="store-footer-text styled-name-text">MAGGIE STORE</span></h2>
                         <p class="about-copy">
-                            Yahan editing apps, ready-to-use XML packs, presets aur templates share kiye jaate hain. Har file aur link upload karne se pehle check kiya jaata hai taaki users ko clean preview, seedha download aur bina kisi jhanjhat ke access mil sake.
+                            Yahan editing apps, ready-to-use XML packs, presets aur templates share kiye jaate hain. Har file aur link upload karne se pehle check kiya jaata hai taaki users ko clean preview, video demo, seedha download aur bina kisi jhanjhat ke access mil sake.
                         </p>
                         <div class="catalog-list">
                             <span class="catalog-chip">Editing & Utility Apps</span>
                             <span class="catalog-chip">Color Grade & Effect XMLs</span>
-                            <span class="catalog-chip">Project Templates</span>
+                            <span class="catalog-chip">Project Templates & Demos</span>
                             <span class="catalog-chip">Direct Link Access</span>
                         </div>
                     </div>
@@ -992,6 +1011,14 @@
             <h1 id="scTitle" class="styled-name-text" style="font-family:'Fraunces',serif; font-size:1.75rem; margin-bottom:6px;">Title</h1>
             <p id="scDesc" class="styled-name-text" style="color:var(--muted); font-size:0.88rem; line-height:1.5;"></p>
             <div id="scPriceText" style="font-family:'Fraunces',serif; font-size:1.5rem; font-weight:700; color:var(--warm); margin-top:10px; display:none;">₹9</div>
+        </div>
+
+        <!-- VIDEO PREVIEW PANEL (SHOWN ONLY IF VIDEO URL IS PRESENT) -->
+        <div id="scVideoPanel" class="video-panel" style="display:none;">
+            <h2 style="font-family:'Fraunces',serif; font-size:1.2rem; margin-bottom:10px;">
+                <i class="fa-solid fa-circle-play" style="color:var(--accent);"></i> Video Preview
+            </h2>
+            <video id="scVideoPlayer" class="showcase-video-player" controls playsinline preload="metadata"></video>
         </div>
 
         <div class="gallery-panel">
@@ -1449,6 +1476,7 @@
             const photos = getItemPhotos(first);
             const isPaid = Boolean(first.isPaid);
             const price = Number(first.price || 9);
+            const hasVideo = Boolean(cleanUrl(first.videoUrl));
             const safeTitle = window.sanitizeDisplayText(first.title || 'Featured Pack');
             const safeDesc = window.sanitizeDisplayText(first.description || 'Tap to view full preview gallery and unlock.');
 
@@ -1457,14 +1485,11 @@
             heroCard.onclick = () => window.openItemFullShowcase(first.id);
 
             const thumbsHtml = photos.slice(0, 5).map(u => `<img src="${u}" alt="Thumb" class="thumb-strip-item" onerror="this.style.display='none'">`).join('');
-            const paidControlsHtml = isPaid
-                ? `<span class="price-pill">PAID • ₹${price}</span>
-                   <button type="button" class="unlock-pill-btn" onclick="event.stopPropagation(); openItemFullShowcase('${first.id}')">
-                       <i class="fa-solid fa-lock"></i> Buy / Unlock
-                   </button>`
-                : `<button type="button" class="unlock-pill-btn" onclick="event.stopPropagation(); openItemFullShowcase('${first.id}')">
-                       <i class="fa-solid fa-images"></i> Preview
-                   </button>`;
+            const paidBadgeHtml = isPaid ? `<span class="price-pill">PAID • ₹${price}</span>` : '';
+            const videoBadgeHtml = hasVideo ? `<span class="video-pill"><i class="fa-solid fa-play"></i> Video</span>` : '';
+            const actionBtnHtml = `<button type="button" class="unlock-pill-btn" onclick="event.stopPropagation(); openItemFullShowcase('${first.id}')">
+                <i class="${isPaid ? 'fa-solid fa-lock' : 'fa-solid fa-play'}"></i> ${isPaid ? 'Buy / Unlock' : 'Preview'}
+            </button>`;
 
             heroCard.innerHTML = `
                 <div class="featured-top-split">
@@ -1475,7 +1500,7 @@
                     <div>
                         <div class="featured-title styled-name-text">${safeTitle}</div>
                         <p class="featured-desc styled-name-text">${safeDesc}</p>
-                        <div class="featured-actions-row">${paidControlsHtml}</div>
+                        <div class="featured-actions-row">${paidBadgeHtml}${videoBadgeHtml}${actionBtnHtml}</div>
                     </div>
                 </div>
                 <div class="thumb-strip">${thumbsHtml}</div>
@@ -1488,6 +1513,7 @@
                 items.slice(1).forEach(item => {
                     const pList = getItemPhotos(item);
                     const itemPaid = Boolean(item.isPaid);
+                    const itemHasVideo = Boolean(cleanUrl(item.videoUrl));
                     const c = document.createElement('div');
                     c.className = 'app-card reveal-card';
                     c.onclick = () => window.openItemFullShowcase(item.id);
@@ -1495,6 +1521,7 @@
                         <img src="${cleanUrl(item.thumbUrl) || pList[0]}" alt="Pack" class="app-icon" onerror="this.src='${FALLBACK_APP}'">
                         <div class="app-info">
                             ${itemPaid ? `<span class="paid-tag">PAID • ₹${item.price || 9}</span>` : ''}
+                            ${itemHasVideo ? `<span class="video-pill" style="padding:2px 7px; font-size:0.64rem; margin-bottom:4px;"><i class="fa-solid fa-play"></i> Video</span>` : ''}
                             <div class="app-title styled-name-text">${window.sanitizeDisplayText(item.title || 'Pack')}</div>
                             <div class="app-desc-short styled-name-text">${window.sanitizeDisplayText(item.description || 'Tap to preview')}</div>
                             <button type="button" class="install-btn ${itemPaid ? 'pay-btn' : ''}">Preview</button>
@@ -1516,6 +1543,17 @@
 
         function stopShowcasePolling() {
             if (showcasePollTimer) { clearInterval(showcasePollTimer); showcasePollTimer = null; }
+        }
+
+        function resetShowcaseVideo() {
+            const vid = document.getElementById('scVideoPlayer');
+            const panel = document.getElementById('scVideoPanel');
+            if (vid) {
+                vid.pause();
+                vid.removeAttribute('src');
+                vid.load();
+            }
+            if (panel) panel.style.display = 'none';
         }
 
         function openDownloadLink(rawUrl) {
@@ -1664,6 +1702,7 @@
 
         window.openItemFullShowcase = (id) => {
             stopShowcasePolling();
+            resetShowcaseVideo();
             const item = allXmlItems.find(x => x.id === id);
             if (!item) return;
             activeShowcaseItem = item;
@@ -1690,6 +1729,14 @@
             document.getElementById('scPendingBanner').style.display = 'none';
             document.getElementById('scUnlockedBox').style.display = 'none';
 
+            const vidUrl = cleanUrl(item.videoUrl);
+            if (vidUrl) {
+                const vidPanel = document.getElementById('scVideoPanel');
+                const vidPlayer = document.getElementById('scVideoPlayer');
+                vidPlayer.src = vidUrl;
+                vidPanel.style.display = 'block';
+            }
+
             renderShowcaseGallery(getItemPhotos(item));
 
             const buyBtn = document.getElementById('scBuyBtn');
@@ -1713,6 +1760,7 @@
 
         window.backToStoreView = () => {
             stopShowcasePolling();
+            resetShowcaseVideo();
             activeShowcaseItem = null;
             const mainEl = document.getElementById('storeMainView');
             document.getElementById('itemShowcaseView').style.display = 'none';
