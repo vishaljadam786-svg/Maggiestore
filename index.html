@@ -3,64 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">MAGGIE STORE - App Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Noto+Sans:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>MAGGIE STORE</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Sans:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2895289176876081"
-     crossorigin="anonymous"></script>
     <style>
         :root, [data-theme="dark"] {
-            --bg: #090d14;
-            --glass: rgba(20, 27, 40, 0.82);
-            --glass-strong: rgba(24, 32, 48, 0.92);
-            --glass-hover: rgba(32, 42, 62, 0.90);
-            --glass-inset: rgba(255, 255, 255, 0.12);
-            --surface-solid: #141b29;
-            --surface-2: rgba(255, 255, 255, 0.05);
-            --ink: #f5f7fc;
-            --muted: #a2aec4;
-            --accent: #f5b921;
-            --accent-bright: #ffd35a;
-            --accent-soft: rgba(245, 185, 33, 0.18);
-            --accent-ink: #1a1202;
-            --accent-glow: 0 0 18px rgba(245, 185, 33, 0.45), 0 4px 14px rgba(245, 158, 11, 0.28);
-            --accent-glow-peak: 0 0 28px rgba(255, 211, 90, 0.82), 0 0 12px rgba(245, 185, 33, 0.65), 0 5px 18px rgba(245, 158, 11, 0.42);
-            --violet: #a78bfa;
-            --warm: #fbbf24;
-            --border: rgba(255, 255, 255, 0.12);
-            --shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
-            --orb-1: rgba(245, 185, 33, 0.13);
-            --orb-2: rgba(139, 92, 246, 0.11);
-            --orb-3: rgba(245, 158, 11, 0.10);
-            --blur-main: 12px;
-            --blur-strong: 14px;
+            --bg: #07090e;
+            --surface: #121722;
+            --surface-2: #19202f;
+            --ink: #f4f6fb;
+            --muted: #98a4b8;
+            --accent: #10b981;
+            --accent-ink: #04130d;
+            --coral: #ff4d5a;
+            --warm: #f59e0b;
+            --border: rgba(255, 255, 255, 0.09);
+            --shadow: 0 18px 44px rgba(0, 0, 0, 0.45);
         }
 
         [data-theme="light"] {
             --bg: #eef2f7;
-            --glass: rgba(255, 255, 255, 0.82);
-            --glass-strong: rgba(255, 255, 255, 0.92);
-            --glass-hover: rgba(255, 255, 255, 0.94);
-            --glass-inset: rgba(255, 255, 255, 0.90);
-            --surface-solid: #ffffff;
-            --surface-2: rgba(15, 23, 42, 0.045);
-            --ink: #0f172a;
-            --muted: #526077;
-            --accent: #eab308;
-            --accent-bright: #facc15;
-            --accent-soft: rgba(234, 179, 8, 0.16);
-            --accent-ink: #1c1404;
-            --accent-glow: 0 0 16px rgba(234, 179, 8, 0.42), 0 4px 12px rgba(217, 119, 6, 0.22);
-            --accent-glow-peak: 0 0 26px rgba(250, 204, 21, 0.78), 0 0 10px rgba(234, 179, 8, 0.58), 0 5px 16px rgba(217, 119, 6, 0.36);
-            --violet: #6d28d9;
+            --surface: #ffffff;
+            --surface-2: #e6ecf4;
+            --ink: #141820;
+            --muted: #5b6475;
+            --accent: #059669;
+            --accent-ink: #ffffff;
+            --coral: #e11d48;
             --warm: #d97706;
-            --border: rgba(15, 23, 42, 0.10);
-            --shadow: 0 8px 20px rgba(15, 23, 42, 0.07);
-            --orb-1: rgba(234, 179, 8, 0.13);
-            --orb-2: rgba(124, 58, 237, 0.09);
-            --orb-3: rgba(245, 158, 11, 0.10);
-            --blur-main: 12px;
-            --blur-strong: 14px;
+            --border: rgba(20, 24, 32, 0.11);
+            --shadow: 0 14px 32px rgba(20, 24, 32, 0.08);
         }
 
         * {
@@ -68,122 +40,152 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Plus Jakarta Sans', 'Noto Sans', sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        html {
-            scroll-behavior: smooth;
         }
 
         .styled-name-text {
             font-family: 'Noto Sans', 'Plus Jakarta Sans', 'DejaVu Sans', 'Segoe UI Symbol', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif !important;
             text-transform: none !important;
-            line-height: 1.38;
+            line-height: 1.4;
         }
 
         body {
-            background-color: var(--bg);
+            background: radial-gradient(circle at 75% 15%, rgba(16, 185, 129, 0.08), transparent 42%),
+                        radial-gradient(circle at 20% 80%, rgba(255, 77, 90, 0.07), transparent 45%),
+                        var(--bg);
             color: var(--ink);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            padding-bottom: 96px;
-            transition: background-color 0.2s ease, color 0.2s ease;
+            padding-bottom: 64px;
+            transition: background 0.25s ease, color 0.25s ease;
             overflow-x: clip;
-            position: relative;
         }
 
-        .liquid-bg {
+        /* Infinity Trail Loader */
+        #infinityTrailLoader {
             position: fixed;
             inset: 0;
-            z-index: -1;
-            pointer-events: none;
-            overflow: hidden;
-            transform: translateZ(0);
+            z-index: 9999;
+            background: color-mix(in srgb, var(--bg) 94%, transparent);
+            backdrop-filter: blur(14px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.36s ease, visibility 0.36s ease;
         }
 
-        .liquid-orb {
-            position: absolute;
+        #infinityTrailLoader.is-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .infinity-stage {
+            position: relative;
+            width: 184px;
+            height: 92px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .infinity-svg {
+            width: 184px;
+            height: 92px;
+            overflow: visible;
+        }
+
+        .infinity-track {
+            fill: none;
+            stroke: var(--border);
+            stroke-width: 5;
+            stroke-linecap: round;
+        }
+
+        .infinity-glow-trail {
+            fill: none;
+            stroke: url(#infinityTrailGrad);
+            stroke-width: 6.5;
+            stroke-linecap: round;
+            stroke-dasharray: 86 240;
+            stroke-dashoffset: 0;
+            filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.55));
+            animation: infinityDashMove 1.45s linear infinite;
+        }
+
+        .infinity-spark {
+            fill: #ffffff;
+            filter: drop-shadow(0 0 10px #34d399) drop-shadow(0 0 18px #ff4d5a);
+            offset-path: path("M 92,46 C 92,16 32,16 32,46 C 32,76 92,76 92,46 C 92,16 152,16 152,46 C 152,76 92,76 92,46 Z");
+            offset-rotate: auto;
+            animation: infinitySparkOrbit 1.45s linear infinite;
+        }
+
+        .infinity-echo-dot {
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
-            filter: blur(56px);
-            opacity: 0.85;
-            transform: translateZ(0);
+            background: var(--accent);
+            box-shadow: 0 0 12px var(--accent);
+            position: absolute;
+            offset-path: path("M 92,46 C 92,16 32,16 32,46 C 32,76 92,76 92,46 C 92,16 152,16 152,46 C 152,76 92,76 92,46 Z");
+            offset-rotate: auto;
+            animation: infinitySparkOrbit 1.45s linear infinite;
         }
 
-        .orb-a { width: 280px; height: 280px; top: -70px; left: -60px; background: var(--orb-1); }
-        .orb-b { width: 320px; height: 320px; top: 30%; right: -90px; background: var(--orb-2); }
-        .orb-c { width: 250px; height: 250px; bottom: 8%; left: 10%; background: var(--orb-3); }
-
-        .scroll-track {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            z-index: 120;
-            pointer-events: none;
+        .infinity-echo-1 {
+            opacity: 0.65;
+            transform: scale(0.82);
+            animation-delay: -0.09s;
+            background: #34d399;
         }
 
-        .scroll-bar {
-            height: 100%;
-            width: 100%;
-            background: linear-gradient(90deg, var(--accent), var(--accent-bright), var(--violet));
-            box-shadow: 0 0 10px rgba(245, 185, 33, 0.6);
-            transform: scaleX(0);
-            transform-origin: left center;
-            will-change: transform;
+        .infinity-echo-2 {
+            opacity: 0.42;
+            transform: scale(0.65);
+            animation-delay: -0.18s;
+            background: var(--warm);
         }
 
-        @keyframes viewEnter {
-            from { opacity: 0; transform: translate3d(0, 12px, 0); }
+        .infinity-echo-3 {
+            opacity: 0.22;
+            transform: scale(0.48);
+            animation-delay: -0.27s;
+            background: var(--coral);
+        }
+
+        @keyframes infinityDashMove {
+            from { stroke-dashoffset: 326; }
+            to { stroke-dashoffset: 0; }
+        }
+
+        @keyframes infinitySparkOrbit {
+            0% { offset-distance: 0%; }
+            100% { offset-distance: 100%; }
+        }
+
+        .loader-caption {
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        @keyframes smoothReveal {
+            from { opacity: 0; transform: translate3d(0, 14px, 0); }
             to { opacity: 1; transform: translate3d(0, 0, 0); }
         }
 
-        @keyframes modalPop {
-            from { opacity: 0; transform: scale(0.96); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes goldPulseGlow {
-            0% {
-                box-shadow: var(--accent-glow);
-                filter: brightness(0.98);
-            }
-            100% {
-                box-shadow: var(--accent-glow-peak);
-                filter: brightness(1.08);
-            }
-        }
-
-        @keyframes badgePulseGlow {
-            0% {
-                box-shadow: 0 0 8px rgba(245, 185, 33, 0.20);
-            }
-            100% {
-                box-shadow: 0 0 18px rgba(255, 211, 90, 0.52);
-            }
-        }
-
-        .view-animate {
-            animation: viewEnter 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
-        }
-
-        .reveal-card {
+        .reveal-item {
             opacity: 0;
-            transform: translate3d(0, 18px, 0);
-            transition:
-                opacity 0.34s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
-                border-color 0.2s ease,
-                background-color 0.2s ease;
-            will-change: transform, opacity;
+            transform: translate3d(0, 14px, 0);
+            transition: opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1), transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        .reveal-card.from-top {
-            transform: translate3d(0, -16px, 0);
-        }
-
-        .reveal-card.is-visible {
+        .reveal-item.in-view {
             opacity: 1;
             transform: translate3d(0, 0, 0);
         }
@@ -191,1134 +193,636 @@
         header {
             position: sticky;
             top: 0;
-            z-index: 100;
-            background: var(--glass-strong);
-            backdrop-filter: blur(var(--blur-strong)) saturate(145%);
-            -webkit-backdrop-filter: blur(var(--blur-strong)) saturate(145%);
+            z-index: 90;
+            background: color-mix(in srgb, var(--surface) 88%, transparent);
+            backdrop-filter: blur(14px);
             border-bottom: 1px solid var(--border);
-            box-shadow: inset 0 -1px 0 var(--glass-inset);
-            padding: 11px 5%;
+            padding: 12px 5%;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 10px;
-            transform: translateZ(0);
+            gap: 12px;
         }
 
-        .brand {
+        .brand-box {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 11px;
             text-decoration: none;
-            cursor: pointer;
-            min-width: 0;
-        }
-
-        .store-logo {
-            width: 38px;
-            height: 38px;
-            border-radius: 13px;
-            object-fit: cover;
-            border: 1px solid var(--glass-inset);
-            background: var(--surface-2);
-            flex-shrink: 0;
-        }
-
-        .logo-text {
-            font-family: 'Fraunces', serif;
-            font-size: 1.15rem;
-            font-weight: 700;
             color: var(--ink);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+        }
+
+        .brand-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            object-fit: cover;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+        }
+
+        .brand-name {
+            font-size: 1.2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
         }
 
         .header-right {
             display: flex;
             align-items: center;
-            gap: 8px;
-            flex-shrink: 0;
+            gap: 9px;
         }
 
-        .search-box {
-            background: var(--glass);
+        .icon-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
             border: 1px solid var(--border);
-            box-shadow: inset 0 1px 0 var(--glass-inset);
+            background: var(--surface);
             color: var(--ink);
-            padding: 8px 13px;
-            border-radius: 999px;
-            font-size: 0.82rem;
-            width: 150px;
-            outline: none;
-            transition: border-color 0.2s ease, width 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .search-box:focus {
-            border-color: var(--accent);
-            background: var(--glass-strong);
-            box-shadow: var(--accent-glow);
-            width: 185px;
-        }
-
-        .theme-toggle {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            box-shadow: inset 0 1px 0 var(--glass-inset);
-            color: var(--ink);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            cursor: pointer;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.9rem;
-            flex-shrink: 0;
+            cursor: pointer;
+            transition: transform 0.16s ease, border-color 0.2s ease;
         }
 
-        .top-profile-wrap {
-            max-width: 1080px;
-            width: 100%;
-            margin: 18px auto 8px;
-            padding: 0 18px;
+        .icon-btn:hover {
+            transform: translateY(-1px);
+            border-color: var(--accent);
         }
 
-        .profile-pill-bar {
-            background: var(--glass);
-            backdrop-filter: blur(var(--blur-main)) saturate(140%);
-            -webkit-backdrop-filter: blur(var(--blur-main)) saturate(140%);
+        .container {
+            max-width: 1140px;
+            margin: 24px auto 0;
+            padding: 0 20px;
+        }
+
+        .hero-banner {
+            background: var(--surface);
             border: 1px solid var(--border);
-            box-shadow: var(--shadow), inset 0 1px 0 var(--glass-inset);
-            border-radius: 26px;
-            padding: 15px 17px;
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: var(--shadow);
+            margin-bottom: 22px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            animation: smoothReveal 0.45s ease both;
+        }
+
+        .hero-title {
+            font-size: clamp(1.5rem, 3vw, 2.1rem);
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            line-height: 1.2;
+        }
+
+        .hero-sub {
+            color: var(--muted);
+            font-size: 0.92rem;
+            margin-top: 6px;
+            max-width: 560px;
+        }
+
+        .uid-card {
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .uid-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            object-fit: cover;
+            border: 1px solid var(--border);
+            cursor: pointer;
+        }
+
+        .uid-label {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            font-weight: 700;
+        }
+
+        .uid-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .copy-btn {
+            background: var(--accent);
+            color: var(--accent-ink);
+            border: none;
+            border-radius: 10px;
+            padding: 8px 12px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .gallery-strip {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            margin-bottom: 22px;
+            scrollbar-width: none;
+        }
+        .gallery-strip::-webkit-scrollbar { display: none; }
+
+        .gallery-thumb {
+            height: 76px;
+            width: auto;
+            min-width: 76px;
+            max-width: 140px;
+            border-radius: 14px;
+            object-fit: cover;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: transform 0.2s ease;
+        }
+
+        .gallery-thumb:hover { transform: scale(1.03); }
+
+        .nav-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 12px;
+            margin-bottom: 22px;
         }
 
-        .profile-left {
+        .tabs {
+            display: flex;
+            gap: 8px;
+            background: var(--surface);
+            padding: 6px;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+        }
+
+        .tab-btn {
+            border: none;
+            background: transparent;
+            color: var(--muted);
+            padding: 9px 16px;
+            border-radius: 11px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--accent);
+            color: var(--accent-ink);
+        }
+
+        .search-wrap {
+            position: relative;
+            min-width: 240px;
+            flex: 1;
+            max-width: 340px;
+        }
+
+        .search-wrap i {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted);
+            font-size: 0.85rem;
+        }
+
+        .search-input {
+            width: 100%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--ink);
+            border-radius: 13px;
+            padding: 10px 14px 10px 36px;
+            font-size: 0.86rem;
+            outline: none;
+        }
+
+        .search-input:focus { border-color: var(--accent); }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 18px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+        }
+
+        .card-head {
             display: flex;
             align-items: center;
             gap: 13px;
-            min-width: 0;
-            flex: 1;
         }
 
-        .profile-avatar {
+        .card-icon {
             width: 56px;
             height: 56px;
-            border-radius: 50%;
+            border-radius: 15px;
             object-fit: cover;
-            border: 2px solid color-mix(in srgb, var(--accent) 65%, transparent);
-            box-shadow: 0 0 14px rgba(245, 185, 33, 0.28);
             background: var(--surface-2);
+            border: 1px solid var(--border);
             flex-shrink: 0;
-            cursor: zoom-in;
         }
 
-        .profile-title-line {
-            font-family: 'Fraunces', serif;
-            font-size: 1.2rem;
+        .card-title {
+            font-size: 1.02rem;
             font-weight: 700;
-            line-height: 1.25;
-            word-break: break-word;
+            line-height: 1.3;
         }
 
-        .profile-sub-row {
+        .badges {
             display: flex;
-            align-items: center;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 6px;
-        }
-
-        .uid-chip {
-            display: inline-flex;
-            align-items: center;
             gap: 6px;
-            font-size: 0.78rem;
-            font-weight: 700;
-            color: var(--muted);
-            background: var(--surface-2);
-            padding: 4px 10px;
-            border-radius: 999px;
-            border: 1px solid var(--border);
+            margin-top: 5px;
         }
 
-        .copy-uid-pill {
-            background: var(--glass-strong);
-            color: var(--ink);
-            border: 1px solid var(--border);
-            box-shadow: inset 0 1px 0 var(--glass-inset);
-            border-radius: 999px;
-            padding: 4px 11px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .top-socials-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .icon-social-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 13px;
-            background: var(--surface-2);
-            border: 1px solid var(--border);
-            box-shadow: inset 0 1px 0 var(--glass-inset);
-            color: var(--ink);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 0.92rem;
-            transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .icon-social-btn:hover {
-            background: linear-gradient(135deg, var(--accent-bright), var(--accent));
-            color: var(--accent-ink);
-            animation: goldPulseGlow 1.8s ease-in-out infinite alternate;
-        }
-
-        .container {
-            max-width: 1080px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 12px 18px 24px;
-            flex: 1;
-        }
-
-        .section-heading-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 18px 0 12px;
-        }
-
-        .section-heading-row h2 {
-            font-family: 'Fraunces', serif;
-            font-size: 1.25rem;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .filter-pills {
-            display: flex;
-            gap: 7px;
-            flex-wrap: wrap;
-        }
-
-        .pill-btn {
-            background: var(--glass);
-            color: var(--muted);
-            border: 1px solid var(--border);
-            box-shadow: inset 0 1px 0 var(--glass-inset);
-            padding: 6px 14px;
-            border-radius: 999px;
-            cursor: pointer;
-            font-size: 0.77rem;
-            font-weight: 700;
-            transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-        }
-
-        .pill-btn.active {
-            background: linear-gradient(135deg, var(--accent-bright), var(--accent));
-            color: var(--accent-ink);
-            border-color: transparent;
-            animation: goldPulseGlow 2.2s ease-in-out infinite alternate;
-        }
-
-        .pill-btn:hover:not(.active) {
-            color: var(--accent-bright);
-            border-color: var(--accent);
-            box-shadow: 0 0 14px rgba(245, 185, 33, 0.28);
-        }
-
-        .featured-pack-card {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow), inset 0 1px 0 var(--glass-inset);
-            border-radius: 26px;
-            padding: 18px;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            cursor: pointer;
-        }
-
-        .featured-pack-card.is-visible:hover {
-            border-color: color-mix(in srgb, var(--accent) 60%, var(--border));
-            background: var(--glass-hover);
-            box-shadow: var(--shadow), 0 0 22px rgba(245, 185, 33, 0.14);
-        }
-
-        .featured-top-split {
-            display: grid;
-            grid-template-columns: 140px 1fr;
-            gap: 16px;
-            align-items: center;
-        }
-
-        .featured-cover-box {
-            position: relative;
-            border-radius: 19px;
-            overflow: hidden;
-            border: 1px solid var(--glass-inset);
-            background: var(--surface-2);
-            aspect-ratio: 1 / 1;
-        }
-
-        .featured-cover-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .photo-count-badge {
-            position: absolute;
-            bottom: 8px;
-            right: 8px;
-            background: rgba(9, 13, 20, 0.82);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.14);
-            font-size: 0.66rem;
+        .badge {
+            font-size: 0.68rem;
             font-weight: 700;
             padding: 3px 8px;
-            border-radius: 9px;
+            border-radius: 7px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
         }
 
-        .featured-title {
-            font-family: 'Fraunces', serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            line-height: 1.25;
-            margin-bottom: 6px;
-        }
-
-        .featured-desc {
-            font-size: 0.83rem;
+        .badge-cat {
+            background: var(--surface-2);
             color: var(--muted);
-            line-height: 1.45;
-            margin-bottom: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .badge-free {
+            background: color-mix(in srgb, var(--accent) 16%, transparent);
+            color: var(--accent);
+        }
+
+        .badge-paid {
+            background: color-mix(in srgb, var(--warm) 18%, transparent);
+            color: var(--warm);
+        }
+
+        .card-desc {
+            color: var(--muted);
+            font-size: 0.85rem;
+            line-height: 1.48;
             display: -webkit-box;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
 
-        .featured-actions-row {
+        .card-actions {
             display: flex;
-            align-items: center;
-            gap: 9px;
-            flex-wrap: wrap;
-        }
-
-        .price-pill {
-            background: color-mix(in srgb, var(--accent) 18%, transparent);
-            color: var(--accent-bright);
-            border: 1px solid color-mix(in srgb, var(--accent) 42%, transparent);
-            padding: 7px 13px;
-            border-radius: 12px;
-            font-size: 0.82rem;
-            font-weight: 800;
-            animation: badgePulseGlow 2.4s ease-in-out infinite alternate;
-        }
-
-        [data-theme="light"] .price-pill {
-            color: #92400e;
-        }
-
-        .video-pill {
-            background: color-mix(in srgb, var(--accent) 16%, transparent);
-            color: var(--accent);
-            border: 1px solid color-mix(in srgb, var(--accent) 32%, transparent);
-            padding: 7px 11px;
-            border-radius: 12px;
-            font-size: 0.76rem;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .unlock-pill-btn {
-            background: var(--glass-strong);
-            color: var(--ink);
-            border: 1px solid var(--border);
-            box-shadow: inset 0 1px 0 var(--glass-inset);
-            padding: 8px 15px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .unlock-pill-btn:hover {
-            border-color: var(--accent);
-            color: var(--accent-bright);
-            box-shadow: 0 0 16px rgba(245, 185, 33, 0.35);
-        }
-
-        .thumb-strip {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
             gap: 8px;
+            margin-top: auto;
+            padding-top: 4px;
         }
 
-        .thumb-strip-item {
-            height: 54px;
-            border-radius: 12px;
-            object-fit: cover;
-            width: 100%;
-            border: 1px solid var(--glass-inset);
-            background: var(--surface-2);
-            display: block;
-        }
-
-        .extra-packs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-            gap: 14px;
-            margin-top: 14px;
-        }
-
-        .app-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-            gap: 14px;
-        }
-
-        .app-card {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow), inset 0 1px 0 var(--glass-inset);
-            border-radius: 22px;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            gap: 13px;
-            cursor: pointer;
-        }
-
-        .app-card.is-visible:hover {
-            border-color: color-mix(in srgb, var(--accent) 60%, var(--border));
-            background: var(--glass-hover);
-            box-shadow: var(--shadow), 0 0 20px rgba(245, 185, 33, 0.14);
-        }
-
-        .app-icon {
-            width: 62px;
-            height: 62px;
-            border-radius: 17px;
-            object-fit: cover;
-            background: var(--surface-2);
-            border: 1px solid var(--glass-inset);
-            flex-shrink: 0;
-            display: block;
-        }
-
-        .app-info { flex: 1; min-width: 0; }
-
-        .paid-tag {
-            display: inline-block;
-            font-size: 0.66rem;
-            font-weight: 800;
-            color: var(--accent-bright);
-            background: color-mix(in srgb, var(--accent) 18%, transparent);
-            border: 1px solid color-mix(in srgb, var(--accent) 36%, transparent);
-            padding: 2px 8px;
-            border-radius: 999px;
-            margin-bottom: 4px;
-            animation: badgePulseGlow 2.4s ease-in-out infinite alternate;
-        }
-
-        [data-theme="light"] .paid-tag {
-            color: #92400e;
-        }
-
-        .app-title {
-            font-weight: 700;
-            font-size: 0.98rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .app-desc-short {
-            font-size: 0.76rem;
-            color: var(--muted);
-            margin: 2px 0 9px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .install-btn {
-            background: linear-gradient(135deg, var(--accent-bright), var(--accent));
-            color: var(--accent-ink);
+        .btn {
             border: none;
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-size: 0.83rem;
             font-weight: 700;
-            padding: 7px 14px;
-            border-radius: 11px;
-            font-size: 0.76rem;
             cursor: pointer;
-            text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            white-space: nowrap;
-            animation: goldPulseGlow 2.3s ease-in-out infinite alternate;
-            transition: transform 0.16s ease;
+            justify-content: center;
+            gap: 7px;
+            text-decoration: none;
+            transition: opacity 0.2s ease, transform 0.15s ease;
         }
 
-        .install-btn:active {
-            transform: scale(0.97);
-        }
-
-        .install-btn.pay-btn {
-            background: linear-gradient(135deg, #fde047, var(--accent));
-            color: #1a1202;
-        }
-
-        .install-btn.ghost-btn {
-            background: var(--glass-strong);
+        .btn:hover { opacity: 0.93; transform: translateY(-1px); }
+        .btn-primary { background: var(--accent); color: var(--accent-ink); flex: 1; }
+        .btn-paid { background: var(--warm); color: #141820; flex: 1; }
+        .btn-ghost {
+            background: var(--surface-2);
             color: var(--ink);
             border: 1px solid var(--border);
-            box-shadow: inset 0 1px 0 var(--glass-inset);
-            animation: none;
         }
 
-        .install-btn.ghost-btn:hover {
-            border-color: var(--accent);
-            box-shadow: 0 0 16px rgba(245, 185, 33, 0.32);
-        }
-
-        .game-extra-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 14px;
-            margin-top: 12px;
-        }
-
-        .game-extra-card {
-            flex-direction: column;
-            align-items: stretch;
-            padding: 11px;
-            gap: 8px;
-            cursor: zoom-in;
-        }
-
-        .game-extra-photo {
-            width: 100%;
-            height: 170px;
-            border-radius: 15px;
-            object-fit: cover;
-            background: var(--surface-2);
-            display: block;
-        }
-
-        .ad-slot-card {
-            margin: 22px 0;
-            background: var(--glass);
+        .socials-section {
+            margin-top: 36px;
+            background: var(--surface);
             border: 1px solid var(--border);
-            box-shadow: var(--shadow), inset 0 1px 0 var(--glass-inset);
-            border-radius: 20px;
-            padding: 10px 14px;
-            text-align: center;
-            min-height: 76px;
-        }
-
-        .ad-slot-label {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--muted);
-            margin-bottom: 6px;
-            display: block;
-        }
-
-        .about-store-section {
-            margin-top: 24px;
-            background: var(--glass);
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow), inset 0 1px 0 var(--glass-inset);
-            border-radius: 24px;
+            border-radius: 22px;
             padding: 20px;
+            box-shadow: var(--shadow);
         }
 
-        .about-top-grid {
-            display: grid;
-            grid-template-columns: 1.45fr 1fr;
-            gap: 18px;
-            align-items: start;
+        .section-heading {
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: -0.015em;
+            margin-bottom: 14px;
         }
 
-        .about-heading {
-            font-family: 'Fraunces', serif;
-            font-size: 1.22rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .about-copy {
-            font-size: 0.85rem;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        .catalog-list {
+        .socials-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 12px;
-        }
-
-        .catalog-chip {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--ink);
-            background: var(--surface-2);
-            border: 1px solid var(--border);
-            box-shadow: inset 0 1px 0 var(--glass-inset);
-            padding: 5px 11px;
-            border-radius: 999px;
-        }
-
-        .metrics-row {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
             gap: 10px;
         }
 
-        .metric-box {
+        .social-chip {
             background: var(--surface-2);
-            border: 1px solid var(--border);
-            box-shadow: inset 0 1px 0 var(--glass-inset);
-            border-radius: 17px;
-            padding: 13px 14px;
-        }
-
-        .metric-num {
-            font-family: 'Fraunces', serif;
-            font-size: 1.3rem;
-            font-weight: 700;
             color: var(--ink);
+            border: 1px solid var(--border);
+            padding: 9px 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 0.84rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .metric-label {
-            font-size: 0.74rem;
-            color: var(--muted);
-            margin-top: 2px;
+        .social-chip:hover { border-color: var(--accent); }
+
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 8, 15, 0.72);
+            backdrop-filter: blur(6px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            z-index: 200;
         }
 
-        .trust-footer-note {
-            margin-top: 14px;
-            padding-top: 12px;
-            border-top: 1px solid var(--border);
+        .modal-backdrop.open { display: flex; }
+
+        .modal-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            max-width: 680px;
+            width: 100%;
+            max-height: 88vh;
+            overflow-y: auto;
+            padding: 22px;
+            box-shadow: var(--shadow);
+            animation: smoothReveal 0.25s ease both;
+        }
+
+        .modal-top {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 8px;
-            font-size: 0.77rem;
-            color: var(--muted);
-        }
-
-        .floating-dock-wrap {
-            position: fixed;
-            bottom: 16px;
-            left: 50%;
-            transform: translate3d(-50%, 0, 0);
-            z-index: 110;
-            width: calc(100% - 32px);
-            max-width: 440px;
-            will-change: transform;
-        }
-
-        .floating-dock {
-            background: var(--glass-strong);
-            backdrop-filter: blur(var(--blur-strong)) saturate(145%);
-            -webkit-backdrop-filter: blur(var(--blur-strong)) saturate(145%);
-            border: 1px solid var(--border);
-            border-radius: 999px;
-            padding: 6px;
-            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.24), inset 0 1px 0 var(--glass-inset);
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 4px;
-        }
-
-        .dock-btn {
-            background: transparent;
-            border: none;
-            color: var(--ink);
-            padding: 9px 10px;
-            border-radius: 999px;
-            font-size: 0.78rem;
-            font-weight: 700;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            white-space: nowrap;
-            transition: background 0.2s ease, color 0.2s ease;
-        }
-
-        .dock-btn.active {
-            background: linear-gradient(135deg, var(--accent-bright), var(--accent));
-            color: var(--accent-ink);
-            animation: goldPulseGlow 2.2s ease-in-out infinite alternate;
-        }
-
-        #itemShowcaseView {
-            display: none;
-            max-width: 1040px;
-            width: 100%;
-            margin: 20px auto 50px;
-            padding: 0 18px;
-            flex: 1;
-        }
-
-        .showcase-hero, .gallery-panel, .video-panel, .buy-card-box {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow), inset 0 1px 0 var(--glass-inset);
-            border-radius: 26px;
-            padding: 20px;
-            margin-bottom: 18px;
-        }
-
-        .showcase-video-player {
-            width: 100%;
-            max-height: 68vh;
-            border-radius: 15px;
-            background: #000;
-            display: block;
-        }
-
-        .main-shot-img {
-            width: 100%;
-            height: auto;
-            max-height: 75vh;
-            object-fit: contain;
-            border-radius: 15px;
-            background: rgba(9, 13, 20, 0.65);
-            cursor: zoom-in;
-            display: block;
-        }
-
-        .all-shots-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
             gap: 12px;
-            margin-top: 14px;
+            margin-bottom: 14px;
         }
 
-        .shot-tile {
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+        }
+
+        .close-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
             background: var(--surface-2);
-            border: 2px solid transparent;
-            border-radius: 15px;
-            overflow: hidden;
+            color: var(--ink);
             cursor: pointer;
+            font-size: 1rem;
         }
 
-        .shot-tile.active {
-            border-color: var(--accent);
-            animation: badgePulseGlow 2.2s ease-in-out infinite alternate;
+        .shots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin: 14px 0;
         }
 
-        .shot-tile img {
+        .shot-img {
             width: 100%;
             height: auto;
-            max-height: 320px;
+            max-height: 460px;
             object-fit: contain;
-            display: block;
-            background: rgba(9, 13, 20, 0.55);
-        }
-
-        .pending-payment-banner, .unlocked-box {
             background: var(--surface-2);
+            border-radius: 14px;
             border: 1px solid var(--border);
-            box-shadow: inset 0 1px 0 var(--glass-inset);
-            border-radius: 16px;
-            padding: 15px;
-            margin-top: 14px;
-            display: none;
-            word-break: break-all;
-        }
-
-        .modal, .lightbox {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.68);
-            justify-content: center;
-            align-items: center;
-            z-index: 200;
-            padding: 18px;
-        }
-
-        .modal.is-open .modal-content, .lightbox.is-open img {
-            animation: modalPop 0.18s ease-out both;
-        }
-
-        .modal-content {
-            background: var(--glass-strong);
-            color: var(--ink);
-            padding: 26px 20px;
-            border-radius: 26px;
-            max-width: 410px;
-            width: 100%;
-            text-align: center;
-            position: relative;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow), inset 0 1px 0 var(--glass-inset);
-        }
-
-        .close-btn, .lightbox-close {
-            position: absolute;
-            top: 12px;
-            right: 16px;
-            font-size: 1.5rem;
             cursor: pointer;
-            color: var(--muted);
         }
 
-        .lightbox { z-index: 300; background: rgba(0, 0, 0, 0.90); }
-        .lightbox-close { color: #fff; font-size: 2rem; }
-        .lightbox img { max-width: 96vw; max-height: 92vh; object-fit: contain; border-radius: 15px; }
-
-        footer {
-            border-top: 1px solid var(--border);
-            background: var(--glass);
-            padding: 20px;
+        .empty-state {
             text-align: center;
+            padding: 44px 20px;
             color: var(--muted);
-            font-size: 0.8rem;
+            background: var(--surface);
+            border: 1px dashed var(--border);
+            border-radius: 20px;
         }
 
-        @media (max-width: 720px) {
-            :root, [data-theme="dark"], [data-theme="light"] {
-                --blur-main: 6px;
-                --blur-strong: 8px;
-            }
-            .liquid-orb { filter: blur(42px); }
-            .about-top-grid { grid-template-columns: 1fr; }
+        .toast {
+            position: fixed;
+            bottom: 22px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--ink);
+            color: var(--bg);
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-size: 0.84rem;
+            font-weight: 700;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.25s ease;
+            z-index: 400;
         }
 
-        @media (max-width: 560px) {
-            .featured-top-split { grid-template-columns: 112px 1fr; gap: 12px; }
-            .featured-title { font-size: 1.1rem; }
-            .search-box { width: 112px; }
-            .search-box:focus { width: 138px; }
-            .logo-text { font-size: 1rem; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .reveal-card { opacity: 1; transform: none; transition: none; }
-            .view-animate { animation: none; }
-            .pill-btn.active, .install-btn, .dock-btn.active, .paid-tag, .price-pill, .shot-tile.active {
-                animation: none !important;
-            }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
     </style>
 </head>
 <body>
 
-    <div class="liquid-bg" aria-hidden="true">
-        <div class="liquid-orb orb-a"></div>
-        <div class="liquid-orb orb-b"></div>
-        <div class="liquid-orb orb-c"></div>
-    </div>
-
-    <div class="scroll-track" aria-hidden="true">
-        <div id="scrollProgressBar" class="scroll-bar"></div>
+    <!-- Infinity Trail Loading Overlay -->
+    <div id="infinityTrailLoader" aria-label="Loading MAGGIE STORE">
+        <div class="infinity-stage">
+            <svg class="infinity-svg" viewBox="0 0 184 92" aria-hidden="true">
+                <defs>
+                    <linearGradient id="infinityTrailGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#10b981" />
+                        <stop offset="55%" stop-color="#f59e0b" />
+                        <stop offset="100%" stop-color="#ff4d5a" />
+                    </linearGradient>
+                </defs>
+                <path class="infinity-track" d="M 92,46 C 92,16 32,16 32,46 C 32,76 92,76 92,46 C 92,16 152,16 152,46 C 152,76 92,76 92,46 Z" />
+                <path class="infinity-glow-trail" d="M 92,46 C 92,16 32,16 32,46 C 32,76 92,76 92,46 C 92,16 152,16 152,46 C 152,76 92,76 92,46 Z" />
+                <circle class="infinity-spark" r="4.5" />
+            </svg>
+            <span class="infinity-echo-dot infinity-echo-1"></span>
+            <span class="infinity-echo-dot infinity-echo-2"></span>
+            <span class="infinity-echo-dot infinity-echo-3"></span>
+        </div>
+        <div class="loader-caption">Loading MAGGIE STORE...</div>
     </div>
 
     <header>
-        <a onclick="backToStoreView()" class="brand">
-            <img id="storeLogo" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%23f5b921%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2742%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%231a1202%27%3EM%3C/text%3E%3C/svg%3E" alt="Logo" class="store-logo">
-            <span id="storeName" class="logo-text styled-name-text">MAGGIE STORE</span>
+        <a href="index.html" class="brand-box">
+            <img id="storeLogo" src="" alt="Logo" class="brand-logo" style="display:none;">
+            <span id="storeName" class="brand-name styled-name-text">MAGGIE STORE</span>
         </a>
         <div class="header-right">
-            <input type="text" id="searchInput" class="search-box" placeholder="Search apps, XML...">
-            <button type="button" id="themeBtn" class="theme-toggle" title="Toggle Theme" onclick="toggleTheme()">
-                <i class="fa-solid fa-sun"></i>
+            <button type="button" class="icon-btn" onclick="toggleTheme()" title="Toggle Dark / Light Mode">
+                <i id="themeIcon" class="fa-solid fa-sun"></i>
             </button>
         </div>
     </header>
 
-    <div id="storeMainView">
-        <div class="top-profile-wrap">
-            <section class="profile-pill-bar reveal-card">
-                <div class="profile-left">
-                    <img id="topProfileAvatar" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%23f5b921%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2742%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%231a1202%27%3EM%3C/text%3E%3C/svg%3E" alt="Profile" class="profile-avatar" onclick="openCustomLightbox(this.src)">
-                    <div>
-                        <div id="heroProfileTitle" class="profile-title-line styled-name-text">MAGGIE STORE</div>
-                        <div class="profile-sub-row">
-                            <span id="uidPillBadge" class="uid-chip" style="display:none;">
-                                UID: <span id="gameUidValue" class="styled-name-text"></span>
-                            </span>
-                            <button id="copyGameUidBtn" type="button" class="copy-uid-pill" style="display:none;" onclick="copyGameUid()">
-                                <i class="fa-regular fa-copy"></i> Copy UID
-                            </button>
-                        </div>
-                    </div>
+    <div class="container">
+        <section class="hero-banner">
+            <div>
+                <h1 id="heroTitle" class="hero-title styled-name-text">Apps, XML Packs &amp; Templates</h1>
+                <p class="hero-sub">Free aur paid apps download karein, ya XML &amp; templates ke screenshots dekh kar instant unlock karein.</p>
+            </div>
+
+            <div id="uidBox" class="uid-card" style="display:none;">
+                <img id="uidPhoto" src="" alt="Profile" class="uid-avatar" style="display:none;" onclick="openPhotoLightbox(this.src)">
+                <div>
+                    <div id="uidLabel" class="uid-label styled-name-text">GAME UID</div>
+                    <div id="uidValue" class="uid-value styled-name-text"></div>
                 </div>
-                <div id="topSocialBar" class="top-socials-row"></div>
-            </section>
+                <button type="button" class="copy-btn" onclick="copyUid()">
+                    <i class="fa-regular fa-copy"></i> Copy
+                </button>
+            </div>
+        </section>
+
+        <div id="extraGallery" class="gallery-strip" style="display:none;"></div>
+
+        <div class="nav-row">
+            <div class="tabs">
+                <button type="button" class="tab-btn active" id="tabApps" onclick="switchSection('apps')">
+                    <i class="fa-solid fa-mobile-screen"></i> Apps
+                </button>
+                <button type="button" class="tab-btn" id="tabXml" onclick="switchSection('xml')">
+                    <i class="fa-solid fa-layer-group"></i> XML &amp; Templates
+                </button>
+            </div>
+
+            <div class="search-wrap">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" class="search-input" placeholder="Search apps, XML, templates..." oninput="renderCurrentSection()">
+            </div>
         </div>
 
-        <div class="container">
-            <section id="featuredPackSection">
-                <div class="section-heading-row">
-                    <h2><i class="fa-solid fa-layer-group" style="color:var(--accent);"></i> Featured Digital Pack</h2>
-                    <div class="filter-pills">
-                        <button class="pill-btn active" data-xmlfilter="paid" onclick="setXmlFilter('paid')">Paid XMLs</button>
-                        <button class="pill-btn" data-xmlfilter="all" onclick="setXmlFilter('all')">All XML & Templates</button>
-                    </div>
-                </div>
-                <div id="featuredPackContainer">
-                    <p style="color:var(--muted);">No digital packs available yet.</p>
-                </div>
-            </section>
+        <div id="cardsGrid" class="grid"></div>
 
-            <!-- Maggie slot 1 (Display) -->
-            <div class="ad-slot-card reveal-card" aria-label="Advertisement">
-                <span class="ad-slot-label">Sponsored</span>
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-2895289176876081"
-                     data-ad-slot="9409573737"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
+        <section id="socialsSection" class="socials-section" style="display:none;">
+            <h2 class="section-heading">Connect With Us</h2>
+            <div id="socialsList" class="socials-list"></div>
+        </section>
+    </div>
+
+    <!-- Preview & Unlock Modal -->
+    <div id="previewModal" class="modal-backdrop" onclick="if(event.target===this) closeModal()">
+        <div class="modal-box">
+            <div class="modal-top">
+                <div>
+                    <h3 id="modalTitle" class="modal-title styled-name-text"></h3>
+                    <div id="modalBadges" class="badges"></div>
+                </div>
+                <button type="button" class="close-btn" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
             </div>
-
-            <section id="appsSection" style="margin-top: 22px;">
-                <div class="section-heading-row">
-                    <h2><i class="fa-solid fa-mobile-screen" style="color:var(--accent);"></i> APPLICATIONS</h2>
-                </div>
-                <div id="loader" style="text-align:center; padding:26px; color:var(--accent); font-weight:600;">Loading...</div>
-                <div id="appGrid" class="app-grid"></div>
-            </section>
-
-            <section id="gameExtraSection" style="display:none; margin-top:22px;">
-                <div class="section-heading-row">
-                    <h2><i class="fa-solid fa-images" style="color:var(--violet);"></i> Gallery</h2>
-                </div>
-                <div id="gameExtraPhotosGrid" class="game-extra-grid"></div>
-            </section>
-
-            <!-- Maggie multiplex (Multiplex) -->
-            <div class="ad-slot-card reveal-card" aria-label="Advertisement">
-                <span class="ad-slot-label">Recommended</span>
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-2895289176876081"
-                     data-ad-slot="6341712217"
-                     data-ad-format="autorelaxed"
-                     data-full-width-responsive="true"></ins>
-            </div>
-
-            <section class="about-store-section reveal-card" aria-label="About this store">
-                <div class="about-top-grid">
-                    <div>
-                        <h2 class="about-heading">About <span class="store-footer-text styled-name-text">MAGGIE STORE</span></h2>
-                        <p class="about-copy">
-                            Yahan editing apps, ready-to-use XML packs, presets aur templates share kiye jaate hain. Har file aur link upload karne se pehle check kiya jaata hai taaki users ko clean preview, video demo, seedha download aur bina kisi jhanjhat ke access mil sake.
-                        </p>
-                        <div class="catalog-list">
-                            <span class="catalog-chip">Editing & Utility Apps</span>
-                            <span class="catalog-chip">Color Grade & Effect XMLs</span>
-                            <span class="catalog-chip">Project Templates & Demos</span>
-                            <span class="catalog-chip">Direct Link Access</span>
-                        </div>
-                    </div>
-
-                    <div class="metrics-row">
-                        <div class="metric-box">
-                            <div class="metric-num">12K+</div>
-                            <div class="metric-label">Monthly Active Visitors</div>
-                        </div>
-                        <div class="metric-box">
-                            <div class="metric-num">100%</div>
-                            <div class="metric-label">Direct Verified Links</div>
-                        </div>
-                        <div class="metric-box">
-                            <div class="metric-num">Instant</div>
-                            <div class="metric-label">Checkout to Download</div>
-                        </div>
-                        <div class="metric-box">
-                            <div class="metric-num">Weekly</div>
-                            <div class="metric-label">Fresh Packs & Updates</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="trust-footer-note">
-                    <span><i class="fa-solid fa-circle-check" style="color:var(--accent);"></i> Community-trusted creator store — no fake popups ya hidden steps.</span>
-                    <span>Need help? Official social channels par connect karein.</span>
-                </div>
-            </section>
+            <p id="modalDesc" class="styled-name-text" style="color:var(--muted); font-size:0.9rem; line-height:1.55;"></p>
+            <div id="modalShots" class="shots-grid"></div>
+            <div id="modalActionArea" style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;"></div>
         </div>
     </div>
 
-    <section id="itemShowcaseView">
-        <div style="display:flex; justify-content:space-between; gap:10px; margin-bottom:14px;">
-            <button type="button" class="install-btn ghost-btn" style="padding:9px 15px;" onclick="backToStoreView()">
-                <i class="fa-solid fa-arrow-left"></i> Back
-            </button>
-            <button type="button" class="install-btn ghost-btn" style="padding:9px 15px;" onclick="openShowcaseLightbox()">
-                <i class="fa-solid fa-expand"></i> Fullscreen
-            </button>
-        </div>
-
-        <div class="showcase-hero">
-            <div id="scBadgeRow" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
-                <span id="scAccessBadge" class="paid-tag" style="display:none;">PAID</span>
-                <span id="scShotCount" class="paid-tag" style="background:var(--surface-2); color:var(--ink); border-color:var(--border); animation:none;">0 Photos</span>
-            </div>
-            <h1 id="scTitle" class="styled-name-text" style="font-family:'Fraunces',serif; font-size:1.75rem; margin-bottom:6px;">Title</h1>
-            <p id="scDesc" class="styled-name-text" style="color:var(--muted); font-size:0.88rem; line-height:1.5;"></p>
-            <div id="scPriceText" style="font-family:'Fraunces',serif; font-size:1.5rem; font-weight:700; color:var(--accent-bright); text-shadow:0 0 14px rgba(245,185,33,0.35); margin-top:10px; display:none;">₹9</div>
-        </div>
-
-        <div id="scVideoPanel" class="video-panel" style="display:none;">
-            <h2 style="font-family:'Fraunces',serif; font-size:1.2rem; margin-bottom:10px;">
-                <i class="fa-solid fa-circle-play" style="color:var(--accent);"></i> Video Preview
-            </h2>
-            <video id="scVideoPlayer" class="showcase-video-player" controls playsinline preload="metadata"></video>
-        </div>
-
-        <div class="gallery-panel">
-            <img id="scMainImg" src="" alt="Preview Screenshot" class="main-shot-img" onclick="openShowcaseLightbox()">
-            <div id="scShotsGrid" class="all-shots-grid"></div>
-        </div>
-
-        <!-- Maggie slot 2 (Display) -->
-        <div class="ad-slot-card" aria-label="Advertisement">
-            <span class="ad-slot-label">Sponsored</span>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-2895289176876081"
-                 data-ad-slot="1758314429"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-        </div>
-
-        <div class="buy-card-box">
-            <h2 id="scActionHeading" style="font-family:'Fraunces',serif; font-size:1.3rem; margin-bottom:6px;">Download / Unlock</h2>
-            <p id="scActionSubtext" style="color:var(--muted); font-size:0.84rem; margin-bottom:14px;">
-                Checkout complete hote hi download link automatically unlock aur open ho jayega.
-            </p>
-
-            <button id="scBuyBtn" class="install-btn pay-btn" style="padding:11px 22px; font-size:0.88rem;" onclick="startShowcasePayment()">
-                <i class="fa-solid fa-lock"></i> Buy Now — ₹<span id="scBuyAmount">9</span>
-            </button>
-
-            <div id="scPendingBanner" class="pending-payment-banner">
-                <div style="font-weight:700; color:var(--accent-bright); margin-bottom:6px;">Checkout Opened — Waiting for Payment...</div>
-                <div id="scOrderText" style="font-size:0.78rem; color:var(--muted); margin-bottom:10px;"></div>
-                <a id="scCheckoutBtn" href="#" target="_blank" class="install-btn pay-btn">Re-open Checkout</a>
-            </div>
-
-            <div id="scStatusMsg" style="margin-top:10px; font-size:0.82rem; color:var(--muted);"></div>
-
-            <div id="scUnlockedBox" class="unlocked-box">
-                <div style="color:var(--accent-bright); font-weight:800; margin-bottom:8px;">
-                    <i class="fa-solid fa-circle-check"></i> Download Link Ready:
-                </div>
-                <a id="scUnlockedBtn" href="#" target="_blank" class="install-btn" style="padding:10px 18px;">
-                    <i class="fa-solid fa-download"></i> Open / Download Link
-                </a>
-                <div id="scUnlockedUrl" style="margin-top:8px; font-size:0.76rem; color:var(--muted);"></div>
-            </div>
-        </div>
-    </section>
-
-    <div class="floating-dock-wrap">
-        <nav class="floating-dock" aria-label="Quick navigation">
-            <button type="button" class="dock-btn active" onclick="scrollToSection('appsSection', this)">
-                <i class="fa-solid fa-border-all"></i> Apps
-            </button>
-            <button type="button" class="dock-btn" onclick="filterDockType('XML', this)">
-                <i class="fa-solid fa-code"></i> Paid XMLs
-            </button>
-            <button type="button" class="dock-btn" onclick="filterDockType('Template', this)">
-                <i class="fa-solid fa-layer-group"></i> Templates
-            </button>
-        </nav>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 <span class="store-footer-text styled-name-text">MAGGIE STORE</span>. All rights reserved.</p>
-    </footer>
-
-    <div id="appModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <img id="modalIcon" src="" alt="Icon" style="width:78px; height:78px; border-radius:18px; object-fit:cover; margin-bottom:10px;">
-            <div id="modalPaidBadgeWrap" style="display:none; margin-bottom:4px;">
-                <span id="modalPriceBadge" class="paid-tag">PAID</span>
-            </div>
-            <h2 id="modalTitle" class="styled-name-text" style="font-family:'Fraunces',serif; margin-top:4px;">App Name</h2>
-            <p id="modalDesc" class="styled-name-text" style="color:var(--muted); font-size:0.86rem; margin:12px 0 20px; line-height:1.55;"></p>
-            <div id="modalActionArea"></div>
-            <div id="modalStatusMsg" style="margin-top:10px; font-size:0.78rem; color:var(--muted);"></div>
-        </div>
-    </div>
-
-    <div id="scLightbox" class="lightbox" onclick="closeShowcaseLightbox()">
-        <span class="lightbox-close" onclick="closeShowcaseLightbox()">&times;</span>
-        <img id="scLightboxImg" src="" alt="Zoomed Photo" onclick="event.stopPropagation()">
-    </div>
+    <div id="toast" class="toast"></div>
 
     <script>
-        (function initSavedTheme() {
+        const FALLBACK_ICON = "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%231c2330%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2726%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%239aa4b8%27%3EMAGGIE%3C/text%3E%3C/svg%3E";
+
+        let loaderDismissTimer = null;
+
+        window.showInfinityLoader = function (labelText) {
+            clearTimeout(loaderDismissTimer);
+            const loader = document.getElementById("infinityTrailLoader");
+            const caption = loader?.querySelector(".loader-caption");
+            if (caption && labelText) caption.innerText = labelText;
+            if (loader) loader.classList.remove("is-hidden");
+        };
+
+        window.hideInfinityLoader = function (delayMs = 260) {
+            clearTimeout(loaderDismissTimer);
+            loaderDismissTimer = setTimeout(() => {
+                const loader = document.getElementById("infinityTrailLoader");
+                if (loader) loader.classList.add("is-hidden");
+            }, delayMs);
+        };
+
+        (function initTheme() {
             const saved = localStorage.getItem("maggie_theme") || "dark";
             document.documentElement.setAttribute("data-theme", saved);
             updateThemeIcon(saved);
         })();
 
         function updateThemeIcon(theme) {
-            const btn = document.getElementById("themeBtn");
-            if (!btn) return;
-            btn.innerHTML = theme === "dark"
-                ? '<i class="fa-solid fa-sun"></i>'
-                : '<i class="fa-solid fa-moon"></i>';
+            const icon = document.getElementById("themeIcon");
+            if (icon) icon.className = theme === "dark" ? "fa-solid fa-sun" : "fa-solid fa-moon";
         }
 
         window.toggleTheme = function () {
-            const current = document.documentElement.getAttribute("data-theme") || "dark";
-            const next = current === "dark" ? "light" : "dark";
+            const cur = document.documentElement.getAttribute("data-theme") || "dark";
+            const next = cur === "dark" ? "light" : "dark";
             document.documentElement.setAttribute("data-theme", next);
             localStorage.setItem("maggie_theme", next);
             updateThemeIcon(next);
         };
 
-        window.sanitizeDisplayText = function (raw) {
+        window.sanitizeText = function (raw) {
             if (!raw) return "";
             return String(raw)
                 .replace(/[\u0300-\u036f\u0483-\u0489\u1ab0-\u1aff\u1dc0-\u1dff\u20d0-\u20ff\ufe20-\ufe2f]/g, "")
@@ -1327,126 +831,54 @@
                 .trim();
         };
 
-        window.openCustomLightbox = function (src) {
-            if (!src) return;
-            const lb = document.getElementById("scLightbox");
-            document.getElementById("scLightboxImg").src = src;
-            lb.classList.remove("is-open");
-            lb.style.display = "flex";
-            requestAnimationFrame(() => lb.classList.add("is-open"));
+        window.showToast = function (msg) {
+            const el = document.getElementById("toast");
+            el.innerText = msg;
+            el.classList.add("show");
+            setTimeout(() => el.classList.remove("show"), 2400);
         };
 
-        window.openShowcaseLightbox = function () {
-            const src = document.getElementById("scMainImg").src;
-            if (src) window.openCustomLightbox(src);
-        };
-
-        window.closeShowcaseLightbox = function () {
-            const lb = document.getElementById("scLightbox");
-            lb.classList.remove("is-open");
-            lb.style.display = "none";
-        };
-
-        window.copyGameUid = function () {
-            const val = (document.getElementById("gameUidValue").innerText || "").trim();
+        window.copyUid = function () {
+            const val = document.getElementById("uidValue")?.innerText?.trim();
             if (!val) return;
-            navigator.clipboard?.writeText(val).catch(() => {});
-            const btn = document.getElementById("copyGameUidBtn");
-            if (btn) {
-                const orig = btn.innerHTML;
-                btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied';
-                setTimeout(() => { btn.innerHTML = orig; }, 1400);
-            }
+            navigator.clipboard?.writeText(val);
+            window.showToast("UID copied!");
         };
 
-        window.scrollToSection = function (id, btn) {
-            document.querySelectorAll(".dock-btn").forEach(b => b.classList.remove("active"));
-            if (btn) btn.classList.add("active");
-            if (document.getElementById("itemShowcaseView").style.display === "block") {
-                window.backToStoreView();
-            }
-            const target = document.getElementById(id);
-            if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+        window.openPhotoLightbox = function (src) {
+            if (!src) return;
+            window.open(src, "_blank", "noopener,noreferrer");
         };
 
-        let lastScrollY = window.scrollY;
-        let scrollDir = "down";
-        let scrollRaf = 0;
-
-        window.addEventListener("scroll", () => {
-            if (scrollRaf) return;
-            scrollRaf = requestAnimationFrame(() => {
-                const y = Math.max(0, window.scrollY);
-                if (y > lastScrollY + 2) scrollDir = "down";
-                else if (y < lastScrollY - 2) scrollDir = "up";
-                lastScrollY = y;
-
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const ratio = docHeight > 0 ? Math.min(1, Math.max(0, y / docHeight)) : 0;
-                const bar = document.getElementById("scrollProgressBar");
-                if (bar) bar.style.transform = `scaleX(${ratio})`;
-                scrollRaf = 0;
-            });
-        }, { passive: true });
-
-        const cardObserver = new IntersectionObserver((entries) => {
+        const scrollObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
-                const el = entry.target;
                 if (entry.isIntersecting) {
-                    const cameFromTop = scrollDir === "up" || entry.boundingClientRect.top < window.innerHeight * 0.25;
-                    el.classList.toggle("from-top", cameFromTop);
-                    requestAnimationFrame(() => {
-                        el.classList.add("is-visible");
-                    });
-                } else {
-                    const isAbove = entry.boundingClientRect.top < 0;
-                    el.classList.toggle("from-top", isAbove);
-                    el.classList.remove("is-visible");
+                    entry.target.classList.add("in-view");
                 }
             });
-        }, {
-            threshold: 0.08,
-            rootMargin: "0px 0px -20px 0px"
-        });
+        }, { threshold: 0.08 });
 
-        function revealVisibleImmediately(containerEl) {
-            if (!containerEl) return;
-            const vh = window.innerHeight || 800;
-            containerEl.querySelectorAll(".reveal-card").forEach((card, idx) => {
-                const rect = card.getBoundingClientRect();
-                if (rect.top < vh * 0.95 && rect.bottom > 0) {
-                    card.style.transitionDelay = `${Math.min(idx * 35, 180)}ms`;
-                    requestAnimationFrame(() => {
-                        card.classList.add("is-visible");
-                        setTimeout(() => { card.style.transitionDelay = "0ms"; }, 350);
-                    });
+        window.observeRevealElements = function () {
+            document.querySelectorAll(".reveal-item").forEach((el) => {
+                scrollObserver.observe(el);
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.96) {
+                    el.classList.add("in-view");
                 }
             });
-        }
-
-        window.observeRevealCards = function (containerEl) {
-            if (!containerEl) return;
-            const cards = containerEl.querySelectorAll(".reveal-card");
-            cards.forEach((card) => {
-                cardObserver.unobserve(card);
-                card.classList.remove("is-visible");
-                cardObserver.observe(card);
-            });
-            revealVisibleImmediately(containerEl);
         };
 
-        document.addEventListener("DOMContentLoaded", () => {
-            window.observeRevealCards(document.getElementById("storeMainView"));
+        window.addEventListener("load", () => {
+            window.hideInfinityLoader(350);
         });
+        setTimeout(() => window.hideInfinityLoader(0), 3200);
     </script>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, onSnapshot, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-        const FAMGATEWAY_BASE_URL = "https://famgateway.in";
-        const FAMGATEWAY_API_KEY = "fam_95a256e60ea571df5923128a187d7659d00c5716";
-        const FAMGATEWAY_BACKEND_ORDER_URL = "";
+        import {
+            getFirestore, collection, doc, onSnapshot
+        } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyAz5VFvZ4nb7XOd8R72uW-aCYoLp0A_DAk",
@@ -1461,616 +893,236 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        const appGrid = document.getElementById('appGrid');
-        const searchInput = document.getElementById('searchInput');
-        const topSocialBar = document.getElementById('topSocialBar');
-        const featuredPackContainer = document.getElementById('featuredPackContainer');
+        let currentSection = "apps";
+        let appsData = [];
+        let xmlData = [];
+        let loadedStreams = 0;
 
-        const FALLBACK_STORE = "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%23f5b921%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2742%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%231a1202%27%3EM%3C/text%3E%3C/svg%3E";
-        const FALLBACK_APP = "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%231c2330%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2755%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2726%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%23f5b921%27%3EAPP%3C/text%3E%3C/svg%3E";
-
-        let allApps = [];
-        let allXmlItems = [];
-        let xmlFilterMode = 'paid';
-        let dockTypeFilter = 'all';
-        let activeShowcaseItem = null;
-        let activeModalApp = null;
-        let showcasePollTimer = null;
-        let modalPollTimer = null;
-        let baseStoreName = "MAGGIE STORE";
-        let renderFrameId = 0;
-
-        function cleanUrl(raw) {
-            const val = (raw || '').trim();
-            if (!val) return '';
-            if (!val.startsWith('http://') && !val.startsWith('https://') && !val.startsWith('data:image/')) {
-                return 'https://' + val;
-            }
-            return val;
-        }
-
-        function getItemPhotos(item) {
-            const list = Array.isArray(item.photos) ? item.photos.map(cleanUrl).filter(Boolean) : [];
-            if (list.length > 0) return list;
-            const thumb = cleanUrl(item.thumbUrl);
-            return thumb ? [thumb] : [FALLBACK_APP];
-        }
-
-        function setImageDirect(imgEl, rawUrl, fallbackUrl) {
-            if (!imgEl) return;
-            const url = cleanUrl(rawUrl);
-            if (!url) {
-                imgEl.src = fallbackUrl;
-                return;
-            }
-            imgEl.onerror = () => {
-                imgEl.onerror = null;
-                imgEl.src = fallbackUrl;
-            };
-            imgEl.src = url;
-        }
-
-        function renderProfileAndGameData(settings = {}) {
-            const uid = window.sanitizeDisplayText(settings.gameUid || '');
-            const label = window.sanitizeDisplayText(settings.gameLabel || '');
-            const mainPhoto = cleanUrl(settings.gameMainPhoto || '');
-            const logoUrl = cleanUrl(settings.logoUrl || '');
-            const extraPhotos = Array.isArray(settings.gameExtraPhotos)
-                ? settings.gameExtraPhotos.map(cleanUrl).filter(Boolean)
-                : [];
-
-            document.getElementById('heroProfileTitle').innerText = label || baseStoreName;
-
-            const avatarEl = document.getElementById('topProfileAvatar');
-            setImageDirect(avatarEl, mainPhoto || logoUrl, FALLBACK_STORE);
-
-            const uidBadge = document.getElementById('uidPillBadge');
-            const uidVal = document.getElementById('gameUidValue');
-            const copyBtn = document.getElementById('copyGameUidBtn');
-
-            if (uid) {
-                uidVal.innerText = uid;
-                uidBadge.style.display = 'inline-flex';
-                copyBtn.style.display = 'inline-flex';
-            } else {
-                uidVal.innerText = '';
-                uidBadge.style.display = 'none';
-                copyBtn.style.display = 'none';
-            }
-
-            const extraSection = document.getElementById('gameExtraSection');
-            const extraGrid = document.getElementById('gameExtraPhotosGrid');
-            extraGrid.innerHTML = '';
-
-            if (extraPhotos.length > 0) {
-                extraSection.style.display = 'block';
-                const frag = document.createDocumentFragment();
-                extraPhotos.forEach((url, idx) => {
-                    const card = document.createElement('div');
-                    card.className = 'app-card reveal-card game-extra-card';
-                    card.innerHTML = `
-                        <img src="${url}" alt="Photo ${idx + 1}" class="game-extra-photo" loading="lazy">
-                        <div style="font-size:0.76rem; color:var(--muted); display:flex; justify-content:space-between;">
-                            <span>Photo #${idx + 1}</span>
-                            <i class="fa-solid fa-expand"></i>
-                        </div>
-                    `;
-                    card.onclick = () => window.openCustomLightbox(url);
-                    frag.appendChild(card);
-                });
-                extraGrid.appendChild(frag);
-                window.observeRevealCards(extraSection);
-            } else {
-                extraSection.style.display = 'none';
+        function markStreamLoaded() {
+            loadedStreams += 1;
+            if (loadedStreams >= 2) {
+                window.hideInfinityLoader(220);
             }
         }
 
-        onSnapshot(doc(db, "settings", "general"), (docSnap) => {
-            const s = docSnap.exists() ? docSnap.data() : {};
-            if (s.logoUrl) {
-                setImageDirect(document.getElementById('storeLogo'), s.logoUrl, FALLBACK_STORE);
+        function safeUrl(raw) {
+            const v = (raw || "").trim();
+            if (!v) return "";
+            if (!v.startsWith("http://") && !v.startsWith("https://") && !v.startsWith("data:image/")) {
+                return "https://" + v;
             }
-            if (s.storeName) {
-                baseStoreName = window.sanitizeDisplayText(s.storeName) || "MAGGIE STORE";
-                document.getElementById('storeName').innerText = baseStoreName;
-                document.getElementById('pageTitle').innerText = baseStoreName + " - App Hub";
-                document.querySelectorAll('.store-footer-text').forEach(el => el.innerText = baseStoreName);
-            }
-            renderProfileAndGameData(s);
-        });
-
-        function getPlatformIcon(platform) {
-            const p = (platform || '').toLowerCase();
-            if (p.includes('insta')) return 'fa-brands fa-instagram';
-            if (p.includes('tele')) return 'fa-brands fa-telegram';
-            if (p.includes('disc')) return 'fa-brands fa-discord';
-            if (p.includes('you')) return 'fa-brands fa-youtube';
-            if (p.includes('whats')) return 'fa-brands fa-whatsapp';
-            if (p.includes('git')) return 'fa-brands fa-github';
-            return 'fa-solid fa-link';
+            return v;
         }
 
-        onSnapshot(collection(db, "socials"), (snapshot) => {
-            const frag = document.createDocumentFragment();
-            snapshot.forEach((docSnap) => {
-                const data = docSnap.data();
-                const platName = window.sanitizeDisplayText(data.platform || "Link");
-                const a = document.createElement('a');
-                a.href = cleanUrl(data.url);
-                a.target = '_blank';
-                a.className = 'icon-social-btn';
-                a.title = platName;
-                a.innerHTML = `<i class="${getPlatformIcon(data.platform)}"></i>`;
-                frag.appendChild(a);
-            });
-            topSocialBar.innerHTML = '';
-            topSocialBar.appendChild(frag);
-        });
-
-        function scheduleRender() {
-            if (renderFrameId) return;
-            renderFrameId = requestAnimationFrame(() => {
-                renderFrameId = 0;
-                filterAndRender();
-            });
-        }
-
-        onSnapshot(collection(db, "apps"), (snapshot) => {
-            document.getElementById('loader').style.display = 'none';
-            allApps = [];
-            snapshot.forEach((docSnap) => {
-                allApps.push({ id: docSnap.id, ...docSnap.data() });
-            });
-            scheduleRender();
-        });
-
-        onSnapshot(collection(db, "xmlTemplates"), (snapshot) => {
-            allXmlItems = [];
-            snapshot.forEach((docSnap) => {
-                allXmlItems.push({ id: docSnap.id, ...docSnap.data() });
-            });
-            scheduleRender();
-        });
-
-        window.setXmlFilter = (mode) => {
-            xmlFilterMode = mode;
-            document.querySelectorAll('[data-xmlfilter]').forEach(btn => {
-                btn.classList.toggle('active', btn.getAttribute('data-xmlfilter') === mode);
-            });
-            filterAndRender();
+        window.switchSection = function (section) {
+            currentSection = section;
+            document.getElementById("tabApps").classList.toggle("active", section === "apps");
+            document.getElementById("tabXml").classList.toggle("active", section === "xml");
+            renderCurrentSection();
         };
 
-        window.filterDockType = (typeName, btn) => {
-            dockTypeFilter = dockTypeFilter === typeName ? 'all' : typeName;
-            document.querySelectorAll(".dock-btn").forEach(b => b.classList.remove("active"));
-            if (btn && dockTypeFilter !== 'all') btn.classList.add("active");
-            filterAndRender();
-            document.getElementById("featuredPackSection")?.scrollIntoView({ behavior: "smooth", block: "start" });
-        };
+        onSnapshot(collection(db, "apps"), (snap) => {
+            appsData = [];
+            snap.forEach(d => appsData.push({ id: d.id, ...d.data() }));
+            if (currentSection === "apps") renderCurrentSection();
+            markStreamLoaded();
+        }, () => markStreamLoaded());
 
-        function filterAndRender() {
-            const term = searchInput.value.toLowerCase().trim();
-            const filteredApps = allApps.filter(a => !term || (a.name || '').toLowerCase().includes(term) || (a.category || '').toLowerCase().includes(term));
-            renderApps(filteredApps);
-            renderFeaturedAndPacks(term);
-        }
+        onSnapshot(collection(db, "xmlTemplates"), (snap) => {
+            xmlData = [];
+            snap.forEach(d => xmlData.push({ id: d.id, ...d.data() }));
+            if (currentSection === "xml") renderCurrentSection();
+            markStreamLoaded();
+        }, () => markStreamLoaded());
 
-        function renderApps(apps) {
-            appGrid.innerHTML = '';
-            if (apps.length === 0) {
-                appGrid.innerHTML = '<p style="color:var(--muted); grid-column:1/-1;">No apps found.</p>';
+        onSnapshot(doc(db, "settings", "general"), (snap) => {
+            if (!snap.exists()) return;
+            const s = snap.data();
+
+            const name = window.sanitizeText(s.storeName) || "MAGGIE STORE";
+            document.getElementById("storeName").innerText = name;
+            document.title = name;
+
+            const logoEl = document.getElementById("storeLogo");
+            const logoUrl = safeUrl(s.logoUrl);
+            if (logoUrl) {
+                logoEl.src = logoUrl;
+                logoEl.style.display = "block";
+            } else {
+                logoEl.style.display = "none";
+            }
+
+            const uidBox = document.getElementById("uidBox");
+            const uidValEl = document.getElementById("uidValue");
+            const uidLabelEl = document.getElementById("uidLabel");
+            const uidPhotoEl = document.getElementById("uidPhoto");
+
+            const cleanUid = window.sanitizeText(s.gameUid || "");
+            const cleanLabel = window.sanitizeText(s.gameLabel || "");
+            const mainPhoto = safeUrl(s.gameMainPhoto || "");
+
+            if (cleanUid || mainPhoto) {
+                uidBox.style.display = "flex";
+                uidLabelEl.innerText = cleanLabel || "GAME UID";
+                uidValEl.innerText = cleanUid || "—";
+                uidValEl.style.display = cleanUid ? "block" : "none";
+                if (mainPhoto) {
+                    uidPhotoEl.src = mainPhoto;
+                    uidPhotoEl.style.display = "block";
+                } else {
+                    uidPhotoEl.style.display = "none";
+                }
+            } else {
+                uidBox.style.display = "none";
+            }
+
+            const galleryEl = document.getElementById("extraGallery");
+            const extras = Array.isArray(s.gameExtraPhotos) ? s.gameExtraPhotos.map(safeUrl).filter(Boolean) : [];
+            if (extras.length > 0) {
+                galleryEl.style.display = "flex";
+                galleryEl.innerHTML = extras.map(url => `<img src="${url}" alt="Gallery" class="gallery-thumb" onclick="openPhotoLightbox('${url}')">`).join("");
+            } else {
+                galleryEl.style.display = "none";
+                galleryEl.innerHTML = "";
+            }
+        });
+
+        onSnapshot(collection(db, "socials"), (snap) => {
+            const sec = document.getElementById("socialsSection");
+            const list = document.getElementById("socialsList");
+            list.innerHTML = "";
+            let count = 0;
+            snap.forEach(d => {
+                const item = d.data();
+                const link = safeUrl(item.url);
+                if (!link) return;
+                count += 1;
+                const a = document.createElement("a");
+                a.href = link;
+                a.target = "_blank";
+                a.rel = "noopener noreferrer";
+                a.className = "social-chip styled-name-text";
+                a.innerHTML = `<i class="fa-solid fa-arrow-up-right-from-square"></i> ${window.sanitizeText(item.platform || "Link")}`;
+                list.appendChild(a);
+            });
+            sec.style.display = count > 0 ? "block" : "none";
+        });
+
+        window.renderCurrentSection = function () {
+            const grid = document.getElementById("cardsGrid");
+            const q = (document.getElementById("searchInput").value || "").toLowerCase().trim();
+            const source = currentSection === "apps" ? appsData : xmlData;
+
+            const filtered = source.filter(item => {
+                if (!q) return true;
+                const hay = `${item.name || ""} ${item.title || ""} ${item.category || ""} ${item.type || ""} ${item.description || ""}`.toLowerCase();
+                return hay.includes(q);
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">Koi item nahi mila.</div>`;
                 return;
             }
 
-            const frag = document.createDocumentFragment();
-            apps.forEach((appItem) => {
-                const isPaid = Boolean(appItem.isPaid);
-                const price = Number(appItem.price || 49);
-                const unlocked = !isPaid || localStorage.getItem('maggie_app_unlocked_' + appItem.id) === '1';
-                const dlUrl = cleanUrl(appItem.downloadUrl) || '#';
-                const safeTitle = window.sanitizeDisplayText(appItem.name || 'Unnamed App');
-                const safeDesc = window.sanitizeDisplayText(appItem.description || 'Tap to view details');
+            grid.innerHTML = "";
+            filtered.forEach((item) => {
+                const isPaid = Boolean(item.isPaid);
+                const price = Number(item.price || (currentSection === "apps" ? 29 : 9));
+                const title = window.sanitizeText(item.name || item.title || "Item");
+                const desc = window.sanitizeText(item.description || "");
+                const icon = safeUrl(item.logoUrl || item.thumbUrl || (Array.isArray(item.photos) ? item.photos[0] : "")) || FALLBACK_ICON;
+                const catLabel = item.category || item.type || (currentSection === "apps" ? "App" : "XML");
 
-                const card = document.createElement('div');
-                card.className = 'app-card reveal-card';
-
-                const badgeHtml = isPaid
-                    ? `<span class="paid-tag">${unlocked ? 'PAID • UNLOCKED' : `PAID • ₹${price}`}</span>`
-                    : '';
-
-                const btnHtml = (!isPaid || unlocked)
-                    ? `<a href="${dlUrl}" target="_blank" class="install-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-download"></i> Install</a>`
-                    : `<button type="button" class="install-btn pay-btn" onclick="event.stopPropagation(); triggerAppDirectBuy('${appItem.id}')"><i class="fa-solid fa-lock"></i> Buy ₹${price}</button>`;
-
+                const card = document.createElement("div");
+                card.className = "card reveal-item";
                 card.innerHTML = `
-                    <img src="${FALLBACK_APP}" alt="Icon" class="app-icon" loading="lazy">
-                    <div class="app-info">
-                        ${badgeHtml}
-                        <div class="app-title styled-name-text">${safeTitle}</div>
-                        <div class="app-desc-short styled-name-text">${safeDesc}</div>
-                        ${btnHtml}
+                    <div class="card-head">
+                        <img src="${icon}" alt="${title}" class="card-icon" onerror="this.src='${FALLBACK_ICON}'">
+                        <div style="min-width:0; flex:1;">
+                            <div class="card-title styled-name-text">${title}</div>
+                            <div class="badges">
+                                <span class="badge badge-cat">${catLabel}</span>
+                                <span class="badge ${isPaid ? "badge-paid" : "badge-free"}">
+                                    ${isPaid ? `PAID • ₹${price}` : "FREE"}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    ${desc ? `<p class="card-desc styled-name-text">${desc}</p>` : ""}
+                    <div class="card-actions">
+                        <button type="button" class="btn btn-ghost" onclick="openItemModal('${currentSection}', '${item.id}')">
+                            <i class="fa-regular fa-eye"></i> Preview
+                        </button>
+                        ${isPaid
+                            ? `<button type="button" class="btn btn-paid" onclick="unlockPaidItem('${currentSection}', '${item.id}')"><i class="fa-solid fa-lock"></i> Unlock ₹${price}</button>`
+                            : `<a href="${safeUrl(item.downloadUrl || item.protectedLink)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary"><i class="fa-solid fa-download"></i> Download</a>`
+                        }
                     </div>
                 `;
-                setImageDirect(card.querySelector('.app-icon'), appItem.logoUrl, FALLBACK_APP);
-                card.onclick = () => openModal(appItem);
-                frag.appendChild(card);
+                grid.appendChild(card);
             });
 
-            appGrid.appendChild(frag);
-            window.observeRevealCards(appGrid);
-        }
-
-        function renderFeaturedAndPacks(term = '') {
-            const items = allXmlItems.filter(i => {
-                const matchesPaid = xmlFilterMode !== 'paid' || Boolean(i.isPaid);
-                const matchesType = dockTypeFilter === 'all' || (i.type || '').toLowerCase() === dockTypeFilter.toLowerCase();
-                const matchesSearch = !term || (i.title || '').toLowerCase().includes(term) || (i.type || '').toLowerCase().includes(term);
-                return matchesPaid && matchesType && matchesSearch;
-            });
-
-            featuredPackContainer.innerHTML = '';
-            if (items.length === 0) {
-                featuredPackContainer.innerHTML = '<p style="color:var(--muted);">Abhi koi pack available nahi hai.</p>';
-                return;
-            }
-
-            const first = items[0];
-            const photos = getItemPhotos(first);
-            const isPaid = Boolean(first.isPaid);
-            const price = Number(first.price || 9);
-            const hasVideo = Boolean(cleanUrl(first.videoUrl));
-            const safeTitle = window.sanitizeDisplayText(first.title || 'Featured Pack');
-            const safeDesc = window.sanitizeDisplayText(first.description || 'Tap to view full preview gallery and unlock.');
-
-            const heroCard = document.createElement('div');
-            heroCard.className = 'featured-pack-card reveal-card';
-            heroCard.onclick = () => window.openItemFullShowcase(first.id);
-
-            const thumbsHtml = photos.slice(0, 5).map(u => `<img src="${u}" alt="Thumb" class="thumb-strip-item" loading="lazy" onerror="this.style.display='none'">`).join('');
-            const paidBadgeHtml = isPaid ? `<span class="price-pill">PAID • ₹${price}</span>` : '';
-            const videoBadgeHtml = hasVideo ? `<span class="video-pill"><i class="fa-solid fa-play"></i> Video</span>` : '';
-            const actionBtnHtml = `<button type="button" class="unlock-pill-btn" onclick="event.stopPropagation(); openItemFullShowcase('${first.id}')">
-                <i class="${isPaid ? 'fa-solid fa-lock' : 'fa-solid fa-play'}"></i> ${isPaid ? 'Buy / Unlock' : 'Preview'}
-            </button>`;
-
-            heroCard.innerHTML = `
-                <div class="featured-top-split">
-                    <div class="featured-cover-box">
-                        <img src="${cleanUrl(first.thumbUrl) || photos[0]}" alt="Cover" class="featured-cover-img" onerror="this.src='${FALLBACK_APP}'">
-                        <span class="photo-count-badge">${photos.length} PHOTOS</span>
-                    </div>
-                    <div>
-                        <div class="featured-title styled-name-text">${safeTitle}</div>
-                        <p class="featured-desc styled-name-text">${safeDesc}</p>
-                        <div class="featured-actions-row">${paidBadgeHtml}${videoBadgeHtml}${actionBtnHtml}</div>
-                    </div>
-                </div>
-                <div class="thumb-strip">${thumbsHtml}</div>
-            `;
-            featuredPackContainer.appendChild(heroCard);
-
-            if (items.length > 1) {
-                const subGrid = document.createElement('div');
-                subGrid.className = 'extra-packs-grid';
-                const frag = document.createDocumentFragment();
-                items.slice(1).forEach(item => {
-                    const pList = getItemPhotos(item);
-                    const itemPaid = Boolean(item.isPaid);
-                    const itemHasVideo = Boolean(cleanUrl(item.videoUrl));
-                    const c = document.createElement('div');
-                    c.className = 'app-card reveal-card';
-                    c.onclick = () => window.openItemFullShowcase(item.id);
-                    c.innerHTML = `
-                        <img src="${cleanUrl(item.thumbUrl) || pList[0]}" alt="Pack" class="app-icon" loading="lazy" onerror="this.src='${FALLBACK_APP}'">
-                        <div class="app-info">
-                            ${itemPaid ? `<span class="paid-tag">PAID • ₹${item.price || 9}</span>` : ''}
-                            ${itemHasVideo ? `<span class="video-pill" style="padding:2px 7px; font-size:0.64rem; margin-bottom:4px;"><i class="fa-solid fa-play"></i> Video</span>` : ''}
-                            <div class="app-title styled-name-text">${window.sanitizeDisplayText(item.title || 'Pack')}</div>
-                            <div class="app-desc-short styled-name-text">${window.sanitizeDisplayText(item.description || 'Tap to preview')}</div>
-                            <button type="button" class="install-btn ${itemPaid ? 'pay-btn' : ''}">Preview</button>
-                        </div>
-                    `;
-                    frag.appendChild(c);
-                });
-                subGrid.appendChild(frag);
-                featuredPackContainer.appendChild(subGrid);
-            }
-
-            window.observeRevealCards(featuredPackContainer);
-        }
-
-        let searchDebounceTimer = 0;
-        searchInput.addEventListener('input', () => {
-            clearTimeout(searchDebounceTimer);
-            searchDebounceTimer = setTimeout(filterAndRender, 90);
-        });
-
-        function stopModalPolling() {
-            if (modalPollTimer) { clearInterval(modalPollTimer); modalPollTimer = null; }
-        }
-
-        function stopShowcasePolling() {
-            if (showcasePollTimer) { clearInterval(showcasePollTimer); showcasePollTimer = null; }
-        }
-
-        function resetShowcaseVideo() {
-            const vid = document.getElementById('scVideoPlayer');
-            const panel = document.getElementById('scVideoPanel');
-            if (vid) {
-                vid.pause();
-                vid.removeAttribute('src');
-                vid.load();
-            }
-            if (panel) panel.style.display = 'none';
-        }
-
-        function openDownloadLink(rawUrl) {
-            const url = cleanUrl(rawUrl);
-            if (!url || url === '#') return;
-            const opened = window.open(url, '_blank', 'noopener,noreferrer');
-            if (!opened) window.location.href = url;
-        }
-
-        async function createFamGatewayOrder(amountRupees, customerName) {
-            if (FAMGATEWAY_BACKEND_ORDER_URL) {
-                const r = await fetch(FAMGATEWAY_BACKEND_ORDER_URL, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ amount: amountRupees, customer_name: customerName })
-                });
-                const payload = await r.json();
-                if (!r.ok || payload.status !== "success" || !payload.data) throw new Error(payload.message || "Order failed");
-                return payload.data;
-            }
-            const r = await fetch(`${FAMGATEWAY_BASE_URL}/api/create-order`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json", "X-Api-Key": FAMGATEWAY_API_KEY },
-                body: JSON.stringify({ api_key: FAMGATEWAY_API_KEY, amount: amountRupees, customer_name: customerName })
-            });
-            const payload = await r.json();
-            if (!r.ok || payload.status !== "success" || !payload.data) throw new Error(payload.message || "Order failed");
-            return payload.data;
-        }
-
-        window.triggerAppDirectBuy = async (appId) => {
-            const appItem = allApps.find(a => a.id === appId);
-            if (!appItem) return;
-            openModal(appItem);
-            await startAppPayment();
+            window.observeRevealElements();
         };
 
-        window.openModal = (appItem) => {
-            stopModalPolling();
-            activeModalApp = appItem;
-            const isPaid = Boolean(appItem.isPaid);
-            const price = Number(appItem.price || 49);
-            const unlocked = !isPaid || localStorage.getItem('maggie_app_unlocked_' + appItem.id) === '1';
-            const dlUrl = cleanUrl(appItem.downloadUrl) || '#';
-
-            setImageDirect(document.getElementById('modalIcon'), appItem.logoUrl, FALLBACK_APP);
-            const badgeWrap = document.getElementById('modalPaidBadgeWrap');
-            const pBadge = document.getElementById('modalPriceBadge');
-            if (isPaid) {
-                badgeWrap.style.display = 'block';
-                pBadge.innerText = unlocked ? 'PAID • UNLOCKED' : `PAID • ₹${price}`;
-            } else {
-                badgeWrap.style.display = 'none';
-            }
-
-            document.getElementById('modalTitle').innerText = window.sanitizeDisplayText(appItem.name || 'App');
-            document.getElementById('modalDesc').innerText = window.sanitizeDisplayText(appItem.description || 'No description provided.');
-            document.getElementById('modalStatusMsg').innerText = '';
-
-            const area = document.getElementById('modalActionArea');
-            area.innerHTML = (!isPaid || unlocked)
-                ? `<a href="${dlUrl}" target="_blank" class="install-btn" style="padding:10px 24px;"><i class="fa-solid fa-download"></i> Download Now</a>`
-                : `<button id="modalBuyBtn" type="button" class="install-btn pay-btn" style="padding:10px 22px;" onclick="startAppPayment()"><i class="fa-solid fa-lock"></i> Buy Now — ₹${price}</button>`;
-
-            const modal = document.getElementById('appModal');
-            modal.classList.remove('is-open');
-            modal.style.display = 'flex';
-            requestAnimationFrame(() => modal.classList.add('is-open'));
-        };
-
-        window.closeModal = () => {
-            stopModalPolling();
-            activeModalApp = null;
-            const modal = document.getElementById('appModal');
-            modal.classList.remove('is-open');
-            modal.style.display = 'none';
-        };
-
-        window.startAppPayment = async () => {
-            if (!activeModalApp) return;
-            const amount = Math.max(1, Number(activeModalApp.price || 49));
-            const buyBtn = document.getElementById('modalBuyBtn');
-            const statusEl = document.getElementById('modalStatusMsg');
-            if (buyBtn) { buyBtn.disabled = true; buyBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Opening...'; }
-
-            try {
-                const d = await createFamGatewayOrder(amount, `App: ${window.sanitizeDisplayText(activeModalApp.name || "MAGGIE STORE")}`);
-                const checkoutUrl = cleanUrl(d.checkout_url || `${FAMGATEWAY_BASE_URL}/pay.php?order_id=${encodeURIComponent(d.order_id)}`);
-                window.open(checkoutUrl, '_blank', 'noopener,noreferrer');
-
-                const pollUrl = `${FAMGATEWAY_BASE_URL}/api/checkout-status.php?order_id=${encodeURIComponent(d.order_id)}`;
-                statusEl.innerText = "Payment complete hote hi download link unlock hoga...";
-                modalPollTimer = setInterval(async () => {
-                    try {
-                        const res = await fetch(pollUrl, { cache: "no-store" });
-                        if (!res.ok) return;
-                        const data = await res.json();
-                        if (data && data.status === "success") {
-                            stopModalPolling();
-                            localStorage.setItem('maggie_app_unlocked_' + activeModalApp.id, '1');
-                            const link = cleanUrl(activeModalApp.downloadUrl) || '#';
-                            document.getElementById('modalActionArea').innerHTML = `<a href="${link}" target="_blank" class="install-btn" style="padding:10px 24px;"><i class="fa-solid fa-download"></i> Download Now</a>`;
-                            filterAndRender();
-                            openDownloadLink(link);
-                        }
-                    } catch (_) {}
-                }, 3000);
-            } catch (err) {
-                if (buyBtn) { buyBtn.disabled = false; buyBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Buy Now — ₹${amount}`; }
-                statusEl.innerHTML = `<span style="color:#ef4444;">${err.message}</span>`;
-            }
-        };
-
-        function renderShowcaseGallery(photos) {
-            const mainImg = document.getElementById('scMainImg');
-            const grid = document.getElementById('scShotsGrid');
-            document.getElementById('scShotCount').innerText = `${photos.length} Photo${photos.length > 1 ? 's' : ''}`;
-            setImageDirect(mainImg, photos[0], FALLBACK_APP);
-            grid.innerHTML = '';
-
-            photos.forEach((url, idx) => {
-                const tile = document.createElement('div');
-                tile.className = `shot-tile ${idx === 0 ? 'active' : ''}`;
-                tile.innerHTML = `<img src="${FALLBACK_APP}" alt="Shot ${idx + 1}">`;
-                setImageDirect(tile.querySelector('img'), url, FALLBACK_APP);
-                tile.onclick = () => {
-                    grid.querySelectorAll('.shot-tile').forEach(t => t.classList.remove('active'));
-                    tile.classList.add('active');
-                    setImageDirect(mainImg, url, FALLBACK_APP);
-                };
-                grid.appendChild(tile);
-            });
-        }
-
-        function unlockShowcaseItem(item, persist = true, autoOpen = false) {
-            stopShowcasePolling();
-            if (persist) localStorage.setItem('maggie_unlocked_' + item.id, '1');
-            const link = cleanUrl(item.protectedLink) || '#';
-            document.getElementById('scBuyBtn').style.display = 'none';
-            document.getElementById('scPendingBanner').style.display = 'none';
-            document.getElementById('scUnlockedBtn').href = link;
-            document.getElementById('scUnlockedUrl').innerText = link;
-            document.getElementById('scUnlockedBox').style.display = 'block';
-            if (autoOpen && link !== '#') openDownloadLink(link);
-        }
-
-        window.openItemFullShowcase = (id) => {
-            stopShowcasePolling();
-            resetShowcaseVideo();
-            const item = allXmlItems.find(x => x.id === id);
+        window.openItemModal = function (section, id) {
+            const list = section === "apps" ? appsData : xmlData;
+            const item = list.find(x => x.id === id);
             if (!item) return;
-            activeShowcaseItem = item;
 
             const isPaid = Boolean(item.isPaid);
-            const price = Number(item.price || 9);
-            const alreadyUnlocked = localStorage.getItem('maggie_unlocked_' + item.id) === '1';
+            const price = Number(item.price || (section === "apps" ? 29 : 9));
+            const title = window.sanitizeText(item.name || item.title || "Item");
+            const desc = window.sanitizeText(item.description || "No description provided.");
+            const photos = Array.isArray(item.photos) ? item.photos.map(safeUrl).filter(Boolean) : [];
+            const downloadLink = safeUrl(item.downloadUrl || item.protectedLink);
 
-            const accessBadge = document.getElementById('scAccessBadge');
-            const priceText = document.getElementById('scPriceText');
+            document.getElementById("modalTitle").innerText = title;
+            document.getElementById("modalBadges").innerHTML = `
+                <span class="badge badge-cat">${item.category || item.type || "Item"}</span>
+                <span class="badge ${isPaid ? "badge-paid" : "badge-free"}">${isPaid ? `PAID • ₹${price}` : "FREE"}</span>
+            `;
+            document.getElementById("modalDesc").innerText = desc;
+
+            const shotsWrap = document.getElementById("modalShots");
+            shotsWrap.innerHTML = photos.map(p => `<img src="${p}" alt="Preview" class="shot-img" onclick="openPhotoLightbox('${p}')">`).join("");
+
+            const actionArea = document.getElementById("modalActionArea");
             if (isPaid) {
-                accessBadge.style.display = 'inline-block';
-                accessBadge.innerText = `PAID • ₹${price}`;
-                priceText.style.display = 'block';
-                priceText.innerText = `₹${price}`;
+                actionArea.innerHTML = `
+                    <button type="button" class="btn btn-paid" onclick="unlockPaidItem('${section}', '${item.id}')">
+                        <i class="fa-solid fa-unlock"></i> Unlock Link (₹${price})
+                    </button>
+                `;
+            } else if (downloadLink) {
+                actionArea.innerHTML = `
+                    <a href="${downloadLink}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                        <i class="fa-solid fa-download"></i> Open Download Link
+                    </a>
+                `;
             } else {
-                accessBadge.style.display = 'none';
-                priceText.style.display = 'none';
+                actionArea.innerHTML = "";
             }
 
-            document.getElementById('scTitle').innerText = window.sanitizeDisplayText(item.title || 'Pack');
-            document.getElementById('scDesc').innerText = window.sanitizeDisplayText(item.description || '');
-            document.getElementById('scStatusMsg').innerText = '';
-            document.getElementById('scPendingBanner').style.display = 'none';
-            document.getElementById('scUnlockedBox').style.display = 'none';
+            document.getElementById("previewModal").classList.add("open");
+        };
 
-            const vidUrl = cleanUrl(item.videoUrl);
-            if (vidUrl) {
-                const vidPanel = document.getElementById('scVideoPanel');
-                const vidPlayer = document.getElementById('scVideoPlayer');
-                vidPlayer.src = vidUrl;
-                vidPanel.style.display = 'block';
-            }
+        window.closeModal = function () {
+            document.getElementById("previewModal").classList.remove("open");
+        };
 
-            renderShowcaseGallery(getItemPhotos(item));
-
-            const buyBtn = document.getElementById('scBuyBtn');
-            if (!isPaid || alreadyUnlocked) {
-                unlockShowcaseItem(item, false, false);
+        window.unlockPaidItem = function (section, id) {
+            const list = section === "apps" ? appsData : xmlData;
+            const item = list.find(x => x.id === id);
+            if (!item) return;
+            const link = safeUrl(item.downloadUrl || item.protectedLink);
+            if (link) {
+                window.open(link, "_blank", "noopener,noreferrer");
+                window.showToast("Download link opened!");
             } else {
-                document.getElementById('scBuyAmount').innerText = price;
-                buyBtn.disabled = false;
-                buyBtn.style.display = 'inline-flex';
-                buyBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Buy Now — ₹${price}`;
-            }
-
-            const showcaseEl = document.getElementById('itemShowcaseView');
-            document.getElementById('storeMainView').style.display = 'none';
-            showcaseEl.style.display = 'block';
-            showcaseEl.classList.remove('view-animate');
-            void showcaseEl.offsetWidth;
-            showcaseEl.classList.add('view-animate');
-
-            const scAd = showcaseEl.querySelector('ins.adsbygoogle');
-            if (scAd && !scAd.getAttribute('data-adsbygoogle-status')) {
-                try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (_) {}
-            }
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        };
-
-        window.backToStoreView = () => {
-            stopShowcasePolling();
-            resetShowcaseVideo();
-            activeShowcaseItem = null;
-            const mainEl = document.getElementById('storeMainView');
-            document.getElementById('itemShowcaseView').style.display = 'none';
-            mainEl.style.display = 'block';
-            mainEl.classList.remove('view-animate');
-            void mainEl.offsetWidth;
-            mainEl.classList.add('view-animate');
-            filterAndRender();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        };
-
-        window.startShowcasePayment = async () => {
-            if (!activeShowcaseItem) return;
-            const amount = Math.max(1, Number(activeShowcaseItem.price || 9));
-            const buyBtn = document.getElementById('scBuyBtn');
-            const statusEl = document.getElementById('scStatusMsg');
-            buyBtn.disabled = true;
-            buyBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Opening Checkout...';
-
-            try {
-                const d = await createFamGatewayOrder(amount, `${activeShowcaseItem.type || "Item"}: ${window.sanitizeDisplayText(activeShowcaseItem.title || "MAGGIE STORE")}`);
-                const checkoutUrl = cleanUrl(d.checkout_url || `${FAMGATEWAY_BASE_URL}/pay.php?order_id=${encodeURIComponent(d.order_id)}`);
-                document.getElementById('scOrderText').innerText = `Order ID: ${d.order_id} • Amount: ₹${d.payable_amount || amount}`;
-                document.getElementById('scCheckoutBtn').href = checkoutUrl;
-                document.getElementById('scPendingBanner').style.display = 'block';
-                buyBtn.style.display = 'none';
-                window.open(checkoutUrl, '_blank', 'noopener,noreferrer');
-
-                const pollUrl = `${FAMGATEWAY_BASE_URL}/api/checkout-status.php?order_id=${encodeURIComponent(d.order_id)}`;
-                statusEl.innerText = "Payment verify hote hi download link khul jayega...";
-                showcasePollTimer = setInterval(async () => {
-                    try {
-                        const res = await fetch(pollUrl, { cache: "no-store" });
-                        if (!res.ok) return;
-                        const data = await res.json();
-                        if (data && data.status === "success") {
-                            unlockShowcaseItem(activeShowcaseItem, true, true);
-                        }
-                    } catch (_) {}
-                }, 3000);
-            } catch (err) {
-                buyBtn.disabled = false;
-                buyBtn.innerHTML = `<i class="fa-solid fa-lock"></i> Buy Now — ₹${amount}`;
-                statusEl.innerHTML = `<span style="color:#ef4444;">${err.message}</span>`;
+                window.showToast("Link available nahi hai.");
             }
         };
-
-        window.onclick = (e) => {
-            if (e.target === document.getElementById('appModal')) closeModal();
-        };
-
-        document.querySelectorAll('#storeMainView ins.adsbygoogle').forEach((ins) => {
-            if (!ins.getAttribute('data-adsbygoogle-status')) {
-                try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (_) {}
-            }
-        });
     </script>
 </body>
 </html>
