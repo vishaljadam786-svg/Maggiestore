@@ -13,67 +13,39 @@
     <meta name="twitter:description" content="Download apps, preview XML packs and templates, and access direct links smoothly.">
     <meta name="twitter:image" content="https://maggiestore.vercel.app/og-cover.png">
     <title id="pageTitle">MAGGIE STORE - App Hub</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20rx%3D%2716%27%20fill%3D%27%23f5b921%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2756%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2734%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%231a1202%27%3EM%3C/text%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2064%2064%27%3E%3Crect%20width%3D%2764%27%20height%3D%2764%27%20rx%3D%2716%27%20fill%3D%27%232f7a5b%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2756%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2734%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%23ffffff%27%3EM%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Noto+Sans:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@700;800&family=Nunito:wght@400;600;700;800&family=Caveat:wght@600;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2895289176876081"
      crossorigin="anonymous"></script>
     <style>
-        :root, [data-theme="dark"] {
-            --bg: #090d14;
-            --glass: rgba(20, 27, 40, 0.84);
-            --glass-strong: rgba(24, 32, 48, 0.94);
-            --glass-hover: rgba(32, 42, 62, 0.92);
-            --glass-inset: rgba(255, 255, 255, 0.12);
-            --surface-solid: #141b29;
-            --surface-2: rgba(255, 255, 255, 0.05);
-            --ink: #f5f7fc;
-            --muted: #a2aec4;
-            --accent: #f5b921;
-            --accent-bright: #ffd35a;
-            --accent-soft: rgba(245, 185, 33, 0.18);
-            --accent-ink: #1a1202;
-            --accent-glow: 0 0 18px rgba(245, 185, 33, 0.45), 0 4px 14px rgba(245, 158, 11, 0.28);
-            --accent-glow-peak: 0 0 28px rgba(255, 211, 90, 0.82), 0 0 12px rgba(245, 185, 33, 0.65), 0 5px 18px rgba(245, 158, 11, 0.42);
-            --violet: #a78bfa;
-            --warm: #fbbf24;
-            --border: rgba(255, 255, 255, 0.12);
-            --shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
-            --orb-1: rgba(245, 185, 33, 0.13);
-            --orb-2: rgba(139, 92, 246, 0.11);
-            --orb-3: rgba(245, 158, 11, 0.10);
-            --blur-main: 10px;
-            --blur-strong: 12px;
-        }
-
+        /* ===== LIQUID-GLASS SCRAPBOOK v2 (fast) ===== */
         [data-theme="light"] {
-            --bg: #eef2f7;
-            --glass: rgba(255, 255, 255, 0.84);
-            --glass-strong: rgba(255, 255, 255, 0.94);
-            --glass-hover: rgba(255, 255, 255, 0.96);
-            --glass-inset: rgba(255, 255, 255, 0.90);
-            --surface-solid: #ffffff;
-            --surface-2: rgba(15, 23, 42, 0.045);
-            --ink: #0f172a;
-            --muted: #526077;
-            --accent: #eab308;
-            --accent-bright: #facc15;
-            --accent-soft: rgba(234, 179, 8, 0.16);
-            --accent-ink: #1c1404;
-            --accent-glow: 0 0 16px rgba(234, 179, 8, 0.42), 0 4px 12px rgba(217, 119, 6, 0.22);
-            --accent-glow-peak: 0 0 26px rgba(250, 204, 21, 0.78), 0 0 10px rgba(234, 179, 8, 0.58), 0 5px 16px rgba(217, 119, 6, 0.36);
-            --violet: #6d28d9;
-            --warm: #d97706;
-            --border: rgba(15, 23, 42, 0.10);
-            --shadow: 0 8px 20px rgba(15, 23, 42, 0.07);
-            --orb-1: rgba(234, 179, 8, 0.13);
-            --orb-2: rgba(124, 58, 237, 0.09);
-            --orb-3: rgba(245, 158, 11, 0.10);
-            --blur-main: 10px;
-            --blur-strong: 12px;
+            --bg:#f6f0e2; --glass:rgba(255,253,246,.66); --glass-strong:rgba(255,253,246,.78); --glass-hover:rgba(255,255,255,.86); --glass-inset:transparent;
+            --surface-solid:#fffdf6; --surface-2:rgba(255,255,255,.55); --ink:#26231f; --muted:#6a6355;
+            --accent:#2f7a5b; --accent-bright:#3f9a74; --accent-soft:rgba(47,122,91,.14); --accent-ink:#ffffff;
+            --accent-glow:none; --accent-glow-peak:none; --violet:#d6336c; --warm:#c2410c;
+            --border:rgba(255,255,255,.8); --line:#26231f; --shadow:none;
+            --n1:#ffe9a0; --n2:#cdebd9; --n3:#ffd0df; --n4:#d3deff; --hl:rgba(255,214,90,.75);
+            --gb:rgba(255,255,255,.7); --gsh:rgba(60,50,30,.42); --gloss:rgba(255,255,255,.75); --rim-hi:rgba(255,255,255,.95); --rim-lo:rgba(255,255,255,.4); --tape:rgba(255,255,255,.62);
+            --rule:rgba(70,110,190,.2); --speck:rgba(38,35,31,.06);
+            --o1:rgba(120,214,166,.75); --o2:rgba(255,160,196,.7); --o3:rgba(255,214,110,.75); --o4:rgba(150,170,255,.55);
+            --orb-1:transparent; --orb-2:transparent; --orb-3:transparent; --blur-main:0px; --blur-strong:0px;
+        }
+        :root, [data-theme="dark"] {
+            --bg:#141a17; --glass:rgba(255,255,255,.07); --glass-strong:rgba(26,34,30,.78); --glass-hover:rgba(255,255,255,.12); --glass-inset:transparent;
+            --surface-solid:#222b27; --surface-2:rgba(255,255,255,.08); --ink:#f1ede0; --muted:#a9b1a7;
+            --accent:#8fe0b3; --accent-bright:#b4f0cd; --accent-soft:rgba(143,224,179,.15); --accent-ink:#0e2218;
+            --accent-glow:none; --accent-glow-peak:none; --violet:#ff9ec4; --warm:#fdba74;
+            --border:rgba(255,255,255,.16); --line:#e9e4d4; --shadow:none;
+            --n1:#41391d; --n2:#1d4132; --n3:#47293a; --n4:#232f4d; --hl:rgba(143,224,179,.28);
+            --gb:rgba(255,255,255,.16); --gsh:rgba(0,0,0,.8); --gloss:rgba(255,255,255,.14); --rim-hi:rgba(255,255,255,.3); --rim-lo:rgba(255,255,255,.07); --tape:rgba(255,255,255,.16);
+            --rule:rgba(233,228,212,.08); --speck:rgba(255,255,255,.04);
+            --o1:rgba(40,150,105,.55); --o2:rgba(160,60,110,.45); --o3:rgba(180,140,40,.30); --o4:rgba(70,90,190,.42);
+            --orb-1:transparent; --orb-2:transparent; --orb-3:transparent; --blur-main:0px; --blur-strong:0px;
         }
 
         * {
@@ -159,7 +131,7 @@
             stroke-linecap: round;
             stroke-dasharray: 88 240;
             stroke-dashoffset: 0;
-            filter: drop-shadow(0 0 10px rgba(245, 185, 33, 0.52));
+            filter: drop-shadow(0 0 10px rgba(47, 122, 91, 0.52));
             animation: infinityTrailDash 1.45s linear infinite;
         }
 
@@ -257,7 +229,7 @@
             height: 100%;
             width: 100%;
             background: linear-gradient(90deg, var(--accent), var(--accent-bright), var(--violet));
-            box-shadow: 0 0 10px rgba(245, 185, 33, 0.6);
+            box-shadow: 0 0 10px rgba(47, 122, 91, 0.6);
             transform: scaleX(0);
             transform-origin: left center;
             will-change: transform;
@@ -286,7 +258,7 @@
 
         @keyframes badgePulseGlow {
             0% {
-                box-shadow: 0 0 8px rgba(245, 185, 33, 0.20);
+                box-shadow: 0 0 8px rgba(47, 122, 91, 0.20);
             }
             100% {
                 box-shadow: 0 0 18px rgba(255, 211, 90, 0.52);
@@ -441,7 +413,7 @@
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid color-mix(in srgb, var(--accent) 65%, transparent);
-            box-shadow: 0 0 14px rgba(245, 185, 33, 0.28);
+            box-shadow: 0 0 14px rgba(47, 122, 91, 0.28);
             background: var(--surface-2);
             flex-shrink: 0;
             cursor: zoom-in;
@@ -575,7 +547,7 @@
         .pill-btn:hover:not(.active) {
             color: var(--accent-bright);
             border-color: var(--accent);
-            box-shadow: 0 0 14px rgba(245, 185, 33, 0.28);
+            box-shadow: 0 0 14px rgba(47, 122, 91, 0.28);
         }
 
         .featured-pack-card {
@@ -593,7 +565,7 @@
         .featured-pack-card.is-visible:hover {
             border-color: color-mix(in srgb, var(--accent) 60%, var(--border));
             background: var(--glass-hover);
-            box-shadow: var(--shadow), 0 0 22px rgba(245, 185, 33, 0.14);
+            box-shadow: var(--shadow), 0 0 22px rgba(47, 122, 91, 0.14);
         }
 
         .featured-top-split {
@@ -705,7 +677,7 @@
         .unlock-pill-btn:hover {
             border-color: var(--accent);
             color: var(--accent-bright);
-            box-shadow: 0 0 16px rgba(245, 185, 33, 0.35);
+            box-shadow: 0 0 16px rgba(47, 122, 91, 0.35);
         }
 
         .thumb-strip {
@@ -752,7 +724,7 @@
         .app-card.is-visible:hover {
             border-color: color-mix(in srgb, var(--accent) 60%, var(--border));
             background: var(--glass-hover);
-            box-shadow: var(--shadow), 0 0 20px rgba(245, 185, 33, 0.14);
+            box-shadow: var(--shadow), 0 0 20px rgba(47, 122, 91, 0.14);
         }
 
         .app-icon {
@@ -826,7 +798,7 @@
 
         .install-btn.pay-btn {
             background: linear-gradient(135deg, #fde047, var(--accent));
-            color: #1a1202;
+            color: #ffffff;
         }
 
         .install-btn.ghost-btn {
@@ -839,7 +811,7 @@
 
         .install-btn.ghost-btn:hover {
             border-color: var(--accent);
-            box-shadow: 0 0 16px rgba(245, 185, 33, 0.32);
+            box-shadow: 0 0 16px rgba(47, 122, 91, 0.32);
         }
 
         .game-extra-grid {
@@ -1172,6 +1144,340 @@
                 animation: none !important;
             }
         }
+
+        /* ===== FAST LIQUID GLASS ===== */
+        :root { --spring:cubic-bezier(.34,1.56,.64,1); --ease:cubic-bezier(.22,.9,.3,1); }
+        * { font-family:'Nunito','Noto Sans',system-ui,sans-serif; }
+        .styled-name-text { font-family:'Noto Sans','Nunito',sans-serif !important; }
+        h1,h2,h3,[style*="Fraunces"] { font-family:'Bricolage Grotesque','Nunito',sans-serif !important; letter-spacing:-.02em; }
+        .hand-note,.metric-num,footer p,.profile-pill-bar::before,.featured-pack-card::after { font-family:'Caveat',cursive !important; }
+        html { scroll-behavior:smooth; }
+        body { display:block; background-color:var(--bg); background-image:radial-gradient(var(--speck) 1.2px,transparent 1.4px); background-size:22px 22px; padding-bottom:108px !important; }
+
+        /* aurora: gradient blobs, compositor-only motion (no blur filter, no repaint) */
+        .liquid-bg { display:block !important; position:fixed; inset:0; overflow:hidden; z-index:-1; pointer-events:none; contain:strict; }
+        .liquid-orb { width:78vmax; height:78vmax; border-radius:50%; filter:none !important; opacity:1; will-change:transform; transform:translate3d(0,0,0); }
+        .orb-a { top:-34vmax; left:-26vmax; background:radial-gradient(closest-side,var(--o1),transparent); animation:driftA 26s ease-in-out infinite alternate; }
+        .orb-b { right:-34vmax; top:-6vh; background:radial-gradient(closest-side,var(--o2),transparent); animation:driftB 30s ease-in-out infinite alternate; }
+        .orb-c { bottom:-40vmax; left:6vw; background:radial-gradient(closest-side,var(--o3),transparent); animation:driftC 34s ease-in-out infinite alternate; }
+        .liquid-bg::after { content:""; position:absolute; width:64vmax; height:64vmax; right:-12vmax; bottom:-24vmax; border-radius:50%; background:radial-gradient(closest-side,var(--o4),transparent); animation:driftB 38s ease-in-out infinite alternate-reverse; will-change:transform; }
+        @keyframes driftA { to { transform:translate3d(22vw,18vh,0) scale(1.12); } }
+        @keyframes driftB { to { transform:translate3d(-24vw,22vh,0) scale(.92); } }
+        @keyframes driftC { to { transform:translate3d(20vw,-22vh,0) scale(1.1); } }
+        .scroll-track { height:4px !important; background:transparent; }
+        .scroll-bar { background:linear-gradient(90deg,var(--accent),var(--violet)) !important; box-shadow:none !important; }
+
+        /* floating glass masthead */
+        header { position:sticky; top:10px; margin:10px 18px 0; border-radius:26px; padding:12px 22px !important; gap:16px; flex-wrap:wrap;
+            background:linear-gradient(180deg,var(--gloss),transparent 70%),var(--glass-strong) !important; border:1px solid var(--gb) !important;
+            box-shadow:inset 1.5px 1.5px 1px var(--rim-hi), inset -1px -1px 1px var(--rim-lo), 0 14px 26px -18px var(--gsh) !important; }
+        @media (hover:hover) and (min-width:721px) { header { -webkit-backdrop-filter:blur(14px) saturate(170%); backdrop-filter:blur(14px) saturate(170%); } }
+        .brand { min-width:0; flex:0 1 auto; gap:14px; }
+        .brand img, .store-logo { width:50px !important; height:50px !important; border-radius:16px 8px 16px 8px !important; border:1px solid var(--gb); box-shadow:0 8px 14px -8px var(--gsh); transform:rotate(-5deg); flex:none; transition:transform .5s var(--spring); }
+        .brand:hover img { transform:rotate(4deg) scale(1.08); }
+        .logo-text { white-space:normal !important; overflow:visible !important; text-overflow:clip !important; font-size:clamp(1.3rem,3.2vw,2rem) !important; font-weight:800 !important; line-height:1.1; background:linear-gradient(transparent 58%,var(--hl) 58% 92%,transparent 92%); padding:0 6px; }
+        .hand-note { flex:1; font-size:1.45rem; color:var(--muted); min-width:150px; transform:rotate(-1.5deg); }
+        .header-right { gap:12px; margin-left:auto; }
+        .search-box { width:min(280px,60vw); background:var(--surface-2) !important; border:1px solid var(--gb) !important; border-radius:16px !important; box-shadow:inset 0 1px 2px rgba(0,0,0,.07), inset 0 -1px 0 var(--rim-lo) !important; font-weight:600; transition:box-shadow .3s, background .3s; }
+        .search-box:focus { outline:0; background:var(--glass-hover) !important; box-shadow:0 0 0 4px var(--accent-soft) !important; }
+        .theme-toggle { width:44px; height:44px; border-radius:50% !important; background:radial-gradient(circle at 30% 25%,var(--gloss),transparent 60%),var(--surface-2); color:var(--ink); border:1px solid var(--gb); box-shadow:inset 1px 1px 1px var(--rim-hi), 0 8px 14px -8px var(--gsh) !important; transition:transform .5s var(--spring); }
+        .theme-toggle:hover { transform:rotate(25deg) scale(1.1); } .theme-toggle:active { transform:scale(.9); }
+
+        .top-profile-wrap, .container { max-width:1180px; margin:0 auto !important; padding-left:28px !important; padding-right:28px !important; }
+        .top-profile-wrap { padding-top:38px !important; }
+        .container { display:flex; flex-direction:column; gap:50px; padding-top:34px !important; padding-bottom:40px !important; }
+        .container > section, .container > div { margin-top:0 !important; }
+
+        /* glass recipe: gloss + bevel rim + coloured shadow (cheap, no backdrop-filter) */
+        .profile-pill-bar, .featured-pack-card, .app-card, .game-extra-card, .showcase-hero, .gallery-panel, .video-panel, .buy-card-box, .modal-content, .about-store-section {
+            --fill:var(--glass); background:radial-gradient(120% 60% at 14% -14%,var(--gloss),transparent 56%),var(--fill); border:1px solid var(--gb); border-radius:24px !important; color:var(--ink);
+            box-shadow:inset 1.5px 1.5px 1px var(--rim-hi), inset -1px -1px 1px var(--rim-lo), 0 16px 26px -18px var(--gsh) !important; }
+        .modal-content { --fill:var(--glass-strong); box-shadow:inset 1.5px 1.5px 1px var(--rim-hi), 0 40px 70px -26px var(--gsh) !important; -webkit-backdrop-filter:blur(22px) saturate(170%); backdrop-filter:blur(22px) saturate(170%); }
+
+        .profile-pill-bar { position:relative; padding:28px 26px 20px; --fill:linear-gradient(135deg,color-mix(in srgb,var(--n1) 75%,transparent),var(--glass)); }
+        .profile-pill-bar.reveal-card.is-visible { transform:rotate(-.5deg); }
+        .profile-pill-bar::before { content:"hello! \1F44B"; position:absolute; top:-18px; left:24px; background:linear-gradient(180deg,rgba(255,255,255,.4),transparent 55%),linear-gradient(180deg,var(--accent-bright),var(--accent)); color:var(--accent-ink); font-size:1.4rem; font-weight:700; padding:0 16px; border:1px solid var(--gb); border-radius:12px; box-shadow:inset 1px 1px 1px var(--rim-hi), 0 10px 16px -8px var(--gsh); animation:bobTag 4.5s ease-in-out infinite; }
+        @keyframes bobTag { 0%,100% { transform:rotate(-3deg) translateY(0); } 50% { transform:rotate(-1deg) translateY(-5px); } }
+        .profile-avatar { border-radius:18px 8px 18px 8px !important; border:1px solid var(--gb); box-shadow:0 12px 18px -10px var(--gsh); }
+
+        .section-heading-row { align-items:center; gap:16px; padding-bottom:12px; margin-bottom:24px; border-bottom:2px dashed color-mix(in srgb,var(--line) 28%,transparent); flex-wrap:wrap; }
+        .section-heading-row h2 { display:inline-flex; align-items:center; gap:10px; font-size:1.75rem !important; font-weight:800; background:linear-gradient(transparent 60%,var(--hl) 60% 90%,transparent 90%) 0 0/0% 100% no-repeat; padding:0 8px; animation:markerIn .9s var(--ease) .2s forwards; }
+        @keyframes markerIn { to { background-size:100% 100%; } }
+        .filter-pills { display:flex; gap:6px; margin-left:auto; flex-wrap:wrap; padding:5px; border-radius:999px; background:var(--surface-2); border:1px solid var(--gb); box-shadow:inset 0 1px 2px rgba(0,0,0,.06); }
+        .pill-btn { background:transparent; color:var(--muted); border:0; border-radius:999px; padding:8px 17px; font-weight:800; font-size:.8rem; box-shadow:none !important; transition:transform .35s var(--spring), background .25s, color .25s; }
+        .pill-btn.active { background:linear-gradient(180deg,rgba(255,255,255,.4),transparent 55%),linear-gradient(180deg,var(--accent-bright),var(--accent)); color:var(--accent-ink); box-shadow:inset 1px 1px 1px rgba(255,255,255,.6), 0 8px 14px -8px var(--accent) !important; transform:rotate(-2deg) scale(1.04); }
+        .pill-btn:hover:not(.active) { background:var(--glass-hover); color:var(--ink); transform:translateY(-2px); }
+
+        .featured-pack-card { position:relative; padding:32px 26px 26px; }
+        .featured-pack-card.reveal-card.is-visible { transform:rotate(-.4deg); transition:transform .6s var(--spring), opacity .5s; }
+        .featured-pack-card.reveal-card.is-visible:hover { transform:rotate(0deg) translateY(-4px); }
+        .featured-pack-card::before { content:""; position:absolute; top:-15px; left:50%; width:124px; height:30px; background:var(--tape); border:1px solid var(--gb); border-radius:4px; box-shadow:0 4px 8px -4px var(--gsh); transform:translateX(-50%) rotate(2.5deg); }
+        .featured-pack-card::after { content:"\2605  today's pick"; position:absolute; top:-20px; right:28px; background:var(--n3); border:1px solid var(--gb); padding:0 16px; font-size:1.4rem; font-weight:700; border-radius:12px; box-shadow:inset 1px 1px 1px var(--rim-hi), 0 10px 16px -8px var(--gsh); animation:bobStar 5s ease-in-out infinite; }
+        @keyframes bobStar { 0%,100% { transform:rotate(3deg) translateY(0); } 50% { transform:rotate(1deg) translateY(-5px); } }
+        .featured-cover-box, .featured-cover-img { border-radius:16px 8px 16px 8px !important; }
+
+        /* glass sticky notes */
+        .app-grid { grid-template-columns:repeat(auto-fill,minmax(285px,1fr)) !important; gap:36px 26px; }
+        .app-card { --note:var(--n1); --rot:0deg; position:relative; padding:26px 16px 18px; contain:layout style;
+            --fill:linear-gradient(145deg,color-mix(in srgb,var(--note) 84%,transparent),color-mix(in srgb,var(--note) 50%,transparent));
+            box-shadow:inset 1.5px 1.5px 1px var(--rim-hi), inset -1px -1px 1px var(--rim-lo), 0 16px 24px -18px color-mix(in srgb,var(--note) 55%,var(--gsh)) !important;
+            transition:transform .5s var(--spring), box-shadow .35s var(--ease), opacity .45s ease; animation:rise .7s var(--ease) backwards; }
+        @keyframes rise { from { opacity:0; transform:translateY(30px) rotate(var(--rot)) scale(.96); } }
+        .app-grid > .app-card:nth-child(1) { animation-delay:0.05s; } .app-grid > .app-card:nth-child(2) { animation-delay:0.10s; } .app-grid > .app-card:nth-child(3) { animation-delay:0.15s; } .app-grid > .app-card:nth-child(4) { animation-delay:0.20s; } .app-grid > .app-card:nth-child(5) { animation-delay:0.25s; } .app-grid > .app-card:nth-child(6) { animation-delay:0.30s; } .app-grid > .app-card:nth-child(7) { animation-delay:0.35s; } .app-grid > .app-card:nth-child(8) { animation-delay:0.40s; } .app-grid > .app-card:nth-child(9) { animation-delay:0.45s; } .app-grid > .app-card:nth-child(10) { animation-delay:0.50s; } 
+        .app-grid > .app-card:nth-child(4n+2) { --note:var(--n2); } .app-grid > .app-card:nth-child(4n+3) { --note:var(--n3); } .app-grid > .app-card:nth-child(4n+4) { --note:var(--n4); }
+        .app-grid > .app-card:nth-child(3n+1) { --rot:-1deg; } .app-grid > .app-card:nth-child(3n+2) { --rot:.8deg; } .app-grid > .app-card:nth-child(3n) { --rot:-.3deg; }
+        .app-card.reveal-card.is-visible { transform:rotate(var(--rot)); }
+        .app-card.reveal-card.is-visible:hover { transform:rotate(0deg) translateY(-7px) scale(1.015); box-shadow:inset 1.5px 1.5px 1px var(--rim-hi), inset -1px -1px 1px var(--rim-lo), 0 28px 36px -22px color-mix(in srgb,var(--note) 40%,var(--gsh)) !important; }
+        .app-card::before { content:""; position:absolute; top:-11px; left:50%; width:58px; height:21px; background:var(--tape); border:1px solid var(--gb); border-radius:3px; box-shadow:0 4px 8px -4px var(--gsh); transform:translateX(-50%) rotate(-3deg); transition:transform .5s var(--spring); }
+        .app-card:hover::before { transform:translateX(-50%) rotate(4deg) translateY(-3px); }
+        .app-card::after, .featured-pack-card .glare { content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; opacity:0; transition:opacity .35s ease; background:radial-gradient(240px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.6),transparent 62%); }
+        .app-card:hover::after { opacity:1; }
+        .app-icon { border-radius:14px 6px 14px 6px !important; border:1px solid var(--gb); box-shadow:0 10px 14px -8px var(--gsh); transition:transform .5s var(--spring); }
+        .app-card:hover .app-icon { transform:scale(1.1) rotate(-5deg); }
+        .app-title { font-weight:800; } .app-desc-short { color:color-mix(in srgb,var(--ink) 68%,transparent); }
+
+        /* notebook + stamps */
+        .about-store-section { position:relative; --fill:var(--glass); background-image:repeating-linear-gradient(transparent 0 31px,var(--rule) 31px 32px),radial-gradient(120% 40% at 14% -8%,var(--gloss),transparent 56%); background-color:var(--glass); padding:34px 28px 28px 72px !important; border-radius:26px !important; }
+        .about-store-section::before { content:""; position:absolute; left:54px; top:0; bottom:0; width:2px; background:rgba(214,51,108,.5); }
+        .about-store-section::after { content:""; position:absolute; left:14px; top:0; bottom:0; width:20px; background:radial-gradient(circle,var(--bg) 6px,color-mix(in srgb,var(--line) 70%,transparent) 6.5px 8px,transparent 8.5px) 0 14px/20px 56px repeat-y; }
+        .about-heading { font-size:1.9rem !important; } .about-copy { line-height:32px; }
+        .metrics-row { gap:18px; }
+        .metric-box { background:transparent !important; border:2px dashed color-mix(in srgb,var(--line) 50%,transparent) !important; box-shadow:none !important; text-align:center; padding:12px 10px; border-radius:22px !important; transition:transform .5s var(--spring), border-color .3s; }
+        .metric-box:nth-child(odd) { transform:rotate(-2deg); } .metric-box:nth-child(even) { transform:rotate(1.6deg); }
+        .metric-box:hover { transform:rotate(0deg) scale(1.07); border-color:var(--accent) !important; }
+        .metric-num { font-size:2.5rem !important; font-weight:700; color:var(--accent) !important; line-height:1; }
+        .metric-label { font-weight:700; font-size:.76rem; }
+        .catalog-chip { background:var(--surface-2); border:1px solid var(--gb); border-radius:999px; font-weight:700; box-shadow:inset 1px 1px 1px var(--rim-hi), 0 6px 10px -8px var(--gsh); transition:transform .4s var(--spring); }
+        .catalog-chip:hover { transform:translateY(-3px) rotate(-2deg); }
+        .uid-chip, .copy-uid-pill, .icon-social-btn { background:var(--surface-2); border:1px solid var(--gb); border-radius:12px; box-shadow:inset 1px 1px 1px var(--rim-hi), 0 6px 10px -8px var(--gsh) !important; transition:transform .4s var(--spring); }
+        .copy-uid-pill:hover, .icon-social-btn:hover { transform:translateY(-3px) scale(1.06); }
+        .ad-slot-card { background:transparent !important; border:2px dashed color-mix(in srgb,var(--line) 32%,transparent) !important; box-shadow:none !important; border-radius:22px !important; } .ad-slot-label { font-family:'Caveat',cursive !important; font-size:1.1rem; text-transform:none; }
+
+        /* glossy liquid buttons */
+        .install-btn, .unlock-pill-btn, .install-btn.pay-btn { position:relative; overflow:hidden; background:linear-gradient(180deg,rgba(255,255,255,.42),rgba(255,255,255,0) 52%),linear-gradient(180deg,var(--accent-bright),var(--accent)); color:var(--accent-ink); border:1px solid color-mix(in srgb,var(--accent-bright) 65%,#fff); border-radius:14px; font-weight:800; animation:none !important;
+            box-shadow:inset 1px 1px 1px rgba(255,255,255,.6), inset 0 -6px 8px -6px rgba(0,0,0,.28), 0 10px 16px -10px var(--accent) !important; transition:transform .4s var(--spring), box-shadow .3s; }
+        .install-btn::after, .unlock-pill-btn::after { content:""; position:absolute; inset:0; background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.65) 50%,transparent 70%); transform:translateX(-130%); transition:transform .8s var(--ease); pointer-events:none; }
+        .install-btn:hover, .unlock-pill-btn:hover { transform:translateY(-3px) scale(1.04); } .install-btn:hover::after, .unlock-pill-btn:hover::after { transform:translateX(130%); }
+        .install-btn:active, .unlock-pill-btn:active { transform:scale(.95); }
+        .install-btn.ghost-btn { background:radial-gradient(120% 90% at 20% -20%,var(--gloss),transparent 60%),var(--surface-2); color:var(--ink); border:1px solid var(--gb); box-shadow:inset 1px 1px 1px var(--rim-hi), 0 8px 12px -10px var(--gsh) !important; }
+        .paid-tag { animation:none !important; background:var(--hl) !important; color:var(--ink) !important; border:1px solid var(--gb) !important; border-radius:8px; box-shadow:inset 1px 1px 1px var(--rim-hi), 0 5px 8px -6px var(--gsh) !important; transform:rotate(-3deg); font-weight:800; }
+        .price-pill { border:1px solid var(--gb); border-radius:10px; background:var(--n1); color:var(--ink); }
+
+        #itemShowcaseView { max-width:1040px; margin:0 auto; padding:30px 28px 48px !important; }
+        .showcase-hero, .gallery-panel, .video-panel, .buy-card-box { padding:22px; margin-bottom:26px; }
+        .main-shot-img, .shot-tile, .showcase-video-player { border:1px solid var(--gb); border-radius:14px; box-shadow:0 12px 18px -14px var(--gsh); }
+        .shot-tile { transition:transform .4s var(--spring); } .shot-tile:hover { transform:translateY(-3px) scale(1.04); }
+        .pending-payment-banner, .unlocked-box { background:var(--n2); border:1px dashed color-mix(in srgb,var(--line) 50%,transparent); border-radius:14px; }
+        .modal, .lightbox { -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); }
+
+        /* glass dock */
+        .floating-dock-wrap { max-width:none !important; width:auto !important; }
+        .floating-dock { display:flex !important; gap:6px; padding:6px !important; border-radius:999px !important; background:linear-gradient(180deg,var(--gloss),transparent 70%),var(--glass-strong) !important; border:1px solid var(--gb) !important;
+            box-shadow:inset 1.5px 1.5px 1px var(--rim-hi), inset -1px -1px 1px var(--rim-lo), 0 18px 30px -16px var(--gsh) !important; }
+        @media (hover:hover) and (min-width:721px) { .floating-dock { -webkit-backdrop-filter:blur(16px) saturate(170%); backdrop-filter:blur(16px) saturate(170%); } }
+        .dock-btn { display:inline-flex !important; align-items:center; gap:8px; background:transparent !important; color:var(--ink) !important; border:0 !important; border-radius:999px !important; padding:11px 19px !important; font-weight:800; font-size:.84rem; box-shadow:none !important; white-space:nowrap; transition:transform .45s var(--spring), background .25s; }
+        .dock-btn:hover { background:var(--glass-hover) !important; transform:translateY(-3px); }
+        .dock-btn.active { background:linear-gradient(180deg,rgba(255,255,255,.4),transparent 55%),linear-gradient(180deg,var(--accent-bright),var(--accent)) !important; color:var(--accent-ink) !important; box-shadow:inset 1px 1px 1px rgba(255,255,255,.6), 0 8px 14px -8px var(--accent) !important; transform:rotate(-2deg) scale(1.05); }
+        footer { text-align:center; border-top:2px dashed color-mix(in srgb,var(--line) 28%,transparent); padding:22px; } footer p { font-size:1.5rem; color:var(--muted); }
+        :focus-visible { outline:3px solid var(--violet); outline-offset:3px; }
+        ::selection { background:var(--hl); }
+
+        @media (max-width:720px) {
+            .hand-note { display:none; } header { margin:8px 10px 0; top:8px; padding:10px 14px !important; border-radius:22px; }
+            .top-profile-wrap, .container { padding-left:14px !important; padding-right:14px !important; }
+            .container { gap:38px; } .about-store-section { padding:28px 16px 20px 54px !important; }
+            .about-store-section::before { left:40px; } .about-store-section::after { left:8px; }
+            .filter-pills { margin-left:0; } .dock-btn { padding:10px 13px !important; font-size:.76rem; }
+            .orb-c, .liquid-bg::after { display:none; }
+            .app-card { animation:none; } .app-card:hover::after { opacity:0; }
+        }
+        @media (prefers-reduced-motion:reduce) {
+            .liquid-orb,.liquid-bg::after,.profile-pill-bar::before,.featured-pack-card::after,.app-card,.section-heading-row h2 { animation:none !important; }
+            .section-heading-row h2 { background-size:100% 100%; }
+        }
+    </style>
+
+    <style id="water-liquid-glass-theme">
+        /* ===== WATER LIQUID GLASS THEME (matches admin panel) ===== */
+        :root, [data-theme="dark"] {
+            --bg:#021522; --bg-deep:#010b14;
+            --glass:rgba(40,95,125,.5); --glass-strong:#0b2336; --glass-hover:rgba(80,160,200,.28);
+            --gfill:linear-gradient(145deg, rgba(40,95,125,.58), rgba(10,40,62,.52));
+            --surface-solid:#0b2336; --surface-2:rgba(255,255,255,.08);
+            --ink:#eaf8ff; --muted:#8fb4c9;
+            --accent:#2dd4bf; --accent-bright:#5eead4; --accent-soft:rgba(45,212,191,.16); --accent-ink:#022521;
+            --violet:#38bdf8; --warm:#fbbf24;
+            --border:rgba(255,255,255,.16); --line:#bfe9ff; --gb:rgba(255,255,255,.17); --gsh:rgba(0,12,28,.75);
+            --gloss:rgba(255,255,255,.12); --rim-hi:rgba(255,255,255,.26); --rim-lo:rgba(255,255,255,.05);
+            --tape:transparent; --rule:transparent; --speck:transparent; --hl:rgba(56,189,248,.28);
+            --n1:#0f3a52; --n2:#0c4a4a; --n3:#123e66; --n4:#143a5c;
+            --o1:rgba(34,211,238,.34); --o2:rgba(37,99,235,.34); --o3:rgba(45,212,191,.26); --o4:rgba(56,189,248,.22);
+            --ring-glow:rgba(56,189,248,.45);
+        }
+        :root[data-theme="light"] {
+            --bg:#d8f1fb; --bg-deep:#bfe6f6;
+            --glass:rgba(255,255,255,.7); --glass-strong:#ffffff; --glass-hover:rgba(255,255,255,.92);
+            --gfill:linear-gradient(145deg, rgba(255,255,255,.88), rgba(255,255,255,.66));
+            --surface-solid:#ffffff; --surface-2:rgba(255,255,255,.62);
+            --ink:#072a3d; --muted:#4a6f83;
+            --accent:#0d9488; --accent-bright:#14b8a6; --accent-soft:rgba(13,148,136,.14); --accent-ink:#ffffff;
+            --violet:#0284c7; --warm:#d97706;
+            --border:rgba(255,255,255,.85); --line:#072a3d; --gb:rgba(255,255,255,.85); --gsh:rgba(7,70,110,.4);
+            --gloss:rgba(255,255,255,.8); --rim-hi:rgba(255,255,255,.95); --rim-lo:rgba(255,255,255,.5);
+            --hl:rgba(2,132,199,.18);
+            --n1:#cdeefb; --n2:#c9f5ee; --n3:#d6e6ff; --n4:#d2f1f7;
+            --o1:rgba(56,189,248,.5); --o2:rgba(99,102,241,.26); --o3:rgba(45,212,191,.42); --o4:rgba(34,211,238,.3);
+            --ring-glow:rgba(2,132,199,.25);
+        }
+
+        * { font-family:'Plus Jakarta Sans','Noto Sans',system-ui,sans-serif; }
+        .styled-name-text { font-family:'Noto Sans','Plus Jakarta Sans',sans-serif !important; }
+        h1,h2,h3,[style*="Fraunces"] { font-family:'Plus Jakarta Sans','Noto Sans',sans-serif !important; letter-spacing:-.02em; }
+        .hand-note,.metric-num,footer p,.profile-pill-bar::before,.featured-pack-card::after,.ad-slot-label { font-family:'Plus Jakarta Sans','Noto Sans',sans-serif !important; }
+
+        body { background-color:var(--bg-deep); background-image:none !important; padding-bottom:96px !important; }
+
+        /* water backdrop */
+        .liquid-bg { background:linear-gradient(180deg,var(--bg) 0%,var(--bg-deep) 100%); }
+        .wave-layer { position:absolute; left:0; bottom:0; width:200%; height:170px; opacity:.6; animation:waveMove 20s linear infinite; will-change:transform; }
+        @keyframes waveMove { to { transform:translateX(-50%); } }
+        .bubble { position:absolute; bottom:-40px; border-radius:50%; border:1px solid rgba(255,255,255,.35); background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.45),rgba(255,255,255,.04) 60%); animation:bubbleRise linear infinite; will-change:transform; }
+        @keyframes bubbleRise { 0% { transform:translateY(0); opacity:0; } 10% { opacity:.9; } 100% { transform:translateY(-110vh) translateX(24px); opacity:0; } }
+        [data-theme="light"] .bubble { border-color:rgba(2,132,199,.35); }
+
+        /* scroll bar */
+        .scroll-bar { background:linear-gradient(90deg,#67e8f9,var(--accent),#2563eb) !important; }
+
+        /* header */
+        header { position:relative !important; top:auto !important; background:var(--glass-strong) !important; border:1px solid var(--border) !important; border-radius:20px !important;
+            box-shadow:inset 0 1px 0 var(--rim-hi), 0 8px 22px -10px var(--gsh) !important; -webkit-backdrop-filter:none !important; backdrop-filter:none !important; }
+        .brand img, .store-logo { width:42px !important; height:42px !important; border-radius:13px !important; transform:none !important; border:1px solid var(--border); box-shadow:0 6px 16px -6px rgba(14,165,233,.55), inset 0 1px 0 rgba(255,255,255,.4); }
+        .brand:hover img { transform:scale(1.06) !important; }
+        .logo-text { font-size:clamp(1.1rem,2.8vw,1.55rem) !important; font-weight:800 !important; padding:0 !important;
+            background:none !important; -webkit-text-fill-color:var(--ink) !important; color:var(--ink) !important; text-shadow:0 0 18px rgba(34,211,238,.45); white-space:nowrap !important; overflow:visible !important; opacity:1 !important; visibility:visible !important; }
+        .hand-note { transform:none !important; font-size:.7rem !important; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+        .search-box { background-color:var(--surface-2) !important; background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238fb4c9' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E") !important;
+            background-repeat:no-repeat !important; background-position:13px center !important; padding-left:36px !important; border:1px solid var(--border) !important; border-radius:14px !important; color:var(--ink); box-shadow:inset 0 2px 6px rgba(0,0,0,.12) !important; }
+        .search-box:focus { box-shadow:0 0 0 3px rgba(34,211,238,.28) !important; border-color:#22d3ee !important; }
+        .theme-toggle { background:var(--gfill) !important; border:1px solid var(--border) !important; border-radius:13px !important; box-shadow:inset 0 1px 0 var(--rim-hi) !important; }
+
+        /* hello + today's pick tags (water style, same bobbing animation) */
+        .profile-pill-bar::before { content:"hello! \1F44B"; position:absolute; top:-18px; left:24px; z-index:2; font-family:'Caveat',cursive !important; font-size:1.4rem; font-weight:700; padding:0 16px; border-radius:12px;
+            background:linear-gradient(180deg,rgba(255,255,255,.4),transparent 55%),linear-gradient(145deg,#67e8f9,#0ea5e9); color:#03293a; border:1px solid var(--border);
+            box-shadow:inset 0 1px 0 rgba(255,255,255,.6), 0 10px 18px -8px rgba(14,165,233,.6); animation:bobTag 4.5s ease-in-out infinite; }
+        .featured-pack-card::after { content:"\2605  today's pick"; position:absolute; top:-20px; right:28px; z-index:2; font-family:'Caveat',cursive !important; font-size:1.4rem; font-weight:700; padding:0 16px; border-radius:12px;
+            background:linear-gradient(180deg,rgba(255,255,255,.4),transparent 55%),linear-gradient(145deg,#fde68a,var(--warm)); color:#2b1b00; border:1px solid var(--border);
+            box-shadow:inset 0 1px 0 rgba(255,255,255,.6), 0 10px 18px -8px rgba(251,191,36,.55); animation:bobStar 5s ease-in-out infinite; }
+        .profile-pill-bar, .featured-pack-card { margin-top:6px; }
+
+        /* glass cards */
+        .profile-pill-bar, .featured-pack-card, .app-card, .game-extra-card, .showcase-hero, .gallery-panel, .video-panel, .buy-card-box, .modal-content, .about-store-section {
+            background:var(--gfill) !important; border:1px solid var(--border) !important; border-radius:24px !important; color:var(--ink);
+            box-shadow:inset 0 1px 0 var(--rim-hi), 0 10px 26px -12px var(--gsh) !important; }
+        .modal-content { background:var(--glass-strong) !important; -webkit-backdrop-filter:none !important; backdrop-filter:none !important; }
+        .modal, .lightbox { -webkit-backdrop-filter:none !important; backdrop-filter:none !important; }
+        .featured-pack-card::before, .app-card::before, .about-store-section::before, .about-store-section::after { display:none !important; }
+        .profile-pill-bar { padding:22px 24px !important; }
+        .profile-pill-bar.reveal-card.is-visible, .featured-pack-card.reveal-card.is-visible, .app-card.reveal-card.is-visible { transform:none !important; }
+        .featured-pack-card { padding:24px !important; }
+        .featured-pack-card.reveal-card.is-visible:hover { transform:translateY(-4px) !important; }
+        .app-card { padding:20px 16px 16px !important; }
+        .app-card.reveal-card.is-visible:hover { transform:translateY(-6px) !important; border-color:color-mix(in srgb,#38bdf8 55%,var(--border)) !important;
+            box-shadow:inset 0 1px 0 var(--rim-hi), 0 18px 32px -14px rgba(14,165,233,.4) !important; }
+        .app-grid { gap:22px !important; }
+        .profile-avatar, .app-icon, .featured-cover-box, .featured-cover-img { border-radius:16px !important; }
+        .profile-avatar, .app-icon { border:1px solid var(--border); box-shadow:0 8px 18px -8px var(--gsh); }
+        .app-card:hover .app-icon { transform:scale(1.06) !important; }
+        .app-title { font-weight:800; }
+
+        /* headings with pro icon tiles */
+        .container { gap:40px !important; }
+        .section-heading-row { border-bottom:1px solid var(--border) !important; padding-bottom:12px; margin-bottom:20px; }
+        .section-heading-row h2 { font-size:1.3rem !important; padding:0 !important; background:none !important; animation:none !important; gap:12px !important; }
+        .section-heading-row h2 > i { width:38px; height:38px; border-radius:12px; display:inline-flex; align-items:center; justify-content:center; font-size:.95rem; color:#03293a !important;
+            background:linear-gradient(145deg,#67e8f9,#0ea5e9); box-shadow:inset 0 1px 0 rgba(255,255,255,.6), 0 6px 14px -4px rgba(14,165,233,.55); }
+        .filter-pills { background:var(--surface-2) !important; border:1px solid var(--border) !important; box-shadow:inset 0 1px 0 var(--rim-hi) !important; }
+        .pill-btn { display:inline-flex; align-items:center; gap:7px; }
+        .pill-btn.active { background:linear-gradient(145deg,rgba(103,232,249,.34),rgba(14,165,233,.22)) !important; color:var(--ink) !important; border:1px solid color-mix(in srgb,#38bdf8 55%,transparent) !important; transform:none !important;
+            box-shadow:inset 0 1px 0 var(--rim-hi), 0 6px 16px -6px rgba(56,189,248,.5) !important; }
+        .pill-btn.active i { color:var(--violet); }
+
+        /* about section */
+        .about-store-section { padding:28px !important; background-image:none !important; }
+        .about-copy { line-height:1.7 !important; }
+        .about-heading { font-size:1.5rem !important; }
+        .catalog-chip { display:inline-flex; align-items:center; gap:8px; background:var(--surface-2) !important; border:1px solid var(--border) !important; box-shadow:inset 0 1px 0 var(--rim-hi) !important; }
+        .catalog-chip i { color:var(--violet); }
+        .metric-box { display:flex !important; align-items:center; gap:12px; text-align:left !important; transform:none !important; background:var(--gfill) !important; border:1px solid var(--border) !important; border-radius:20px !important; padding:14px !important; box-shadow:inset 0 1px 0 var(--rim-hi) !important; }
+        .metric-box:hover { transform:translateY(-3px) !important; border-color:color-mix(in srgb,#38bdf8 55%,var(--border)) !important; }
+        .mini-ico { width:42px; height:42px; border-radius:14px; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1rem; color:#fff;
+            background:linear-gradient(145deg,#67e8f9,#0ea5e9 60%,#2563eb); box-shadow:inset 0 1px 0 rgba(255,255,255,.55), 0 8px 16px -6px rgba(14,165,233,.5); }
+        .metric-box:nth-child(2) .mini-ico { background:linear-gradient(145deg,#5eead4,#0d9488); }
+        .metric-box:nth-child(3) .mini-ico { background:linear-gradient(145deg,#fde68a,#d97706); }
+        .metric-box:nth-child(4) .mini-ico { background:linear-gradient(145deg,#a5b4fc,#4f46e5); }
+        .metric-num { font-size:1.45rem !important; font-weight:800 !important; color:var(--ink) !important; }
+        .uid-chip, .copy-uid-pill, .icon-social-btn { background:var(--surface-2) !important; border:1px solid var(--border) !important; border-radius:13px !important; box-shadow:inset 0 1px 0 var(--rim-hi) !important; }
+        .icon-social-btn { color:var(--violet); }
+        .ad-slot-card { border:1px dashed var(--border) !important; }
+
+        /* buttons + tags */
+        .install-btn, .unlock-pill-btn, .install-btn.pay-btn { border-radius:13px !important; border:1px solid transparent !important;
+            background:linear-gradient(145deg,#5eead4,var(--accent)) !important; color:var(--accent-ink) !important;
+            box-shadow:inset 0 1px 0 rgba(255,255,255,.55), 0 8px 18px -8px var(--accent) !important; }
+        .install-btn.pay-btn, .unlock-pill-btn { background:linear-gradient(145deg,#fde68a,var(--warm)) !important; color:#2b1b00 !important; box-shadow:inset 0 1px 0 rgba(255,255,255,.6), 0 8px 18px -8px rgba(251,191,36,.6) !important; }
+        .install-btn.ghost-btn { background:var(--gfill) !important; color:var(--ink) !important; border:1px solid var(--border) !important; box-shadow:inset 0 1px 0 var(--rim-hi) !important; }
+        .paid-tag, .price-pill { transform:none !important; border-radius:999px !important; background:color-mix(in srgb,var(--warm) 20%,transparent) !important; color:var(--warm) !important;
+            border:1px solid color-mix(in srgb,var(--warm) 38%,transparent) !important; box-shadow:none !important; }
+        .video-pill { background:color-mix(in srgb,#38bdf8 20%,transparent); color:var(--violet); border:1px solid color-mix(in srgb,#38bdf8 38%,transparent); border-radius:999px; }
+        .pending-payment-banner, .unlocked-box { background:var(--surface-2); border:1px solid var(--border); }
+        .main-shot-img, .shot-tile, .showcase-video-player { border:1px solid var(--border); }
+
+        /* full-width glass dock with Home first */
+        .floating-dock-wrap { position:fixed !important; left:0 !important; right:0 !important; bottom:0 !important; transform:none !important; width:100% !important; max-width:none !important; }
+        .floating-dock { display:grid !important; grid-template-columns:repeat(4,1fr); gap:4px !important; width:100%;
+            padding:8px 10px calc(8px + env(safe-area-inset-bottom)) !important; border-radius:22px 22px 0 0 !important;
+            background:var(--glass-strong) !important; border:1px solid var(--border) !important; border-bottom:0 !important;
+            box-shadow:0 -10px 30px -14px var(--gsh), inset 0 1px 0 var(--rim-hi) !important; -webkit-backdrop-filter:none !important; backdrop-filter:none !important; }
+        .dock-btn { display:flex !important; flex-direction:column; align-items:center; justify-content:center; gap:4px !important; min-width:0; padding:8px 4px !important;
+            border-radius:18px !important; font-size:.68rem !important; font-weight:700; color:var(--muted) !important; border:1px solid transparent !important; background:transparent !important; box-shadow:none !important; transform:none !important; animation:none !important; }
+        .dock-btn i { font-size:1.15rem; transition:transform .25s ease; }
+        .dock-btn:hover { color:var(--ink) !important; background:var(--glass-hover) !important; transform:none !important; }
+        .dock-btn:hover i { transform:translateY(-3px) scale(1.12); }
+        .dock-btn.active { background:linear-gradient(145deg,rgba(103,232,249,.34),rgba(14,165,233,.22)) !important; color:var(--ink) !important;
+            border:1px solid color-mix(in srgb,#38bdf8 55%,transparent) !important; box-shadow:inset 0 1px 0 var(--rim-hi), 0 6px 18px -6px rgba(56,189,248,.5) !important; transform:none !important; }
+        .dock-btn.active i { color:var(--violet); }
+
+        footer { border-top:1px solid var(--border) !important; }
+        footer p { font-size:.85rem !important; font-weight:600; }
+        :focus-visible { outline:3px solid var(--violet); }
+
+
+        /* special tags set from admin (Hot / Trending / No.1 ...) */
+        .hot-tag, .tag-inline { --t1:#67e8f9; --t2:#0ea5e9; --tink:#03293a; --tglow:rgba(14,165,233,.6);
+            font-family:'Caveat',cursive !important; font-weight:700; background:linear-gradient(180deg,rgba(255,255,255,.4),transparent 55%),linear-gradient(145deg,var(--t1),var(--t2)); color:var(--tink);
+            border:1px solid var(--border); box-shadow:inset 0 1px 0 rgba(255,255,255,.6), 0 10px 18px -8px var(--tglow); }
+        .hot-tag { position:absolute; top:-13px; right:14px; z-index:3; font-size:1.15rem; line-height:1.5; padding:0 12px; border-radius:11px; max-width:75%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; animation:bobTag 4.5s ease-in-out infinite; }
+        .tag-inline { display:inline-block; font-size:1.15rem; line-height:1.5; padding:0 12px; border-radius:11px; margin-bottom:6px; animation:bobStar 5s ease-in-out infinite; }
+        .featured-pack-card[data-badge]::after { content:attr(data-badge); }
+        .featured-pack-card[data-bcolor="sky"]::after { background:linear-gradient(180deg,rgba(255,255,255,.4),transparent 55%),linear-gradient(145deg,#67e8f9,#0ea5e9); color:#03293a; box-shadow:inset 0 1px 0 rgba(255,255,255,.6), 0 10px 18px -8px rgba(14,165,233,.6); }
+        .featured-pack-card[data-bcolor="amber"]::after { background:linear-gradient(180deg,rgba(255,255,255,.4),transparent 55%),linear-gradient(145deg,#fde68a,#f59e0b); color:#2b1b00; }
+        .featured-pack-card[data-bcolor="red"]::after { background:linear-gradient(180deg,rgba(255,255,255,.35),transparent 55%),linear-gradient(145deg,#fda4af,#e11d48); color:#fff; box-shadow:inset 0 1px 0 rgba(255,255,255,.5), 0 10px 18px -8px rgba(244,63,94,.6); }
+        .featured-pack-card[data-bcolor="green"]::after { background:linear-gradient(180deg,rgba(255,255,255,.4),transparent 55%),linear-gradient(145deg,#86efac,#16a34a); color:#04210f; box-shadow:inset 0 1px 0 rgba(255,255,255,.6), 0 10px 18px -8px rgba(34,197,94,.55); }
+        .featured-pack-card[data-bcolor="violet"]::after { background:linear-gradient(180deg,rgba(255,255,255,.35),transparent 55%),linear-gradient(145deg,#c4b5fd,#7c3aed); color:#fff; box-shadow:inset 0 1px 0 rgba(255,255,255,.5), 0 10px 18px -8px rgba(124,58,237,.55); }
+        .featured-pack-card[data-bcolor="pink"]::after { background:linear-gradient(180deg,rgba(255,255,255,.35),transparent 55%),linear-gradient(145deg,#f9a8d4,#db2777); color:#fff; box-shadow:inset 0 1px 0 rgba(255,255,255,.5), 0 10px 18px -8px rgba(236,72,153,.55); }
+
+        .c-amber { --t1:#fde68a; --t2:#f59e0b; --tink:#2b1b00; --tglow:rgba(251,191,36,.55); }
+        .c-red { --t1:#fda4af; --t2:#e11d48; --tink:#ffffff; --tglow:rgba(244,63,94,.6); }
+        .c-green { --t1:#86efac; --t2:#16a34a; --tink:#04210f; --tglow:rgba(34,197,94,.55); }
+        .c-violet { --t1:#c4b5fd; --t2:#7c3aed; --tink:#ffffff; --tglow:rgba(124,58,237,.55); }
+        .c-pink { --t1:#f9a8d4; --t2:#db2777; --tink:#ffffff; --tglow:rgba(236,72,153,.55); }
+
+        @media (max-width:720px) {
+            .dock-btn { font-size:.64rem !important; padding:8px 2px !important; }
+            .metric-box { padding:12px !important; }
+            .about-store-section { padding:20px 16px !important; }
+        }
+        @media (prefers-reduced-motion:reduce) { .wave-layer, .bubble { animation:none !important; } }
     </style>
 </head>
 <body id="top">
@@ -1182,9 +1488,9 @@
             <svg class="infinity-svg" viewBox="0 0 186 92" aria-hidden="true">
                 <defs>
                     <linearGradient id="maggieInfinityGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="#f5b921" />
-                        <stop offset="50%" stop-color="#ffd35a" />
-                        <stop offset="100%" stop-color="#a78bfa" />
+                        <stop offset="0%" stop-color="#2f7a5b" />
+                        <stop offset="50%" stop-color="#3f9a74" />
+                        <stop offset="100%" stop-color="#d6336c" />
                     </linearGradient>
                 </defs>
                 <path class="infinity-track" d="M 93,46 C 93,16 33,16 33,46 C 33,76 93,76 93,46 C 93,16 153,16 153,46 C 153,76 93,76 93,46 Z" />
@@ -1202,17 +1508,24 @@
         <div class="liquid-orb orb-a"></div>
         <div class="liquid-orb orb-b"></div>
         <div class="liquid-orb orb-c"></div>
+        <svg class="wave-layer" viewBox="0 0 1440 180" preserveAspectRatio="none"><path fill="rgba(34,211,238,0.22)" d="M0,110 C200,60 340,160 560,110 C760,60 920,160 1100,110 C1260,70 1370,140 1440,110 L1440,180 L0,180 Z M1440,110 C1640,60 1780,160 2000,110 C2200,60 2360,160 2540,110 C2700,70 2810,140 2880,110 L2880,180 L1440,180 Z"/></svg>
+        <span class="bubble" style="left:8%; width:14px; height:14px; animation-duration:16s;"></span>
+        <span class="bubble" style="left:30%; width:22px; height:22px; animation-duration:23s; animation-delay:3s;"></span>
+        <span class="bubble" style="left:58%; width:10px; height:10px; animation-duration:15s; animation-delay:6s;"></span>
+        <span class="bubble" style="left:82%; width:18px; height:18px; animation-duration:20s; animation-delay:2s;"></span>
     </div>
 
     <div class="scroll-track" aria-hidden="true">
         <div id="scrollProgressBar" class="scroll-bar"></div>
     </div>
 
+    <div id="mgBanner" style="display:none;"></div>
     <header>
         <a href="#top" onclick="backToStoreView()" class="brand">
-            <img id="storeLogo" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%23f5b921%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2742%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%231a1202%27%3EM%3C/text%3E%3C/svg%3E" alt="Logo" class="store-logo" loading="eager" decoding="async">
+            <img id="storeLogo" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%232f7a5b%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2742%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%23ffffff%27%3EM%3C/text%3E%3C/svg%3E" alt="Logo" class="store-logo" loading="eager" decoding="async">
             <span id="storeName" class="logo-text styled-name-text">MAGGIE STORE</span>
         </a>
+        <div class="hand-note">apps, xml packs &amp; presets &#8595;</div>
         <div class="header-right">
             <input type="text" id="searchInput" class="search-box" placeholder="Search apps, XML...">
             <button type="button" id="themeBtn" class="theme-toggle" title="Toggle Theme" onclick="toggleTheme()">
@@ -1225,7 +1538,7 @@
         <div class="top-profile-wrap">
             <section class="profile-pill-bar reveal-card is-visible">
                 <div class="profile-left">
-                    <img id="topProfileAvatar" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%23f5b921%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2742%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%231a1202%27%3EM%3C/text%3E%3C/svg%3E" alt="Profile" class="profile-avatar" loading="eager" fetchpriority="high" decoding="async" onclick="openCustomLightbox(this.src)">
+                    <img id="topProfileAvatar" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%232f7a5b%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2742%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%23ffffff%27%3EM%3C/text%3E%3C/svg%3E" alt="Profile" class="profile-avatar" loading="eager" fetchpriority="high" decoding="async" onclick="openCustomLightbox(this.src)">
                     <div>
                         <div id="heroProfileTitle" class="profile-title-line styled-name-text">MAGGIE STORE</div>
                         <div class="profile-sub-row">
@@ -1245,10 +1558,10 @@
         <div class="container">
             <section id="featuredPackSection">
                 <div class="section-heading-row">
-                    <h2><i class="fa-solid fa-layer-group" style="color:var(--accent);"></i> Featured Digital Pack</h2>
+                    <h2><i class="fa-solid fa-gem"></i> Featured Digital Pack</h2>
                     <div class="filter-pills">
-                        <button class="pill-btn active" data-xmlfilter="paid" onclick="setXmlFilter('paid')">Paid XMLs</button>
-                        <button class="pill-btn" data-xmlfilter="all" onclick="setXmlFilter('all')">All XML & Templates</button>
+                        <button class="pill-btn active" data-xmlfilter="paid" onclick="setXmlFilter('paid')"><i class="fa-solid fa-crown"></i> Paid XMLs</button>
+                        <button class="pill-btn" data-xmlfilter="all" onclick="setXmlFilter('all')"><i class="fa-solid fa-table-cells-large"></i> All XML & Templates</button>
                     </div>
                 </div>
                 <div id="featuredPackContainer">
@@ -1269,7 +1582,7 @@
 
             <section id="appsSection" style="margin-top: 22px;">
                 <div class="section-heading-row">
-                    <h2><i class="fa-solid fa-mobile-screen" style="color:var(--accent);"></i> APPLICATIONS</h2>
+                    <h2><i class="fa-solid fa-mobile-screen-button"></i> APPLICATIONS</h2>
                 </div>
                 <div id="loader" style="text-align:center; padding:26px; color:var(--accent); font-weight:600;">Loading...</div>
                 <div id="appGrid" class="app-grid"></div>
@@ -1277,7 +1590,7 @@
 
             <section id="gameExtraSection" style="display:none; margin-top:22px;">
                 <div class="section-heading-row">
-                    <h2><i class="fa-solid fa-images" style="color:var(--violet);"></i> Gallery</h2>
+                    <h2><i class="fa-solid fa-images"></i> Gallery</h2>
                 </div>
                 <div id="gameExtraPhotosGrid" class="game-extra-grid"></div>
             </section>
@@ -1301,29 +1614,33 @@
                             Yahan editing apps, ready-to-use XML packs, presets aur templates share kiye jaate hain. Har file aur link upload karne se pehle check kiya jaata hai taaki users ko clean preview, video demo, seedha download aur bina kisi jhanjhat ke access mil sake.
                         </p>
                         <div class="catalog-list">
-                            <span class="catalog-chip">Editing & Utility Apps</span>
-                            <span class="catalog-chip">Color Grade & Effect XMLs</span>
-                            <span class="catalog-chip">Project Templates & Demos</span>
-                            <span class="catalog-chip">Direct Link Access</span>
+                            <span class="catalog-chip"><i class="fa-solid fa-mobile-screen-button"></i> Editing & Utility Apps</span>
+                            <span class="catalog-chip"><i class="fa-solid fa-palette"></i> Color Grade & Effect XMLs</span>
+                            <span class="catalog-chip"><i class="fa-solid fa-clapperboard"></i> Project Templates & Demos</span>
+                            <span class="catalog-chip"><i class="fa-solid fa-link"></i> Direct Link Access</span>
                         </div>
                     </div>
 
                     <div class="metrics-row">
                         <div class="metric-box">
-                            <div class="metric-num">12K+</div>
-                            <div class="metric-label">Monthly Active Visitors</div>
+                            <span class="mini-ico"><i class="fa-solid fa-users"></i></span>
+                            <div><div class="metric-num">12K+</div>
+                            <div class="metric-label">Monthly Active Visitors</div></div>
                         </div>
                         <div class="metric-box">
-                            <div class="metric-num">100%</div>
-                            <div class="metric-label">Direct Verified Links</div>
+                            <span class="mini-ico"><i class="fa-solid fa-shield-halved"></i></span>
+                            <div><div class="metric-num">100%</div>
+                            <div class="metric-label">Direct Verified Links</div></div>
                         </div>
                         <div class="metric-box">
-                            <div class="metric-num">Instant</div>
-                            <div class="metric-label">Checkout to Download</div>
+                            <span class="mini-ico"><i class="fa-solid fa-bolt"></i></span>
+                            <div><div class="metric-num">Instant</div>
+                            <div class="metric-label">Checkout to Download</div></div>
                         </div>
                         <div class="metric-box">
-                            <div class="metric-num">Weekly</div>
-                            <div class="metric-label">Fresh Packs & Updates</div>
+                            <span class="mini-ico"><i class="fa-solid fa-arrows-rotate"></i></span>
+                            <div><div class="metric-num">Weekly</div>
+                            <div class="metric-label">Fresh Packs & Updates</div></div>
                         </div>
                     </div>
                 </div>
@@ -1348,35 +1665,13 @@
 
         <div class="showcase-hero">
             <div id="scBadgeRow" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+                <span id="scTagWrap"></span>
                 <span id="scAccessBadge" class="paid-tag" style="display:none;">PAID</span>
                 <span id="scShotCount" class="paid-tag" style="background:var(--surface-2); color:var(--ink); border-color:var(--border); animation:none;">0 Photos</span>
             </div>
             <h1 id="scTitle" class="styled-name-text" style="font-family:'Fraunces',serif; font-size:1.75rem; margin-bottom:6px;">Title</h1>
             <p id="scDesc" class="styled-name-text" style="color:var(--muted); font-size:0.88rem; line-height:1.5;"></p>
-            <div id="scPriceText" style="font-family:'Fraunces',serif; font-size:1.5rem; font-weight:700; color:var(--accent-bright); text-shadow:0 0 14px rgba(245,185,33,0.35); margin-top:10px; display:none;">₹9</div>
-        </div>
-
-        <div id="scVideoPanel" class="video-panel" style="display:none;">
-            <h2 style="font-family:'Fraunces',serif; font-size:1.2rem; margin-bottom:10px;">
-                <i class="fa-solid fa-circle-play" style="color:var(--accent);"></i> Video Preview
-            </h2>
-            <video id="scVideoPlayer" class="showcase-video-player" controls playsinline preload="none"></video>
-        </div>
-
-        <div class="gallery-panel">
-            <img id="scMainImg" src="" alt="Preview Screenshot" class="main-shot-img" loading="eager" decoding="async" onclick="openShowcaseLightbox()">
-            <div id="scShotsGrid" class="all-shots-grid"></div>
-        </div>
-
-        <!-- Maggie slot 2 (Display) -->
-        <div class="ad-slot-card" aria-label="Advertisement">
-            <span class="ad-slot-label">Sponsored</span>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-2895289176876081"
-                 data-ad-slot="1758314429"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
+            <div id="scPriceText" style="font-family:'Fraunces',serif; font-size:1.5rem; font-weight:700; color:var(--accent-bright); text-shadow:0 0 14px rgba(47,122,91,0.35); margin-top:10px; display:none;">₹9</div>
         </div>
 
         <div class="buy-card-box">
@@ -1407,18 +1702,45 @@
                 <div id="scUnlockedUrl" style="margin-top:8px; font-size:0.76rem; color:var(--muted);"></div>
             </div>
         </div>
+
+        <div id="scVideoPanel" class="video-panel" style="display:none;">
+            <h2 style="font-family:'Fraunces',serif; font-size:1.2rem; margin-bottom:10px;">
+                <i class="fa-solid fa-circle-play" style="color:var(--accent);"></i> Video Preview
+            </h2>
+            <video id="scVideoPlayer" class="showcase-video-player" controls playsinline preload="none"></video>
+        </div>
+
+        <div class="gallery-panel">
+            <img id="scMainImg" src="" alt="Preview Screenshot" class="main-shot-img" loading="eager" decoding="async" onclick="openShowcaseLightbox()">
+            <div id="scShotsGrid" class="all-shots-grid"></div>
+        </div>
+
+        <!-- Maggie slot 2 (Display) -->
+        <div class="ad-slot-card" aria-label="Advertisement">
+            <span class="ad-slot-label">Sponsored</span>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-2895289176876081"
+                 data-ad-slot="1758314429"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+        </div>
+
     </section>
 
     <div class="floating-dock-wrap">
         <nav class="floating-dock" aria-label="Quick navigation">
-            <button type="button" class="dock-btn active" onclick="scrollToSection('appsSection', this)">
-                <i class="fa-solid fa-border-all"></i> Apps
+            <button type="button" class="dock-btn active" data-dock="home" onclick="goHome(this)">
+                <i class="fa-solid fa-house"></i> <span>Home</span>
             </button>
-            <button type="button" class="dock-btn" onclick="filterDockType('XML', this)">
-                <i class="fa-solid fa-code"></i> Paid XMLs
+            <button type="button" class="dock-btn" data-dock="apps" onclick="scrollToSection('appsSection', this)">
+                <i class="fa-solid fa-mobile-screen-button"></i> <span>Apps</span>
             </button>
-            <button type="button" class="dock-btn" onclick="filterDockType('Template', this)">
-                <i class="fa-solid fa-layer-group"></i> Templates
+            <button type="button" class="dock-btn" data-dock="xml" onclick="filterDockType('XML', this)">
+                <i class="fa-solid fa-file-code"></i> <span>Paid XMLs</span>
+            </button>
+            <button type="button" class="dock-btn" data-dock="template" onclick="filterDockType('Template', this)">
+                <i class="fa-solid fa-layer-group"></i> <span>Templates</span>
             </button>
         </nav>
     </div>
@@ -1431,13 +1753,16 @@
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
             <img id="modalIcon" src="" alt="Icon" loading="lazy" decoding="async" style="width:78px; height:78px; border-radius:18px; object-fit:cover; margin-bottom:10px;">
+            <div id="modalTagWrap" style="display:none; margin-bottom:4px;"></div>
             <div id="modalPaidBadgeWrap" style="display:none; margin-bottom:4px;">
                 <span id="modalPriceBadge" class="paid-tag">PAID</span>
             </div>
             <h2 id="modalTitle" class="styled-name-text" style="font-family:'Fraunces',serif; margin-top:4px;">App Name</h2>
             <p id="modalDesc" class="styled-name-text" style="color:var(--muted); font-size:0.86rem; margin:12px 0 20px; line-height:1.55;"></p>
-            <div id="modalActionArea"></div>
+            <div id="mgModalSale"></div><div class="mg-coupon" data-ctx="m" style="display:flex;gap:6px;margin:8px 0;"><input type="text" class="mg-coupon-in" placeholder="Coupon code" style="flex:1;padding:8px 10px;border-radius:10px;border:1px solid var(--glass-border,rgba(125,125,125,.3));background:transparent;color:inherit;text-transform:uppercase;"><button type="button" class="mg-coupon-btn install-btn" style="padding:8px 14px;"><i class="fa-solid fa-ticket"></i></button></div><div id="modalActionArea"></div>
+            <button type="button" class="install-btn" style="padding:8px 14px;margin-top:8px" onclick="mgShare()"><i class="fa-solid fa-share-nodes"></i> Share</button>
             <div id="modalStatusMsg" style="margin-top:10px; font-size:0.78rem; color:var(--muted);"></div>
+            <div id="mgModalExtra" style="text-align:left;margin-top:14px;border-top:1px solid rgba(125,160,200,.25);padding-top:10px;"></div>
         </div>
     </div>
 
@@ -1600,7 +1925,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getFirestore, collection, onSnapshot, doc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, collection, onSnapshot, doc, addDoc, getDocs, query, where, updateDoc, increment, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const FAMGATEWAY_BASE_URL = "https://famgateway.in";
         const FAMGATEWAY_API_KEY = "fam_95a256e60ea571df5923128a187d7659d00c5716";
@@ -1624,8 +1949,8 @@
         const topSocialBar = document.getElementById('topSocialBar');
         const featuredPackContainer = document.getElementById('featuredPackContainer');
 
-        const FALLBACK_STORE = "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%23f5b921%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2742%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%231a1202%27%3EM%3C/text%3E%3C/svg%3E";
-        const FALLBACK_APP = "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%231c2330%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2755%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2726%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%23f5b921%27%3EAPP%3C/text%3E%3C/svg%3E";
+        const FALLBACK_STORE = "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%232f7a5b%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2742%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%23ffffff%27%3EM%3C/text%3E%3C/svg%3E";
+        const FALLBACK_APP = "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%27140%27%20height%3D%27140%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%231c2330%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2755%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2726%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%232f7a5b%27%3EAPP%3C/text%3E%3C/svg%3E";
 
         let allApps = [];
         let allXmlItems = [];
@@ -1813,13 +2138,37 @@
             dockTypeFilter = dockTypeFilter === typeName ? 'all' : typeName;
             document.querySelectorAll(".dock-btn").forEach(b => b.classList.remove("active"));
             if (btn && dockTypeFilter !== 'all') btn.classList.add("active");
+            else document.querySelector('.dock-btn[data-dock="home"]')?.classList.add("active");
             filterAndRender();
             document.getElementById("featuredPackSection")?.scrollIntoView({ behavior: "smooth", block: "start" });
         };
 
+        window.goHome = (btn) => {
+            dockTypeFilter = 'all';
+            document.querySelectorAll(".dock-btn").forEach(b => b.classList.remove("active"));
+            if (btn) btn.classList.add("active");
+            if (document.getElementById("itemShowcaseView").style.display === "block") {
+                window.backToStoreView();
+                return;
+            }
+            filterAndRender();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        };
+
+        const TAG_COLORS = ['sky', 'amber', 'red', 'pink', 'violet', 'green'];
+        function tagColorOf(item) { return TAG_COLORS.includes(item && item.badgeColor) ? item.badgeColor : 'sky'; }
+        function tagTextOf(item) { return window.sanitizeDisplayText((item && item.badgeText) || '').slice(0, 24); }
+        function tagBadgeHtml(item, cls = 'hot-tag') {
+            const t = tagTextOf(item);
+            if (!t) return '';
+            const safe = t.replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
+            return `<span class="${cls} c-${tagColorOf(item)}">${safe}</span>`;
+        }
+
         function filterAndRender() {
             const term = searchInput.value.toLowerCase().trim();
-            const filteredApps = allApps.filter(a => !term || (a.name || '').toLowerCase().includes(term) || (a.category || '').toLowerCase().includes(term));
+            window.mgBuildBar();
+            const filteredApps = window.mgApply(allApps.filter(a => !term || (a.name || '').toLowerCase().includes(term) || (a.category || '').toLowerCase().includes(term)), 'app');
             renderApps(filteredApps);
             renderFeaturedAndPacks(term);
         }
@@ -1834,7 +2183,7 @@
             const frag = document.createDocumentFragment();
             apps.forEach((appItem) => {
                 const isPaid = Boolean(appItem.isPaid);
-                const price = Number(appItem.price || 49);
+                const price = window.mgEff(appItem, 49);
                 const unlocked = !isPaid || localStorage.getItem('maggie_app_unlocked_' + appItem.id) === '1';
                 const dlUrl = cleanUrl(appItem.downloadUrl) || '#';
                 const safeTitle = window.sanitizeDisplayText(appItem.name || 'Unnamed App');
@@ -1848,15 +2197,17 @@
                     : '';
 
                 const btnHtml = (!isPaid || unlocked)
-                    ? `<a href="${dlUrl}" target="_blank" rel="noopener noreferrer" class="install-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-download"></i> Install</a>`
+                    ? `<a href="${dlUrl}" target="_blank" rel="noopener noreferrer" class="install-btn" onclick="event.stopPropagation();mgDl('apps','${appItem.id}')"><i class="fa-solid fa-download"></i> Install</a>`
                     : `<button type="button" class="install-btn pay-btn" onclick="event.stopPropagation(); triggerAppDirectBuy('${appItem.id}')"><i class="fa-solid fa-lock"></i> Buy ₹${price}</button>`;
 
                 card.innerHTML = `
+                    ${tagBadgeHtml(appItem)}
                     <img src="${FALLBACK_APP}" alt="Icon" class="app-icon" loading="lazy" decoding="async">
                     <div class="app-info">
                         ${badgeHtml}
                         <div class="app-title styled-name-text">${safeTitle}</div>
                         <div class="app-desc-short styled-name-text">${safeDesc}</div>
+                        ${window.mgMeta(appItem, 'apps')}
                         ${btnHtml}
                     </div>
                 `;
@@ -1870,12 +2221,12 @@
         }
 
         function renderFeaturedAndPacks(term = '') {
-            const items = allXmlItems.filter(i => {
+            const items = window.mgApply(allXmlItems.filter(i => {
                 const matchesPaid = xmlFilterMode !== 'paid' || Boolean(i.isPaid);
                 const matchesType = dockTypeFilter === 'all' || (i.type || '').toLowerCase() === dockTypeFilter.toLowerCase();
                 const matchesSearch = !term || (i.title || '').toLowerCase().includes(term) || (i.type || '').toLowerCase().includes(term);
                 return matchesPaid && matchesType && matchesSearch;
-            });
+            }), 'xml');
 
             featuredPackContainer.innerHTML = '';
             if (items.length === 0) {
@@ -1886,7 +2237,7 @@
             const first = items[0];
             const photos = getItemPhotos(first);
             const isPaid = Boolean(first.isPaid);
-            const price = Number(first.price || 9);
+            const price = window.mgEff(first, 9);
             const hasVideo = Boolean(cleanUrl(first.videoUrl));
             const safeTitle = window.sanitizeDisplayText(first.title || 'Featured Pack');
             const safeDesc = window.sanitizeDisplayText(first.description || 'Tap to view full preview gallery and unlock.');
@@ -1894,6 +2245,10 @@
             const heroCard = document.createElement('div');
             heroCard.className = 'featured-pack-card reveal-card is-visible';
             heroCard.onclick = () => window.openItemFullShowcase(first.id);
+            if (tagTextOf(first)) {
+                heroCard.setAttribute('data-badge', tagTextOf(first));
+                heroCard.setAttribute('data-bcolor', tagColorOf(first));
+            }
 
             const thumbsHtml = photos.slice(0, 5).map(u => `<img src="${u}" alt="Thumb" class="thumb-strip-item" loading="lazy" decoding="async" onerror="this.style.display='none'">`).join('');
             const paidBadgeHtml = isPaid ? `<span class="price-pill">PAID • ₹${price}</span>` : '';
@@ -1911,7 +2266,7 @@
                     <div>
                         <div class="featured-title styled-name-text">${safeTitle}</div>
                         <p class="featured-desc styled-name-text">${safeDesc}</p>
-                        <div class="featured-actions-row">${paidBadgeHtml}${videoBadgeHtml}${actionBtnHtml}</div>
+                        ${window.mgMeta(first, 'xmlTemplates')}<div class="featured-actions-row">${paidBadgeHtml}${videoBadgeHtml}${actionBtnHtml}</div>
                     </div>
                 </div>
                 <div class="thumb-strip">${thumbsHtml}</div>
@@ -1930,12 +2285,14 @@
                     c.className = 'app-card reveal-card is-visible';
                     c.onclick = () => window.openItemFullShowcase(item.id);
                     c.innerHTML = `
+                        ${tagBadgeHtml(item)}
                         <img src="${cleanUrl(item.thumbUrl) || pList[0]}" alt="Pack" class="app-icon" loading="lazy" decoding="async" onerror="this.src='${FALLBACK_APP}'">
                         <div class="app-info">
-                            ${itemPaid ? `<span class="paid-tag">PAID • ₹${item.price || 9}</span>` : ''}
+                            ${itemPaid ? `<span class="paid-tag">PAID • ₹${window.mgEff(item, 9)}</span>` : ''}
                             ${itemHasVideo ? `<span class="video-pill" style="padding:2px 7px; font-size:0.64rem; margin-bottom:4px;"><i class="fa-solid fa-play"></i> Video</span>` : ''}
                             <div class="app-title styled-name-text">${window.sanitizeDisplayText(item.title || 'Pack')}</div>
                             <div class="app-desc-short styled-name-text">${window.sanitizeDisplayText(item.description || 'Tap to preview')}</div>
+                            ${window.mgMeta(item, 'xmlTemplates')}
                             <button type="button" class="install-btn ${itemPaid ? 'pay-btn' : ''}">Preview</button>
                         </div>
                     `;
@@ -2001,6 +2358,317 @@
             return payload.data;
         }
 
+        
+        /* ===== Maggie add-on: coupons, orders, counters, share ===== */
+        window.mgCoupon = null;
+        window.mgBump = (col, id, field) => { if (!id) return; updateDoc(doc(db, col, id), { [field]: increment(1) }).catch(() => {}); };
+        window.mgRecordOrder = async (itemId, title, amount) => {
+            const cp = window.mgCoupon, cc = window.mgCouponUsed;
+            try {
+                await addDoc(collection(db, 'orders'), { itemId, title: title || '', amount, couponCode: cc || '', createdAt: serverTimestamp() });
+                if (cp && cp.id && cc) updateDoc(doc(db, 'coupons', cp.id), { usedCount: increment(1) }).catch(() => {});
+            } catch (_) {}
+        };
+        window.mgShare = async () => {
+            const a = typeof activeModalApp !== 'undefined' && activeModalApp; if (!a) return;
+            const url = location.origin + location.pathname + '?item=' + encodeURIComponent(a.id);
+            try { if (navigator.share) await navigator.share({ title: a.name, url }); else { await navigator.clipboard.writeText(url); document.getElementById('modalStatusMsg').innerText = 'Link copy ho gaya'; } } catch (_) {}
+        };
+        // deep link: ?item=ID opens that app once apps are loaded
+        (function () {
+            const id = new URLSearchParams(location.search).get('item'); if (!id) return;
+            let t = setInterval(() => { const a = (typeof allApps !== 'undefined') && allApps.find(x => x.id === id); const x = (typeof allXmlItems !== 'undefined') && allXmlItems.find(y => y.id === id); if (a) { clearInterval(t); openModal(a); } else if (x) { clearInterval(t); openItemFullShowcase(x.id); } else if (id.indexOf('bundle_') === 0 && mgBundles.some(z => 'bundle_' + z.id === id)) { clearInterval(t); mgOpenBundle(id.slice(7)); } }, 600);
+            setTimeout(() => clearInterval(t), 15000);
+        })();
+
+
+        /* ===== Add-on: category/sort, counters, reviews, wishlist, share ===== */
+        const mgS = { cat: 'All', sort: 'order', saved: false, sig: '' };
+        let mgReviews = [], mgCur = null;
+        const mgWish = () => { try { return JSON.parse(localStorage.getItem('maggie_wishlist') || '[]'); } catch (_) { return []; } };
+        const mgEsc = (t) => String(t == null ? '' : t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        const mgFmt = (n) => { n = Number(n || 0); return n >= 1e6 ? (n / 1e6).toFixed(1).replace('.0', '') + 'M' : n >= 1e3 ? (n / 1e3).toFixed(1).replace('.0', '') + 'K' : String(n); };
+        const mgCatOf = (i) => (i.category || i.type || '').trim();
+        const mgPrice = (i) => i.isPaid ? Number(i.price || 0) : 0;
+        window.mgDl = (col, id) => { window.mgBump(col, id, 'downloads'); if (window.mgMaybeJoin) window.mgMaybeJoin(); };
+        window.mgApply = (list, kind) => {
+            let out = list.map((it, idx) => ({ it, idx }));
+            if (mgS.cat !== 'All') out = out.filter(o => mgCatOf(o.it).toLowerCase() === mgS.cat.toLowerCase());
+            if (mgS.saved) { const w = mgWish(); out = out.filter(o => w.includes(o.it.id)); }
+            const t = (i) => Number(i.updatedAt || i.createdAt || 0);
+            const cmp = {
+                order: (a, b) => (Number(a.it.order ?? 1e9) - Number(b.it.order ?? 1e9)) || (t(b.it) - t(a.it)) || (b.idx - a.idx),
+                new: (a, b) => (t(b.it) - t(a.it)) || (b.idx - a.idx),
+                dl: (a, b) => Number(b.it.downloads || 0) - Number(a.it.downloads || 0),
+                free: (a, b) => mgPrice(a.it) - mgPrice(b.it) || (a.it.isPaid ? 1 : 0) - (b.it.isPaid ? 1 : 0),
+                paid: (a, b) => (b.it.isPaid ? 1 : 0) - (a.it.isPaid ? 1 : 0),
+                low: (a, b) => mgPrice(a.it) - mgPrice(b.it)
+            }[mgS.sort] || (() => 0);
+            return out.sort(cmp).map(o => o.it);
+        };
+        window.mgBuildBar = () => {
+            let bar = document.getElementById('mgBar');
+            if (!bar) { bar = document.createElement('div'); bar.id = 'mgBar'; bar.style.cssText = 'display:flex;gap:8px;flex-wrap:nowrap;align-items:center;overflow-x:auto;max-width:100%;box-sizing:border-box;padding:2px 18px;margin:12px 0 0;scrollbar-width:none;'; const mv = document.getElementById('storeMainView'); mv.insertBefore(bar, mv.firstChild); }
+            const cats = [...new Set([...allApps, ...allXmlItems].map(mgCatOf).filter(Boolean))];
+            const sig = cats.join('|'); if (sig === mgS.sig && bar.firstChild) return; mgS.sig = sig;
+            const chip = (label, act, on, ico) => `<button type="button" class="mg-chip${on ? ' on' : ''}" data-act="${act}" data-v="${mgEsc(label)}">${ico ? `<i class="fa-solid ${ico}"></i> ` : ''}${mgEsc(label)}</button>`;
+            bar.innerHTML = chip('All', 'cat', mgS.cat === 'All') + cats.map(c => chip(c, 'cat', mgS.cat === c)).join('') + chip('Saved', 'saved', mgS.saved, 'fa-heart') +
+                `<select id="mgSort" class="mg-chip"><option value="order">Default</option><option value="new">Newest</option><option value="dl">Most Downloaded</option><option value="free">Free</option><option value="paid">Paid</option><option value="low">Price low-high</option></select>`;
+            bar.querySelector('#mgSort').value = mgS.sort;
+        };
+        document.addEventListener('click', (e) => {
+            const b = e.target.closest('.mg-chip[data-act]'); if (!b) return;
+            if (b.dataset.act === 'cat') mgS.cat = b.dataset.v; else mgS.saved = !mgS.saved;
+            mgS.sig = ''; filterAndRender();
+            document.querySelectorAll('#mgBar .mg-chip[data-act]').forEach(x => x.classList.toggle('on', (x.dataset.act === 'cat' && x.dataset.v === mgS.cat) || (x.dataset.act === 'saved' && mgS.saved)));
+        });
+        document.addEventListener('change', (e) => { if (e.target.id === 'mgSort') { mgS.sort = e.target.value; filterAndRender(); } });
+        const mgRate = (id) => { const r = mgReviews.filter(x => x.itemId === id && x.approved === true); return { n: r.length, avg: r.length ? r.reduce((a, x) => a + Number(x.stars || 0), 0) / r.length : 0, list: r }; };
+        window.mgMeta = (it, col) => {
+            const r = mgRate(it.id), on = mgWish().includes(it.id);
+            return window.mgTagHtml(it) + window.mgSaleHtml(it) + `<div class="mg-meta">${r.n ? `<span><i class="fa-solid fa-star" style="color:#fbbf24"></i> ${r.avg.toFixed(1)} (${r.n})</span>` : ''}${Number(it.downloads || 0) ? `<span><i class="fa-solid fa-download"></i> ${mgFmt(it.downloads)}</span>` : ''}` +
+                `<button type="button" class="mg-ib" aria-label="Save" onclick="event.stopPropagation();mgWishToggle('${it.id}')"><i class="${on ? 'fa-solid' : 'fa-regular'} fa-heart" style="${on ? 'color:#ef4444' : ''}"></i></button>` +
+                `<button type="button" class="mg-ib" aria-label="Share" onclick="event.stopPropagation();mgShareId('${it.id}','${mgEsc((it.name || it.title || '').replace(/'/g, ''))}')"><i class="fa-solid fa-share-nodes"></i></button></div>`;
+        };
+        window.mgWishToggle = (id) => {
+            let w = mgWish(); w = w.includes(id) ? w.filter(x => x !== id) : [...w, id];
+            try { localStorage.setItem('maggie_wishlist', JSON.stringify(w)); } catch (_) {}
+            filterAndRender(); mgRefreshExtra();
+        };
+        window.mgShareId = async (id, title) => {
+            const url = location.origin + location.pathname + '?item=' + encodeURIComponent(id);
+            try { if (navigator.share) await navigator.share({ title, url }); else { await navigator.clipboard.writeText(url); alert('Link copy ho gaya'); } } catch (_) {}
+        };
+        window.mgExtra = (col, it) => { mgCur = { col, it, pick: 5 }; mgRefreshExtra(true); };
+        function mgRefreshExtra(force) {
+            if (!mgCur) return;
+            const el = col2el(mgCur.col); if (!el) return;
+            if (!force && el.contains(document.activeElement) && document.activeElement.tagName !== 'BODY') return;
+            const it = mgCur.it, r = mgRate(it.id), on = mgWish().includes(it.id), done = localStorage.getItem('maggie_rv_' + it.id) === '1';
+            const sl = document.getElementById(mgCur.col === 'apps' ? 'mgModalSale' : 'mgScSale'); if (sl) sl.innerHTML = window.mgTagHtml(it) + window.mgSaleHtml(it);
+            el.innerHTML = '<div style="font-weight:800;margin-bottom:4px;"><i class="fa-solid fa-star" style="color:#fbbf24"></i> Reviews</div>' + `<div class="mg-meta" style="margin:8px 0;">${r.n ? `<span><i class="fa-solid fa-star" style="color:#fbbf24"></i> ${r.avg.toFixed(1)} (${r.n} reviews)</span>` : '<span>No reviews yet</span>'}` +
+                `<button type="button" class="mg-ib" onclick="mgWishToggle('${it.id}')"><i class="${on ? 'fa-solid' : 'fa-regular'} fa-heart" style="${on ? 'color:#ef4444' : ''}"></i></button>` +
+                `<button type="button" class="mg-ib" onclick="mgShareId('${it.id}','${mgEsc((it.name || it.title || '').replace(/'/g, ''))}')"><i class="fa-solid fa-share-nodes"></i></button></div>` +
+                (r.list.slice(-3).reverse().map(x => `<div style="font-size:.78rem;margin:4px 0;"><span style="color:#fbbf24">${'★'.repeat(Number(x.stars) || 0)}</span> <b>${mgEsc(x.name || 'User')}</b>: ${mgEsc(x.text)}</div>`).join('')) +
+                (done ? '<div style="font-size:.76rem;color:var(--muted)">Review bhejne ke liye shukriya!</div>' :
+                `<div class="mg-rv"><div class="mg-stars">${[1, 2, 3, 4, 5].map(n => `<button type="button" class="mg-ib mg-sp" data-n="${n}"><i class="${n <= mgCur.pick ? 'fa-solid' : 'fa-regular'} fa-star" style="color:#fbbf24"></i></button>`).join('')}</div>` +
+                `<input type="text" class="mg-rn" placeholder="Name (optional)" maxlength="40" style="width:100%;margin:4px 0;"><input type="text" class="mg-rt" placeholder="Apna review likhein..." maxlength="300" style="width:100%;margin:4px 0;"><button type="button" class="install-btn mg-rs" style="padding:6px 14px;">Submit review</button></div>`);
+        }
+        function col2el(col) {
+            if (col === 'apps') return document.getElementById('mgModalExtra');
+            let el = document.getElementById('mgScExtra');
+            if (!el) {
+                el = document.createElement('div'); el.id = 'mgScExtra'; el.style.cssText = 'margin:18px 0;padding:14px;border-radius:20px;border:1px solid rgba(125,160,200,.3);';
+                document.getElementById('itemShowcaseView').appendChild(el);
+                const sl = document.createElement('div'); sl.id = 'mgScSale'; document.getElementById('scPriceText').insertAdjacentElement('afterend', sl);
+            }
+            return el;
+        }
+        document.addEventListener('click', async (e) => {
+            const sp = e.target.closest('.mg-sp'); if (sp && mgCur) { mgCur.pick = Number(sp.dataset.n); mgRefreshExtra(true); return; }
+            const sb = e.target.closest('.mg-rs'); if (!sb || !mgCur) return;
+            const box = sb.closest('.mg-rv'), text = box.querySelector('.mg-rt').value.trim();
+            if (!text) return;
+            sb.disabled = true;
+            try {
+                await addDoc(collection(db, 'reviews'), { itemId: mgCur.it.id, name: box.querySelector('.mg-rn').value.trim() || 'Maggie User', stars: mgCur.pick, text, createdAt: Date.now(), approved: false });
+                localStorage.setItem('maggie_rv_' + mgCur.it.id, '1');
+                const el = col2el(mgCur.col); mgRefreshExtra(true); el.insertAdjacentHTML('beforeend', '<div style="font-size:.76rem;color:var(--muted)">Review admin approval ke baad dikhega.</div>');
+            } catch (_) { sb.disabled = false; }
+        });
+        onSnapshot(collection(db, 'reviews'), (snap) => { mgReviews = []; snap.forEach(d => mgReviews.push({ id: d.id, ...d.data() })); scheduleRender(); mgRefreshExtra(); });
+        const mgCss = document.createElement('style');
+        mgCss.textContent = '.mg-sale{display:inline-flex;gap:6px;align-items:center;font-size:.78rem;margin:4px 0;color:#fbbf24}.mg-sale s{opacity:.6;color:inherit}.mg-rn,.mg-rt{padding:8px 10px;border-radius:10px;border:1px solid rgba(125,160,200,.35)!important;background:rgba(125,180,255,.08);color:inherit;box-sizing:border-box}.mg-tag{display:inline-block;font-size:.66rem;font-weight:800;padding:2px 8px;border-radius:999px;margin:2px 4px 2px 0}.mg-tag.new{background:#22c55e;color:#03210f}.mg-tag.upd{background:rgba(56,160,255,.3)}.mg-acc{border:1px solid rgba(125,160,200,.3);border-radius:14px;padding:10px 14px;margin:6px 0;background:rgba(125,180,255,.06)}.mg-acc summary{cursor:pointer;font-weight:700;font-size:.88rem}.mg-acc div{font-size:.82rem;opacity:.85;margin-top:8px;line-height:1.5}.mg-chip{flex:0 0 auto;white-space:nowrap;padding:6px 12px;border-radius:999px;border:1px solid rgba(125,160,200,.35);background:rgba(125,180,255,.12);color:inherit;font:inherit;font-size:.78rem;cursor:pointer}.mg-chip.on{background:rgba(56,160,255,.35)}select.mg-chip option{color:#111}.mg-meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:.74rem;margin:4px 0}.mg-ib{background:none;border:0;color:inherit;cursor:pointer;padding:2px 4px;font-size:.95rem}';
+        document.head.appendChild(mgCss);
+        // share button on showcase + download counting there
+        document.getElementById('scUnlockedBtn').addEventListener('click', () => { if (activeShowcaseItem) window.mgDl('xmlTemplates', activeShowcaseItem.id); });
+        document.getElementById('modalActionArea').addEventListener('click', (e) => { if (e.target.closest('a') && activeModalApp) window.mgDl('apps', activeModalApp.id); });
+
+        /* ===== Add-on 2: coupon rules, sale timer, banner, requests, bundles ===== */
+        window.mgOnSale = (i) => Boolean(i && i.isPaid && Number(i.salePrice) > 0 && Number(i.saleEndsAt) > Date.now());
+        window.mgEff = (i, def) => window.mgOnSale(i) ? Number(i.salePrice) : Number(i.price || def);
+        const mgLeft = (end) => { let t = Math.max(0, Math.floor((end - Date.now()) / 1000)); const d = Math.floor(t / 86400); t %= 86400; const h = Math.floor(t / 3600); t %= 3600; const m = Math.floor(t / 60); return (d ? d + 'd ' : '') + String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(t % 60).padStart(2, '0'); };
+        window.mgSaleHtml = (it) => window.mgOnSale(it) ? `<span class="mg-sale"><s>₹${Number(it.price || 0)}</s> <b>₹${Number(it.salePrice)}</b> <i class="fa-solid fa-clock"></i> <span class="mg-cd" data-end="${Number(it.saleEndsAt)}">${mgLeft(Number(it.saleEndsAt))}</span></span>` : '';
+        setInterval(() => {
+            const els = document.querySelectorAll('.mg-cd'); let expired = false;
+            els.forEach(el => { const end = Number(el.dataset.end); if (end <= Date.now()) expired = true; else el.textContent = mgLeft(end); });
+            if (expired) { filterAndRender(); if (typeof mgRefreshExtra === 'function') mgRefreshExtra(true); }
+        }, 1000);
+
+        // coupon: only for paid + locked items, with per-item rules
+        window.mgAmount = (base, itemId) => {
+            const c = window.mgCoupon;
+            if (!c || (c.itemIds && c.itemIds.length && !c.itemIds.includes(itemId))) { window.mgCouponUsed = ''; return base; }
+            const off = c.type === 'percent' ? Math.round(base * c.value / 100) : Number(c.value);
+            window.mgCouponUsed = c.code;
+            return Math.max(1, base - off);
+        };
+        window.mgCouponReset = (ctx, show) => {
+            window.mgCoupon = null; window.mgCouponUsed = '';
+            let box = document.querySelector('.mg-coupon[data-ctx="' + ctx + '"]');
+            if (!box && ctx === 's') {
+                box = document.createElement('div'); box.className = 'mg-coupon'; box.dataset.ctx = 's'; box.style.cssText = 'display:flex;gap:6px;margin:8px 0;';
+                box.innerHTML = '<input type="text" class="mg-coupon-in" placeholder="Coupon code" style="flex:1;padding:8px 10px;border-radius:10px;border:1px solid rgba(125,160,200,.35);background:transparent;color:inherit;text-transform:uppercase;"><button type="button" class="mg-coupon-btn install-btn" style="padding:8px 14px;"><i class="fa-solid fa-ticket"></i></button>';
+                const b = document.getElementById('scBuyBtn'); b.parentNode.insertBefore(box, b);
+            }
+            if (box) { box.style.display = show ? 'flex' : 'none'; const i = box.querySelector('input'); if (i) i.value = ''; }
+        };
+        document.addEventListener('click', async (e) => {
+            const b = e.target.closest('.mg-coupon-btn'); if (!b) return;
+            const ctx = b.closest('.mg-coupon').dataset.ctx || 'm';
+            const item = ctx === 's' ? activeShowcaseItem : activeModalApp; if (!item) return;
+            const msg = document.getElementById(ctx === 's' ? 'scStatusMsg' : 'modalStatusMsg');
+            const base = Math.max(1, window.mgEff(item, ctx === 's' ? 9 : 49));
+            const code = b.closest('.mg-coupon').querySelector('input').value.trim().toUpperCase(); window.mgCoupon = null; window.mgCouponUsed = '';
+            window.mgPriceView(ctx, item, base, base);
+            if (!code) { msg.innerText = ''; return; }
+            const bad = (t) => { msg.innerHTML = '<span style="color:#ef4444;">' + t + '</span>'; };
+            try {
+                const snap = await getDocs(query(collection(db, 'coupons'), where('code', '==', code)));
+                const d = snap.docs[0]; const c = d && d.data();
+                if (!c || c.active === false) return bad('Coupon valid nahi hai');
+                if (Number(c.expiresAt) && Number(c.expiresAt) < Date.now()) return bad('Coupon expire ho gaya');
+                if (Number(c.usageLimit) && Number(c.usedCount || 0) >= Number(c.usageLimit)) return bad('Coupon ki limit khatam ho gayi');
+                if (Array.isArray(c.itemIds) && c.itemIds.length && !c.itemIds.includes(item.id)) return bad('Ye coupon is item par nahi lagta');
+                if (Number(c.minAmount) && base < Number(c.minAmount)) return bad('Minimum amount ₹' + c.minAmount + ' chahiye');
+                window.mgCoupon = { id: d.id, code, type: c.type, value: Number(c.value), itemIds: c.itemIds || [] };
+                const fin = window.mgAmount(base, item.id);
+                msg.innerText = 'Coupon laga: ' + code + ' — naya amount ₹' + fin;
+                window.mgPriceView(ctx, item, base, fin);
+            } catch (_) { bad('Coupon check fail, dobara try karo'); }
+        });
+
+        // announcement banner
+        const mgBC = { sky: '#38bdf8', amber: '#fbbf24', red: '#ef4444', pink: '#ec4899', violet: '#8b5cf6', green: '#22c55e' };
+        onSnapshot(doc(db, 'settings', 'general'), (snap) => {
+            const bn = document.getElementById('mgBanner'); if (!bn) return; const s = snap.exists() ? snap.data() : {};
+            if (s.announcementActive && s.announcementText) {
+                const c = mgBC[s.announcementColor] || mgBC.sky;
+                bn.style.cssText = 'display:block;margin:10px 18px 0;padding:10px 16px;border-radius:18px;text-align:center;font-weight:700;font-size:.85rem;border:1px solid ' + c + ';background:' + c + '2e;';
+                bn.textContent = s.announcementText;
+            } else bn.style.display = 'none';
+        });
+
+        // request box
+        (function () {
+            const sec = document.createElement('section'); sec.id = 'mgRequest'; sec.style.cssText = 'margin-top:22px;';
+            sec.innerHTML = '<div style="padding:16px;border-radius:22px;border:1px solid rgba(125,160,200,.3);background:rgba(125,180,255,.08);"><div style="font-weight:800;margin-bottom:8px;"><i class="fa-solid fa-inbox"></i> Request Box</div><div style="font-size:.8rem;opacity:.8;margin-bottom:8px;">Mujhe ye XML / App chahiye...</div><textarea id="mgReqText" maxlength="400" placeholder="Kaunsa XML ya App chahiye?" style="width:100%;min-height:70px;box-sizing:border-box;margin-bottom:6px;"></textarea><input type="text" id="mgReqName" maxlength="40" placeholder="Name / contact (optional)" style="width:100%;box-sizing:border-box;margin-bottom:8px;"><button type="button" class="install-btn" id="mgReqBtn"><i class="fa-solid fa-paper-plane"></i> Send Request</button><div id="mgReqMsg" style="font-size:.78rem;margin-top:6px;"></div></div>';
+            const ap = document.getElementById('appsSection'); ap.parentNode.insertBefore(sec, ap.nextSibling);
+            document.getElementById('mgReqBtn').onclick = async () => {
+                const t = document.getElementById('mgReqText').value.trim(), m = document.getElementById('mgReqMsg');
+                if (!t) { m.innerText = 'Pehle request likho.'; return; }
+                if (Date.now() - Number(localStorage.getItem('maggie_req_t') || 0) < 30000) { m.innerText = 'Thoda ruk kar dobara bhejo.'; return; }
+                try { await addDoc(collection(db, 'requests'), { text: t, contact: document.getElementById('mgReqName').value.trim(), createdAt: Date.now(), status: 'pending' });
+                    localStorage.setItem('maggie_req_t', String(Date.now())); document.getElementById('mgReqText').value = ''; m.innerText = 'Request bhej di gayi!'; } catch (_) { m.innerText = 'Request fail hui, dobara try karo.'; }
+            };
+        })();
+
+        // bundles
+        let mgBundles = [];
+        window.mgBundleArea = (b) => {
+            const area = document.getElementById('modalActionArea');
+            if (localStorage.getItem('maggie_app_unlocked_' + b.id) !== '1') return;
+            area.innerHTML = (b.itemIds || []).map(id => {
+                const a = allApps.find(x => x.id === id), x = allXmlItems.find(y => y.id === id);
+                const name = a ? a.name : x ? x.title : null, link = cleanUrl(a ? a.downloadUrl : x ? x.protectedLink : '');
+                return name && link ? `<a href="${link}" target="_blank" rel="noopener noreferrer" class="install-btn" style="padding:8px 18px;margin:4px;display:inline-flex;"><i class="fa-solid fa-download"></i> ${mgEsc(name)}</a>` : '';
+            }).join('') || 'Items load ho rahe hain...';
+        };
+        window.mgOpenBundle = (id) => {
+            const b = mgBundles.find(x => x.id === id); if (!b) return;
+            const bundleItem = { id: 'bundle_' + b.id, __bundle: true, name: b.title, description: (b.description || '') + ' (' + (b.itemIds || []).length + ' items)', logoUrl: b.cover, isPaid: true, price: Number(b.price), downloadUrl: '', itemIds: b.itemIds || [] };
+            openModal(bundleItem); window.mgBundleArea(bundleItem);
+        };
+        function mgRenderBundles() {
+            let sec = document.getElementById('mgBundles');
+            const list = mgBundles.filter(b => b.active !== false);
+            if (!list.length) { if (sec) sec.style.display = 'none'; return; }
+            if (!sec) { sec = document.createElement('section'); sec.id = 'mgBundles'; sec.style.cssText = 'margin-top:22px;'; const ap = document.getElementById('appsSection'); ap.parentNode.insertBefore(sec, ap); }
+            sec.style.display = '';
+            sec.innerHTML = '<div style="font-weight:800;font-size:1.05rem;margin-bottom:10px;"><i class="fa-solid fa-boxes-stacked"></i> Bundles</div><div style="display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none;">' +
+                list.map(b => { const un = localStorage.getItem('maggie_app_unlocked_bundle_' + b.id) === '1'; return `<div class="app-card" style="flex:0 0 220px;cursor:pointer;display:block;" onclick="mgOpenBundle('${b.id}')"><img src="${cleanUrl(b.cover) || FALLBACK_APP}" alt="Bundle" style="width:100%;height:110px;object-fit:cover;border-radius:14px;" loading="lazy" onerror="this.src='${FALLBACK_APP}'"><div class="app-title styled-name-text" style="margin-top:8px;">${mgEsc(window.sanitizeDisplayText(b.title || ''))}</div><div class="app-desc-short styled-name-text">${(b.itemIds || []).length} items • ${mgEsc(window.sanitizeDisplayText(b.description || ''))}</div><span class="paid-tag" style="margin-top:6px;display:inline-block;">${un ? 'UNLOCKED' : 'BUNDLE • ₹' + Number(b.price)}</span></div>`; }).join('') + '</div>';
+        }
+        onSnapshot(collection(db, 'bundles'), (snap) => { mgBundles = []; snap.forEach(d => mgBundles.push({ id: d.id, ...d.data() })); mgRenderBundles(); });
+
+        /* ===== Add-on 3: tags, coupon price view, FAQ/policy, join popup, PWA ===== */
+        window.mgTagHtml = (it) => {
+            const now = Date.now(), D = 864e5, cr = Number(it.createdAt || it.updatedAt || 0), up = Number(it.updatedAt || 0);
+            if (it.forceNew || (cr && now - cr < 7 * D)) return '<span class="mg-tag new">NEW</span>';
+            if (up && now - up < 30 * D) { const n = Math.floor((now - up) / D); return `<span class="mg-tag upd">Updated ${n ? n + ' din pehle' : 'aaj'}</span>`; }
+            return '';
+        };
+        // coupon price view: reduced while coupon is applied, restored after purchase / invalid coupon
+        window.mgPriceView = (ctx, item, base, fin) => {
+            const has = fin !== base;
+            if (ctx === 'm') {
+                const pb = document.getElementById('modalPriceBadge'), bb = document.getElementById('modalBuyBtn');
+                if (pb && localStorage.getItem('maggie_app_unlocked_' + item.id) !== '1') pb.innerHTML = has ? `PAID • <s>₹${base}</s> ₹${fin}` : `PAID • ₹${base}`;
+                if (bb) bb.innerHTML = `<i class="fa-solid fa-lock"></i> Buy Now — ₹${fin}`;
+            } else {
+                const ab = document.getElementById('scAccessBadge'), pt = document.getElementById('scPriceText'), sa = document.getElementById('scBuyAmount');
+                if (ab) ab.innerHTML = has ? `PAID • <s>₹${base}</s> ₹${fin}` : `PAID • ₹${base}`;
+                if (pt) pt.innerHTML = has ? `<s style="opacity:.55;font-size:.8em">₹${base}</s> ₹${fin}` : `₹${base}`;
+                if (sa) sa.innerText = fin;
+            }
+        };
+        window.mgAfterPay = (ctx, item) => {
+            window.mgCoupon = null; window.mgCouponUsed = '';
+            const box = document.querySelector('.mg-coupon[data-ctx="' + ctx + '"]'); if (box) box.style.display = 'none';
+            if (ctx === 'm') { const pb = document.getElementById('modalPriceBadge'); if (pb) pb.innerText = 'PAID • UNLOCKED'; }
+            else window.mgPriceView('s', item, Math.max(1, window.mgEff(item, 9)), Math.max(1, window.mgEff(item, 9)));
+        };
+
+        // FAQ + policy
+        let mgFaqs = [], mgPol = {};
+        function mgRenderInfo() {
+            let sec = document.getElementById('mgInfo');
+            if (!sec) { sec = document.createElement('section'); sec.id = 'mgInfo'; sec.style.marginTop = '22px'; const r = document.getElementById('mgRequest'); r.parentNode.insertBefore(sec, r.nextSibling); }
+            const faqs = mgFaqs.slice().sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+            const det = (q, a) => `<details class="mg-acc"><summary>${mgEsc(q)}</summary><div>${mgEsc(a).replace(/\n/g, '<br>')}</div></details>`;
+            let h = '';
+            if (faqs.length) h += '<div style="font-weight:800;margin-bottom:8px;"><i class="fa-solid fa-circle-question"></i> FAQ</div>' + faqs.map(f => det(f.question, f.answer)).join('');
+            if (mgPol.refundPolicy || mgPol.privacyText) h += '<div style="font-weight:800;margin:14px 0 8px;"><i class="fa-solid fa-file-shield"></i> Policies</div>' + (mgPol.refundPolicy ? det('Refund Policy', mgPol.refundPolicy) : '') + (mgPol.privacyText ? det('Privacy', mgPol.privacyText) : '');
+            sec.innerHTML = h; sec.style.display = h ? '' : 'none';
+        }
+        onSnapshot(collection(db, 'faqs'), (snap) => { mgFaqs = []; snap.forEach(d => mgFaqs.push({ id: d.id, ...d.data() })); mgRenderInfo(); });
+
+        // join popup (once, after a download)
+        let mgJoin = { active: false };
+        window.mgMaybeJoin = () => {
+            if (!mgJoin.active || localStorage.getItem('maggie_join_seen') === '1') return;
+            const links = (mgJoin.links || []).filter(l => l && cleanUrl(l.url)); if (!links.length && !mgJoin.text) return;
+            localStorage.setItem('maggie_join_seen', '1');
+            setTimeout(() => {
+                const ico = (l) => /telegram|t\.me/i.test(l.label + l.url) ? 'fa-brands fa-telegram' : /insta/i.test(l.label + l.url) ? 'fa-brands fa-instagram' : /youtu/i.test(l.label + l.url) ? 'fa-brands fa-youtube' : 'fa-solid fa-link';
+                const ov = document.createElement('div'); ov.id = 'mgJoin'; ov.style.cssText = 'position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(3,12,24,.7);padding:18px;';
+                ov.innerHTML = `<div style="max-width:340px;width:100%;padding:22px;border-radius:24px;text-align:center;background:var(--surface-solid,#0c2238);border:1px solid rgba(125,160,200,.4);color:inherit;position:relative;"><span style="position:absolute;top:8px;right:14px;font-size:1.5rem;cursor:pointer" data-x="1">&times;</span><div style="font-weight:800;font-size:1.05rem;margin-bottom:12px;">${mgEsc(mgJoin.text || 'Hamare channel se jude')}</div>${links.map(l => `<a href="${cleanUrl(l.url)}" target="_blank" rel="noopener noreferrer" class="install-btn" style="display:flex;justify-content:center;margin:8px 0;"><i class="${ico(l)}"></i>&nbsp;${mgEsc(l.label || 'Join')}</a>`).join('')}</div>`;
+                ov.addEventListener('click', (e) => { if (e.target === ov || e.target.dataset.x) ov.remove(); });
+                document.body.appendChild(ov);
+            }, 1200);
+        };
+
+        // settings/general: join popup, policies, PWA manifest
+        onSnapshot(doc(db, 'settings', 'general'), (snap) => {
+            const s = snap.exists() ? snap.data() : {};
+            mgJoin = { active: Boolean(s.joinPopupActive), text: s.joinPopupText || '', links: s.joinPopupLinks || [] };
+            mgPol = { refundPolicy: s.refundPolicy || '', privacyText: s.privacyText || '' }; mgRenderInfo();
+            try {
+                const name = window.sanitizeDisplayText(s.storeName || 'MAGGIE STORE'), icon = cleanUrl(s.logoUrl || '');
+                document.title = document.title; // keep existing title
+                if (/^https?:$/.test(location.protocol)) {
+                    const base = location.origin + location.pathname;
+                    const m = { name, short_name: name.slice(0, 12), start_url: base, scope: location.origin + location.pathname.replace(/[^/]*$/, ''), display: 'standalone', background_color: '#06121f', theme_color: '#0b2a44',
+                        icons: icon ? [{ src: icon, sizes: '192x192', type: 'image/png', purpose: 'any' }, { src: icon, sizes: '512x512', type: 'image/png', purpose: 'any' }] : [] };
+                    const url = URL.createObjectURL(new Blob([JSON.stringify(m)], { type: 'application/manifest+json' }));
+                    let l = document.querySelector('link[rel="manifest"]'); if (!l) { l = document.createElement('link'); l.rel = 'manifest'; document.head.appendChild(l); }
+                    if (l.dataset.blob) URL.revokeObjectURL(l.dataset.blob); l.href = url; l.dataset.blob = url;
+                }
+                if (icon) { let a = document.querySelector('link[rel="apple-touch-icon"]'); if (!a) { a = document.createElement('link'); a.rel = 'apple-touch-icon'; document.head.appendChild(a); } a.href = icon; }
+                if (!document.querySelector('meta[name="theme-color"]')) { const t = document.createElement('meta'); t.name = 'theme-color'; t.content = '#0b2a44'; document.head.appendChild(t); }
+            } catch (_) {}
+        });
+        if ('serviceWorker' in navigator && (/^https:$/.test(location.protocol) || location.hostname === 'localhost')) { navigator.serviceWorker.register('./sw.js').catch(() => {}); }
+
         window.triggerAppDirectBuy = async (appId) => {
             const appItem = allApps.find(a => a.id === appId);
             if (!appItem) return;
@@ -2009,14 +2677,19 @@
         };
 
         window.openModal = (appItem) => {
+            window.mgBump('apps', appItem.id, 'views');
+            window.mgExtra('apps', appItem);
             stopModalPolling();
             activeModalApp = appItem;
             const isPaid = Boolean(appItem.isPaid);
-            const price = Number(appItem.price || 49);
+            const price = window.mgEff(appItem, 49);
             const unlocked = !isPaid || localStorage.getItem('maggie_app_unlocked_' + appItem.id) === '1';
             const dlUrl = cleanUrl(appItem.downloadUrl) || '#';
 
             setImageDirect(document.getElementById('modalIcon'), appItem.logoUrl, FALLBACK_APP);
+            const modalTagWrap = document.getElementById('modalTagWrap');
+            modalTagWrap.innerHTML = tagBadgeHtml(appItem, 'tag-inline');
+            modalTagWrap.style.display = modalTagWrap.innerHTML ? 'block' : 'none';
             const badgeWrap = document.getElementById('modalPaidBadgeWrap');
             const pBadge = document.getElementById('modalPriceBadge');
             if (isPaid) {
@@ -2029,6 +2702,7 @@
             document.getElementById('modalTitle').innerText = window.sanitizeDisplayText(appItem.name || 'App');
             document.getElementById('modalDesc').innerText = window.sanitizeDisplayText(appItem.description || 'No description provided.');
             document.getElementById('modalStatusMsg').innerText = '';
+            window.mgCouponReset('m', isPaid && !unlocked);
 
             const area = document.getElementById('modalActionArea');
             area.innerHTML = (!isPaid || unlocked)
@@ -2039,6 +2713,7 @@
             modal.classList.remove('is-open');
             modal.style.display = 'flex';
             requestAnimationFrame(() => modal.classList.add('is-open'));
+            if (appItem.__bundle) window.mgBundleArea(appItem);
         };
 
         window.closeModal = () => {
@@ -2051,7 +2726,7 @@
 
         window.startAppPayment = async () => {
             if (!activeModalApp) return;
-            const amount = Math.max(1, Number(activeModalApp.price || 49));
+            const amount = window.mgAmount(Math.max(1, window.mgEff(activeModalApp, 49)), activeModalApp.id);
             const buyBtn = document.getElementById('modalBuyBtn');
             const statusEl = document.getElementById('modalStatusMsg');
             if (buyBtn) { buyBtn.disabled = true; buyBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Opening...'; }
@@ -2070,11 +2745,14 @@
                         const data = await res.json();
                         if (data && data.status === "success") {
                             stopModalPolling();
+                            window.mgRecordOrder(activeModalApp.id, activeModalApp.name, amount);
+                            window.mgAfterPay('m', activeModalApp);
+                            window.mgDl('apps', activeModalApp.id);
                             localStorage.setItem('maggie_app_unlocked_' + activeModalApp.id, '1');
                             const link = cleanUrl(activeModalApp.downloadUrl) || '#';
                             document.getElementById('modalActionArea').innerHTML = `<a href="${link}" target="_blank" rel="noopener noreferrer" class="install-btn" style="padding:10px 24px;"><i class="fa-solid fa-download"></i> Download Now</a>`;
                             filterAndRender();
-                            openDownloadLink(link);
+                            if (activeModalApp && activeModalApp.__bundle) { window.mgBundleArea(activeModalApp); mgRenderBundles(); } else openDownloadLink(link);
                         }
                     } catch (_) {}
                 }, 3000);
@@ -2114,7 +2792,7 @@
             document.getElementById('scUnlockedBtn').href = link;
             document.getElementById('scUnlockedUrl').innerText = link;
             document.getElementById('scUnlockedBox').style.display = 'block';
-            if (autoOpen && link !== '#') openDownloadLink(link);
+            if (autoOpen && link !== '#') { window.mgDl('xmlTemplates', item.id); openDownloadLink(link); }
         }
 
         window.openItemFullShowcase = (id) => {
@@ -2123,11 +2801,14 @@
             const item = allXmlItems.find(x => x.id === id);
             if (!item) return;
             activeShowcaseItem = item;
+            window.mgBump('xmlTemplates', item.id, 'views');
+            window.mgExtra('xmlTemplates', item);
 
             const isPaid = Boolean(item.isPaid);
-            const price = Number(item.price || 9);
+            const price = window.mgEff(item, 9);
             const alreadyUnlocked = localStorage.getItem('maggie_unlocked_' + item.id) === '1';
 
+            document.getElementById('scTagWrap').innerHTML = tagBadgeHtml(item, 'tag-inline');
             const accessBadge = document.getElementById('scAccessBadge');
             const priceText = document.getElementById('scPriceText');
             if (isPaid) {
@@ -2143,6 +2824,7 @@
             document.getElementById('scTitle').innerText = window.sanitizeDisplayText(item.title || 'Pack');
             document.getElementById('scDesc').innerText = window.sanitizeDisplayText(item.description || '');
             document.getElementById('scStatusMsg').innerText = '';
+            window.mgCouponReset('s', isPaid && !alreadyUnlocked);
             document.getElementById('scPendingBanner').style.display = 'none';
             document.getElementById('scUnlockedBox').style.display = 'none';
 
@@ -2196,7 +2878,7 @@
 
         window.startShowcasePayment = async () => {
             if (!activeShowcaseItem) return;
-            const amount = Math.max(1, Number(activeShowcaseItem.price || 9));
+            const amount = window.mgAmount(Math.max(1, window.mgEff(activeShowcaseItem, 9)), activeShowcaseItem.id);
             const buyBtn = document.getElementById('scBuyBtn');
             const statusEl = document.getElementById('scStatusMsg');
             buyBtn.disabled = true;
@@ -2219,6 +2901,8 @@
                         if (!res.ok) return;
                         const data = await res.json();
                         if (data && data.status === "success") {
+                            window.mgRecordOrder(activeShowcaseItem.id, activeShowcaseItem.title, amount);
+                            window.mgAfterPay('s', activeShowcaseItem);
                             unlockShowcaseItem(activeShowcaseItem, true, true);
                         }
                     } catch (_) {}
@@ -2239,6 +2923,24 @@
                 try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (_) {}
             }
         });
+    </script>
+    <script>
+    (function () {
+        if (!window.matchMedia || !matchMedia('(hover:hover)').matches) return;
+        var raf = 0, tgt = null, px = 0, py = 0;
+        document.addEventListener('pointermove', function (e) {
+            var c = e.target && e.target.closest ? e.target.closest('.app-card') : null;
+            if (!c) return;
+            tgt = c; px = e.clientX; py = e.clientY;
+            if (raf) return;
+            raf = requestAnimationFrame(function () {
+                raf = 0;
+                var r = tgt.getBoundingClientRect();
+                tgt.style.setProperty('--mx', (px - r.left) + 'px');
+                tgt.style.setProperty('--my', (py - r.top) + 'px');
+            });
+        }, { passive: true });
+    })();
     </script>
 </body>
 </html>
