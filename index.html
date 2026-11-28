@@ -3,17 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MAGGIE STORE — Download editing and utility apps, preview and unlock XML packs, presets, and templates with fast checkout and direct links.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="MAGGIE STORE - App Hub">
+    <meta property="og:description" content="Download apps, preview XML packs and templates, and access direct links smoothly.">
+    <meta property="og:image" content="https://maggiestore.vercel.app/og-cover.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MAGGIE STORE - App Hub">
+    <meta name="twitter:description" content="Download apps, preview XML packs and templates, and access direct links smoothly.">
+    <meta name="twitter:image" content="https://maggiestore.vercel.app/og-cover.png">
     <title id="pageTitle">MAGGIE STORE - App Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Noto+Sans:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Noto+Sans:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2895289176876081"
      crossorigin="anonymous"></script>
     <style>
         :root, [data-theme="dark"] {
             --bg: #090d14;
-            --glass: rgba(20, 27, 40, 0.82);
-            --glass-strong: rgba(24, 32, 48, 0.92);
-            --glass-hover: rgba(32, 42, 62, 0.90);
+            --glass: rgba(20, 27, 40, 0.84);
+            --glass-strong: rgba(24, 32, 48, 0.94);
+            --glass-hover: rgba(32, 42, 62, 0.92);
             --glass-inset: rgba(255, 255, 255, 0.12);
             --surface-solid: #141b29;
             --surface-2: rgba(255, 255, 255, 0.05);
@@ -32,15 +44,15 @@
             --orb-1: rgba(245, 185, 33, 0.13);
             --orb-2: rgba(139, 92, 246, 0.11);
             --orb-3: rgba(245, 158, 11, 0.10);
-            --blur-main: 12px;
-            --blur-strong: 14px;
+            --blur-main: 10px;
+            --blur-strong: 12px;
         }
 
         [data-theme="light"] {
             --bg: #eef2f7;
-            --glass: rgba(255, 255, 255, 0.82);
-            --glass-strong: rgba(255, 255, 255, 0.92);
-            --glass-hover: rgba(255, 255, 255, 0.94);
+            --glass: rgba(255, 255, 255, 0.84);
+            --glass-strong: rgba(255, 255, 255, 0.94);
+            --glass-hover: rgba(255, 255, 255, 0.96);
             --glass-inset: rgba(255, 255, 255, 0.90);
             --surface-solid: #ffffff;
             --surface-2: rgba(15, 23, 42, 0.045);
@@ -59,8 +71,8 @@
             --orb-1: rgba(234, 179, 8, 0.13);
             --orb-2: rgba(124, 58, 237, 0.09);
             --orb-3: rgba(245, 158, 11, 0.10);
-            --blur-main: 12px;
-            --blur-strong: 14px;
+            --blur-main: 10px;
+            --blur-strong: 12px;
         }
 
         * {
@@ -99,8 +111,8 @@
             inset: 0;
             z-index: 9999;
             background: color-mix(in srgb, var(--bg) 92%, transparent);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -108,7 +120,7 @@
             gap: 12px;
             opacity: 1;
             visibility: visible;
-            transition: opacity 0.34s ease, visibility 0.34s ease;
+            transition: opacity 0.32s ease, visibility 0.32s ease;
         }
 
         #infinityTrailLoader.is-hidden {
@@ -146,13 +158,13 @@
             stroke-linecap: round;
             stroke-dasharray: 88 240;
             stroke-dashoffset: 0;
-            filter: drop-shadow(0 0 12px rgba(245, 185, 33, 0.58));
+            filter: drop-shadow(0 0 10px rgba(245, 185, 33, 0.52));
             animation: infinityTrailDash 1.45s linear infinite;
         }
 
         .infinity-head-dot {
             fill: #ffffff;
-            filter: drop-shadow(0 0 10px var(--accent-bright)) drop-shadow(0 0 18px var(--accent));
+            filter: drop-shadow(0 0 10px var(--accent-bright)) drop-shadow(0 0 16px var(--accent));
             offset-path: path("M 93,46 C 93,16 33,16 33,46 C 33,76 93,76 93,46 C 93,16 153,16 153,46 C 153,76 93,76 93,46 Z");
             offset-rotate: auto;
             animation: infinityTrailOrbit 1.45s linear infinite;
@@ -164,7 +176,7 @@
             border-radius: 50%;
             position: absolute;
             background: var(--accent-bright);
-            box-shadow: 0 0 12px var(--accent);
+            box-shadow: 0 0 10px var(--accent);
             offset-path: path("M 93,46 C 93,16 33,16 33,46 C 33,76 93,76 93,46 C 93,16 153,16 153,46 C 153,76 93,76 93,46 Z");
             offset-rotate: auto;
             animation: infinityTrailOrbit 1.45s linear infinite;
@@ -221,8 +233,8 @@
         .liquid-orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(56px);
-            opacity: 0.85;
+            filter: blur(48px);
+            opacity: 0.8;
             transform: translateZ(0);
         }
 
@@ -288,11 +300,10 @@
             opacity: 0;
             transform: translate3d(0, 18px, 0);
             transition:
-                opacity 0.34s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.36s cubic-bezier(0.22, 1, 0.36, 1),
                 border-color 0.2s ease,
                 background-color 0.2s ease;
-            will-change: transform, opacity;
         }
 
         .reveal-card.from-top {
@@ -309,8 +320,8 @@
             top: 0;
             z-index: 100;
             background: var(--glass-strong);
-            backdrop-filter: blur(var(--blur-strong)) saturate(145%);
-            -webkit-backdrop-filter: blur(var(--blur-strong)) saturate(145%);
+            backdrop-filter: blur(var(--blur-strong)) saturate(140%);
+            -webkit-backdrop-filter: blur(var(--blur-strong)) saturate(140%);
             border-bottom: 1px solid var(--border);
             box-shadow: inset 0 -1px 0 var(--glass-inset);
             padding: 11px 5%;
@@ -974,8 +985,8 @@
 
         .floating-dock {
             background: var(--glass-strong);
-            backdrop-filter: blur(var(--blur-strong)) saturate(145%);
-            -webkit-backdrop-filter: blur(var(--blur-strong)) saturate(145%);
+            backdrop-filter: blur(var(--blur-strong)) saturate(140%);
+            -webkit-backdrop-filter: blur(var(--blur-strong)) saturate(140%);
             border: 1px solid var(--border);
             border-radius: 999px;
             padding: 6px;
@@ -1137,10 +1148,10 @@
 
         @media (max-width: 720px) {
             :root, [data-theme="dark"], [data-theme="light"] {
-                --blur-main: 6px;
-                --blur-strong: 8px;
+                --blur-main: 4px;
+                --blur-strong: 6px;
             }
-            .liquid-orb { filter: blur(42px); }
+            .liquid-orb { display: none; }
             .about-top-grid { grid-template-columns: 1fr; }
         }
 
@@ -1162,7 +1173,7 @@
         }
     </style>
 </head>
-<body>
+<body id="top">
 
     <!-- Infinity Trail Loading Overlay -->
     <div id="infinityTrailLoader" aria-label="Loading store">
@@ -1197,8 +1208,8 @@
     </div>
 
     <header>
-        <a onclick="backToStoreView()" class="brand">
-            <img id="storeLogo" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%23f5b921%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2742%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%231a1202%27%3EM%3C/text%3E%3C/svg%3E" alt="Logo" class="store-logo">
+        <a href="#top" onclick="backToStoreView()" class="brand">
+            <img id="storeLogo" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%23f5b921%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2742%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%231a1202%27%3EM%3C/text%3E%3C/svg%3E" alt="Logo" class="store-logo" loading="eager" decoding="async">
             <span id="storeName" class="logo-text styled-name-text">MAGGIE STORE</span>
         </a>
         <div class="header-right">
@@ -1211,9 +1222,9 @@
 
     <div id="storeMainView">
         <div class="top-profile-wrap">
-            <section class="profile-pill-bar reveal-card">
+            <section class="profile-pill-bar reveal-card is-visible">
                 <div class="profile-left">
-                    <img id="topProfileAvatar" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%23f5b921%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2742%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%231a1202%27%3EM%3C/text%3E%3C/svg%3E" alt="Profile" class="profile-avatar" onclick="openCustomLightbox(this.src)">
+                    <img id="topProfileAvatar" src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%2788%27%20height%3D%2788%27%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20fill%3D%27%23f5b921%27/%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2758%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20font-size%3D%2742%27%20font-family%3D%27Arial%2Csans-serif%27%20font-weight%3D%27bold%27%20fill%3D%27%231a1202%27%3EM%3C/text%3E%3C/svg%3E" alt="Profile" class="profile-avatar" loading="eager" fetchpriority="high" decoding="async" onclick="openCustomLightbox(this.src)">
                     <div>
                         <div id="heroProfileTitle" class="profile-title-line styled-name-text">MAGGIE STORE</div>
                         <div class="profile-sub-row">
@@ -1348,11 +1359,11 @@
             <h2 style="font-family:'Fraunces',serif; font-size:1.2rem; margin-bottom:10px;">
                 <i class="fa-solid fa-circle-play" style="color:var(--accent);"></i> Video Preview
             </h2>
-            <video id="scVideoPlayer" class="showcase-video-player" controls playsinline preload="metadata"></video>
+            <video id="scVideoPlayer" class="showcase-video-player" controls playsinline preload="none"></video>
         </div>
 
         <div class="gallery-panel">
-            <img id="scMainImg" src="" alt="Preview Screenshot" class="main-shot-img" onclick="openShowcaseLightbox()">
+            <img id="scMainImg" src="" alt="Preview Screenshot" class="main-shot-img" loading="eager" decoding="async" onclick="openShowcaseLightbox()">
             <div id="scShotsGrid" class="all-shots-grid"></div>
         </div>
 
@@ -1380,7 +1391,7 @@
             <div id="scPendingBanner" class="pending-payment-banner">
                 <div style="font-weight:700; color:var(--accent-bright); margin-bottom:6px;">Checkout Opened — Waiting for Payment...</div>
                 <div id="scOrderText" style="font-size:0.78rem; color:var(--muted); margin-bottom:10px;"></div>
-                <a id="scCheckoutBtn" href="#" target="_blank" class="install-btn pay-btn">Re-open Checkout</a>
+                <a id="scCheckoutBtn" href="#" target="_blank" rel="noopener noreferrer" class="install-btn pay-btn">Re-open Checkout</a>
             </div>
 
             <div id="scStatusMsg" style="margin-top:10px; font-size:0.82rem; color:var(--muted);"></div>
@@ -1389,7 +1400,7 @@
                 <div style="color:var(--accent-bright); font-weight:800; margin-bottom:8px;">
                     <i class="fa-solid fa-circle-check"></i> Download Link Ready:
                 </div>
-                <a id="scUnlockedBtn" href="#" target="_blank" class="install-btn" style="padding:10px 18px;">
+                <a id="scUnlockedBtn" href="#" target="_blank" rel="noopener noreferrer" class="install-btn" style="padding:10px 18px;">
                     <i class="fa-solid fa-download"></i> Open / Download Link
                 </a>
                 <div id="scUnlockedUrl" style="margin-top:8px; font-size:0.76rem; color:var(--muted);"></div>
@@ -1418,7 +1429,7 @@
     <div id="appModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <img id="modalIcon" src="" alt="Icon" style="width:78px; height:78px; border-radius:18px; object-fit:cover; margin-bottom:10px;">
+            <img id="modalIcon" src="" alt="Icon" loading="lazy" decoding="async" style="width:78px; height:78px; border-radius:18px; object-fit:cover; margin-bottom:10px;">
             <div id="modalPaidBadgeWrap" style="display:none; margin-bottom:4px;">
                 <span id="modalPriceBadge" class="paid-tag">PAID</span>
             </div>
@@ -1431,7 +1442,7 @@
 
     <div id="scLightbox" class="lightbox" onclick="closeShowcaseLightbox()">
         <span class="lightbox-close" onclick="closeShowcaseLightbox()">&times;</span>
-        <img id="scLightboxImg" src="" alt="Zoomed Photo" onclick="event.stopPropagation()">
+        <img id="scLightboxImg" src="" alt="Zoomed Photo" decoding="async" onclick="event.stopPropagation()">
     </div>
 
     <script>
@@ -1453,8 +1464,8 @@
             }, delay);
         };
 
-        window.addEventListener("load", () => window.hideInfinityTrail(280));
-        setTimeout(() => window.hideInfinityTrail(0), 3000);
+        window.addEventListener("load", () => window.hideInfinityTrail(240));
+        setTimeout(() => window.hideInfinityTrail(0), 2800);
 
         (function initSavedTheme() {
             const saved = localStorage.getItem("maggie_theme") || "dark";
@@ -1532,6 +1543,13 @@
         let lastScrollY = window.scrollY;
         let scrollDir = "down";
         let scrollRaf = 0;
+        let cachedMaxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+
+        function recalcMaxScroll() {
+            cachedMaxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        }
+
+        window.addEventListener("resize", recalcMaxScroll, { passive: true });
 
         window.addEventListener("scroll", () => {
             if (scrollRaf) return;
@@ -1541,8 +1559,7 @@
                 else if (y < lastScrollY - 2) scrollDir = "up";
                 lastScrollY = y;
 
-                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                const ratio = docHeight > 0 ? Math.min(1, Math.max(0, y / docHeight)) : 0;
+                const ratio = Math.min(1, Math.max(0, y / cachedMaxScroll));
                 const bar = document.getElementById("scrollProgressBar");
                 if (bar) bar.style.transform = `scaleX(${ratio})`;
                 scrollRaf = 0;
@@ -1553,46 +1570,26 @@
             entries.forEach((entry) => {
                 const el = entry.target;
                 if (entry.isIntersecting) {
-                    const cameFromTop = scrollDir === "up" || entry.boundingClientRect.top < window.innerHeight * 0.25;
-                    el.classList.toggle("from-top", cameFromTop);
-                    requestAnimationFrame(() => {
-                        el.classList.add("is-visible");
-                    });
+                    el.classList.toggle("from-top", scrollDir === "up");
+                    el.classList.add("is-visible");
                 } else {
-                    const isAbove = entry.boundingClientRect.top < 0;
-                    el.classList.toggle("from-top", isAbove);
+                    el.classList.toggle("from-top", scrollDir === "up");
                     el.classList.remove("is-visible");
                 }
             });
         }, {
-            threshold: 0.08,
-            rootMargin: "0px 0px -20px 0px"
+            threshold: 0.06,
+            rootMargin: "0px 0px -16px 0px"
         });
-
-        function revealVisibleImmediately(containerEl) {
-            if (!containerEl) return;
-            const vh = window.innerHeight || 800;
-            containerEl.querySelectorAll(".reveal-card").forEach((card, idx) => {
-                const rect = card.getBoundingClientRect();
-                if (rect.top < vh * 0.95 && rect.bottom > 0) {
-                    card.style.transitionDelay = `${Math.min(idx * 35, 180)}ms`;
-                    requestAnimationFrame(() => {
-                        card.classList.add("is-visible");
-                        setTimeout(() => { card.style.transitionDelay = "0ms"; }, 350);
-                    });
-                }
-            });
-        }
 
         window.observeRevealCards = function (containerEl) {
             if (!containerEl) return;
             const cards = containerEl.querySelectorAll(".reveal-card");
             cards.forEach((card) => {
                 cardObserver.unobserve(card);
-                card.classList.remove("is-visible");
                 cardObserver.observe(card);
             });
-            revealVisibleImmediately(containerEl);
+            recalcMaxScroll();
         };
 
         document.addEventListener("DOMContentLoaded", () => {
@@ -1715,9 +1712,9 @@
                 const frag = document.createDocumentFragment();
                 extraPhotos.forEach((url, idx) => {
                     const card = document.createElement('div');
-                    card.className = 'app-card reveal-card game-extra-card';
+                    card.className = 'app-card reveal-card is-visible game-extra-card';
                     card.innerHTML = `
-                        <img src="${url}" alt="Photo ${idx + 1}" class="game-extra-photo" loading="lazy">
+                        <img src="${url}" alt="Photo ${idx + 1}" class="game-extra-photo" loading="lazy" decoding="async">
                         <div style="font-size:0.76rem; color:var(--muted); display:flex; justify-content:space-between;">
                             <span>Photo #${idx + 1}</span>
                             <i class="fa-solid fa-expand"></i>
@@ -1766,6 +1763,7 @@
                 const a = document.createElement('a');
                 a.href = cleanUrl(data.url);
                 a.target = '_blank';
+                a.rel = 'noopener noreferrer';
                 a.className = 'icon-social-btn';
                 a.title = platName;
                 a.innerHTML = `<i class="${getPlatformIcon(data.platform)}"></i>`;
@@ -1842,18 +1840,18 @@
                 const safeDesc = window.sanitizeDisplayText(appItem.description || 'Tap to view details');
 
                 const card = document.createElement('div');
-                card.className = 'app-card reveal-card';
+                card.className = 'app-card reveal-card is-visible';
 
                 const badgeHtml = isPaid
                     ? `<span class="paid-tag">${unlocked ? 'PAID • UNLOCKED' : `PAID • ₹${price}`}</span>`
                     : '';
 
                 const btnHtml = (!isPaid || unlocked)
-                    ? `<a href="${dlUrl}" target="_blank" class="install-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-download"></i> Install</a>`
+                    ? `<a href="${dlUrl}" target="_blank" rel="noopener noreferrer" class="install-btn" onclick="event.stopPropagation()"><i class="fa-solid fa-download"></i> Install</a>`
                     : `<button type="button" class="install-btn pay-btn" onclick="event.stopPropagation(); triggerAppDirectBuy('${appItem.id}')"><i class="fa-solid fa-lock"></i> Buy ₹${price}</button>`;
 
                 card.innerHTML = `
-                    <img src="${FALLBACK_APP}" alt="Icon" class="app-icon" loading="lazy">
+                    <img src="${FALLBACK_APP}" alt="Icon" class="app-icon" loading="lazy" decoding="async">
                     <div class="app-info">
                         ${badgeHtml}
                         <div class="app-title styled-name-text">${safeTitle}</div>
@@ -1893,10 +1891,10 @@
             const safeDesc = window.sanitizeDisplayText(first.description || 'Tap to view full preview gallery and unlock.');
 
             const heroCard = document.createElement('div');
-            heroCard.className = 'featured-pack-card reveal-card';
+            heroCard.className = 'featured-pack-card reveal-card is-visible';
             heroCard.onclick = () => window.openItemFullShowcase(first.id);
 
-            const thumbsHtml = photos.slice(0, 5).map(u => `<img src="${u}" alt="Thumb" class="thumb-strip-item" loading="lazy" onerror="this.style.display='none'">`).join('');
+            const thumbsHtml = photos.slice(0, 5).map(u => `<img src="${u}" alt="Thumb" class="thumb-strip-item" loading="lazy" decoding="async" onerror="this.style.display='none'">`).join('');
             const paidBadgeHtml = isPaid ? `<span class="price-pill">PAID • ₹${price}</span>` : '';
             const videoBadgeHtml = hasVideo ? `<span class="video-pill"><i class="fa-solid fa-play"></i> Video</span>` : '';
             const actionBtnHtml = `<button type="button" class="unlock-pill-btn" onclick="event.stopPropagation(); openItemFullShowcase('${first.id}')">
@@ -1906,7 +1904,7 @@
             heroCard.innerHTML = `
                 <div class="featured-top-split">
                     <div class="featured-cover-box">
-                        <img src="${cleanUrl(first.thumbUrl) || photos[0]}" alt="Cover" class="featured-cover-img" onerror="this.src='${FALLBACK_APP}'">
+                        <img src="${cleanUrl(first.thumbUrl) || photos[0]}" alt="Cover" class="featured-cover-img" loading="eager" fetchpriority="high" decoding="async" onerror="this.src='${FALLBACK_APP}'">
                         <span class="photo-count-badge">${photos.length} PHOTOS</span>
                     </div>
                     <div>
@@ -1928,10 +1926,10 @@
                     const itemPaid = Boolean(item.isPaid);
                     const itemHasVideo = Boolean(cleanUrl(item.videoUrl));
                     const c = document.createElement('div');
-                    c.className = 'app-card reveal-card';
+                    c.className = 'app-card reveal-card is-visible';
                     c.onclick = () => window.openItemFullShowcase(item.id);
                     c.innerHTML = `
-                        <img src="${cleanUrl(item.thumbUrl) || pList[0]}" alt="Pack" class="app-icon" loading="lazy" onerror="this.src='${FALLBACK_APP}'">
+                        <img src="${cleanUrl(item.thumbUrl) || pList[0]}" alt="Pack" class="app-icon" loading="lazy" decoding="async" onerror="this.src='${FALLBACK_APP}'">
                         <div class="app-info">
                             ${itemPaid ? `<span class="paid-tag">PAID • ₹${item.price || 9}</span>` : ''}
                             ${itemHasVideo ? `<span class="video-pill" style="padding:2px 7px; font-size:0.64rem; margin-bottom:4px;"><i class="fa-solid fa-play"></i> Video</span>` : ''}
@@ -2033,7 +2031,7 @@
 
             const area = document.getElementById('modalActionArea');
             area.innerHTML = (!isPaid || unlocked)
-                ? `<a href="${dlUrl}" target="_blank" class="install-btn" style="padding:10px 24px;"><i class="fa-solid fa-download"></i> Download Now</a>`
+                ? `<a href="${dlUrl}" target="_blank" rel="noopener noreferrer" class="install-btn" style="padding:10px 24px;"><i class="fa-solid fa-download"></i> Download Now</a>`
                 : `<button id="modalBuyBtn" type="button" class="install-btn pay-btn" style="padding:10px 22px;" onclick="startAppPayment()"><i class="fa-solid fa-lock"></i> Buy Now — ₹${price}</button>`;
 
             const modal = document.getElementById('appModal');
@@ -2073,7 +2071,7 @@
                             stopModalPolling();
                             localStorage.setItem('maggie_app_unlocked_' + activeModalApp.id, '1');
                             const link = cleanUrl(activeModalApp.downloadUrl) || '#';
-                            document.getElementById('modalActionArea').innerHTML = `<a href="${link}" target="_blank" class="install-btn" style="padding:10px 24px;"><i class="fa-solid fa-download"></i> Download Now</a>`;
+                            document.getElementById('modalActionArea').innerHTML = `<a href="${link}" target="_blank" rel="noopener noreferrer" class="install-btn" style="padding:10px 24px;"><i class="fa-solid fa-download"></i> Download Now</a>`;
                             filterAndRender();
                             openDownloadLink(link);
                         }
@@ -2095,7 +2093,7 @@
             photos.forEach((url, idx) => {
                 const tile = document.createElement('div');
                 tile.className = `shot-tile ${idx === 0 ? 'active' : ''}`;
-                tile.innerHTML = `<img src="${FALLBACK_APP}" alt="Shot ${idx + 1}">`;
+                tile.innerHTML = `<img src="${FALLBACK_APP}" alt="Shot ${idx + 1}" loading="lazy" decoding="async">`;
                 setImageDirect(tile.querySelector('img'), url, FALLBACK_APP);
                 tile.onclick = () => {
                     grid.querySelectorAll('.shot-tile').forEach(t => t.classList.remove('active'));
@@ -2151,6 +2149,7 @@
             if (vidUrl) {
                 const vidPanel = document.getElementById('scVideoPanel');
                 const vidPlayer = document.getElementById('scVideoPlayer');
+                vidPlayer.preload = 'metadata';
                 vidPlayer.src = vidUrl;
                 vidPanel.style.display = 'block';
             }
@@ -2171,8 +2170,7 @@
             document.getElementById('storeMainView').style.display = 'none';
             showcaseEl.style.display = 'block';
             showcaseEl.classList.remove('view-animate');
-            void showcaseEl.offsetWidth;
-            showcaseEl.classList.add('view-animate');
+            requestAnimationFrame(() => showcaseEl.classList.add('view-animate'));
 
             const scAd = showcaseEl.querySelector('ins.adsbygoogle');
             if (scAd && !scAd.getAttribute('data-adsbygoogle-status')) {
@@ -2190,8 +2188,7 @@
             document.getElementById('itemShowcaseView').style.display = 'none';
             mainEl.style.display = 'block';
             mainEl.classList.remove('view-animate');
-            void mainEl.offsetWidth;
-            mainEl.classList.add('view-animate');
+            requestAnimationFrame(() => mainEl.classList.add('view-animate'));
             filterAndRender();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
